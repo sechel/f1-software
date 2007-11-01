@@ -13,6 +13,7 @@ import java.util.logging.Level;
 
 import javax.swing.JApplet;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -44,6 +45,7 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 	private JPanel
 		optionsPanel = new JPanel();
 	
+	
 	public void init() {
 		try {
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
@@ -68,7 +70,12 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 		controller.setViewer(viewer);
 		viewer.setWireFrameRender(wireFrameChecker.isSelected());
 		viewer.setSmoothShading(smoothChecker.isSelected());
-		InputStream fis = TeamgeistApplet.class.getResourceAsStream("data/" + getParameter("file"));
+		viewer.getViewerApp().setBackgroundColor(Color.WHITE);
+		String filename = "teamgeist06.teamgeist";
+		try {
+			filename = getParameter("file");
+		} catch (Exception e) {} // No Applet
+		InputStream fis = TeamgeistApplet.class.getResourceAsStream("data/" + filename);
 		HESerializableReader<CPMVertex, CPMEdge, CPMFace> reader;
 		try {
 			reader = new HESerializableReader<CPMVertex, CPMEdge, CPMFace>(fis);
@@ -100,5 +107,18 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 			DBGTracer.setActive(true);
 		} catch (Exception e) {}
 	}
+	
+	
+	public static void main(String[] args) {
+		TeamgeistApplet app = new TeamgeistApplet();
+		app.init();
+		JFrame frame = new JFrame();
+		frame.add(app);
+		frame.setTitle("Teamgeist Polyhedron");
+		frame.setVisible(true);
+		frame.setSize(400, 400);
+	}
+	
+	
 	
 }

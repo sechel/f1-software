@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" 
+	codebase="http://www.math.tu-berlin.de/~sechel/webstart/"
+	href="TeamgeistView.jnlp">
+	<information>
+		<title>TeamgeistViewer</title>
+		<vendor>TU-Berlin</vendor>
+		<homepage href="http://www.math.tu-berlin.de/~sechel"/>
+		<description>Teamgeist Viewer</description>
+		<description kind="short">Teamgeist Viewer</description>
+		<offline-allowed/>
+	</information>
+	<security>
+		<all-permissions/>
+	</security>
+	<resources>
+		<j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+"/>
+		<jar href="MatheonF1.jar"/>
+		<extension name="jogl" href="http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jnlp" />
+	</resources>
+    <application-desc main-class="teamgeist.TeamgeisApplet"/>
+</jnlp>

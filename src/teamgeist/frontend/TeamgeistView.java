@@ -378,4 +378,8 @@ public class TeamgeistView extends JPanel {
        	geometryRoot.addTool(rotateTool);
 	}
 
+	public ViewerApp getViewerApp() {
+		return va;
+	}
+
 }
