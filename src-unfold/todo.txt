@@ -1,0 +1,4 @@
+TODO:
+
+- clean up code
+- add vertex at delaunay intersection and display delaunay edges on polytope

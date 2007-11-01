@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" 
+	codebase="http://www.math.tu-berlin.de/~sechel/webstart/"
+	href="MinimalSurfaces.jnlp">
+	<information>
+		<title>Discrete Minimal Surfaces</title>		
+		<vendor>Tu-Berlin</vendor>
+		<homepage href="http://www.math.tu-berlin.de/~sechel"/>
+		<description>Discrete Minimal Surfaces</description>
+		<description kind="short">Discrete Minimal Surfaces</description>
+		<offline-allowed/>
+	</information>
+	<security>
+		<all-permissions/>
+	</security>
+	<resources>
+		<j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+" java-vm-args="-XX:ThreadStackSize=8192 -XX:+AggressiveHeap"/>
+		<jar href="MatheonF1.jar"/>
+		<extension name="jogl" href="http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jnlp" />
+	</resources>
+  	<application-desc main-class="minimalsurface.frontend.MinimalSurfaces"/>
+</jnlp>

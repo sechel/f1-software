@@ -1,0 +1,9 @@
+/* AUTOMATICALLY GENERATED ON Thu Jan 19 04:59:22 CET 2006*/
+/* DO NOT EDIT */
+
+keystore "http://www.math.tu-berlin.de/~sechel/webstart/koebepolyeder/webstart/.keystore", "JKS";
+
+grant signedBy "sechel",  codeBase "http://www.math.tu-berlin.de/~sechel/webstart/koebepolyeder/" {
+  permission java.security.AllPermission, signedBy "sechel";
+};
+
