@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE heGraph>
+<heGraph description="A simple half edge graph test">
+	<vertexlist>
+		<vertex/>
+		<vertex/>
+		<vertex/>
+		<vertex/>	
+		<vertex/>
+		<vertex/>
+		<vertex/>	
+		<vertex/>
+		<vertex/>								
+	</vertexlist>	
+	
+	<facelist>
+		<face>
+			<property name="rho" type="double" value="0.5"/>
+		</face>
+		<face>
+			<property name="rho" type="double" value="-0.5"/>
+		</face>
+		<face>
+			<property name="rho" type="double" value="0.25"/>
+		</face>
+		<face>
+			<property name="rho" type="double" value="-0.25"/>
+		</face>
+	</facelist>
+	
+	<edgelist> 
+		<edge index="0" prev="4" next="2" target="1" opposite="1" left="0">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="1" prev="15" next="5" target="0" opposite="0" left="-1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="2" prev="0" next="7" target="3" opposite="3" left="0">
+			<property name="theta" type="double" value="1.5707"/>
+		</edge>
+		<edge index="3" prev="23" next="14" target="1" opposite="2" left="2">
+			<property name="theta" type="double" value="1.5707"/>
+		</edge>
+		<edge index="4" prev="7" next="0" target="0" opposite="5" left="0">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="5" prev="1" next="11" target="2" opposite="4" left="-1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+
+		<edge index="6" prev="10" next="8" target="3" opposite="7" left="1">
+			<property name="theta" type="double" value="1.5707"/>
+		</edge>
+		<edge index="7" prev="2" next="4" target="2" opposite="6" left="0">
+			<property name="theta" type="double" value="1.5707"/>
+		</edge>
+		<edge index="8" prev="6" next="12" target="5" opposite="9" left="1">
+			<property name="theta" type="double" value="1.5707"/>
+		</edge>
+		<edge index="9" prev="20" next="22" target="3" opposite="8" left="3">
+			<property name="theta" type="double" value="1.5707"/>
+		</edge>
+		
+		<edge index="10" prev="12" next="6" target="2" opposite="11" left="1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="11" prev="5" next="13" target="4" opposite="10" left="-1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="12" prev="8" next="10" target="4" opposite="13" left="1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="13" prev="11" next="21" target="5" opposite="12" left="-1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+
+		<edge index="14" prev="3" next="16" target="6" opposite="15" left="2">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="15" prev="17" next="1" target="1" opposite="14" left="-1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="16" prev="14" next="23" target="7" opposite="17" left="2">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="17" prev="19" next="15" target="6" opposite="16" left="-1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="18" prev="22" next="20" target="8" opposite="19" left="3">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="19" prev="21" next="17" target="7" opposite="18" left="-1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="20" prev="18" next="9" target="5" opposite="21" left="3">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		<edge index="21" prev="13" next="19" target="8" opposite="20" left="-1">
+			<property name="theta" type="double" value="2.3562"/>
+		</edge>
+		
+		<edge index="22" prev="9" next="18" target="7" opposite="23" left="3">
+			<property name="theta" type="double" value="1.5707"/>
+		</edge>
+		<edge index="23" prev="16" next="3" target="3" opposite="22" left="2">
+			<property name="theta" type="double" value="1.5707"/>
+		</edge>
+	</edgelist>
+	
+</heGraph>

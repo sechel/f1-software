@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE convexPolyhedralMetric>
+<cpml description="converted from polymake with poly2cpml">
+	<edgelist>
+		<edge length="0.27590434742"/>
+		<edge length="0.27590451484"/>
+		<edge length="0.312869013974"/>
+		<edge length="0.324919762983"/>
+		<edge length="0.285472911608"/>
+		<edge length="0.275904362137"/>
+		<edge length="0.275904517691"/>
+		<edge length="0.3249197404"/>
+		<edge length="0.275904587488"/>
+		<edge length="0.312868813405"/>
+		<edge length="0.321244064988"/>
+		<edge length="0.285473066083"/>
+		<edge length="0.28547301128"/>
+		<edge length="0.312868837652"/>
+		<edge length="0.312868807491"/>
+		<edge length="0.312868957545"/>
+		<edge length="0.312868932722"/>
+		<edge length="0.312868896258"/>
+		<edge length="0.275904483411"/>
+		<edge length="0.285473011421"/>
+		<edge length="0.275904478261"/>
+		<edge length="0.285473011421"/>
+		<edge length="0.324919738846"/>
+		<edge length="0.275904517691"/>
+		<edge length="0.31286895232"/>
+		<edge length="0.275904517971"/>
+		<edge length="0.285473035531"/>
+		<edge length="0.285472999553"/>
+		<edge length="0.27590451539"/>
+		<edge length="0.275904585284"/>
+		<edge length="0.312868949469"/>
+		<edge length="0.285473136151"/>
+		<edge length="0.285473041188"/>
+		<edge length="0.312868967457"/>
+		<edge length="0.285473014129"/>
+		<edge length="0.324919677009"/>
+		<edge length="0.32491958"/>
+		<edge length="0.324919738846"/>
+		<edge length="0.27590451484"/>
+		<edge length="0.312868932722"/>
+		<edge length="0.324919598031"/>
+		<edge length="0.285473016307"/>
+		<edge length="0.285473010919"/>
+		<edge length="0.312868953328"/>
+		<edge length="0.321244043762"/>
+		<edge length="0.275904587488"/>
+		<edge length="0.275904463602"/>
+		<edge length="0.31286896189"/>
+		<edge length="0.31286895232"/>
+		<edge length="0.324919673447"/>
+		<edge length="0.285473039104"/>
+		<edge length="0.285473136151"/>
+		<edge length="0.275904406759"/>
+		<edge length="0.324919743819"/>
+		<edge length="0.3249197949"/>
+		<edge length="0.275904406759"/>
+		<edge length="0.27590444279"/>
+		<edge length="0.324919680162"/>
+		<edge length="0.324919735806"/>
+		<edge length="0.285472857683"/>
+		<edge length="0.312868988684"/>
+		<edge length="0.312868967457"/>
+		<edge length="0.275904501718"/>
+		<edge length="0.32124394908"/>
+		<edge length="0.275904408563"/>
+		<edge length="0.285473066083"/>
+		<edge length="0.32124398"/>
+		<edge length="0.285473070927"/>
+		<edge length="0.324919681887"/>
+		<edge length="0.285473024248"/>
+		<edge length="0.324919735806"/>
+		<edge length="0.285472921565"/>
+		<edge length="0.312868837652"/>
+		<edge length="0.275904477411"/>
+		<edge length="0.321244089861"/>
+		<edge length="0.324919680162"/>
+		<edge length="0.275904498115"/>
+		<edge length="0.3249197949"/>
+		<edge length="0.312868949469"/>
+		<edge length="0.275904412063"/>
+		<edge length="0.321244030907"/>
+		<edge length="0.275904517028"/>
+		<edge length="0.321244064988"/>
+		<edge length="0.324919743819"/>
+		<edge length="0.285473069353"/>
+		<edge length="0.285473035531"/>
+		<edge length="0.275904483411"/>
+		<edge length="0.312869029245"/>
+		<edge length="0.32491958"/>
+		<edge length="0.324919735806"/>
+		<edge length="0.321243932298"/>
+		<edge length="0.285473011421"/>
+		<edge length="0.312868949054"/>
+		<edge length="0.312868932722"/>
+		<edge length="0.285473124546"/>
+		<edge length="0.312869019115"/>
+		<edge length="0.32124394908"/>
+		<edge length="0.321244140165"/>
+		<edge length="0.275904406759"/>
+		<edge length="0.321243932298"/>
+		<edge length="0.312869029245"/>
+		<edge length="0.275904460428"/>
+		<edge length="0.324919802225"/>
+		<edge length="0.312868957545"/>
+		<edge length="0.285472870271"/>
+		<edge length="0.321244"/>
+		<edge length="0.324919802225"/>
+		<edge length="0.275904460428"/>
+		<edge length="0.285473011421"/>
+		<edge length="0.275904412063"/>
+		<edge length="0.312868949054"/>
+		<edge length="0.285473024248"/>
+		<edge length="0.27590451539"/>
+		<edge length="0.285472938249"/>
+		<edge length="0.275904544395"/>
+		<edge length="0.312868908534"/>
+		<edge length="0.285472857683"/>
+		<edge length="0.285472932067"/>
+		<edge length="0.312868988684"/>
+		<edge length="0.321244085776"/>
+		<edge length="0.275904483131"/>
+		<edge length="0.312868908534"/>
+		<edge length="0.312868946255"/>
+		<edge length="0.27590443696"/>
+		<edge length="0.285472947998"/>
+		<edge length="0.312868798348"/>
+		<edge length="0.312868900424"/>
+		<edge length="0.27590451916"/>
+		<edge length="0.312868900424"/>
+		<edge length="0.285473066083"/>
+		<edge length="0.3249197404"/>
+		<edge length="0.275904469604"/>
+		<edge length="0.321244056864"/>
+		<edge length="0.285472870271"/>
+		<edge length="0.285473136151"/>
+		<edge length="0.321244091747"/>
+		<edge length="0.285473027231"/>
+		<edge length="0.324919673447"/>
+		<edge length="0.312868957545"/>
+		<edge length="0.312869018138"/>
+		<edge length="0.275904428697"/>
+		<edge length="0.285473039104"/>
+		<edge length="0.312868946359"/>
+		<edge length="0.285473033541"/>
+		<edge length="0.275904406759"/>
+		<edge length="0.321244122532"/>
+		<edge length="0.321244069937"/>
+		<edge length="0.275904428697"/>
+		<edge length="0.285473069353"/>
+		<edge length="0.27590451916"/>
+		<edge length="0.312868896258"/>
+		<edge length="0.275904412063"/>
+		<edge length="0.32491964"/>
+		<edge length="0.312869019115"/>
+		<edge length="0.285473124546"/>
+		<edge length="0.285472921565"/>
+		<edge length="0.285473027231"/>
+		<edge length="0.324919677009"/>
+		<edge length="0.31286895542"/>
+		<edge length="0.2854729889"/>
+		<edge length="0.27590434742"/>
+		<edge length="0.2854729889"/>
+		<edge length="0.312869013974"/>
+		<edge length="0.275904567414"/>
+		<edge length="0.324919574157"/>
+		<edge length="0.321244158182"/>
+		<edge length="0.285473020397"/>
+		<edge length="0.31286895542"/>
+		<edge length="0.285473070927"/>
+		<edge length="0.275904463602"/>
+		<edge length="0.275904476682"/>
+		<edge length="0.275904567414"/>
+		<edge length="0.285472947998"/>
+		<edge length="0.285473039104"/>
+		<edge length="0.31286882591"/>
+		<edge length="0.27590443696"/>
+		<edge length="0.312868946359"/>
+		<edge length="0.324919762983"/>
+		<edge length="0.275904517028"/>
+		<edge length="0.312868832756"/>
+		<edge length="0.275904494418"/>
+		<edge length="0.285472932067"/>
+		<edge length="0.321244"/>
+		<edge length="0.285473030896"/>
+		<edge length="0.312868932722"/>
+		<edge length="0.312868949474"/>
+		<edge length="0.275904362137"/>
+		<edge length="0.321244056864"/>
+		<edge length="0.321244089861"/>
+		<edge length="0.321244140165"/>
+		<edge length="0.312868813405"/>
+		<edge length="0.32491964"/>
+		<edge length="0.312868832756"/>
+		<edge length="0.275904478261"/>
+		<edge length="0.285472932067"/>
+		<edge length="0.324919681887"/>
+		<edge length="0.321244117238"/>
+		<edge length="0.285472924063"/>
+		<edge length="0.285473072622"/>
+		<edge length="0.312868949054"/>
+		<edge length="0.321244140165"/>
+		<edge length="0.275904544395"/>
+		<edge length="0.285472991098"/>
+		<edge length="0.312868837652"/>
+		<edge length="0.285473041188"/>
+		<edge length="0.285473033541"/>
+		<edge length="0.321244043762"/>
+		<edge length="0.321244158182"/>
+		<edge length="0.321244030907"/>
+		<edge length="0.324919677009"/>
+		<edge length="0.285473030896"/>
+		<edge length="0.275904587488"/>
+		<edge length="0.312868902297"/>
+		<edge length="0.312868946359"/>
+		<edge length="0.32124394908"/>
+		<edge length="0.312868963597"/>
+		<edge length="0.31286899185"/>
+		<edge length="0.275904460428"/>
+		<edge length="0.275904501718"/>
+		<edge length="0.312868952447"/>
+		<edge length="0.312868798348"/>
+		<edge length="0.312868949054"/>
+		<edge length="0.321244030907"/>
+		<edge length="0.312868946255"/>
+		<edge length="0.285472999553"/>
+		<edge length="0.324919707918"/>
+		<edge length="0.31286895232"/>
+		<edge length="0.324919743819"/>
+		<edge length="0.275904494418"/>
+		<edge length="0.3249197949"/>
+		<edge length="0.27590449833"/>
+		<edge length="0.312869013974"/>
+		<edge length="0.27590444279"/>
+		<edge length="0.27590434742"/>
+		<edge length="0.312868952447"/>
+		<edge length="0.285473124546"/>
+		<edge length="0.312868832756"/>
+		<edge length="0.275904576619"/>
+		<edge length="0.285473014129"/>
+		<edge length="0.312868946359"/>
+		<edge length="0.312868908534"/>
+		<edge length="0.285473016307"/>
+		<edge length="0.312869018138"/>
+		<edge length="0.31286882591"/>
+		<edge length="0.275904517971"/>
+		<edge length="0.285472947998"/>
+		<edge length="0.27590444279"/>
+		<edge length="0.285473020397"/>
+		<edge length="0.285473010919"/>
+		<edge length="0.275904477411"/>
+		<edge length="0.285472921565"/>
+		<edge length="0.275904493798"/>
+		<edge length="0.275904428697"/>
+		<edge length="0.275904412063"/>
+		<edge length="0.275904469604"/>
+		<edge length="0.3249197404"/>
+		<edge length="0.27590451484"/>
+		<edge length="0.321244085776"/>
+		<edge length="0.27590444279"/>
+		<edge length="0.312868953328"/>
+		<edge length="0.27590451484"/>
+		<edge length="0.285473035531"/>
+		<edge length="0.321244085776"/>
+		<edge length="0.312869018138"/>
+		<edge length="0.275904362137"/>
+		<edge length="0.31286899185"/>
+		<edge length="0.324919598031"/>
+		<edge length="0.285473010919"/>
+		<edge length="0.31286899185"/>
+		<edge length="0.321244056864"/>
+		<edge length="0.321244158182"/>
+		<edge length="0.285472938249"/>
+		<edge length="0.312868807491"/>
+		<edge length="0.285473069353"/>
+		<edge length="0.312868902297"/>
+		<edge length="0.27590449833"/>
+		<edge length="0.324919707918"/>
+		<edge length="0.321244122532"/>
+		<edge length="0.324919802225"/>
+		<edge length="0.285472991098"/>
+		<edge length="0.28547301128"/>
+		<edge length="0.312869019115"/>
+		<edge length="0.285473027231"/>
+		<edge length="0.31286882591"/>
+		<edge length="0.324919762983"/>
+		<edge length="0.3249197949"/>
+		<edge length="0.312868807491"/>
+		<edge length="0.312868946255"/>
+		<edge length="0.321244158182"/>
+		<edge length="0.275904544395"/>
+		<edge length="0.312869013974"/>
+		<edge length="0.285472991098"/>
+		<edge length="0.321244122532"/>
+		<edge length="0.321244122532"/>
+		<edge length="0.275904477411"/>
+		<edge length="0.285473124546"/>
+		<edge length="0.321244091747"/>
+		<edge length="0.321244117238"/>
+		<edge length="0.285472924063"/>
+		<edge length="0.324919707918"/>
+		<edge length="0.27590449833"/>
+		<edge length="0.275904493798"/>
+		<edge length="0.312868963597"/>
+		<edge length="0.285473072622"/>
+		<edge length="0.312868949469"/>
+		<edge length="0.312868949474"/>
+		<edge length="0.275904585284"/>
+		<edge length="0.321244056864"/>
+		<edge length="0.285473066083"/>
+		<edge length="0.27590443696"/>
+		<edge length="0.285472999553"/>
+		<edge length="0.324919743819"/>
+		<edge length="0.321244117238"/>
+		<edge length="0.285473070927"/>
+		<edge length="0.275904544395"/>
+		<edge length="0.312868963597"/>
+		<edge length="0.275904576619"/>
+		<edge length="0.285472999553"/>
+		<edge length="0.285473020397"/>
+		<edge length="0.285473016307"/>
+		<edge length="0.321244089861"/>
+		<edge length="0.285472924063"/>
+		<edge length="0.275904517028"/>
+		<edge length="0.312868908534"/>
+		<edge length="0.275904408563"/>
+		<edge length="0.324919738846"/>
+		<edge length="0.321244117238"/>
+		<edge length="0.321244069937"/>
+		<edge length="0.285473024248"/>
+		<edge length="0.27590434742"/>
+		<edge length="0.324919762983"/>
+		<edge length="0.312868953328"/>
+		<edge length="0.285472938249"/>
+		<edge length="0.3249197404"/>
+		<edge length="0.31286895542"/>
+		<edge length="0.31286895542"/>
+		<edge length="0.285473041188"/>
+		<edge length="0.285473072622"/>
+		<edge length="0.275904585284"/>
+		<edge length="0.324919677009"/>
+		<edge length="0.285473020397"/>
+		<edge length="0.275904362137"/>
+		<edge length="0.324919802225"/>
+		<edge length="0.285472932067"/>
+		<edge length="0.275904428697"/>
+		<edge length="0.312868896258"/>
+		<edge length="0.321244064988"/>
+		<edge length="0.324919735806"/>
+		<edge length="0.312869029245"/>
+		<edge length="0.321244069937"/>
+		<edge length="0.275904517971"/>
+		<edge length="0.285472938249"/>
+		<edge length="0.312868896258"/>
+		<edge length="0.28547301128"/>
+		<edge length="0.275904517691"/>
+		<edge length="0.275904408563"/>
+		<edge length="0.321244089861"/>
+		<edge length="0.275904476682"/>
+		<edge length="0.321244091747"/>
+		<edge length="0.324919574157"/>
+		<edge length="0.27590449833"/>
+		<edge length="0.285472991098"/>
+		<edge length="0.31286896189"/>
+		<edge length="0.312868813405"/>
+		<edge length="0.275904493798"/>
+		<edge length="0.285473010919"/>
+		<edge length="0.27590451916"/>
+		<edge length="0.285472870271"/>
+		<edge length="0.285472921565"/>
+		<edge length="0.312868952447"/>
+		<edge length="0.275904476682"/>
+		<edge length="0.31286882591"/>
+		<edge length="0.285472870271"/>
+		<edge length="0.285473014129"/>
+		<edge length="0.275904567414"/>
+		<edge length="0.321244085776"/>
+		<edge length="0.2854729889"/>
+		<edge length="0.312868967457"/>
+		<edge length="0.321244043762"/>
+		<edge length="0.275904494418"/>
+		<edge length="0.321244064988"/>
+		<edge length="0.324919681887"/>
+		<edge length="0.312868952447"/>
+		<edge length="0.312868902297"/>
+		<edge length="0.321244091747"/>
+		<edge length="0.2854729889"/>
+		<edge length="0.275904408563"/>
+		<edge length="0.285473035531"/>
+		<edge length="0.285473039104"/>
+		<edge length="0.324919673447"/>
+		<edge length="0.275904585284"/>
+		<edge length="0.275904576619"/>
+		<edge length="0.275904483131"/>
+		<edge length="0.275904476682"/>
+		<edge length="0.285472857683"/>
+		<edge length="0.324919598031"/>
+		<edge length="0.285472947998"/>
+		<edge length="0.312868832756"/>
+		<edge length="0.285473030896"/>
+		<edge length="0.312868949469"/>
+		<edge length="0.32124398"/>
+		<edge length="0.324919673447"/>
+		<edge length="0.312868813405"/>
+		<edge length="0.312868949474"/>
+		<edge length="0.324919707918"/>
+		<edge length="0.312868963597"/>
+		<edge length="0.275904587488"/>
+		<edge length="0.285473136151"/>
+		<edge length="0.312868988684"/>
+		<edge length="0.275904478261"/>
+		<edge length="0.285472911608"/>
+		<edge length="0.285473041188"/>
+		<edge length="0.275904463602"/>
+		<edge length="0.312868946255"/>
+		<edge length="0.275904567414"/>
+		<edge length="0.275904460428"/>
+		<edge length="0.312868988684"/>
+		<edge length="0.285472911608"/>
+		<edge length="0.312869029245"/>
+		<edge length="0.275904483411"/>
+		<edge length="0.312868953328"/>
+		<edge length="0.324919574157"/>
+		<edge length="0.324919574157"/>
+		<edge length="0.275904477411"/>
+		<edge length="0.28547301128"/>
+		<edge length="0.31286896189"/>
+		<edge length="0.312868967457"/>
+		<edge length="0.285473016307"/>
+		<edge length="0.285472857683"/>
+		<edge length="0.321243932298"/>
+		<edge length="0.31286896189"/>
+		<edge length="0.285472924063"/>
+		<edge length="0.321244069937"/>
+		<edge length="0.27590451916"/>
+		<edge length="0.285472911608"/>
+		<edge length="0.275904463602"/>
+		<edge length="0.275904494418"/>
+		<edge length="0.324919738846"/>
+		<edge length="0.285473014129"/>
+		<edge length="0.275904498115"/>
+		<edge length="0.312868837652"/>
+		<edge length="0.285473030896"/>
+		<edge length="0.285473069353"/>
+		<edge length="0.275904493798"/>
+		<edge length="0.321244140165"/>
+		<edge length="0.27590443696"/>
+		<edge length="0.275904517971"/>
+		<edge length="0.312868957545"/>
+		<edge length="0.285473070927"/>
+		<edge length="0.275904483411"/>
+		<edge length="0.312868900424"/>
+		<edge length="0.312868798348"/>
+		<edge length="0.27590451539"/>
+		<edge length="0.324919681887"/>
+		<edge length="0.275904576619"/>
+		<edge length="0.285473033541"/>
+		<edge length="0.275904478261"/>
+		<edge length="0.312868902297"/>
+		<edge length="0.275904517691"/>
+		<edge length="0.324919680162"/>
+		<edge length="0.312869019115"/>
+		<edge length="0.321244043762"/>
+		<edge length="0.32124394908"/>
+		<edge length="0.321244030907"/>
+		<edge length="0.285473027231"/>
+		<edge length="0.275904517028"/>
+		<edge length="0.285473024248"/>
+		<edge length="0.321243932298"/>
+		<edge length="0.312869018138"/>
+		<edge length="0.312868807491"/>
+		<edge length="0.312868900424"/>
+		<edge length="0.312868798348"/>
+		<edge length="0.285473072622"/>
+		<edge length="0.324919680162"/>
+		<edge length="0.285473033541"/>
+		<edge length="0.312868949474"/>
+		<edge length="0.27590451539"/>
+		<edge length="0.31286895232"/>
+		<edge length="0.324919598031"/>
+		<edge length="0.31286899185"/>
+	</edgelist>
+	<trianglelist>
+		<triangle a="299" b="152" c="404"/>
+		<triangle a="53" b="54" c="342"/>
+		<triangle a="473" b="49" c="359"/>
+		<triangle a="278" b="83" c="77"/>
+		<triangle a="422" b="75" c="389"/>
+		<triangle a="225" b="191" c="276"/>
+		<triangle a="89" b="209" c="381"/>
+		<triangle a="70" b="453" c="35"/>
+		<triangle a="478" b="88" c="395"/>
+		<triangle a="437" b="284" c="7"/>
+		<triangle a="130" b="330" c="325"/>
+		<triangle a="164" b="137" c="57"/>
+		<triangle a="106" b="229" c="311"/>
+		<triangle a="285" b="227" c="102"/>
+		<triangle a="401" b="459" c="421"/>
+		<triangle a="3" b="255" c="37"/>
+		<triangle a="339" b="58" c="195"/>
+		<triangle a="177" b="22" c="333"/>
+		<triangle a="157" b="68" c="347"/>
+		<triangle a="36" b="266" c="40"/>
+		<triangle a="441" b="105" c="210"/>
+		<triangle a="318" b="358" c="466"/>
+		<triangle a="361" b="222" c="372"/>
+		<triangle a="241" b="188" c="373"/>
+		<triangle a="59" b="380" c="19"/>
+		<triangle a="398" b="182" c="183"/>
+		<triangle a="51" b="44" c="387"/>
+		<triangle a="308" b="119" c="431"/>
+		<triangle a="332" b="66" c="351"/>
+		<triangle a="388" b="189" c="224"/>
+		<triangle a="27" b="97" c="141"/>
+		<triangle a="367" b="80" c="279"/>
+		<triangle a="111" b="135" c="166"/>
+		<triangle a="34" b="74" c="319"/>
+		<triangle a="108" b="346" c="116"/>
+		<triangle a="154" b="432" c="148"/>
+		<triangle a="194" b="277" c="474"/>
+		<triangle a="303" b="165" c="280"/>
+		<triangle a="321" b="257" c="65"/>
+		<triangle a="368" b="63" c="410"/>
+		<triangle a="396" b="196" c="313"/>
+		<triangle a="248" b="187" c="161"/>
+		<triangle a="156" b="90" c="204"/>
+		<triangle a="340" b="296" c="328"/>
+		<triangle a="202" b="208" c="104"/>
+		<triangle a="172" b="297" c="67"/>
+		<triangle a="197" b="262" c="129"/>
+		<triangle a="26" b="378" c="407"/>
+		<triangle a="250" b="96" c="417"/>
+		<triangle a="235" b="327" c="442"/>
+		<triangle a="198" b="207" c="12"/>
+		<triangle a="21" b="82" c="428"/>
+		<triangle a="438" b="356" c="41"/>
+		<triangle a="159" b="269" c="365"/>
+		<triangle a="32" b="467" c="136"/>
+		<triangle a="424" b="270" c="337"/>
+		<triangle a="11" b="375" c="298"/>
+		<triangle a="84" b="146" c="295"/>
+		<triangle a="205" b="292" c="181"/>
+		<triangle a="434" b="462" c="155"/>
+		<triangle a="168" b="326" c="124"/>
+		<triangle a="427" b="320" c="238"/>
+		<triangle a="394" b="10" c="91"/>
+		<triangle a="267" b="132" c="376"/>
+		<triangle a="282" b="99" c="336"/>
+		<triangle a="448" b="312" c="245"/>
+		<triangle a="143" b="293" c="117"/>
+		<triangle a="343" b="145" c="455"/>
+		<triangle a="4" b="214" c="71"/>
+		<triangle a="353" b="288" c="472"/>
+		<triangle a="273" b="349" c="94"/>
+		<triangle a="411" b="429" c="464"/>
+		<triangle a="385" b="307" c="42"/>
+		<triangle a="69" b="384" c="247"/>
+		<triangle a="133" b="463" c="291"/>
+		<triangle a="173" b="444" c="317"/>
+		<triangle a="261" b="206" c="134"/>
+		<triangle a="310" b="200" c="50"/>
+		<triangle a="31" b="461" c="85"/>
+		<triangle a="113" b="400" c="271"/>
+		<triangle a="425" b="152" c="47"/>
+		<triangle a="477" b="54" c="468"/>
+		<triangle a="115" b="49" c="125"/>
+		<triangle a="215" b="83" c="223"/>
+		<triangle a="286" b="75" c="221"/>
+		<triangle a="362" b="191" c="430"/>
+		<triangle a="100" b="209" c="304"/>
+		<triangle a="335" b="453" c="17"/>
+		<triangle a="179" b="88" c="192"/>
+		<triangle a="305" b="284" c="142"/>
+		<triangle a="239" b="330" c="403"/>
+		<triangle a="451" b="137" c="323"/>
+		<triangle a="263" b="229" c="48"/>
+		<triangle a="413" b="227" c="405"/>
+		<triangle a="110" b="459" c="14"/>
+		<triangle a="60" b="255" c="265"/>
+		<triangle a="126" b="58" c="382"/>
+		<triangle a="153" b="22" c="447"/>
+		<triangle a="345" b="68" c="167"/>
+		<triangle a="9" b="266" c="440"/>
+		<triangle a="1" b="105" c="260"/>
+		<triangle a="476" b="358" c="18"/>
+		<triangle a="294" b="222" c="264"/>
+		<triangle a="354" b="188" c="38"/>
+		<triangle a="264" b="380" c="28"/>
+		<triangle a="38" b="182" c="256"/>
+		<triangle a="201" b="44" c="423"/>
+		<triangle a="163" b="119" c="56"/>
+		<triangle a="56" b="66" c="258"/>
+		<triangle a="458" b="189" c="254"/>
+		<triangle a="254" b="97" c="6"/>
+		<triangle a="341" b="80" c="249"/>
+		<triangle a="419" b="135" c="452"/>
+		<triangle a="260" b="74" c="458"/>
+		<triangle a="112" b="346" c="341"/>
+		<triangle a="314" b="432" c="419"/>
+		<triangle a="252" b="277" c="193"/>
+		<triangle a="414" b="165" c="439"/>
+		<triangle a="232" b="257" c="414"/>
+		<triangle a="64" b="63" c="252"/>
+		<triangle a="324" b="196" c="357"/>
+		<triangle a="357" b="187" c="101"/>
+		<triangle a="101" b="90" c="20"/>
+		<triangle a="28" b="296" c="449"/>
+		<triangle a="423" b="208" c="186"/>
+		<triangle a="355" b="297" c="370"/>
+		<triangle a="258" b="262" c="374"/>
+		<triangle a="249" b="378" c="289"/>
+		<triangle a="386" b="96" c="140"/>
+		<triangle a="289" b="327" c="86"/>
+		<triangle a="374" b="207" c="76"/>
+		<triangle a="452" b="82" c="5"/>
+		<triangle a="256" b="356" c="23"/>
+		<triangle a="217" b="269" c="393"/>
+		<triangle a="193" b="467" c="217"/>
+		<triangle a="439" b="270" c="171"/>
+		<triangle a="171" b="375" c="246"/>
+		<triangle a="449" b="146" c="114"/>
+		<triangle a="20" b="292" c="147"/>
+		<triangle a="147" b="462" c="324"/>
+		<triangle a="393" b="326" c="64"/>
+		<triangle a="6" b="320" c="1"/>
+		<triangle a="186" b="10" c="476"/>
+		<triangle a="370" b="132" c="415"/>
+		<triangle a="415" b="99" c="456"/>
+		<triangle a="170" b="312" c="386"/>
+		<triangle a="456" b="293" c="344"/>
+		<triangle a="140" b="145" c="409"/>
+		<triangle a="344" b="214" c="355"/>
+		<triangle a="76" b="288" c="163"/>
+		<triangle a="18" b="349" c="201"/>
+		<triangle a="409" b="429" c="107"/>
+		<triangle a="107" b="307" c="170"/>
+		<triangle a="86" b="384" c="112"/>
+		<triangle a="5" b="463" c="73"/>
+		<triangle a="23" b="444" c="131"/>
+		<triangle a="73" b="206" c="314"/>
+		<triangle a="131" b="200" c="354"/>
+		<triangle a="114" b="461" c="294"/>
+		<triangle a="246" b="400" c="232"/>
+		<triangle a="174" b="404" c="33"/>
+		<triangle a="2" b="342" c="331"/>
+		<triangle a="274" b="359" c="39"/>
+		<triangle a="24" b="77" c="139"/>
+		<triangle a="240" b="389" c="471"/>
+		<triangle a="371" b="276" c="377"/>
+		<triangle a="150" b="381" c="158"/>
+		<triangle a="78" b="35" c="87"/>
+		<triangle a="363" b="395" c="13"/>
+		<triangle a="416" b="7" c="216"/>
+		<triangle a="281" b="325" c="15"/>
+		<triangle a="92" b="57" c="272"/>
+		<triangle a="287" b="311" c="315"/>
+		<triangle a="420" b="102" c="162"/>
+		<triangle a="184" b="421" c="212"/>
+		<triangle a="103" b="37" c="95"/>
+		<triangle a="334" b="195" c="352"/>
+		<triangle a="268" b="333" c="118"/>
+		<triangle a="234" b="347" c="128"/>
+		<triangle a="72" b="40" c="190"/>
+		<triangle a="283" b="210" c="412"/>
+		<triangle a="122" b="466" c="364"/>
+		<triangle a="199" b="372" c="244"/>
+		<triangle a="43" b="373" c="436"/>
+		<triangle a="93" b="19" c="329"/>
+		<triangle a="243" b="183" c="435"/>
+		<triangle a="450" b="387" c="211"/>
+		<triangle a="219" b="431" c="178"/>
+		<triangle a="402" b="351" c="253"/>
+		<triangle a="460" b="224" c="379"/>
+		<triangle a="408" b="141" c="218"/>
+		<triangle a="383" b="279" c="233"/>
+		<triangle a="231" b="166" c="338"/>
+		<triangle a="226" b="319" c="169"/>
+		<triangle a="121" b="116" c="251"/>
+		<triangle a="213" b="148" c="406"/>
+		<triangle a="348" b="474" c="445"/>
+		<triangle a="185" b="280" c="465"/>
+		<triangle a="399" b="65" c="109"/>
+		<triangle a="397" b="410" c="52"/>
+		<triangle a="47" b="313" c="98"/>
+		<triangle a="468" b="161" c="237"/>
+		<triangle a="125" b="204" c="366"/>
+		<triangle a="223" b="328" c="443"/>
+		<triangle a="221" b="104" c="350"/>
+		<triangle a="430" b="67" c="144"/>
+		<triangle a="304" b="129" c="151"/>
+		<triangle a="17" b="407" c="446"/>
+		<triangle a="192" b="417" c="55"/>
+		<triangle a="142" b="442" c="45"/>
+		<triangle a="403" b="12" c="81"/>
+		<triangle a="323" b="428" c="301"/>
+		<triangle a="48" b="41" c="46"/>
+		<triangle a="405" b="365" c="127"/>
+		<triangle a="14" b="136" c="300"/>
+		<triangle a="265" b="337" c="392"/>
+		<triangle a="382" b="298" c="322"/>
+		<triangle a="447" b="295" c="29"/>
+		<triangle a="167" b="181" c="275"/>
+		<triangle a="440" b="155" c="175"/>
+		<triangle a="33" b="124" c="316"/>
+		<triangle a="331" b="238" c="228"/>
+		<triangle a="39" b="91" c="160"/>
+		<triangle a="139" b="376" c="454"/>
+		<triangle a="471" b="336" c="149"/>
+		<triangle a="377" b="245" c="391"/>
+		<triangle a="158" b="117" c="360"/>
+		<triangle a="87" b="455" c="123"/>
+		<triangle a="13" b="71" c="309"/>
+		<triangle a="216" b="472" c="120"/>
+		<triangle a="15" b="94" c="306"/>
+		<triangle a="272" b="464" c="230"/>
+		<triangle a="315" b="42" c="433"/>
+		<triangle a="162" b="247" c="390"/>
+		<triangle a="212" b="291" c="0"/>
+		<triangle a="95" b="317" c="180"/>
+		<triangle a="352" b="134" c="25"/>
+		<triangle a="118" b="50" c="62"/>
+		<triangle a="128" b="85" c="8"/>
+		<triangle a="190" b="271" c="79"/>
+		<triangle a="426" b="299" c="283"/>
+		<triangle a="302" b="53" c="122"/>
+		<triangle a="469" b="473" c="199"/>
+		<triangle a="290" b="278" c="43"/>
+		<triangle a="457" b="422" c="93"/>
+		<triangle a="61" b="225" c="243"/>
+		<triangle a="369" b="89" c="450"/>
+		<triangle a="470" b="70" c="219"/>
+		<triangle a="203" b="478" c="402"/>
+		<triangle a="138" b="437" c="460"/>
+		<triangle a="479" b="130" c="408"/>
+		<triangle a="16" b="164" c="383"/>
+		<triangle a="259" b="106" c="231"/>
+		<triangle a="242" b="285" c="226"/>
+		<triangle a="220" b="401" c="121"/>
+		<triangle a="475" b="3" c="213"/>
+		<triangle a="30" b="339" c="348"/>
+		<triangle a="176" b="177" c="185"/>
+		<triangle a="418" b="157" c="399"/>
+		<triangle a="236" b="36" c="397"/>
+		<triangle a="169" b="441" c="174"/>
+		<triangle a="306" b="318" c="2"/>
+		<triangle a="329" b="361" c="274"/>
+		<triangle a="435" b="241" c="24"/>
+		<triangle a="443" b="59" c="240"/>
+		<triangle a="46" b="398" c="371"/>
+		<triangle a="350" b="51" c="150"/>
+		<triangle a="253" b="308" c="78"/>
+		<triangle a="151" b="332" c="363"/>
+		<triangle a="218" b="388" c="416"/>
+		<triangle a="228" b="27" c="281"/>
+		<triangle a="446" b="367" c="92"/>
+		<triangle a="301" b="111" c="287"/>
+		<triangle a="379" b="34" c="420"/>
+		<triangle a="233" b="108" c="184"/>
+		<triangle a="338" b="154" c="103"/>
+		<triangle a="300" b="194" c="334"/>
+		<triangle a="392" b="303" c="268"/>
+		<triangle a="465" b="321" c="234"/>
+		<triangle a="445" b="368" c="72"/>
+		<triangle a="237" b="396" c="426"/>
+		<triangle a="366" b="248" c="302"/>
+		<triangle a="275" b="156" c="469"/>
+		<triangle a="29" b="340" c="290"/>
+		<triangle a="160" b="202" c="457"/>
+		<triangle a="454" b="172" c="61"/>
+		<triangle a="81" b="197" c="369"/>
+		<triangle a="45" b="26" c="470"/>
+		<triangle a="123" b="250" c="203"/>
+		<triangle a="390" b="235" c="138"/>
+		<triangle a="120" b="198" c="479"/>
+		<triangle a="0" b="21" c="16"/>
+		<triangle a="180" b="438" c="259"/>
+		<triangle a="316" b="159" c="242"/>
+		<triangle a="127" b="32" c="220"/>
+		<triangle a="322" b="424" c="475"/>
+		<triangle a="79" b="11" c="30"/>
+		<triangle a="8" b="84" c="176"/>
+		<triangle a="175" b="205" c="418"/>
+		<triangle a="98" b="434" c="236"/>
+		<triangle a="52" b="168" c="425"/>
+		<triangle a="412" b="427" c="477"/>
+		<triangle a="364" b="394" c="115"/>
+		<triangle a="149" b="267" c="215"/>
+		<triangle a="360" b="282" c="286"/>
+		<triangle a="55" b="448" c="362"/>
+		<triangle a="309" b="143" c="100"/>
+		<triangle a="230" b="343" c="335"/>
+		<triangle a="144" b="4" c="179"/>
+		<triangle a="178" b="353" c="305"/>
+		<triangle a="211" b="273" c="239"/>
+		<triangle a="433" b="411" c="451"/>
+		<triangle a="391" b="385" c="263"/>
+		<triangle a="251" b="69" c="413"/>
+		<triangle a="25" b="133" c="110"/>
+		<triangle a="62" b="173" c="60"/>
+		<triangle a="406" b="261" c="126"/>
+		<triangle a="436" b="310" c="153"/>
+		<triangle a="244" b="31" c="345"/>
+		<triangle a="109" b="113" c="9"/>
+	</trianglelist>
+</cpml>

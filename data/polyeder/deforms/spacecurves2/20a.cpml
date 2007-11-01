@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE convexPolyhedralMetric>
+<cpml description="default tetrahedron">
+        <edgelist>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.318985"/>
+		<edge length="0.621344"/>
+		<edge length="1.127632"/>
+		<edge length="1.516068"/>
+		<edge length="1.819547"/>
+		<edge length="2.026423"/>
+		<edge length="2.025334"/>
+		<edge length="1.749523"/>
+		<edge length="1.249022"/>
+		<edge length="0.635916"/>
+		<edge length="0.895767"/>
+		<edge length="1.345852"/>
+		<edge length="1.691245"/>
+		<edge length="1.946516"/>
+		<edge length="2.050838"/>
+		<edge length="1.909220"/>
+		<edge length="1.512264"/>
+		<edge length="0.946586"/>
+		<edge length="0.621344"/>
+		<edge length="1.127632"/>
+		<edge length="1.516068"/>
+		<edge length="1.819547"/>
+		<edge length="2.026423"/>
+		<edge length="2.025334"/>
+		<edge length="1.749523"/>
+		<edge length="1.249022"/>
+		<edge length="0.635916"/>
+		<edge length="0.895767"/>
+		<edge length="1.345852"/>
+		<edge length="1.691245"/>
+		<edge length="1.946516"/>
+		<edge length="2.050838"/>
+		<edge length="1.909220"/>
+		<edge length="1.512264"/>
+		<edge length="0.946586"/>
+        </edgelist>
+        <trianglelist>
+		<triangle a="0" b="20" c="19"/>
+		<triangle a="1" b="29" c="20"/>
+		<triangle a="2" b="30" c="21"/>
+		<triangle a="3" b="31" c="22"/>
+		<triangle a="4" b="32" c="23"/>
+		<triangle a="5" b="33" c="24"/>
+		<triangle a="6" b="34" c="25"/>
+		<triangle a="7" b="35" c="26"/>
+		<triangle a="8" b="36" c="27"/>
+		<triangle a="29" b="21" c="18"/>
+		<triangle a="30" b="22" c="17"/>
+		<triangle a="31" b="23" c="16"/>
+		<triangle a="32" b="24" c="15"/>
+		<triangle a="33" b="25" c="14"/>
+		<triangle a="34" b="26" c="13"/>
+		<triangle a="35" b="27" c="12"/>
+		<triangle a="36" b="28" c="11"/>
+		<triangle a="9" b="10" c="28"/>
+		<triangle a="4" b="37" c="5"/>
+		<triangle a="37" b="46" c="6"/>
+		<triangle a="38" b="47" c="7"/>
+		<triangle a="39" b="48" c="8"/>
+		<triangle a="40" b="49" c="9"/>
+		<triangle a="41" b="50" c="10"/>
+		<triangle a="42" b="51" c="11"/>
+		<triangle a="43" b="52" c="12"/>
+		<triangle a="44" b="53" c="13"/>
+		<triangle a="3" b="38" c="46"/>
+		<triangle a="2" b="39" c="47"/>
+		<triangle a="1" b="40" c="48"/>
+		<triangle a="0" b="41" c="49"/>
+		<triangle a="19" b="42" c="50"/>
+		<triangle a="18" b="43" c="51"/>
+		<triangle a="17" b="44" c="52"/>
+		<triangle a="16" b="45" c="53"/>
+		<triangle a="45" b="15" c="14"/>
+        </trianglelist>
+</cpml>

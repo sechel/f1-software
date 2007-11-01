@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE convexPolyhedralMetric>
+<cpml description="exported by alexandrov polytop editor">
+	<edgelist>
+		<edge length="0.4105768147605915"/>
+		<edge length="1.0000000000000002"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="1.0000000000000073"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="0.4413876841779192"/>
+		<edge length="0.423288482246154"/>
+		<edge length="0.599524660983019"/>
+	</edgelist>
+	<trianglelist>
+		<triangle a="1" b="8" c="10"/>
+		<triangle a="4" b="10" c="7"/>
+		<triangle a="0" b="2" c="1"/>
+		<triangle a="2" b="9" c="6"/>
+		<triangle a="3" b="5" c="9"/>
+		<triangle a="0" b="4" c="3"/>
+		<triangle a="5" b="11" c="6"/>
+		<triangle a="7" b="8" c="11"/>
+	</trianglelist>
+</cpml>

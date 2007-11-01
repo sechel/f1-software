@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE heGraph>
+<heGraph description="A simple half edge graph test">
+	<vertexlist>
+		<vertex/>
+		<vertex/>
+		<vertex/>
+		<vertex/>									
+	</vertexlist>	
+	
+	<facelist>
+		<face>
+			<property name="rho" type="double" value="0.1"/>
+		</face>
+		<face>
+			<property name="rho" type="double" value="-0.1"/>
+		</face>
+		<face>
+			<property name="rho" type="double" value="0.25"/>
+		</face>
+
+	</facelist>
+	
+	<edgelist> 
+		<edge index="0" prev="10" next="8" target="1" opposite="1" left="1">
+			<property name="theta" type="double" value="0.637"/>
+		</edge>
+		<edge index="1" prev="2" next="7" target="0" opposite="0" left="-1">
+			<property name="theta" type="double" value="0.637"/>
+		</edge>
+		<edge index="2" prev="7" next="1" target="1" opposite="3" left="-1">
+			<property name="theta" type="double" value="1.169"/>
+		</edge>
+		<edge index="3" prev="9" next="4" target="2" opposite="2" left="2">
+			<property name="theta" type="double" value="1.169"/>
+		</edge>
+		<edge index="4" prev="2" next="9" target="3" opposite="5" left="2">
+			<property name="theta" type="double" value="2.426"/>
+		</edge>
+		<edge index="5" prev="11" next="6" target="2" opposite="4" left="0">
+			<property name="theta" type="double" value="2.426"/>
+		</edge>
+
+		<edge index="6" prev="5" next="11" target="0" opposite="7" left="0">
+			<property name="theta" type="double" value="1.335"/>
+		</edge>
+		<edge index="7" prev="1" next="2" target="2" opposite="6" left="-1">
+			<property name="theta" type="double" value="1.335"/>
+		</edge>
+		<edge index="8" prev="0" next="10" target="3" opposite="9" left="1">
+			<property name="theta" type="double" value="2.234"/>
+		</edge>
+		<edge index="9" prev="4" next="3" target="1" opposite="8" left="2">
+			<property name="theta" type="double" value="2.234"/>
+		</edge>
+		
+		<edge index="10" prev="8" next="0" target="0" opposite="11" left="1">
+			<property name="theta" type="double" value="1.623"/>
+		</edge>
+		<edge index="11" prev="6" next="5" target="3" opposite="10" left="0">
+			<property name="theta" type="double" value="1.623"/>
+		</edge>
+	</edgelist>
+	
+</heGraph>

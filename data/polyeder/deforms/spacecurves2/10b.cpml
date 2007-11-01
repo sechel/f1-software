@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE convexPolyhedralMetric>
+<cpml description="default tetrahedron">
+        <edgelist>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.567452"/>
+		<edge length="0.956890"/>
+		<edge length="1.464516"/>
+		<edge length="1.634340"/>
+		<edge length="1.096344"/>
+		<edge length="1.312777"/>
+		<edge length="1.647883"/>
+		<edge length="1.453891"/>
+		<edge length="0.956890"/>
+		<edge length="1.464516"/>
+		<edge length="1.634340"/>
+		<edge length="1.096344"/>
+		<edge length="1.312777"/>
+		<edge length="1.647883"/>
+		<edge length="1.453891"/>
+        </edgelist>
+        <trianglelist>
+		<triangle a="0" b="10" c="9"/>
+		<triangle a="1" b="14" c="10"/>
+		<triangle a="2" b="15" c="11"/>
+		<triangle a="3" b="16" c="12"/>
+		<triangle a="14" b="11" c="8"/>
+		<triangle a="15" b="12" c="7"/>
+		<triangle a="16" b="13" c="6"/>
+		<triangle a="4" b="5" c="13"/>
+		<triangle a="1" b="17" c="2"/>
+		<triangle a="17" b="21" c="3"/>
+		<triangle a="18" b="22" c="4"/>
+		<triangle a="19" b="23" c="5"/>
+		<triangle a="0" b="18" c="21"/>
+		<triangle a="9" b="19" c="22"/>
+		<triangle a="8" b="20" c="23"/>
+		<triangle a="20" b="7" c="6"/>
+        </trianglelist>
+</cpml>

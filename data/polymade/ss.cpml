@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE convexPolyhedralMetric>
+<cpml description="converted from polymake with poly2cpml">
+	<edgelist>
+		<edge length="1.42054534159"/>
+		<edge length="1.42054534159"/>
+		<edge length="1.63299240047"/>
+		<edge length="1.63299240047"/>
+		<edge length="1.42054534159"/>
+		<edge length="1.1547"/>
+		<edge length="1.08288922217"/>
+		<edge length="1.42054534159"/>
+		<edge length="1.1547"/>
+		<edge length="1.63299240047"/>
+		<edge length="1.42054534159"/>
+		<edge length="1.42054534159"/>
+		<edge length="1.1547"/>
+		<edge length="0.929111977912"/>
+		<edge length="1.08288922217"/>
+		<edge length="1.63299240047"/>
+		<edge length="0.929111977912"/>
+		<edge length="1.08288922217"/>
+		<edge length="0.929111977912"/>
+		<edge length="1.63299240047"/>
+		<edge length="1.63299240047"/>
+		<edge length="1.1547"/>
+		<edge length="1.1547"/>
+		<edge length="1.1547"/>
+	</edgelist>
+	<trianglelist>
+		<triangle a="9" b="15" c="19"/>
+		<triangle a="10" b="9" c="4"/>
+		<triangle a="22" b="20" c="5"/>
+		<triangle a="5" b="13" c="4"/>
+		<triangle a="20" b="17" c="6"/>
+		<triangle a="3" b="14" c="17"/>
+		<triangle a="0" b="21" c="16"/>
+		<triangle a="21" b="8" c="2"/>
+		<triangle a="2" b="6" c="14"/>
+		<triangle a="8" b="10" c="13"/>
+		<triangle a="15" b="0" c="7"/>
+		<triangle a="7" b="16" c="23"/>
+		<triangle a="23" b="3" c="12"/>
+		<triangle a="1" b="12" c="18"/>
+		<triangle a="11" b="18" c="22"/>
+		<triangle a="19" b="1" c="11"/>
+	</trianglelist>
+</cpml>

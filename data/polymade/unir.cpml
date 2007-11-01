@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE convexPolyhedralMetric>
+<cpml description="converted from polymake with poly2cpml">
+	<edgelist>
+		<edge length="0.737953160856"/>
+		<edge length="0.375238129149"/>
+		<edge length="0.312646637314"/>
+		<edge length="0.859242185657"/>
+		<edge length="0.468815453209"/>
+		<edge length="0.722768570922"/>
+		<edge length="0.907323346767"/>
+		<edge length="0.487768924822"/>
+		<edge length="0.671513695716"/>
+		<edge length="0.481332177726"/>
+		<edge length="0.927622551798"/>
+		<edge length="0.643353117231"/>
+		<edge length="0.490137973521"/>
+		<edge length="0.439589049288"/>
+		<edge length="0.275104264327"/>
+		<edge length="0.688049127645"/>
+		<edge length="0.290472679763"/>
+		<edge length="0.289945598955"/>
+		<edge length="0.930316048217"/>
+		<edge length="0.20515076094"/>
+		<edge length="0.642533949898"/>
+		<edge length="0.403258306147"/>
+		<edge length="0.529087210347"/>
+		<edge length="0.41221562897"/>
+		<edge length="0.700394772751"/>
+		<edge length="0.217386658182"/>
+		<edge length="0.842553314972"/>
+		<edge length="0.44534460758"/>
+		<edge length="0.981827626741"/>
+		<edge length="0.353440029264"/>
+		<edge length="0.569764786766"/>
+		<edge length="0.241593897665"/>
+		<edge length="0.80253059112"/>
+		<edge length="0.562813111868"/>
+		<edge length="0.176307758521"/>
+		<edge length="0.567878375475"/>
+		<edge length="0.922753890092"/>
+		<edge length="0.425850182353"/>
+		<edge length="0.165467817735"/>
+		<edge length="0.0542323529011"/>
+		<edge length="0.47077851936"/>
+		<edge length="0.325604357389"/>
+		<edge length="0.646207352783"/>
+		<edge length="0.338701763581"/>
+		<edge length="0.173547893407"/>
+		<edge length="1.14080618819"/>
+		<edge length="0.549903421919"/>
+		<edge length="0.952879547012"/>
+		<edge length="0.725577217366"/>
+		<edge length="0.298730352358"/>
+		<edge length="0.497647416789"/>
+		<edge length="0.523096607854"/>
+		<edge length="0.460352188361"/>
+		<edge length="0.655949738526"/>
+		<edge length="0.244700228372"/>
+		<edge length="0.793766246948"/>
+		<edge length="0.651938634795"/>
+		<edge length="1.03198200818"/>
+		<edge length="0.42576477749"/>
+		<edge length="0.675503038559"/>
+		<edge length="0.495499285432"/>
+		<edge length="0.798057439444"/>
+		<edge length="0.507046312015"/>
+		<edge length="1.43425350189"/>
+		<edge length="0.468654533053"/>
+		<edge length="1.0673944329"/>
+		<edge length="0.162316787163"/>
+		<edge length="1.3216417864"/>
+		<edge length="0.738416692302"/>
+		<edge length="1.07294604984"/>
+		<edge length="0.850104771063"/>
+		<edge length="0.317033602941"/>
+		<edge length="0.307848790526"/>
+		<edge length="0.893717387422"/>
+		<edge length="0.80084515013"/>
+	</edgelist>
+	<trianglelist>
+		<triangle a="52" b="15" c="21"/>
+		<triangle a="56" b="52" c="26"/>
+		<triangle a="49" b="4" c="23"/>
+		<triangle a="4" b="74" c="40"/>
+		<triangle a="17" b="1" c="13"/>
+		<triangle a="0" b="45" c="67"/>
+		<triangle a="48" b="51" c="1"/>
+		<triangle a="51" b="20" c="22"/>
+		<triangle a="50" b="7" c="44"/>
+		<triangle a="31" b="44" c="14"/>
+		<triangle a="69" b="14" c="6"/>
+		<triangle a="68" b="69" c="29"/>
+		<triangle a="37" b="53" c="20"/>
+		<triangle a="46" b="5" c="53"/>
+		<triangle a="38" b="61" c="5"/>
+		<triangle a="10" b="55" c="71"/>
+		<triangle a="29" b="16" c="34"/>
+		<triangle a="9" b="41" c="38"/>
+		<triangle a="72" b="16" c="60"/>
+		<triangle a="60" b="9" c="33"/>
+		<triangle a="33" b="46" c="55"/>
+		<triangle a="71" b="37" c="19"/>
+		<triangle a="57" b="65" c="41"/>
+		<triangle a="73" b="61" c="65"/>
+		<triangle a="6" b="7" c="57"/>
+		<triangle a="45" b="28" c="72"/>
+		<triangle a="70" b="34" c="28"/>
+		<triangle a="66" b="68" c="70"/>
+		<triangle a="27" b="54" c="31"/>
+		<triangle a="40" b="50" c="54"/>
+		<triangle a="3" b="24" c="73"/>
+		<triangle a="12" b="22" c="24"/>
+		<triangle a="30" b="42" c="66"/>
+		<triangle a="42" b="23" c="27"/>
+		<triangle a="21" b="30" c="0"/>
+		<triangle a="47" b="19" c="18"/>
+		<triangle a="25" b="18" c="48"/>
+		<triangle a="63" b="10" c="47"/>
+		<triangle a="67" b="63" c="26"/>
+		<triangle a="2" b="25" c="17"/>
+		<triangle a="32" b="12" c="43"/>
+		<triangle a="58" b="13" c="32"/>
+		<triangle a="11" b="2" c="58"/>
+		<triangle a="36" b="43" c="3"/>
+		<triangle a="35" b="36" c="74"/>
+		<triangle a="62" b="64" c="35"/>
+		<triangle a="59" b="11" c="64"/>
+		<triangle a="8" b="62" c="49"/>
+		<triangle a="15" b="39" c="8"/>
+		<triangle a="39" b="56" c="59"/>
+	</trianglelist>
+</cpml>
