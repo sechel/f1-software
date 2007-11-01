@@ -14,13 +14,11 @@ import halfedge.decorations.HasRho;
 import halfedge.decorations.HasTheta;
 import halfedge.decorations.HasXY;
 import halfedge.decorations.HasXYZW;
-import halfedge.io.HESerializableWriter;
 import halfedge.surfaceutilities.ConsistencyCheck;
 import halfedge.surfaceutilities.Subdivision;
 import halfedge.surfaceutilities.SurfaceException;
 import halfedge.surfaceutilities.SurfaceUtility;
 
-import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -186,9 +184,9 @@ public class KoebePolyhedron{
 				e.setTheta(Math.PI / 2);
 			
 			//debug output
-			HESerializableWriter writer = new HESerializableWriter(new FileOutputStream("data/koebeMedialOut.heds"));
-			writer.writeHalfEdgeDataStructure(medialCirclePattern);
-			writer.close();
+//			HESerializableWriter writer = new HESerializableWriter(new FileOutputStream("data/koebeMedialOut.heds"));
+//			writer.writeHalfEdgeDataStructure(medialCirclePattern);
+//			writer.close();
 			
 			if (!ConsistencyCheck.isValidSurface(medialCirclePattern))
 				throw new SurfaceException("No surface after altering medial graph in constructKoebePolyhedron()");

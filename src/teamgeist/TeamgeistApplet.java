@@ -1,5 +1,6 @@
 package teamgeist;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import halfedge.io.HESerializableReader;
 
 import java.awt.BorderLayout;
@@ -37,13 +38,22 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 	private MainController
 		controller = new MainController();
 	private TeamgeistView
-		viewer = new TeamgeistView(controller, true);
+		viewer = null;
 	private JCheckBox
 		smoothChecker = new JCheckBox("Smooth Shading", false),
 		wireFrameChecker = new JCheckBox("Wire Frame", false);
 	
 	private JPanel
 		optionsPanel = new JPanel();
+	
+	public TeamgeistApplet(){
+		this(true);
+	}
+	
+	
+	public TeamgeistApplet(boolean software) {
+		viewer = new TeamgeistView(controller, software);
+	}
 	
 	
 	public void init() {
@@ -87,6 +97,7 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 			e.printStackTrace();
 		}
 		SwingUtilities.updateComponentTreeUI(this);
+		viewer.encompass();
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -110,13 +121,14 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 	
 	
 	public static void main(String[] args) {
-		TeamgeistApplet app = new TeamgeistApplet();
+		TeamgeistApplet app = new TeamgeistApplet(false);
 		app.init();
 		JFrame frame = new JFrame();
 		frame.add(app);
 		frame.setTitle("Teamgeist Polyhedron");
 		frame.setVisible(true);
 		frame.setSize(400, 400);
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	

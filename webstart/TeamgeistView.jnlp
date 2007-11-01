@@ -18,5 +18,5 @@
 		<jar href="MatheonF1.jar"/>
 		<extension name="jogl" href="http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jnlp" />
 	</resources>
-    <application-desc main-class="teamgeist.TeamgeisApplet"/>
+    <application-desc main-class="teamgeist.TeamgeistApplet"/>
 </jnlp>

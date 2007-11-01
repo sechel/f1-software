@@ -103,27 +103,30 @@ public class TeamgeistView extends JPanel {
 	
 	private boolean
 		softwareRendering = false;
-	
+//	
 	private SceneGraphPath
 		cameraPath = new SceneGraphPath();
 	
 	public TeamgeistView(MainController controller, boolean software){
-//		this.softwareRendering = software;
+		this.softwareRendering = software;
 //		if (software)
 //			viewer = new ToolSystemViewer(new DefaultViewer(false));
 //		else
 //			viewer = new ToolSystemViewer(new Viewer());
 		this.controller = controller;
 		setLayout(new BorderLayout());
+		va.update();
+		CameraUtility.getCamera(va.getCurrentViewer()).setFieldOfView(23);
 		add((Component) va.getViewingComponent(), BorderLayout.CENTER);
 		initScene();
 	}
 	
 	public void encompass(){
-		SceneGraphPath scenePath = new SceneGraphPath();
-		scenePath.push(root);
-		MatrixBuilder.euclidean().assignTo(cameraRoot);
-		CameraUtility.encompass(cameraPath, scenePath, cameraPath, 1, 0);
+//		SceneGraphPath scenePath = new SceneGraphPath();
+//		scenePath.push(root);
+//		MatrixBuilder.euclidean().assignTo(cameraRoot);
+//		CameraUtility.encompass(cameraPath, scenePath, cameraPath, 1, 0);
+		System.out.println("TeamgeistView.encompass()");
 	}
 	
 	
@@ -374,8 +377,8 @@ public class TeamgeistView extends JPanel {
 //	    viewer.setEmptyPickPath(pickPath);
 //	    viewer.initializeTools();
 	    
-        geometryRoot.addTool(encompassTool);
-       	geometryRoot.addTool(rotateTool);
+//        geometryRoot.addTool(encompassTool);
+//       	geometryRoot.addTool(rotateTool);
 	}
 
 	public ViewerApp getViewerApp() {
