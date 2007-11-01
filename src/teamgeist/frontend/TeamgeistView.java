@@ -42,13 +42,10 @@ import de.jreality.scene.Camera;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.SceneGraphComponent;
 import de.jreality.scene.SceneGraphPath;
-import de.jreality.scene.tool.Tool;
 import de.jreality.shader.DefaultGeometryShader;
 import de.jreality.shader.DefaultPointShader;
 import de.jreality.shader.DefaultTextShader;
 import de.jreality.shader.ShaderUtility;
-import de.jreality.tools.EncompassTool;
-import de.jreality.tools.RotateTool;
 import de.jreality.ui.viewerapp.ViewerApp;
 import de.jreality.util.CameraUtility;
 
@@ -89,9 +86,9 @@ public class TeamgeistView extends JPanel {
 	private Appearance
 		rootAppearance = new Appearance(),
 		teamgeistAppearance = new Appearance();
-	private Tool
-		rotateTool = new RotateTool(),
-		encompassTool = new EncompassTool();
+//	private Tool
+//		rotateTool = new RotateTool(),
+//		encompassTool = new EncompassTool();
 //	private PickSystem
 //		pickSystem = new AABBPickSystem();
 //	
