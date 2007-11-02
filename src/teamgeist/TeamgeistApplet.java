@@ -41,7 +41,7 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 		viewer = null;
 	private JCheckBox
 		smoothChecker = new JCheckBox("Smooth Shading", false),
-		wireFrameChecker = new JCheckBox("Wire Frame", false);
+		wireFrameChecker = new JCheckBox("Wire Frame", true);
 	
 	private JPanel
 		optionsPanel = new JPanel();
@@ -84,6 +84,8 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 		String filename = "teamgeist06.teamgeist";
 		try {
 			filename = getParameter("file");
+			if (filename == null)
+				filename = "teamgeist06.teamgeist";
 		} catch (Exception e) {} // No Applet
 		InputStream fis = TeamgeistApplet.class.getResourceAsStream("data/" + filename);
 		HESerializableReader<CPMVertex, CPMEdge, CPMFace> reader;
@@ -97,7 +99,6 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 			e.printStackTrace();
 		}
 		SwingUtilities.updateComponentTreeUI(this);
-		viewer.encompass();
 	}
 
 	public void actionPerformed(ActionEvent e) {

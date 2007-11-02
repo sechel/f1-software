@@ -38,10 +38,8 @@ import alexandrov.graph.CPMVertex;
 import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.math.MatrixBuilder;
 import de.jreality.scene.Appearance;
-import de.jreality.scene.Camera;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.SceneGraphComponent;
-import de.jreality.scene.SceneGraphPath;
 import de.jreality.shader.DefaultGeometryShader;
 import de.jreality.shader.DefaultPointShader;
 import de.jreality.shader.DefaultTextShader;
@@ -68,8 +66,8 @@ public class TeamgeistView extends JPanel {
 		root = new SceneGraphComponent(),
 		geometryRoot = new SceneGraphComponent(),
 		patchRoot = new SceneGraphComponent(),
-		rotorRoot = new SceneGraphComponent(),
-		cameraRoot = new SceneGraphComponent();
+		rotorRoot = new SceneGraphComponent();
+//		cameraRoot = new SceneGraphComponent();
 //		light1Root = new SceneGraphComponent(),
 //		light2Root = new SceneGraphComponent(),
 //		light3Root = new SceneGraphComponent();
@@ -101,8 +99,8 @@ public class TeamgeistView extends JPanel {
 	private boolean
 		softwareRendering = false;
 //	
-	private SceneGraphPath
-		cameraPath = new SceneGraphPath();
+//	private SceneGraphPath
+//		cameraPath = new SceneGraphPath();
 	
 	public TeamgeistView(MainController controller, boolean software){
 		this.softwareRendering = software;
@@ -123,6 +121,10 @@ public class TeamgeistView extends JPanel {
 //		scenePath.push(root);
 //		MatrixBuilder.euclidean().assignTo(cameraRoot);
 //		CameraUtility.encompass(cameraPath, scenePath, cameraPath, 1, 0);
+		//MatrixBuilder.euclidean(geometryRoot).translate(0, 0, -5).assignTo(geometryRoot);
+		CameraUtility.encompass(va.getCurrentViewer());
+		CameraUtility.getCamera(va.getCurrentViewer()).setFieldOfView(1);
+		//MatrixBuilder.euclidean(geometryRoot).translate(0, 0, 5).assignTo(geometryRoot);
 		System.out.println("TeamgeistView.encompass()");
 	}
 	
@@ -241,7 +243,7 @@ public class TeamgeistView extends JPanel {
 		rotorGeometry.setGeometryAttributes("pickable", false);
 		rotorRoot.setGeometry(rotorGeometry);
 		
-		CameraUtility.encompass(va.getCurrentViewer());
+		encompass();
 	}
 	
 	public void resetGeometry(){
@@ -275,15 +277,15 @@ public class TeamgeistView extends JPanel {
 		root.setName("Scene Root");
 		
 		//camera
-		Camera cam = new Camera();
-		cam.setFieldOfView(40);
-		cameraRoot.setCamera(cam);
-		cameraRoot.setName("Camera");
-		MatrixBuilder.euclidean().translate(0, 0, 4).assignTo(cameraRoot);
-        cameraPath.push(root);
-        cameraPath.push(cameraRoot);
-        cameraPath.push(cam);
-        root.addChild(cameraRoot);
+//		Camera cam = new Camera();
+//		cam.setFieldOfView(40);
+//		cameraRoot.setCamera(cam);
+//		cameraRoot.setName("Camera");
+//		MatrixBuilder.euclidean().translate(0, 0, 4).assignTo(cameraRoot);
+//        cameraPath.push(root);
+//        cameraPath.push(cameraRoot);
+//        cameraPath.push(cam);
+//        root.addChild(cameraRoot);
 		
 //        //light 1
 //        light1.setColor(light1Color);
@@ -364,7 +366,7 @@ public class TeamgeistView extends JPanel {
 //        rt.addSceneGraphComponent(root);
 //        rt.addViewer(va.getCurrentViewer());
         
-        va.getCurrentViewer().setCameraPath(cameraPath);
+//        va.getCurrentViewer().setCameraPath(cameraPath);
 //        va.getCurrentViewer().setAvatarPath(cameraPath);
         
         //pick path
