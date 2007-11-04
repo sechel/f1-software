@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JAVA_PROGRAM_DIR="" #in the path
+JAVA_PROGRAM_DIR=${1} #in the path
 
 MSG2="Java exec found in "
 MSG3="OOPS, this java version is too old "
@@ -84,7 +84,7 @@ LIB_PATH='native'
 MAIN_CLASS='circlepatterns.frontend.CPTestSuite'
 
 for FILE in ./lib/*.jar; do CLASSPATH="${CLASSPATH}:${FILE}"; done
-CLASSPATH="$CLASSPATH:./build"
+CLASSPATH="$CLASSPATH:./bin"
 
 ${JAVA_PROGRAM_DIR}java $VM_ARGS -Djava.library.path=$LIB_PATH -cp $CLASSPATH $MAIN_CLASS
 
