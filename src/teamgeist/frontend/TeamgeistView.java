@@ -318,9 +318,9 @@ public class TeamgeistView extends JPanel {
         Appearance patchApp = new Appearance();
         Textures.setTexture(patchApp, "teamgeist01sw.jpg");
         patchRoot.setAppearance(patchApp);
-        Appearance rotor1App = new Appearance();
-        Textures.setTexture(rotor1App, "teamgeist01sw.jpg");
-        rotorRoot.setAppearance(rotor1App);
+//        Appearance rotor1App = new Appearance();
+//        Textures.setTexture(rotor1App, "teamgeist01sw.jpg");
+        rotorRoot.setAppearance(patchApp);
         
         //all geomentry
         if (softwareRendering){

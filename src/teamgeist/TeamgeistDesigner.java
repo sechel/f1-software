@@ -3,6 +3,7 @@ package teamgeist;
 import java.awt.BorderLayout;
 import java.util.logging.Level;
 
+import javax.swing.Action;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import javax.swing.border.BevelBorder;
 import teamgeist.frontend.GraphicsOptions;
 import teamgeist.frontend.TeamgeistCreationPanel;
 import teamgeist.frontend.TeamgeistView;
+import teamgeist.frontend.action.ExportU3DAction;
 import teamgeist.frontend.action.OpenGraph;
 import teamgeist.frontend.action.SaveGraph;
 import teamgeist.frontend.controller.MainController;
@@ -44,6 +46,9 @@ public class TeamgeistDesigner extends JFrame implements StatusChangedListener{
 	private JCheckBoxMenuItem
 		debugChecker = new JCheckBoxMenuItem(new SetDebugModeAction());
 
+	private Action
+		exportU3DAction = new ExportU3DAction(this, controller);
+	
 	private JMenuBar
 		menuBar = new JMenuBar();
 	private JMenu
@@ -77,6 +82,8 @@ public class TeamgeistDesigner extends JFrame implements StatusChangedListener{
 	private void makeMenuBar() {
 		fileMenu.add(new OpenGraph(this, controller));
 		fileMenu.add(new SaveGraph(this, controller));
+		fileMenu.add(new JSeparator());
+		fileMenu.add(exportU3DAction);
 		fileMenu.add(new JSeparator());
 		fileMenu.add(new CloseProgram());
 		helpMenu.add(debugChecker);
