@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import minimalsurface.frontend.content.MinimalSurfacePanel;
-import de.jreality.writer.U3DWriter;
+import de.jreality.writer.u3d.WriterU3D;
 
 /**
  * Opens a file chooser and saves active polyhedron.
@@ -74,7 +74,7 @@ public class ExportU3DAction extends AbstractAction {
 			}
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
-				U3DWriter writer = new U3DWriter();
+				WriterU3D writer = new WriterU3D();
 				writer.writeScene(viewer.getViewerApp().getJrScene(), fos);
 				fos.close();
 			} catch (Exception e1) {
