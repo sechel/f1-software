@@ -55,8 +55,6 @@ import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.geometry.IndexedLineSetFactory;
-import de.jreality.geometry.PointSetFactory;
-import de.jreality.geometry.Primitives;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
 import de.jreality.scene.Appearance;
@@ -97,16 +95,13 @@ public class MinimalSurfacePanel extends JPanel{
 	//geometry
 	private SceneGraphComponent 
 		sceneRoot = new SceneGraphComponent(),
-		polyederRoot = new SceneGraphComponent(),
+		polyhedronRoot = new SceneGraphComponent(),
 		geometryRoot = new SceneGraphComponent(),
-		pointsRoot = new SceneGraphComponent(),
 		linesRoot = new SceneGraphComponent();
 	private Transformation
 		diskThicknessTransform = new Transformation();
 	private ViewerApp
 		viewerApp = new ViewerApp(sceneRoot);
-	private PointSetFactory
-		pointSetFactory = new PointSetFactory();
 	private SceneGraphPath
 		cameraPath=new SceneGraphPath();
 	private IndexedFaceSet
@@ -140,7 +135,6 @@ public class MinimalSurfacePanel extends JPanel{
 	
 	private Appearance 
 		surfaceAppearance = new Appearance(),
-		pointApp = new Appearance(),
 		diskApp = new Appearance(),
 		spheresApp = new Appearance(),
 		rootApp = viewerApp.getCurrentViewer().getSceneRoot().getAppearance(),
@@ -150,7 +144,6 @@ public class MinimalSurfacePanel extends JPanel{
 		antialias = true,
 		showSurface = true,
 		showMesh = true,
-		showSphere = false,
 		showCircles = true,
 		showSpheres = false,
 		transparencySurface = false,
@@ -222,7 +215,7 @@ public class MinimalSurfacePanel extends JPanel{
         geometryRoot.setName("Geometry");
 		sceneRoot.addChild(geometryRoot);
         
-        //polyeder
+        //polyhedron
 		surfaceAppearance.setAttribute(FACE_DRAW, true);
 		surfaceAppearance.setAttribute(POLYGON_SHADER, "smooth");
         surfaceAppearance.setAttribute(POLYGON_SHADER + "." + SMOOTH_SHADING, smoothShading);
@@ -256,10 +249,10 @@ public class MinimalSurfacePanel extends JPanel{
         surfaceAppearance.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);
         surfaceAppearance.setAttribute(LINE_SHADER + "." + TRANSPARENCY_ENABLED, false);
 
-        polyederRoot.setAppearance(surfaceAppearance);
-        polyederRoot.setVisible(showSurface);
-        polyederRoot.setName("Polyhedron");
-        geometryRoot.addChild(polyederRoot);
+        polyhedronRoot.setAppearance(surfaceAppearance);
+        polyhedronRoot.setVisible(showSurface);
+        polyhedronRoot.setName("Surface Root");
+        geometryRoot.addChild(polyhedronRoot);
         
         // disks
         diskApp.setAttribute(POLYGON_SHADER, "flat");
@@ -300,14 +293,8 @@ public class MinimalSurfacePanel extends JPanel{
 		Matrix S = MatrixBuilder.euclidean().scale(1, 1, diskThickness).getMatrix();
 		S.assignTo(diskThicknessTransform);
 		
-        // point set
-        pointApp.setAttribute(POINT_RADIUS, 0.01);
-        pointApp.setAttribute(POINT_SIZE, 0.01);
-        pointsRoot.setAppearance(pointApp);
-        pointsRoot.setGeometry(pointSetFactory.getPointSet());
-        geometryRoot.addChild(pointsRoot);
-
         // helper lines
+        linesRoot.setName("Helper Lines");
         linesRoot.setAppearance(linesApp);
         linesApp.setAttribute(VERTEX_DRAW, false);
         linesApp.setAttribute(EDGE_DRAW, true);
@@ -316,19 +303,6 @@ public class MinimalSurfacePanel extends JPanel{
         linesApp.setAttribute(LINE_SHADER + "." + TUBES_DRAW, true);
         linesApp.setAttribute(LINE_SHADER + "." + TUBE_RADIUS, meshWidth * 3);
         geometryRoot.addChild(linesRoot);
-        
-        
-        SceneGraphComponent sphereRoot = new SceneGraphComponent();
-        Appearance sphereAppearance = new Appearance();
-        sphereAppearance.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, Color.DARK_GRAY);
-        sphereAppearance.setAttribute(TRANSPARENCY, 0.5);
-        sphereAppearance.setAttribute(VERTEX_DRAW, false);
-        sphereAppearance.setAttribute(TRANSPARENCY_ENABLED, true);
-        sphereAppearance.setAttribute(BACK_FACE_CULLING_ENABLED, true);
-        sphereRoot.setAppearance(sphereAppearance);
-        sphereRoot.setGeometry(Primitives.sphere(100));
-        sphereRoot.setVisible(showSphere);
-        geometryRoot.addChild(sphereRoot);
         
         // tools
         geometryRoot.addTool(encompassTool);
@@ -413,24 +387,26 @@ public class MinimalSurfacePanel extends JPanel{
 		surfaceFactory.update();
 	
 		SceneGraphComponent surfaceRoot = new SceneGraphComponent();
+		surfaceRoot.setName("Surface");
         surfaceRoot.setGeometry(surfaceFactory.getIndexedFaceSet());
         activeFaceSet = surfaceFactory.getIndexedFaceSet();
         
-        PointSetFactory psf = new PointSetFactory();
-        double[][] centers = new double[surface.getNumFaces()][4];
-        int count = 0;
-        for (F f : surface.getFaces()) {
-        	f.getXYZW().get(centers[count]);
-        	count++;
-        }
-        psf.setVertexCount(centers.length);
-        psf.setVertexCoordinates(centers);
-        psf.update();
-        SceneGraphComponent centerRoot = new SceneGraphComponent();
-        centerRoot.setGeometry(psf.getGeometry());
-        surfaceRoot.addChild(centerRoot);
+//        PointSetFactory psf = new PointSetFactory();
+//        double[][] centers = new double[surface.getNumFaces()][4];
+//        int count = 0;
+//        for (F f : surface.getFaces()) {
+//        	f.getXYZW().get(centers[count]);
+//        	count++;
+//        }
+//        psf.setVertexCount(centers.length);
+//        psf.setVertexCoordinates(centers);
+//        psf.update();
+//        SceneGraphComponent centerRoot = new SceneGraphComponent();
+//        centerRoot.setName("Center Root");
+//        centerRoot.setGeometry(psf.getGeometry());
+//        surfaceRoot.addChild(centerRoot);
         
-        polyederRoot.addChild(surfaceRoot);
+        polyhedronRoot.addChild(surfaceRoot);
         surfaceRoot.addChild(makeDiskSurface(surface));
 		
 		update();
@@ -453,8 +429,11 @@ public class MinimalSurfacePanel extends JPanel{
 		F extends Face<V, E, F>
 	> SceneGraphComponent makeDiskSurface(HalfEdgeDataStructure<V, E, F> surface){
 		SceneGraphComponent disksSpheresRoot = new SceneGraphComponent();
+		disksSpheresRoot.setName("Disks and Spheres");
 		SceneGraphComponent disks = new SceneGraphComponent();
+		disks.setName("Disks");
 		SceneGraphComponent spheres = new SceneGraphComponent();
+		spheres.setName("Shperes");
 		disks.setAppearance(diskApp);
 		spheres.setAppearance(spheresApp);
 		disksSpheresRoot.addChild(disks);
@@ -491,13 +470,13 @@ public class MinimalSurfacePanel extends JPanel{
 						Double r = C.distance(P1);
 						
 						Matrix T = Circles.getTransform(C, N, r);
-						SceneGraphComponent disk = new SceneGraphComponent();
 						SceneGraphComponent transformC = new SceneGraphComponent();
+						transformC.setName("Circle Transform");
 						T.assignTo(transformC);
-						SceneGraphComponent thicknessC = new SceneGraphComponent();
-						thicknessC.setTransformation(diskThicknessTransform);
-						transformC.addChild(thicknessC);
-						thicknessC.addChild(disk);
+						SceneGraphComponent disk = new SceneGraphComponent();
+						disk.setName("Circle");
+						disk.setTransformation(diskThicknessTransform);
+						transformC.addChild(disk);
 						disk.setGeometry(diskGeometry);
 						disks.addChild(transformC);
 						break;
@@ -508,6 +487,7 @@ public class MinimalSurfacePanel extends JPanel{
 						VecmathTools.dehomogenize(p);
 						double radius = VecmathTools.distance(c, p);
 						SceneGraphComponent sphere = new SceneGraphComponent();
+						sphere.setName("Sphere");
 						sphere.setGeometry(sphereGeometry);
 						MatrixBuilder.euclidean().translate(c.x, c.y, c.z).scale(radius).assignTo(sphere);
 						spheres.addChild(sphere);
@@ -524,19 +504,19 @@ public class MinimalSurfacePanel extends JPanel{
 	
 	
 	public void addGeometry(SceneGraphComponent c){
-		polyederRoot.addChild(c);
+		polyhedronRoot.addChild(c);
 	}
 	
 	
 	public void removeGeometry(SceneGraphComponent c){
-		if (polyederRoot.getChildNodes().contains(c))
-			polyederRoot.removeChild(c);
+		if (polyhedronRoot.getChildNodes().contains(c))
+			polyhedronRoot.removeChild(c);
 	}
 	
 	
 	public void resetGeometry(){
-		while (polyederRoot.getChildComponentCount() > 0)
-			polyederRoot.removeChild(polyederRoot.getChildComponent(0));
+		while (polyhedronRoot.getChildComponentCount() > 0)
+			polyhedronRoot.removeChild(polyhedronRoot.getChildComponent(0));
 		while (linesRoot.getChildComponentCount() > 0)
 			linesRoot.removeChild(linesRoot.getChildComponent(0));
 		update();

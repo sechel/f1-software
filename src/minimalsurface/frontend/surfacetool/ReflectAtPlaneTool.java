@@ -88,6 +88,7 @@ public class ReflectAtPlaneTool extends AbstractTool implements GeometryTool {
 		for (int i = 0; i < generator.getChildComponentCount(); i++)
 			cMesh.addChild(copy(generator.getChildComponent(i)));				
 		
+		cMesh.setName("Reflected Surface");
 		view.addGeometry(cMesh);
 		view.update();
 		firstPoint = null;
