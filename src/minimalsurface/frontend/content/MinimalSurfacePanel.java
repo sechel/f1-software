@@ -106,6 +106,8 @@ public class MinimalSurfacePanel extends JPanel{
 		cameraPath=new SceneGraphPath();
 	private IndexedFaceSet
 		activeFaceSet = null;
+	private Object
+		surfaceMaster = new Object();
 	
 	//tools
 	private RotateTool 
@@ -389,6 +391,7 @@ public class MinimalSurfacePanel extends JPanel{
 		SceneGraphComponent surfaceRoot = new SceneGraphComponent();
 		surfaceRoot.setName("Surface");
         surfaceRoot.setGeometry(surfaceFactory.getIndexedFaceSet());
+        surfaceRoot.setOwner(surfaceMaster);
         activeFaceSet = surfaceFactory.getIndexedFaceSet();
         
 //        PointSetFactory psf = new PointSetFactory();
@@ -861,5 +864,9 @@ public class MinimalSurfacePanel extends JPanel{
 		S.assignTo(diskThicknessTransform);
 	}
 	
+	
+	public Object getSurfaceOwner() {
+		return surfaceMaster;
+	}
 	
 }

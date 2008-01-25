@@ -22,6 +22,7 @@ import minimalsurface.frontend.action.ExportOBJAction;
 import minimalsurface.frontend.action.ExportSTLAction;
 import minimalsurface.frontend.action.ExportSurfaceOBJAction;
 import minimalsurface.frontend.action.ExportU3DAction;
+import minimalsurface.frontend.action.ExportU3DPrintAction;
 import minimalsurface.frontend.action.ExportVRMLAction;
 import minimalsurface.frontend.action.ImportOBJAction;
 import minimalsurface.frontend.surfacetool.AddLineTool;
@@ -60,6 +61,7 @@ public class MinimalSurfaceViewer extends JDialog {
 		minimalSurfacePanel = new MinimalSurfacePanel(controller);
 //		Action exportSVG = new ExportSVGAction(this, minimalSurfacePanel.getViewerApp().getViewer());
 		Action exportU3D = new ExportU3DAction(this, minimalSurfacePanel);
+		Action exportU3DPrint = new ExportU3DPrintAction(this, minimalSurfacePanel);
 		Action exportSTL = new ExportSTLAction(this, minimalSurfacePanel);
 		Action exportOBJ = new ExportOBJAction(this, minimalSurfacePanel);
 		Action exportSurfaceOBJ = new ExportSurfaceOBJAction(this, minimalSurfacePanel);
@@ -73,6 +75,7 @@ public class MinimalSurfaceViewer extends JDialog {
 		
 		exportMenu.add(exportU3D);
 		exportMenu.add(exportOBJ);
+		exportMenu.add(exportU3DPrint);
 		exportMenu.add(exportSurfaceOBJ);
 //		exportMenu.add(exportSVG);
 		exportMenu.add(exportSTL);
