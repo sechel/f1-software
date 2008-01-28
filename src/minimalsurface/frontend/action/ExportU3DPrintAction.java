@@ -4,6 +4,8 @@ import halfedge.frontend.action.ExtensionFileFilter;
 import image.ImageHook;
 
 import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -14,8 +16,12 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.KeyStroke;
+import javax.swing.SpinnerNumberModel;
 
 import minimalsurface.frontend.content.MinimalSurfacePanel;
 import de.jreality.geometry.ThickenedSurfaceFactory;
@@ -41,6 +47,12 @@ public class ExportU3DPrintAction extends AbstractAction {
 		parent = null;
 	private MinimalSurfacePanel
 		viewer = null;
+	private SpinnerNumberModel
+		thicknessModel = new SpinnerNumberModel(0.05, 0.0, 10000.0, 0.01);
+	private JSpinner
+		thicknessSpinner = new JSpinner(thicknessModel);
+	private JPanel
+		optionPanel = new JPanel();
 
 
 	public ExportU3DPrintAction(Component parent, MinimalSurfacePanel view) {
@@ -62,8 +74,19 @@ public class ExportU3DPrintAction extends AbstractAction {
 		ExtensionFileFilter objFilter = new ExtensionFileFilter("u3d",
 				"U3D Files");
 		saveChooser.addChoosableFileFilter(objFilter);
+		saveChooser.setAccessory(optionPanel);
+		makeLayout();
 	}
 
+	private void makeLayout(){
+		optionPanel.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridwidth = GridBagConstraints.RELATIVE; 
+		optionPanel.add(new JLabel("Thickness"), c);
+		optionPanel.add(thicknessSpinner, c);
+	}
+	
 	
 	private SceneGraphComponent getSurfaceComponent_R(SceneGraphComponent root) {
 		if (root.getOwner() == viewer.getSurfaceOwner())
@@ -97,8 +120,8 @@ public class ExportU3DPrintAction extends AbstractAction {
 				SceneGraphComponent surface = getSurfaceComponent(scene);
 				IndexedFaceSet surfaceGeom = (IndexedFaceSet) surface.getGeometry();
 				ThickenedSurfaceFactory tsf = new ThickenedSurfaceFactory(surfaceGeom);
-				tsf.setThickedAlongFaceNormals(true);
-				tsf.setThickness(0.1);
+				tsf.setThickedAlongFaceNormals(false);
+				tsf.setThickness(thicknessModel.getNumber().doubleValue());
 				tsf.update();
 				surface.setGeometry(tsf.getThickenedSurface());
 				writer.writeScene(scene, fos);
