@@ -74,8 +74,8 @@ public class MinimalSurfaceViewer extends JDialog {
 		add(minimalSurfacePanel, CENTER);
 		
 		exportMenu.add(exportU3D);
-		exportMenu.add(exportOBJ);
 		exportMenu.add(exportU3DPrint);
+		exportMenu.add(exportOBJ);
 		exportMenu.add(exportSurfaceOBJ);
 //		exportMenu.add(exportSVG);
 		exportMenu.add(exportSTL);
