@@ -10,6 +10,8 @@ import halfedge.frontend.graphtool.standard.SelectNodeAction;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import koebe.frontend.tool.CutEars;
+
 
 /**
  * Loads all known graph tools
@@ -38,7 +40,7 @@ public class GraphToolPluginLoader
 //		graphActions.add(new GenerateMedialGraph());
 //		graphActions.add(new EdgeQuadSubdivide());
 //		graphActions.add(new VertexQuadSubdivide());
-//		graphActions.add(new CutEars());
+		graphActions.add(new CutEars());
 //		graphActions.add(new CutAtEdge());
 	}
 	

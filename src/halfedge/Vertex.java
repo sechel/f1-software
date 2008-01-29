@@ -46,7 +46,8 @@ extends Node<V, E, F> {
         List<V> vertexStar = new ArrayList<V>();
         E actEdge = getConnectedEdge();
         do {
-        	vertexStar.add(actEdge.getStartVertex());
+        	if (actEdge.getStartVertex() != null)
+        		vertexStar.add(actEdge.getStartVertex());
         	actEdge = actEdge.getNextEdge().getOppositeEdge();
         } while (actEdge != getConnectedEdge());
         return vertexStar;
