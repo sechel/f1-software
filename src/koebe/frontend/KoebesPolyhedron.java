@@ -28,6 +28,7 @@ import koebe.frontend.action.ExportOBJAction;
 import koebe.frontend.action.ExportPSAction;
 import koebe.frontend.action.ExportRIBAction;
 import koebe.frontend.action.ExportSVGAction;
+import koebe.frontend.action.ExportU3DAction;
 import koebe.frontend.action.ResetAction;
 import koebe.frontend.action.ShowAboutAction;
 import koebe.frontend.content.Viewer;
@@ -88,6 +89,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		closeAction = new CloseProgram(),
 		openFile = null,
 		saveFile = null,
+		exportU3D = null,
 		exportRIB = null,
 		exportPS = null,
 		exportSVG = null,
@@ -133,15 +135,17 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		
 		if (koebesPolyederView instanceof koebe.frontend.content.jrealityviewer.KoebePolyhedronView) {
 			koebe.frontend.content.jrealityviewer.KoebePolyhedronView jRViewer = (koebe.frontend.content.jrealityviewer.KoebePolyhedronView) koebesPolyederView;
+			exportU3D = new ExportU3DAction(this, jRViewer);
 			exportRIB = new ExportRIBAction(this, jRViewer.getViewer());
 			exportPS = new ExportPSAction(this, jRViewer.getViewer());
 			exportSVG = new ExportSVGAction(this, jRViewer.getViewer());
 			exportOBJ = new ExportOBJAction(this, jRViewer);
+			exportMenu.add(exportU3D);
 			exportMenu.add(exportRIB);
+			exportMenu.add(exportOBJ);
+			exportMenu.add(new JSeparator());
 			exportMenu.add(exportPS);
 			exportMenu.add(exportSVG);
-			exportMenu.add(new JSeparator());
-			exportMenu.add(exportOBJ);
 			menuBar.add(exportMenu);
 			
 			editPanel.addTool(new ProjectTool(jRViewer));
