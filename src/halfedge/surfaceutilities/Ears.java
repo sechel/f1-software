@@ -120,6 +120,10 @@ public class Ears {
 			if (b.size() < 2) break;
 			E b1 = b.get(0);
 			E b2 = b.get(1);
+			if (b1.getLeftFace() != null)
+				b1.getLeftFace().setBoundaryEdge(b1);
+			if (b2.getLeftFace() != null)
+				b2.getLeftFace().setBoundaryEdge(b2);
 			E b1o = b1.getOppositeEdge();
 			E b2o = b2.getOppositeEdge();
 			b1.setTargetVertex(b2o.getTargetVertex());
@@ -132,55 +136,6 @@ public class Ears {
 			graph.removeEdge(b2o);
 			ear = findEar(graph);
 		}
-		if (!ConsistencyCheck.isValidSurface(graph))
-			System.err.println("No valid surface after cutEars");
-//		List<F> ears = findEarsFaces(graph);
-//		for (F ear : ears){
-//			V v1 = null;
-//			V v2 = null;
-//			E pre = null;
-//			E post = null;
-//			for (E e : ear.getBoundary()){
-//				if (isEarEdge(e)) {
-//					if(!isEarEdge(e.getPreviousEdge())){
-//						v1 = e.getStartVertex();
-//						pre = e.getPreviousEdge();
-//					} 
-//					if(!isEarEdge(e.getNextEdge())) {	
-//						v2 = e.getTargetVertex();
-//						post = e.getNextEdge();
-//					}
-//				}
-//			}
-////			if (pre == post){
-////				HalfEdgeUtility.removeFace(ear);
-////				continue;
-////			}
-//			for (E e : ear.getBoundary()){
-//				if (isEarEdge(e) && isEarEdge(e.getNextEdge()))
-//					graph.removeVertex(e.getTargetVertex());
-//			}		
-//			LinkedList<E> removeEdges = new LinkedList<E>();
-//			for (E e : ear.getBoundary()){
-//				if (isEarEdge(e))
-//					removeEdges.add(e);
-//			}
-//			for (E e : removeEdges){
-//				graph.removeEdgeAndOppositeEdge(e);
-//			}
-//			E e1 = graph.addNewEdge();
-//			E e2 = graph.addNewEdge();
-//			
-//			e1.linkOppositeEdge(e2);
-//			e1.setLeftFace(ear);
-//			e1.setTargetVertex(v2);
-//			e2.setTargetVertex(v1);
-//			
-//			e1.linkNextEdge(post);
-//			e1.linkPreviousEdge(pre);
-//			e2.linkNextEdge(pre);
-//			e2.linkPreviousEdge(post);
-//		}
 	}
 	
 }
