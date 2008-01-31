@@ -239,7 +239,7 @@ public class LoadCombinatorics extends MacroAction {
 			predefinedQuadMeshButton.setEnabled(pre);
 			loadFromFileButton.setEnabled(file);
 			activeFileField.setEnabled(file);
-			showEditorButton.setEnabled(edit);
+//			showEditorButton.setEnabled(edit);
 			quadULinesSpinner.setEnabled(pre && quad);
 			quadVLinesSpinner.setEnabled(pre && quad);
 			xLabel.setEnabled(pre && quad);
