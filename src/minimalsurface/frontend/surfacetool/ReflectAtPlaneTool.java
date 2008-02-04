@@ -99,6 +99,7 @@ public class ReflectAtPlaneTool extends AbstractTool implements GeometryTool {
 	private SceneGraphComponent copy(SceneGraphComponent c){
 		SceneGraphComponent copy = (SceneGraphComponent)SceneGraphUtility.copy(c);
 		copy.setGeometry(c.getGeometry());
+		copy.setOwner(c.getOwner());
 		copy.setTransformation(c.getTransformation());
 		copy.setAppearance(c.getAppearance());
 		for (int i = 0; i < c.getChildComponentCount(); i++)
