@@ -86,7 +86,8 @@ public class BoundaryConditions extends MacroAction {
 			dualAngles = new JRadioButton("Solitary Dualangles?"),
 			triangles = new JRadioButton("Solitary Triangles"),
 			quads = new JRadioButton("Solitary Quads"),
-			all = new JRadioButton("All Faces");
+			all = new JRadioButton("All Faces"),
+			allBoundary = new JRadioButton("Boundary");
 		private JButton
 			guessPhi = new JButton(new ImageIcon(ImageHook.getImage("wildcard.png"))),
 			piButton = new JButton(new ImageIcon(ImageHook.getImage("buttonPI.png"))),
@@ -128,9 +129,10 @@ public class BoundaryConditions extends MacroAction {
 			viewPanel.add(scrollWrapper, CENTER);
 			viewPanel.add(viewModePanel, SOUTH);
 			
-			viewModePanel.setLayout(new GridLayout(5,1));
+			viewModePanel.setLayout(new GridLayout(6,1));
 			viewModePanel.setBorder(BorderFactory.createTitledBorder("Filter"));
 			viewModePanel.add(all);
+			viewModePanel.add(allBoundary);
 			viewModePanel.add(dualAngles);
 			viewModePanel.add(triangles);
 			viewModePanel.add(quads);
@@ -138,6 +140,7 @@ public class BoundaryConditions extends MacroAction {
 			
 			ButtonGroup group = new ButtonGroup();
 			group.add(all);
+			group.add(allBoundary);
 			group.add(dualAngles);
 			group.add(triangles);
 			group.add(quads);
@@ -180,6 +183,7 @@ public class BoundaryConditions extends MacroAction {
 			angleSpinner.addChangeListener(this);
 			interestList.getSelectionModel().addListSelectionListener(this);
 			all.addActionListener(this);
+			allBoundary.addActionListener(this);
 			dualAngles.addActionListener(this);
 			triangles.addActionListener(this);
 			quads.addActionListener(this);
@@ -221,6 +225,8 @@ public class BoundaryConditions extends MacroAction {
 				setVisible(false);
 			if (s == all)
 				interestList.setListData(getAllFaces().toArray());
+			if (s == allBoundary)
+				interestList.setListData(getAllBoundaryFaces().toArray());
 			if (s == ears)
 				interestList.setListData(getEars().toArray());
 			if (s == dualAngles)
@@ -279,8 +285,14 @@ public class BoundaryConditions extends MacroAction {
 			updateStates();
 		}
 		
+		private List<CPFace> getAllFaces() {
+			if (graph == null)
+				return new LinkedList<CPFace>();
+			return graph.getFaces();
+		}
 		
-		private List<CPFace> getAllFaces(){
+		
+		private List<CPFace> getAllBoundaryFaces(){
 			if (graph == null)
 				return Collections.emptyList();
 			LinkedList<CPFace> result = new LinkedList<CPFace>();

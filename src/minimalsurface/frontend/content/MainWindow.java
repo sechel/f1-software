@@ -68,6 +68,7 @@ import minimalsurface.frontend.macro.MacroAction;
 import minimalsurface.frontend.macro.MedialPolyhedron;
 import minimalsurface.frontend.macro.MedialSubdivide;
 import minimalsurface.frontend.macro.SphericalCirclePattern;
+import minimalsurface.frontend.macro.SurfaceEditor;
 import minimalsurface.frontend.macro.VertexQuadSubdivide;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
@@ -89,7 +90,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 	private MacroAction[]
 	  	actions = 
 	  	{
-			new LoadCombinatorics(),
+			new LoadCombinatorics(), 
 			new EnneperCirclesGenerator(),
 			new KobePolyhedron(),
 			new MedialPolyhedron(),
@@ -102,7 +103,8 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			new CutEars(),
 			new AutoCut(), 
 			new Dualize(),
-			new LoadToGraphEditor()
+			new LoadToGraphEditor(),
+			new SurfaceEditor()
 		};
 	
 	private JPanel

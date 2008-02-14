@@ -171,6 +171,9 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
 		viewOptPanel.setShrinked(true);
 		
 		updateProperties();
+		
+//        XTool xTool = new XTool(va.getSceneRoot(), va.getViewingComponent());
+//        xTool.setEnableTranslations(false);
 	}
 	
 	
