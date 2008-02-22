@@ -28,6 +28,7 @@ import minimalsurface.frontend.action.ImportOBJAction;
 import minimalsurface.frontend.surfacetool.AddLineTool;
 import minimalsurface.frontend.surfacetool.PointReflectionTool;
 import minimalsurface.frontend.surfacetool.ReflectAtPlaneTool;
+import minimalsurface.frontend.surfacetool.RemoveSurfaceNodeTool;
 import minimalsurface.frontend.surfacetool.RemoveTool;
 import minimalsurface.frontend.surfacetool.RotateAroundLineTool;
 import circlepatterns.graph.CPEdge;
@@ -99,18 +100,21 @@ public class MinimalSurfaceViewer extends JDialog {
 	    JToggleButton actionToggle3 = new JToggleButton(new RotateAroundLineTool(minimalSurfacePanel).getAction());
 	    JToggleButton actionToggle4 = new JToggleButton(new RemoveTool(minimalSurfacePanel).getAction());
 	    JToggleButton actionToggle5 = new JToggleButton(new AddLineTool(minimalSurfacePanel).getAction());
+	    JToggleButton actionToggle6 = new JToggleButton(new RemoveSurfaceNodeTool(minimalSurfacePanel).getAction());
 	    ButtonGroup actionGroup = new ButtonGroup();
 	    actionGroup.add(actionToggle1);
 	    actionGroup.add(actionToggle2);
 	    actionGroup.add(actionToggle3);
 	    actionGroup.add(actionToggle4);
 	    actionGroup.add(actionToggle5);
+	    actionGroup.add(actionToggle6);
 	    
 	    toolBar.add(actionToggle1);
 	    toolBar.add(actionToggle2);
 	    toolBar.add(actionToggle3);
 	    toolBar.add(actionToggle4);
 	    toolBar.add(actionToggle5);
+	    toolBar.add(actionToggle6);
 	    add(toolBar, NORTH);
 	}
 	
