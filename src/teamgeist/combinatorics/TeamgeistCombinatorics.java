@@ -13,7 +13,6 @@ import alexandrov.graph.CPMVertex;
 public class TeamgeistCombinatorics {
 
 	
-	@SuppressWarnings("unchecked")
 	public static HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> getTeamgeistGraph(){
 		InputStream in = TeamgeistCombinatorics.class.getResourceAsStream("teamgeist_triang2_cut.cpm");
 		HESerializableReader<CPMVertex, CPMEdge, CPMFace> reader = null;

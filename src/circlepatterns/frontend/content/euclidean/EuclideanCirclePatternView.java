@@ -170,7 +170,6 @@ public class EuclideanCirclePatternView extends JPanel{
 
 
 	
-	@SuppressWarnings("unused")
 	private class MouseColtroller extends MouseAdapter implements MouseMotionListener{
 		
 		private Point

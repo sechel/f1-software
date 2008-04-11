@@ -65,9 +65,7 @@ public class DelaunayTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 		this.controller = (MainController)controller;
 	}
 
-	@SuppressWarnings("unchecked")
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
-
 		return false;
 	}
 

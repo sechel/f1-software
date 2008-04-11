@@ -45,7 +45,6 @@ public class EdgeFlipTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 		this.controller = (MainController)controller;
 	}
 
-	@SuppressWarnings("unchecked")
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		switch (operation){
 		case SELECT_EDGE:

@@ -38,7 +38,7 @@ public class NodeOptionsPanel extends JPanel {
 		makeLayout();
 	}
 	
-	@SuppressWarnings({"unused","unchecked"})
+	@SuppressWarnings("unchecked")
 	private void makeLayout(){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

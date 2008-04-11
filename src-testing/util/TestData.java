@@ -15,7 +15,6 @@ import alexandrov.graph.CPMVertex;
 
 public class TestData {
 
-	@SuppressWarnings("unchecked")
 		public static HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> getTestGraph(String filename){
 			File testFile = new File("src-testing/data/" + filename);
 			try {

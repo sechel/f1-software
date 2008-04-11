@@ -70,7 +70,6 @@ public class EditCapitalPhi implements GraphTool<CPVertex, CPEdge, CPFace> {
 		this.controller = (MainController)controller;
 	}
 
-	@SuppressWarnings("unchecked")
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		switch (operation){
 		case SELECT_FACE:
