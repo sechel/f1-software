@@ -79,6 +79,7 @@ public class ExportU3DAction extends AbstractAction {
 				fos.close();
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(parent, e1.getMessage());
+				e1.printStackTrace();
 			}
 		}
 	}

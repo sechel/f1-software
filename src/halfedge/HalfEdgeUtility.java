@@ -230,7 +230,6 @@ public class HalfEdgeUtility {
 	 * @return dual graph in <V,E,F> format
 	 * @author Kristoffer Josefsson
 	 */
-	@SuppressWarnings("unchecked")
 	public static <
 		V extends Vertex<V, E, F>,
 		E extends Edge<V, E, F> & IsFlippable,

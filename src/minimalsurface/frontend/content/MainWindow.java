@@ -238,7 +238,6 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		}
 		
 		
-		@SuppressWarnings("unchecked")
 		public void actionPerformed(ActionEvent e) {
 			if (creationPlan.size() == 0) {
 				JOptionPane.showMessageDialog(MainWindow.this, "No Construction Plan!");

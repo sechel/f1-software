@@ -9,9 +9,11 @@ import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
+import de.jreality.geometry.GeometryUtility;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.data.Attribute;
 import de.jreality.scene.data.DataList;
+import de.jreality.ui.viewerapp.ViewerApp;
 
 
 public class Disk extends IndexedFaceSet{
@@ -52,15 +54,15 @@ public class Disk extends IndexedFaceSet{
 			int[] faceUpper = indices[i+0] = new int[3];
 			int[] faceLower = indices[i+1] = new int[3];
 			int[] faceBorder = indices[i+2] = new int[4];
-			normals[i + 0] = zNegNormal;
-			normals[i + 1] = zPosNormal;
-			normals[i + 2] = new double[]{cos(alpha), sin(alpha), 0.0};
-			faceUpper[0] = (v + 2) % (resolution*2);
-			faceUpper[1] = v;
+			normals[i + 1] = zNegNormal;
+			normals[i + 0] = zPosNormal;
+			normals[i + 2] = new double[]{-cos(alpha), -sin(alpha), 0.0};
+			faceUpper[1] = (v + 2) % (resolution*2);
+			faceUpper[0] = v;
 			faceUpper[2] = resolution*2;
 			faceLower[0] = resolution*2 + 1;
-			faceLower[1] = v + 1;
-			faceLower[2] = (v + 3) % (resolution*2);
+			faceLower[2] = v + 1;
+			faceLower[1] = (v + 3) % (resolution*2);
 			faceBorder[0] = faceUpper[1];
 			faceBorder[1] = faceUpper[0];
 			faceBorder[2] = faceLower[2];
@@ -74,8 +76,9 @@ public class Disk extends IndexedFaceSet{
 		setVertexCountAndAttributes(COORDINATES, vList);
 		DataList iList = INT_ARRAY_ARRAY.createReadOnly(indices);
 		setFaceCountAndAttributes(INDICES, iList);
-		DataList nList = DOUBLE_ARRAY_ARRAY.createReadOnly(normals);
-		setFaceAttributes(Attribute.NORMALS, nList);
+//		DataList nList = DOUBLE_ARRAY_ARRAY.createReadOnly(normals);
+//		setFaceAttributes(Attribute.NORMALS, nList);
+		GeometryUtility.calculateAndSetFaceNormals(this);
 		setName("disk");
 	}
 	
@@ -110,6 +113,12 @@ public class Disk extends IndexedFaceSet{
 		setFaceCountAndAttributes(INDICES, iList);
 		DataList nList = DOUBLE_ARRAY_ARRAY.createReadOnly(normals);
 		setVertexAttributes(Attribute.NORMALS, nList);
+	}
+	
+	
+	public static void main(String[] args) {
+		Disk d = new Disk(20, 0.1);
+		ViewerApp.display(d);
 	}
 	
 
