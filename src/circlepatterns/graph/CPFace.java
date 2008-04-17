@@ -1,5 +1,7 @@
 package circlepatterns.graph;
 
+import java.util.List;
+
 import halfedge.Face;
 import halfedge.decorations.HasCapitalPhi;
 import halfedge.decorations.HasGradientValue;
@@ -123,5 +125,20 @@ public class CPFace extends Face<CPVertex, CPEdge, CPFace> implements HasGradien
 	public void setCapitalPhi(Double capitalPhi) {
 		this.capitalPhi = capitalPhi;
 	}
+	
+	
+	public boolean isDegenerate(double threshold) {
+		List<CPEdge> b = getBoundary();
+		for (CPEdge edge : b) {
+			CPVertex v1 = edge.getStartVertex();
+			CPVertex v2 = edge.getTargetVertex();
+			double length = v1.getXYZW().distance(v2.getXYZW());
+			if (length < threshold)
+				return true;
+		}
+		
+		return false;
+	}
+	
 	
 }
