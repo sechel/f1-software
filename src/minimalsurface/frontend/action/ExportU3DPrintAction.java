@@ -120,7 +120,7 @@ public class ExportU3DPrintAction extends AbstractAction {
 				SceneGraphComponent surface = getSurfaceComponent(scene);
 				IndexedFaceSet surfaceGeom = (IndexedFaceSet) surface.getGeometry();
 				ThickenedSurfaceFactory tsf = new ThickenedSurfaceFactory(surfaceGeom);
-				tsf.setThickedAlongFaceNormals(false);
+				tsf.setThickenAlongFaceNormals(false);
 				tsf.setThickness(thicknessModel.getNumber().doubleValue());
 				tsf.update();
 				surface.setGeometry(tsf.getThickenedSurface());

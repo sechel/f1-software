@@ -383,7 +383,7 @@ public class MinimalSurfacePanel extends JPanel{
 		surfaceFactory.setFaceCount(faceData.length);
 		surfaceFactory.setVertexCoordinates(vertexData);
 		surfaceFactory.setFaceIndices(faceData);
-		surfaceFactory.setGenerateVertexNormals(false);
+		surfaceFactory.setGenerateVertexNormals(true);
 		surfaceFactory.setGenerateFaceNormals(true);
 		surfaceFactory.setGenerateEdgesFromFaces(true);
 		surfaceFactory.update();
@@ -436,7 +436,7 @@ public class MinimalSurfacePanel extends JPanel{
 		SceneGraphComponent disks = new SceneGraphComponent();
 		disks.setName("Disks");
 		SceneGraphComponent spheres = new SceneGraphComponent();
-		spheres.setName("Shperes");
+		spheres.setName("Spheres");
 		disks.setAppearance(diskApp);
 		spheres.setAppearance(spheresApp);
 		disksSpheresRoot.addChild(disks);

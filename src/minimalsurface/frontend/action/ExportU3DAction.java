@@ -4,6 +4,8 @@ import halfedge.frontend.action.ExtensionFileFilter;
 import image.ImageHook;
 
 import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -13,8 +15,10 @@ import java.io.FileOutputStream;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import minimalsurface.frontend.content.MinimalSurfacePanel;
@@ -37,7 +41,10 @@ public class ExportU3DAction extends AbstractAction {
 		parent = null;
 	private MinimalSurfacePanel
 		viewer = null;
-
+	private JPanel
+		optionPanel = new JPanel();
+	private JCheckBox
+		normalsChecker = new JCheckBox("Normals", false);
 
 	public ExportU3DAction(Component parent, MinimalSurfacePanel view) {
 		this.viewer = view;
@@ -58,8 +65,18 @@ public class ExportU3DAction extends AbstractAction {
 		ExtensionFileFilter objFilter = new ExtensionFileFilter("u3d",
 				"U3D Files");
 		saveChooser.addChoosableFileFilter(objFilter);
+		saveChooser.setAccessory(optionPanel);
+		makeLayout();
 	}
 
+	private void makeLayout(){
+		optionPanel.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridwidth = GridBagConstraints.RELATIVE; 
+		optionPanel.add(normalsChecker, c);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		int result = saveChooser.showSaveDialog(parent);
 		if (result == JFileChooser.APPROVE_OPTION) {
@@ -75,6 +92,7 @@ public class ExportU3DAction extends AbstractAction {
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
 				WriterU3D writer = new WriterU3D();
+				writer.setWriteNormals(normalsChecker.isSelected());
 				writer.writeScene(viewer.getViewerApp().getJrScene(), fos);
 				fos.close();
 			} catch (Exception e1) {
