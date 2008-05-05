@@ -383,7 +383,7 @@ public class MinimalSurfacePanel extends JPanel{
 		surfaceFactory.setFaceCount(faceData.length);
 		surfaceFactory.setVertexCoordinates(vertexData);
 		surfaceFactory.setFaceIndices(faceData);
-		surfaceFactory.setGenerateVertexNormals(true);
+		surfaceFactory.setGenerateVertexNormals(false);
 		surfaceFactory.setGenerateFaceNormals(true);
 		surfaceFactory.setGenerateEdgesFromFaces(true);
 		surfaceFactory.update();
