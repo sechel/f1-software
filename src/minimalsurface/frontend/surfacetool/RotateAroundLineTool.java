@@ -77,7 +77,8 @@ public class RotateAroundLineTool extends AbstractTool implements GeometryTool{
 			A.multiplyOnRight(R);
 			A.assignTo(cMesh);
 			for (int i = 0; i < firstGenerator.getChildComponentCount(); i++)
-				cMesh.addChild(copy(firstGenerator.getChildComponent(i)));				
+				cMesh.addChild(copy(firstGenerator.getChildComponent(i)));	
+			cMesh.setName("Rotated Surface");
 			view.addGeometry(cMesh);	
 		}
 		

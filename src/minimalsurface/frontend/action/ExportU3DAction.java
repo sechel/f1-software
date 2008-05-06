@@ -65,7 +65,7 @@ public class ExportU3DAction extends AbstractAction {
 		ExtensionFileFilter objFilter = new ExtensionFileFilter("u3d",
 				"U3D Files");
 		saveChooser.addChoosableFileFilter(objFilter);
-		saveChooser.setAccessory(optionPanel);
+//		saveChooser.setAccessory(optionPanel);
 		makeLayout();
 	}
 
@@ -92,7 +92,6 @@ public class ExportU3DAction extends AbstractAction {
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
 				WriterU3D writer = new WriterU3D();
-				writer.setWriteNormals(normalsChecker.isSelected());
 				writer.writeScene(viewer.getViewerApp().getJrScene(), fos);
 				fos.close();
 			} catch (Exception e1) {

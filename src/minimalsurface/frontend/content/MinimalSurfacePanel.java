@@ -393,27 +393,10 @@ public class MinimalSurfacePanel extends JPanel{
         surfaceRoot.setGeometry(surfaceFactory.getIndexedFaceSet());
         surfaceRoot.setOwner(surfaceMaster);
         activeFaceSet = surfaceFactory.getIndexedFaceSet();
-        
-//        PointSetFactory psf = new PointSetFactory();
-//        double[][] centers = new double[surface.getNumFaces()][4];
-//        int count = 0;
-//        for (F f : surface.getFaces()) {
-//        	f.getXYZW().get(centers[count]);
-//        	count++;
-//        }
-//        psf.setVertexCount(centers.length);
-//        psf.setVertexCoordinates(centers);
-//        psf.update();
-//        SceneGraphComponent centerRoot = new SceneGraphComponent();
-//        centerRoot.setName("Center Root");
-//        centerRoot.setGeometry(psf.getGeometry());
-//        surfaceRoot.addChild(centerRoot);
-        
+         
         polyhedronRoot.addChild(surfaceRoot);
         surfaceRoot.addChild(makeDiskSurface(surface));
-		
 		update();
-		
 		activeSurface = surface;
 	}
 	

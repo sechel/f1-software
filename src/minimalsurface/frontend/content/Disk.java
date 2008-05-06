@@ -5,6 +5,8 @@ import static de.jreality.scene.data.Attribute.INDICES;
 import static de.jreality.scene.data.StorageModel.DOUBLE3_ARRAY;
 import static de.jreality.scene.data.StorageModel.DOUBLE_ARRAY_ARRAY;
 import static de.jreality.scene.data.StorageModel.INT_ARRAY_ARRAY;
+import static de.jreality.writer.u3d.U3DAttribute.U3D_FLAG;
+import static de.jreality.writer.u3d.U3DAttribute.U3D_NONORMALS;
 import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
@@ -23,10 +25,12 @@ public class Disk extends IndexedFaceSet{
 	
 	public Disk(int resolution, double thickness){
 		makeDisk(resolution, thickness);
+		setVertexAttributes(U3D_NONORMALS, U3D_FLAG);
 	}
 	
 	public Disk(int resolution){
 		makeDiskNoThickness(resolution);
+		setVertexAttributes(U3D_NONORMALS, U3D_FLAG);
 	}
 	
 	
