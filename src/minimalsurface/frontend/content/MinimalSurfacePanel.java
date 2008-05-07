@@ -27,6 +27,8 @@ import static de.jreality.shader.CommonAttributes.TRANSPARENCY_ENABLED;
 import static de.jreality.shader.CommonAttributes.TUBES_DRAW;
 import static de.jreality.shader.CommonAttributes.TUBE_RADIUS;
 import static de.jreality.shader.CommonAttributes.VERTEX_DRAW;
+import static de.jreality.writer.u3d.U3DAttribute.U3D_FLAG;
+import static de.jreality.writer.u3d.U3DAttribute.U3D_NONORMALS;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -106,6 +108,7 @@ public class MinimalSurfacePanel extends JPanel{
 		cameraPath=new SceneGraphPath();
 	private IndexedFaceSet
 		activeFaceSet = null;
+//		invertedFaceSet = null;
 	private Object
 		surfaceMaster = new Object();
 	
@@ -212,7 +215,7 @@ public class MinimalSurfacePanel extends JPanel{
 //		rootApp.setAttribute(POLYGON_SHADER + "." + ANTIALIASING_ENABLED, antialias);
 		sceneRoot.setAppearance(rootApp);
 		sceneRoot.setName("Scene Root");
-		 
+		
         //geometry node
         geometryRoot.setName("Geometry");
 		sceneRoot.addChild(geometryRoot);
@@ -383,7 +386,7 @@ public class MinimalSurfacePanel extends JPanel{
 		surfaceFactory.setFaceCount(faceData.length);
 		surfaceFactory.setVertexCoordinates(vertexData);
 		surfaceFactory.setFaceIndices(faceData);
-		surfaceFactory.setGenerateVertexNormals(false);
+		surfaceFactory.setGenerateVertexNormals(true);
 		surfaceFactory.setGenerateFaceNormals(true);
 		surfaceFactory.setGenerateEdgesFromFaces(true);
 		surfaceFactory.update();
@@ -393,7 +396,33 @@ public class MinimalSurfacePanel extends JPanel{
         surfaceRoot.setGeometry(surfaceFactory.getIndexedFaceSet());
         surfaceRoot.setOwner(surfaceMaster);
         activeFaceSet = surfaceFactory.getIndexedFaceSet();
-         
+        activeFaceSet.setVertexAttributes(U3D_NONORMALS, U3D_FLAG);
+        
+        //create normal inverted face set
+//		IndexedFaceSetFactory surfaceInvertedFactory = new IndexedFaceSetFactory();
+//		surfaceInvertedFactory.setVertexCount(vertexData.length);
+//		surfaceInvertedFactory.setFaceCount(faceData.length);
+//		surfaceInvertedFactory.setVertexCoordinates(vertexData);
+//		surfaceInvertedFactory.setFaceIndices(faceData);
+//		surfaceInvertedFactory.setGenerateVertexNormals(false);
+//		surfaceInvertedFactory.setGenerateFaceNormals(true);
+//		surfaceInvertedFactory.setGenerateEdgesFromFaces(true);
+//		surfaceInvertedFactory.update();
+//        invertedFaceSet = surfaceInvertedFactory.getIndexedFaceSet();
+//		DataList vertexNormals = invertedFaceSet.getVertexAttributes(NORMALS);
+//		if (vertexNormals != null) {
+//			double[][] vn = vertexNormals.toDoubleArrayArray(null);
+//			Rn.times(vn, -1, vn);
+//			invertedFaceSet.setVertexAttributes(NORMALS, new DoubleArrayArray.Array(vn));
+//		}
+//		DataList faceNormals = invertedFaceSet.getFaceAttributes(NORMALS);
+//		if (faceNormals != null) {
+//			double[][] fn = faceNormals.toDoubleArrayArray(null);
+//			Rn.times(fn, -1, fn);
+//			invertedFaceSet.setFaceAttributes(NORMALS, new DoubleArrayArray.Array(fn));
+//		}
+        
+        
         polyhedronRoot.addChild(surfaceRoot);
         surfaceRoot.addChild(makeDiskSurface(surface));
 		update();
@@ -763,6 +792,11 @@ public class MinimalSurfacePanel extends JPanel{
 	public IndexedFaceSet getGeometrySurface() {
 		return activeFaceSet;
 	}
+	
+//	public IndexedFaceSet getInvertedSurface() {
+//		return invertedFaceSet;
+//	}
+//	
 	
 	public SceneGraphComponent getSceneRoot() {
 		return sceneRoot;

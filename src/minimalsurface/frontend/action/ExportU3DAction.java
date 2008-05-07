@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import minimalsurface.frontend.content.MinimalSurfacePanel;
+import de.jreality.io.JrScene;
 import de.jreality.writer.u3d.WriterU3D;
 
 /**
@@ -92,7 +93,14 @@ public class ExportU3DAction extends AbstractAction {
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
 				WriterU3D writer = new WriterU3D();
-				writer.writeScene(viewer.getViewerApp().getJrScene(), fos);
+				JrScene scene = viewer.getViewerApp().getJrScene();
+				// center the scene for the acrobat reader
+//				SceneGraphComponent root = scene.getSceneRoot();
+//				Rectangle3D bbox = GeometryUtility.calculateBoundingBox(root);
+//				Transformation old = root.getTransformation();
+//				MatrixBuilder.euclidean(root).translateFromTo(bbox.getCenter(), new double[] {0, 0, 0, 1}).assignTo(root);
+				writer.writeScene(scene, fos);
+//				root.setTransformation(old);
 				fos.close();
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(parent, e1.getMessage());
