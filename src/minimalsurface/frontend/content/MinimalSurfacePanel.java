@@ -398,31 +398,6 @@ public class MinimalSurfacePanel extends JPanel{
         activeFaceSet = surfaceFactory.getIndexedFaceSet();
         activeFaceSet.setVertexAttributes(U3D_NONORMALS, U3D_FLAG);
         
-        //create normal inverted face set
-//		IndexedFaceSetFactory surfaceInvertedFactory = new IndexedFaceSetFactory();
-//		surfaceInvertedFactory.setVertexCount(vertexData.length);
-//		surfaceInvertedFactory.setFaceCount(faceData.length);
-//		surfaceInvertedFactory.setVertexCoordinates(vertexData);
-//		surfaceInvertedFactory.setFaceIndices(faceData);
-//		surfaceInvertedFactory.setGenerateVertexNormals(false);
-//		surfaceInvertedFactory.setGenerateFaceNormals(true);
-//		surfaceInvertedFactory.setGenerateEdgesFromFaces(true);
-//		surfaceInvertedFactory.update();
-//        invertedFaceSet = surfaceInvertedFactory.getIndexedFaceSet();
-//		DataList vertexNormals = invertedFaceSet.getVertexAttributes(NORMALS);
-//		if (vertexNormals != null) {
-//			double[][] vn = vertexNormals.toDoubleArrayArray(null);
-//			Rn.times(vn, -1, vn);
-//			invertedFaceSet.setVertexAttributes(NORMALS, new DoubleArrayArray.Array(vn));
-//		}
-//		DataList faceNormals = invertedFaceSet.getFaceAttributes(NORMALS);
-//		if (faceNormals != null) {
-//			double[][] fn = faceNormals.toDoubleArrayArray(null);
-//			Rn.times(fn, -1, fn);
-//			invertedFaceSet.setFaceAttributes(NORMALS, new DoubleArrayArray.Array(fn));
-//		}
-        
-        
         polyhedronRoot.addChild(surfaceRoot);
         surfaceRoot.addChild(makeDiskSurface(surface));
 		update();

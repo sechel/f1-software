@@ -94,13 +94,7 @@ public class ExportU3DAction extends AbstractAction {
 				FileOutputStream fos = new FileOutputStream(file);
 				WriterU3D writer = new WriterU3D();
 				JrScene scene = viewer.getViewerApp().getJrScene();
-				// center the scene for the acrobat reader
-//				SceneGraphComponent root = scene.getSceneRoot();
-//				Rectangle3D bbox = GeometryUtility.calculateBoundingBox(root);
-//				Transformation old = root.getTransformation();
-//				MatrixBuilder.euclidean(root).translateFromTo(bbox.getCenter(), new double[] {0, 0, 0, 1}).assignTo(root);
 				writer.writeScene(scene, fos);
-//				root.setTransformation(old);
 				fos.close();
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(parent, e1.getMessage());

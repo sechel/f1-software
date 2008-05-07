@@ -76,11 +76,6 @@ public class ReflectAtPlaneTool extends AbstractTool implements GeometryTool {
 		}
 
 		SceneGraphComponent cMesh = new SceneGraphComponent();
-//		if (generator.getGeometry() == view.getGeometrySurface()) {
-//			cMesh.setGeometry(view.getInvertedSurface());
-//		} else {
-//			cMesh.setGeometry(view.getGeometrySurface());
-//		}
 		cMesh.setGeometry(generator.getGeometry());
 		
 		Matrix A = MatrixBuilder.euclidean(generator.getTransformation()).getMatrix();
