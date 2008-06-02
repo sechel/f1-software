@@ -25,6 +25,7 @@ public class CutEars extends MacroAction {
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> 
 		process(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
 		Ears.cutEars(graph);
+		
 		return graph;
 	}
 	

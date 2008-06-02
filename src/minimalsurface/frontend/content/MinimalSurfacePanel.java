@@ -434,27 +434,44 @@ public class MinimalSurfacePanel extends JPanel{
 					case CIRCLE:
 						List<V> star = v.getVertexStar();
 						Point4d C = v.getXYZW();
-						Point4d P1 = star.get(0).getXYZW();
+						Point4d P1 = null;
 						Point4d P2 = null;
-						if (star.size() >= 3)
-							P2 = star.get(2).getXYZW();
-						else
-							P2 = star.get(1).getXYZW();
+						for (int i = 0; i < star.size(); i++) {
+							if (!star.get(i).isOnBoundary()) {
+								P1 = star.get(i).getXYZW();
+								P2 = star.get((i + 1) % star.size()).getXYZW();
+								break;
+							}
+						}
+						if (P1 == null || P2 == null)
+							continue;
+//						Point4d P1 = star.get(0).getXYZW();
+//						for (V v3 : star) { // we don't  a boundary vertex
+//							if (!v3.isOnBoundary()) {
+//								P1 = v3.getXYZW();
+//							}
+//						}
+//						Point4d P2 = star.get(1).getXYZW();
+//						if (star.size() >= 3)
+//							P2 = star.get(2).getXYZW();
+//						else
+//							P2 = star.get(1).getXYZW();
+						
 						Point4d v1 = new Point4d(P1);
 						Point4d v2 = new Point4d(P2);
 						v1.sub(C); v1.w = 1.0;
 						v2.sub(C); v2.w = 1.0;
 						
 						Point4d n = VecmathTools.cross(v1, v2);
-						if (VecmathTools.length(n) < 1E-5){
-							// try a third point in the star 
-							if (star.size() < 3)
-								continue; // there is no third point, thus there is no circle
-							Point4d P3 = star.get(1).getXYZW();
-							Point4d v3 = new Point4d(P3);
-							v3.sub(C); v3.w = 1.0;
-							n = VecmathTools.cross(v1, v3);
-						}
+//						if (VecmathTools.length(n) < 1E-5){
+//							// try a third point in the star 
+//							if (star.size() < 3)
+//								continue; // there is no third point, thus there is no circle
+//							Point4d P3 = star.get(1).getXYZW();
+//							Point4d v3 = new Point4d(P3);
+//							v3.sub(C); v3.w = 1.0;
+//							n = VecmathTools.cross(v1, v3);
+//						}
 						VecmathTools.dehomogenize(n);
 						Vector3d N = new Vector3d(n.x, n.y, n.z);
 						Double r = C.distance(P1);
