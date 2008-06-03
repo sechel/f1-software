@@ -69,6 +69,7 @@ import de.jreality.scene.SceneGraphPath;
 import de.jreality.scene.Sphere;
 import de.jreality.scene.Transformation;
 import de.jreality.scene.tool.Tool;
+import de.jreality.tools.ClickWheelCameraZoomTool;
 import de.jreality.tools.DraggingTool;
 import de.jreality.tools.EncompassTool;
 import de.jreality.tools.RotateTool;
@@ -119,6 +120,8 @@ public class MinimalSurfacePanel extends JPanel{
 		draggingTool = new DraggingTool();
 	private EncompassTool
 		encompassTool = new EncompassTool();
+	private ClickWheelCameraZoomTool
+		zoomTool = new ClickWheelCameraZoomTool();
 	private Tool
 		activeGeometryTool = null;
 	
@@ -313,6 +316,7 @@ public class MinimalSurfacePanel extends JPanel{
         geometryRoot.addTool(encompassTool);
         geometryRoot.addTool(rotateTool);
         geometryRoot.addTool(draggingTool);
+        geometryRoot.addTool(zoomTool);
 	}
 	
 
@@ -436,6 +440,8 @@ public class MinimalSurfacePanel extends JPanel{
 						Point4d C = v.getXYZW();
 						Point4d P1 = null;
 						Point4d P2 = null;
+						if (star.size() < 2)
+							continue;
 						for (int i = 0; i < star.size(); i++) {
 							if (!star.get(i).isOnBoundary()) {
 								P1 = star.get(i).getXYZW();
@@ -443,8 +449,10 @@ public class MinimalSurfacePanel extends JPanel{
 								break;
 							}
 						}
-						if (P1 == null || P2 == null)
-							continue;
+						if (P1 == null || P2 == null) {
+							P1 = star.get(0).getXYZW();
+							P2 = star.get(1).getXYZW();
+						}
 //						Point4d P1 = star.get(0).getXYZW();
 //						for (V v3 : star) { // we don't  a boundary vertex
 //							if (!v3.isOnBoundary()) {

@@ -16,11 +16,14 @@ import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
  * @author Stefan Sechelmann
  */
 @SuppressWarnings("serial")
-public class MinimalSurfaces extends JFrame{
+public class MinimalSurfaces{
 	
 	public static boolean
 		isStandAlone = true;
-
+	public static MainWindow
+		mainWindow = null;
+	
+	
 	static{
 		try {
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
@@ -36,11 +39,13 @@ public class MinimalSurfaces extends JFrame{
 	
 	public static void main(String[] args) {
 		DBGTracer.setActive(false);
-		MainWindow mainWindow = new MainWindow();
+		mainWindow = new MainWindow();
 		if (isStandAlone)
 			mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
 	}
 
-	
+	public static MainWindow getMainWindow() {
+		return mainWindow;
+	}
 }

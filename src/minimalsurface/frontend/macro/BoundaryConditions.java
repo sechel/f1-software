@@ -36,6 +36,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import minimalsurface.frontend.MinimalSurfaces;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
@@ -45,8 +46,11 @@ public class BoundaryConditions extends MacroAction {
 	protected Icon 
 		icon = new ImageIcon(ImageHook.getImage("phi.png"));
 	private EditBoundaryDialog
-		editDialog = new EditBoundaryDialog(null);
+		editDialog = null;
 	
+	public BoundaryConditions() {
+		editDialog = new EditBoundaryDialog(MinimalSurfaces.getMainWindow());
+	}
 	
 	@Override
 	public String getName() {
@@ -60,7 +64,6 @@ public class BoundaryConditions extends MacroAction {
 		editDialog.setVisible(true);
 		return graph;
 	}
-	
 	
 	@Override
 	public Icon getIcon() {
@@ -115,6 +118,7 @@ public class BoundaryConditions extends MacroAction {
 			setResizable(false);
 			setSize(400, 300);
 			setTitle("Boundary Conditions");
+			setLocationRelativeTo(parent);
 			
 			setLayout(new GridLayout(1,2));
 			add(viewPanel);

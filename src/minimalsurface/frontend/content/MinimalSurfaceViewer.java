@@ -28,6 +28,7 @@ import minimalsurface.frontend.action.ImportOBJAction;
 import minimalsurface.frontend.surfacetool.AddLineTool;
 import minimalsurface.frontend.surfacetool.PointReflectionTool;
 import minimalsurface.frontend.surfacetool.ReflectAtPlaneTool;
+import minimalsurface.frontend.surfacetool.RemoveEarTool;
 import minimalsurface.frontend.surfacetool.RemoveSurfaceNodeTool;
 import minimalsurface.frontend.surfacetool.RemoveTool;
 import minimalsurface.frontend.surfacetool.RotateAroundLineTool;
@@ -57,7 +58,7 @@ public class MinimalSurfaceViewer extends JDialog {
 		super(parent);
 		setSize(600, 600);
 		setTitle("Minimal Surface Viewer");
-		setLocationRelativeTo(controller.getMainFrame());
+		setLocationRelativeTo(parent);
 		
 		minimalSurfacePanel = new MinimalSurfacePanel(controller);
 //		Action exportSVG = new ExportSVGAction(this, minimalSurfacePanel.getViewerApp().getViewer());
@@ -101,6 +102,7 @@ public class MinimalSurfaceViewer extends JDialog {
 	    JToggleButton actionToggle4 = new JToggleButton(new RemoveTool(minimalSurfacePanel).getAction());
 	    JToggleButton actionToggle5 = new JToggleButton(new AddLineTool(minimalSurfacePanel).getAction());
 	    JToggleButton actionToggle6 = new JToggleButton(new RemoveSurfaceNodeTool(minimalSurfacePanel).getAction());
+	    JToggleButton actionToggle7 = new JToggleButton(new RemoveEarTool(minimalSurfacePanel).getAction());
 	    ButtonGroup actionGroup = new ButtonGroup();
 	    actionGroup.add(actionToggle1);
 	    actionGroup.add(actionToggle2);
@@ -108,6 +110,7 @@ public class MinimalSurfaceViewer extends JDialog {
 	    actionGroup.add(actionToggle4);
 	    actionGroup.add(actionToggle5);
 	    actionGroup.add(actionToggle6);
+	    actionGroup.add(actionToggle7);
 	    
 	    toolBar.add(actionToggle1);
 	    toolBar.add(actionToggle2);
@@ -115,6 +118,7 @@ public class MinimalSurfaceViewer extends JDialog {
 	    toolBar.add(actionToggle4);
 	    toolBar.add(actionToggle5);
 	    toolBar.add(actionToggle6);
+	    toolBar.add(actionToggle7);
 	    add(toolBar, NORTH);
 	}
 	

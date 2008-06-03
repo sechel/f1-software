@@ -107,6 +107,34 @@ public class Ears {
 	}
 	
 	
+	public static 	
+	<
+		V extends Vertex<V, E, F>,
+		E extends Edge<V, E, F>,
+		F extends Face<V, E, F>
+	> void cutEar(V ear) {
+		HalfEdgeDataStructure<V, E, F> graph = ear.getHalfEdgeDataStructure();
+		List<E> b = ear.getEdgeStar();
+		if (b.size() < 2) return;
+		E b1 = b.get(0);
+		E b2 = b.get(1);
+		if (b1.getLeftFace() != null)
+			b1.getLeftFace().setBoundaryEdge(b1);
+		if (b2.getLeftFace() != null)
+			b2.getLeftFace().setBoundaryEdge(b2);
+		E b1o = b1.getOppositeEdge();
+		E b2o = b2.getOppositeEdge();
+		b1.setTargetVertex(b2o.getTargetVertex());
+		b2.setTargetVertex(b1o.getTargetVertex());
+		b1.linkNextEdge(b2o.getNextEdge());
+		b2.linkNextEdge(b1o.getNextEdge());
+		b1.linkOppositeEdge(b2);
+		graph.removeVertex(ear);
+		graph.removeEdge(b1o);
+		graph.removeEdge(b2o);	
+	}
+	
+	
 	
 	public static 	
 	<
@@ -116,24 +144,7 @@ public class Ears {
 	> void cutEars(HalfEdgeDataStructure<V, E, F> graph){
 		V ear = findEar(graph);
 		while (ear != null) {
-			List<E> b = ear.getEdgeStar();
-			if (b.size() < 2) break;
-			E b1 = b.get(0);
-			E b2 = b.get(1);
-			if (b1.getLeftFace() != null)
-				b1.getLeftFace().setBoundaryEdge(b1);
-			if (b2.getLeftFace() != null)
-				b2.getLeftFace().setBoundaryEdge(b2);
-			E b1o = b1.getOppositeEdge();
-			E b2o = b2.getOppositeEdge();
-			b1.setTargetVertex(b2o.getTargetVertex());
-			b2.setTargetVertex(b1o.getTargetVertex());
-			b1.linkNextEdge(b2o.getNextEdge());
-			b2.linkNextEdge(b1o.getNextEdge());
-			b1.linkOppositeEdge(b2);
-			graph.removeVertex(ear);
-			graph.removeEdge(b1o);
-			graph.removeEdge(b2o);
+			cutEar(ear);
 			ear = findEar(graph);
 		}
 	}
