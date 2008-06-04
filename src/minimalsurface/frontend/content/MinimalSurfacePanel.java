@@ -29,6 +29,8 @@ import static de.jreality.shader.CommonAttributes.TUBE_RADIUS;
 import static de.jreality.shader.CommonAttributes.VERTEX_DRAW;
 import static de.jreality.writer.u3d.U3DAttribute.U3D_FLAG;
 import static de.jreality.writer.u3d.U3DAttribute.U3D_NONORMALS;
+import static halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel.INTERSECTION;
+import static halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel.SPHERE;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -443,43 +445,27 @@ public class MinimalSurfacePanel extends JPanel{
 						if (star.size() < 2)
 							continue;
 						for (int i = 0; i < star.size(); i++) {
-							if (!star.get(i).isOnBoundary()) {
+							if (star.get(i).getVertexLabel() == INTERSECTION) {
 								P1 = star.get(i).getXYZW();
-								P2 = star.get((i + 1) % star.size()).getXYZW();
 								break;
 							}
 						}
-						if (P1 == null || P2 == null) {
-							P1 = star.get(0).getXYZW();
-							P2 = star.get(1).getXYZW();
+						F f = v.getFaceStar().get(0);
+						for (E b : f.getBoundary()) {
+							V bv = b.getTargetVertex();
+							if (bv.getVertexLabel() == SPHERE) {
+								P2 = bv.getXYZW();
+							}
 						}
-//						Point4d P1 = star.get(0).getXYZW();
-//						for (V v3 : star) { // we don't  a boundary vertex
-//							if (!v3.isOnBoundary()) {
-//								P1 = v3.getXYZW();
-//							}
-//						}
-//						Point4d P2 = star.get(1).getXYZW();
-//						if (star.size() >= 3)
-//							P2 = star.get(2).getXYZW();
-//						else
-//							P2 = star.get(1).getXYZW();
-						
+						if (P1 == null || P2 == null) {
+							continue;
+						}
 						Point4d v1 = new Point4d(P1);
 						Point4d v2 = new Point4d(P2);
 						v1.sub(C); v1.w = 1.0;
 						v2.sub(C); v2.w = 1.0;
 						
 						Point4d n = VecmathTools.cross(v1, v2);
-//						if (VecmathTools.length(n) < 1E-5){
-//							// try a third point in the star 
-//							if (star.size() < 3)
-//								continue; // there is no third point, thus there is no circle
-//							Point4d P3 = star.get(1).getXYZW();
-//							Point4d v3 = new Point4d(P3);
-//							v3.sub(C); v3.w = 1.0;
-//							n = VecmathTools.cross(v1, v3);
-//						}
 						VecmathTools.dehomogenize(n);
 						Vector3d N = new Vector3d(n.x, n.y, n.z);
 						Double r = C.distance(P1);
