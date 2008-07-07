@@ -20,7 +20,7 @@ import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 
-public class Dualize extends MacroAction {
+public class DualizeConformal extends MacroAction {
 
 	protected Icon 
 		icon = new ImageIcon(ImageHook.getImage("schwarz.png"));
@@ -28,7 +28,7 @@ public class Dualize extends MacroAction {
 		mergeDegenerateFaces = true; 
 	
 	public String getName() {
-		return "Dualize Surface";
+		return "Dualize Conformal";
 	}
 
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> 
@@ -48,7 +48,7 @@ public class Dualize extends MacroAction {
 //		}
 		
 		
-		MinimalSurfaceUtility.dualizeSurface(graph, true);
+		MinimalSurfaceUtility.dualizeSurfaceConformal(graph, true);
 		SurfaceUtility.rescaleSurface(graph, 5.0);
 		
 		return graph;

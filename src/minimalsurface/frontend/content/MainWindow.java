@@ -58,7 +58,8 @@ import minimalsurface.frontend.macro.AutoCut;
 import minimalsurface.frontend.macro.BoundaryConditions;
 import minimalsurface.frontend.macro.ConsistentStripSubdivide;
 import minimalsurface.frontend.macro.CutEars;
-import minimalsurface.frontend.macro.Dualize;
+import minimalsurface.frontend.macro.DualizeConformal;
+import minimalsurface.frontend.macro.DualizeKoenigs;
 import minimalsurface.frontend.macro.EdgeQuadSubdivide;
 import minimalsurface.frontend.macro.EnneperCirclesGenerator;
 import minimalsurface.frontend.macro.KobePolyhedron;
@@ -102,7 +103,8 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			new EdgeQuadSubdivide(),
 			new CutEars(),
 			new AutoCut(), 
-			new Dualize(),
+			new DualizeKoenigs(),
+			new DualizeConformal(),
 			new LoadToGraphEditor(),
 			new SurfaceEditor()
 		};

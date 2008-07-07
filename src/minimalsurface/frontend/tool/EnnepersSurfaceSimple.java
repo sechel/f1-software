@@ -43,7 +43,7 @@ public class EnnepersSurfaceSimple implements GraphTool<CPVertex, CPEdge, CPFace
 			MinimalSurfaceUtility.createEdgeLabels(graph);
 			KoebePolyhedron.normalizeBeforeProjection(graph);
 			KoebePolyhedron.inverseStereographicProjection(graph, 1);
-			MinimalSurfaceUtility.dualizeSurface(graph, true);
+			MinimalSurfaceUtility.dualizeSurfaceConformal(graph, true);
 			SurfaceUtility.rescaleSurface(graph, 2.0);
 			controller.setEditedGraph(graph);
 			controller.fireGraphChanged();

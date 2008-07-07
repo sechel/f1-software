@@ -71,7 +71,7 @@ public class MinimalSurfaceUtility {
 		}
 		MinimalSurfaceUtility.createEdgeLabels(result);
 		try {
-			dualizeSurface(result, true);
+			dualizeSurfaceConformal(result, true);
 		} catch (SurfaceException e) {
 			e.printStackTrace();
 		}
@@ -84,7 +84,7 @@ public class MinimalSurfaceUtility {
 		V extends Vertex<V, E, F> & HasXYZW,
 		E extends Edge<V, E, F> & HasLabel,
 		F extends Face<V, E, F>
-	> void dualizeSurface(HalfEdgeDataStructure<V, E, F> graph, boolean signature) throws SurfaceException{
+	> void dualizeSurfaceConformal(HalfEdgeDataStructure<V, E, F> graph, boolean signature) throws SurfaceException{
 		HashMap<V, Point4d> newCoordsMap = new HashMap<V, Point4d>();
 		HashSet<V> readyVertices = new HashSet<V>();
 		LinkedList<V> vertexQueue = new LinkedList<V>();
@@ -125,6 +125,66 @@ public class MinimalSurfaceUtility {
 				v.setXYZW(p);
 		}
 	}
+	
+	
+	
+	public static	
+	<
+		V extends Vertex<V, E, F> & HasXYZW,
+		E extends Edge<V, E, F> & HasLabel,
+		F extends Face<V, E, F>
+	> void dualizeSurfaceKoenigs(HalfEdgeDataStructure<V, E, F> graph, boolean signature) throws SurfaceException{
+		//:TODO implement Koenigs dualization
+		HashMap<V, Point4d> newCoordsMap = new HashMap<V, Point4d>();
+		HashSet<V> readyVertices = new HashSet<V>();
+		LinkedList<V> vertexQueue = new LinkedList<V>();
+		V v0 = graph.getVertex(0);
+		vertexQueue.offer(v0);
+		
+		HashMap<E, Double> scaleMap = new HashMap<E, Double>();
+		for (E e : graph.getEdges()) {
+			double scale = 1.0;
+			
+			scaleMap.put(e, scale);
+			scaleMap.put(e.getOppositeEdge(), scale);
+		}
+		
+		//vertex 0 in 0.0;
+		newCoordsMap.put(v0, new Point4d(0,0,0,1));
+		while (!vertexQueue.isEmpty()){
+			V v = vertexQueue.poll();
+			Point4d startCoord = newCoordsMap.get(v);
+			List<E> star = v.getEdgeStar();
+			for (E e : star){
+				V v2 = e.getStartVertex();
+				if (readyVertices.contains(v2))
+					continue;
+				else {
+					vertexQueue.offer(v2);
+					readyVertices.add(v2);
+				}
+				VecmathTools.dehomogenize(v.getXYZW());
+				VecmathTools.dehomogenize(v2.getXYZW());
+				VecmathTools.dehomogenize(startCoord);
+				Point4d vec = new Point4d(v2.getXYZW());
+				vec.sub(v.getXYZW()); // w = 0
+//				double norm = vec.distance(zero);
+				double scale = (e.getLabel() ? -1 : 1) * (signature ? 1 : -1) * scaleMap.get(e);
+				vec.x *= scale;
+				vec.y *= scale;
+				vec.z *= scale;
+				vec.w = 0;
+				vec.add(startCoord); // w = 1;
+				newCoordsMap.put(v2, vec);
+			}
+		}
+		for (V v : graph.getVertices()){
+			Point4d p = newCoordsMap.get(v);
+			if (p != null)
+				v.setXYZW(p);
+		}
+	}
+	
 	
 
 	
