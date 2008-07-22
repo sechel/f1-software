@@ -15,6 +15,7 @@ import java.awt.Dimension;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -39,12 +40,19 @@ import koebe.frontend.tool.EdgeQuadSubdivide;
 import koebe.frontend.tool.MedialSubdivide;
 import koebe.frontend.tool.ProjectTool;
 import koebe.frontend.tool.VertexQuadSubdivide;
+
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.button.ClassicButtonShaper;
+import org.jvnet.substance.painter.GlassGradientPainter;
+import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
+import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
+import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
+
 import util.debug.DBGTracer;
 import alexandrov.frontend.action.SetDebugModeAction;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 
 
 /**
@@ -195,13 +203,21 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 	
 	static{
 		try {
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			JDialog.setDefaultLookAndFeelDecorated(true);
+			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceModerateLookAndFeel");
+			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
+			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
+			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
+			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
+			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
+//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+//			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
+//			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
 		} catch (Exception e) {}
 	}
 	

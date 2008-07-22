@@ -17,6 +17,7 @@ import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -31,6 +32,14 @@ import javax.swing.UIManager;
 import koebe.frontend.action.ExportPSAction;
 import koebe.frontend.action.ExportRIBAction;
 import koebe.frontend.action.ExportSVGAction;
+
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.button.ClassicButtonShaper;
+import org.jvnet.substance.painter.GlassGradientPainter;
+import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
+import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
+import org.jvnet.substance.theme.SubstanceSepiaTheme;
+
 import util.debug.DBGTracer;
 import alexandrov.frontend.action.CloseProgram;
 import alexandrov.frontend.action.ExportCPMLAction;
@@ -59,7 +68,6 @@ import alexandrov.frontend.tool.deform.WankelDeformTool;
 import alexandrov.graph.CPMEdge;
 import alexandrov.graph.CPMFace;
 import alexandrov.graph.CPMVertex;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import de.jreality.backends.label.LabelUtility;
 import de.jreality.ui.viewerapp.SunflowMenu;
 import de.jreality.util.LoggingSystem;
@@ -281,13 +289,21 @@ public class AlexandrovsPolyhedron extends JFrame implements StatusChangedListen
 	
 	static{
 		try {
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			JDialog.setDefaultLookAndFeelDecorated(true);
+			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceModerateLookAndFeel");
+			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSepiaTheme());
+			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
+			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
+			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
+			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
+//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+//			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
+//			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
 			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
 		} catch (Exception e) {}
 	}

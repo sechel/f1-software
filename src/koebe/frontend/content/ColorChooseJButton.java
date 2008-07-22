@@ -76,7 +76,7 @@ public class ColorChooseJButton extends JButton implements ActionListener{
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(color);
-		g.fill3DRect(3, 3, getWidth() - 6, getHeight() - 6, true);
+		g.fill3DRect(5, 3, getWidth() - 10, getHeight() - 6, true);
 	}
 
 

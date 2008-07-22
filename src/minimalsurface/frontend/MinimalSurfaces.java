@@ -1,11 +1,19 @@
 package minimalsurface.frontend;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import minimalsurface.frontend.content.MainWindow;
+
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.button.StandardButtonShaper;
+import org.jvnet.substance.painter.GlassGradientPainter;
+import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
+import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
+import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
+
 import util.debug.DBGTracer;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 
 
 /**
@@ -26,14 +34,24 @@ public class MinimalSurfaces{
 	
 	static{
 		try {
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			JDialog.setDefaultLookAndFeelDecorated(true);
+			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
+			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
+			SubstanceLookAndFeel.setCurrentButtonShaper(new StandardButtonShaper());
+			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
+			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
+			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaGreenDreamLookAndFeel");
-		} catch (Exception e) {}
+//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+//			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
+//			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaGreenDreamLookAndFeel");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
