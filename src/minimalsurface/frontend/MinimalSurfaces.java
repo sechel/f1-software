@@ -7,7 +7,7 @@ import javax.swing.UIManager;
 import minimalsurface.frontend.content.MainWindow;
 
 import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.button.StandardButtonShaper;
+import org.jvnet.substance.button.ClassicButtonShaper;
 import org.jvnet.substance.painter.GlassGradientPainter;
 import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
 import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
@@ -38,7 +38,7 @@ public class MinimalSurfaces{
 			JDialog.setDefaultLookAndFeelDecorated(true);
 			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
 			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
-			SubstanceLookAndFeel.setCurrentButtonShaper(new StandardButtonShaper());
+			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
 			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
 			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
 			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
