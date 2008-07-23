@@ -15,7 +15,6 @@ import java.awt.Dimension;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -203,8 +202,8 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 	
 	static{
 		try {
-			JFrame.setDefaultLookAndFeelDecorated(true);
-			JDialog.setDefaultLookAndFeelDecorated(true);
+//			JFrame.setDefaultLookAndFeelDecorated(true);
+//			JDialog.setDefaultLookAndFeelDecorated(true);
 			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceModerateLookAndFeel");
 			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
 			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());

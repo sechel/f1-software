@@ -15,7 +15,8 @@
 	</security>
 	<resources>
 		<j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+"/>
-		<jar href="MatheonF1.jar"/>
+		<jar href="matheonF1webstart.jar"/>
+		<extension name="jReality" href="http://www3.math.tu-berlin.de/jreality/ws/jReality.jnlp" />		
 		<extension name="jogl" href="http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jnlp" />
 	</resources>
     <application-desc main-class="teamgeist.TeamgeistDesigner"/>

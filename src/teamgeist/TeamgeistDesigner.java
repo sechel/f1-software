@@ -5,6 +5,7 @@ import java.util.logging.Level;
 
 import javax.swing.Action;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -12,6 +13,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JSeparator;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
+
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.button.ClassicButtonShaper;
+import org.jvnet.substance.painter.GlassGradientPainter;
+import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
+import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
+import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
 
 import teamgeist.frontend.GraphicsOptions;
 import teamgeist.frontend.TeamgeistCreationPanel;
@@ -26,7 +34,6 @@ import alexandrov.frontend.action.CloseProgram;
 import alexandrov.frontend.action.MainWindowClosing;
 import alexandrov.frontend.action.SetDebugModeAction;
 import circlepatterns.frontend.content.ShrinkPanelContainer;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import de.jreality.backends.label.LabelUtility;
 import de.jreality.util.LoggingSystem;
 
@@ -104,11 +111,19 @@ public class TeamgeistDesigner extends JFrame implements StatusChangedListener{
 	
 	static{
 		try {
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			JDialog.setDefaultLookAndFeelDecorated(true);
+			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
+			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
+			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
+			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
+			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
+			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
 			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
 			DBGTracer.setActive(false);
 		} catch (Exception e) {}

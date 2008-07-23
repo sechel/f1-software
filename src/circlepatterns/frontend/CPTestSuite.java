@@ -9,6 +9,7 @@ import java.io.File;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -17,6 +18,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.UIManager;
+
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.button.ClassicButtonShaper;
+import org.jvnet.substance.painter.GlassGradientPainter;
+import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
+import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
+import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
 
 import circlepatterns.frontend.action.CloseProgram;
 import circlepatterns.frontend.action.ExportGraph;
@@ -31,7 +39,6 @@ import circlepatterns.frontend.content.spherical.SphericalComputationShrinker;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 
 
 /**
@@ -125,10 +132,18 @@ public class CPTestSuite extends JFrame {
 	
 	static{
 		try {
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			JDialog.setDefaultLookAndFeelDecorated(true);
+			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
+			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
+			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
+			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
+			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
+			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
 		} catch (Exception e) {}
 	}
 	
