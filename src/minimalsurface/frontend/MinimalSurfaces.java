@@ -23,7 +23,6 @@ import util.debug.DBGTracer;
  * <a href="http://www.math.tu-berlin.de/geometrie">TU-Berlin</a> 
  * @author Stefan Sechelmann
  */
-@SuppressWarnings("serial")
 public class MinimalSurfaces{
 	
 	public static boolean
