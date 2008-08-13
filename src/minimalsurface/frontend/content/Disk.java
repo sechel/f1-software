@@ -24,11 +24,13 @@ public class Disk extends IndexedFaceSet{
 	    zNegNormal = {0,0,1};
 	
 	public Disk(int resolution, double thickness){
+		super("Disk");
 		makeDisk(resolution, thickness);
 		setVertexAttributes(U3D_NONORMALS, U3D_FLAG);
 	}
 	
 	public Disk(int resolution){
+		super("Disk");
 		makeDiskNoThickness(resolution);
 		setVertexAttributes(U3D_NONORMALS, U3D_FLAG);
 	}
@@ -122,6 +124,5 @@ public class Disk extends IndexedFaceSet{
 		ViewerApp.display(d);
 	}
 	
-
 	
 }

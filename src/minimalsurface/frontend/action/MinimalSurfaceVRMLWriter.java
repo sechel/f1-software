@@ -1,21 +1,6 @@
 package minimalsurface.frontend.action;
 
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.List;
-
-import javax.vecmath.Point4d;
-import javax.vecmath.Vector3d;
-
-import util.debug.DBGTracer;
-
-import math.util.Circles;
-import math.util.VecmathTools;
-import minimalsurface.frontend.content.MinimalSurfacePanel;
-import de.jreality.math.FactoredMatrix;
-import de.jreality.math.Matrix;
-import de.jreality.math.MatrixBuilder;
-
+import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Ring;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -23,6 +8,21 @@ import halfedge.Vertex;
 import halfedge.decorations.HasQuadGraphLabeling;
 import halfedge.decorations.HasXYZW;
 import halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel;
+
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.vecmath.Point4d;
+import javax.vecmath.Vector3d;
+
+import math.util.Circles;
+import math.util.VecmathTools;
+import minimalsurface.frontend.content.MinimalSurfacePanel;
+import util.debug.DBGTracer;
+import de.jreality.math.FactoredMatrix;
+import de.jreality.math.Matrix;
+import de.jreality.math.MatrixBuilder;
 
 public class MinimalSurfaceVRMLWriter {
 
@@ -174,7 +174,7 @@ public class MinimalSurfaceVRMLWriter {
 						Double r = C.distance(P1);
 						
 						Matrix S = MatrixBuilder.euclidean().rotate(Math.PI / 2, 1, 0, 0).scale(1, 0.01, 1).getMatrix();
-						T = Circles.getTransform(C, N, r);
+						T = Circles.getTransform(C, N, r, panel.getCircleType() == Ring);
 						T.multiplyOnRight(S);
 						break;
 					case SPHERE:

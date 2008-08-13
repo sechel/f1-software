@@ -128,7 +128,9 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		viewSurfaceButton = new JButton("View Minimal Surface", new ImageIcon(ImageHook.getImage("surface.png"))),
 		removeActionButton = new JButton(new ImageIcon(ImageHook.getImage("delete.png"))),
 		upButton = new JButton(new ImageIcon(ImageHook.getImage("up.png"))),
-		downButton = new JButton(new ImageIcon(ImageHook.getImage("down.png")));
+		downButton = new JButton(new ImageIcon(ImageHook.getImage("down.png"))),
+		templateEuclideanBtn = new JButton("Eucl."),
+		templateSphericalBtn = new JButton("Spher.");
 	private JProgressBar
 		progressBar = new JProgressBar(0, 100);
 	private JLabel
@@ -148,6 +150,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		controller.setMainFrame(this);
 		controller.setMainPanel((JPanel)getContentPane());
 		viewer = new MinimalSurfaceViewer(this, controller);
+		updateInfos();
 	}
 	
 	
@@ -180,6 +183,8 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		planToolBar.add(removeActionButton);
 		planToolBar.add(upButton);
 		planToolBar.add(downButton);
+		planToolBar.add(templateEuclideanBtn);
+		planToolBar.add(templateSphericalBtn);
 		
 		actionOptionsPanel.setLayout(new BorderLayout());
 		
@@ -226,6 +231,8 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		removeActionButton.addActionListener(this);
 		upButton.addActionListener(this);
 		downButton.addActionListener(this);
+		templateEuclideanBtn.addActionListener(this);
+		templateSphericalBtn.addActionListener(this);
 	}
 	
 	
@@ -497,8 +504,36 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 				actionOptionsPanel.updateUI();
 			}
 		}
+		if (e.getSource() == templateEuclideanBtn) {
+			creationPlan.clear();
+			creationPlan.add(new LoadCombinatorics());
+			creationPlan.add(new MedialPolyhedron());
+			creationPlan.add(new VertexQuadSubdivide());
+			creationPlan.add(new AutoCut());
+			creationPlan.add(new DualizeConformal());
+			for (MacroAction m : creationPlan) {
+				m.setController(controller);
+			}
+			planTable.getSelectionModel().setSelectionInterval(0, 0);
+			planTable.updateUI();
+			actionOptionsPanel.updateUI();
+		}
+		if (e.getSource() == templateSphericalBtn) {
+			creationPlan.clear();
+			creationPlan.add(new LoadCombinatorics());
+			creationPlan.add(new BoundaryConditions());
+			creationPlan.add(new SphericalCirclePattern());
+			creationPlan.add(new VertexQuadSubdivide());
+			creationPlan.add(new DualizeConformal());
+			for (MacroAction m : creationPlan) {
+				m.setController(controller);
+			}
+			planTable.getSelectionModel().setSelectionInterval(0, 0);
+			planTable.updateUI();
+			actionOptionsPanel.updateUI();
+		}
 	}
-
+ 
 
 	public void valueChanged(ListSelectionEvent e) {
 		updateInfos();

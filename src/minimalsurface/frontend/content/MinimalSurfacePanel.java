@@ -31,6 +31,8 @@ import static de.jreality.writer.u3d.U3DAttribute.U3D_FLAG;
 import static de.jreality.writer.u3d.U3DAttribute.U3D_NONORMALS;
 import static halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel.INTERSECTION;
 import static halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel.SPHERE;
+import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Disk;
+import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Ring;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -53,6 +55,7 @@ import javax.vecmath.Vector3d;
 import math.util.Circles;
 import math.util.VecmathTools;
 import minimalsurface.controller.MainController;
+import minimalsurface.frontend.content.MinimalViewOptions.CircleType;
 import util.debug.DBGTracer;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
@@ -169,8 +172,15 @@ public class MinimalSurfacePanel extends JPanel{
 		meshWidth = 0.015,
 		diskThickness = 0.01;
 	
-	private Geometry
-		diskGeometry = new Disk(40, 1);
+	private CircleType
+		circleType = CircleType.Disk;
+
+	private Disk
+		diskGeometry = new Disk(40, 1.0);
+	private Ring
+		ringGeometry = new Ring();
+	private IndexedFaceSet
+		circleGeometry = new IndexedFaceSet();
 	private Geometry
 		sphereGeometry = new Sphere();
 
@@ -280,6 +290,7 @@ public class MinimalSurfacePanel extends JPanel{
         diskApp.setAttribute(LIGHTING_ENABLED, true);
         diskApp.setAttribute(TRANSPARENCY_ENABLED, false);
         diskApp.setAttribute(PICKABLE, false);
+        setCircleType(Disk);
         
         // spheres
         spheresApp.setAttribute(POLYGON_SHADER, "smooth");
@@ -470,7 +481,7 @@ public class MinimalSurfacePanel extends JPanel{
 						Vector3d N = new Vector3d(n.x, n.y, n.z);
 						Double r = C.distance(P1);
 						
-						Matrix T = Circles.getTransform(C, N, r);
+						Matrix T = Circles.getTransform(C, N, r, circleType == Ring);
 						SceneGraphComponent transformC = new SceneGraphComponent();
 						transformC.setName("Circle Transform");
 						T.assignTo(transformC);
@@ -478,7 +489,7 @@ public class MinimalSurfacePanel extends JPanel{
 						disk.setName("Circle");
 						disk.setTransformation(diskThicknessTransform);
 						transformC.addChild(disk);
-						disk.setGeometry(diskGeometry);
+						disk.setGeometry(circleGeometry);
 						disks.addChild(transformC);
 						break;
 					case SPHERE:
@@ -863,13 +874,52 @@ public class MinimalSurfacePanel extends JPanel{
 
 	public void setDiskThickness(double diskThickness) {
 		this.diskThickness = diskThickness;
-		Matrix S = MatrixBuilder.euclidean().scale(1, 1, diskThickness).getMatrix();
-		S.assignTo(diskThicknessTransform);
+		switch (circleType) {
+		case Disk:
+			MatrixBuilder S = MatrixBuilder.euclidean();
+			S.scale(1, 1, diskThickness);
+			S.assignTo(diskThicknessTransform);
+			break;
+		case Ring:
+			ringGeometry = new Ring(diskThickness, 40, 20);
+			S = MatrixBuilder.euclidean();
+			S.assignTo(diskThicknessTransform);
+			setCircleType(Ring);
+			break;
+		}
 	}
 	
 	
 	public Object getSurfaceOwner() {
 		return surfaceMaster;
+	}
+
+
+	public CircleType getCircleType() {
+		return circleType;
+	}
+
+
+	public void setCircleType(CircleType circleType) {
+		this.circleType = circleType;
+		IndexedFaceSet newGeom = null;
+		switch (circleType) {
+		case Disk:
+			newGeom = diskGeometry;
+			MatrixBuilder S = MatrixBuilder.euclidean();
+			S.scale(1, 1, diskThickness);
+			S.assignTo(diskThicknessTransform);
+			break;
+		case Ring:
+			newGeom = ringGeometry;
+			S = MatrixBuilder.euclidean();
+			S.assignTo(diskThicknessTransform);
+			break;
+		}
+		circleGeometry.setVertexCountAndAttributes(newGeom.getVertexAttributes());
+		circleGeometry.setEdgeCountAndAttributes(newGeom.getEdgeAttributes());
+		circleGeometry.setFaceCountAndAttributes(newGeom.getFaceAttributes());
+		circleGeometry.setName(newGeom.getName());
 	}
 	
 }

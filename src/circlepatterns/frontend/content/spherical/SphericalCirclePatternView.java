@@ -153,7 +153,7 @@ public class SphericalCirclePatternView{
 			VecmathTools.dehomogenize(f.getXYZW());
 			Vector3d N = new Vector3d(f.getXYZW().x, f.getXYZW().y, f.getXYZW().z);
 			Double r = Math.sin(f.getRadius());
-			Matrix mat = Circles.getTransform(f.getXYZW(), N, r);
+			Matrix mat = Circles.getTransform(f.getXYZW(), N, r, false);
 			SceneGraphComponent circle = new SceneGraphComponent();
 			circle.setGeometry(Primitives.regularPolygon(100));
 			MatrixBuilder.euclidean().times(mat).assignTo(circle);

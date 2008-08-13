@@ -1,16 +1,21 @@
 package minimalsurface.frontend.content;
 
 import static java.awt.GridBagConstraints.REMAINDER;
+import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Disk;
+import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Ring;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -66,6 +71,16 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		helperLinesWidthSlider = null,
 		vertexWidthSlider = null,
 		diskThicknessSlider = null;
+	private JRadioButton
+		diskRadio = null,
+		ringRadio = null;
+	
+	
+	public static enum CircleType {
+		Disk,
+		Ring
+	}
+	
 	
 	public MinimalViewOptions(MainController controller,  MinimalSurfacePanel view){
 		super("View Options");
@@ -95,7 +110,13 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		meshWidthSlider = new JSlider(0, 100, (int)(100.0 * view.getMeshWidth() / 0.1));
 		vertexWidthSlider = new JSlider(0, 100, (int)(100.0*view.getVertexSize() / 0.1));
 		helperLinesWidthSlider = new JSlider(0, 100, (int)(100.0*view.getHelperLineWidth() / 0.1));
-		diskThicknessSlider = new JSlider(0, 100, (int)(100.0*view.getDiskThickness() / 0.1));
+		diskThicknessSlider = new JSlider(0, 100, (int)(100.0*view.getDiskThickness() / 0.3));
+		
+		diskRadio = new JRadioButton("Disks", view.getCircleType() == Disk);
+		ringRadio = new JRadioButton("Rings", view.getCircleType() == Ring);
+		ButtonGroup circleTypeGroup = new ButtonGroup();
+		circleTypeGroup.add(diskRadio);
+		circleTypeGroup.add(ringRadio);
 		
 		this.view = view;
 		
@@ -188,6 +209,13 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		c2.weightx = 0;
 		geomOptPanel.add(circlesColorBtn, c2);
 		
+		JPanel circleTypePanel = new JPanel();
+		circleTypePanel.setLayout(new GridLayout(1,2));
+		circleTypePanel.add(diskRadio);
+		circleTypePanel.add(ringRadio);
+		c2.weightx = 1.0;
+		geomOptPanel.add(circleTypePanel, c2);
+		
 		c2.weightx = 0;
 		c2.gridwidth = 1;
 		geomOptPanel.add(helperLinesChecker, c2);
@@ -235,6 +263,9 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		vertexWidthSlider.addChangeListener(this);
 		helperLinesWidthSlider.addChangeListener(this);
 		diskThicknessSlider.addChangeListener(this);
+		
+		diskRadio.addActionListener(this);
+		ringRadio.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -258,6 +289,10 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 			view.setShowVertices(showVerticesChecker.isSelected());
 		if (helperLinesChecker == e.getSource())
 			view.setShowHelperLines(helperLinesChecker.isSelected());
+		if (diskRadio == e.getSource())
+			view.setCircleType(Disk);
+		if (ringRadio == e.getSource())
+			view.setCircleType(Ring);
 		view.updateProperties();
 	}
 
@@ -296,7 +331,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		if (e.getSource() == helperLinesWidthSlider)
 			view.setHelperLineWidth(helperLinesWidthSlider.getValue() * 0.1 / 100.0);
 		if (e.getSource() == diskThicknessSlider)
-			view.setDiskThickness(diskThicknessSlider.getValue() * 0.1 / 100.0);
+			view.setDiskThickness(diskThicknessSlider.getValue() * 0.3 / 100.0);
 		view.updateProperties();
 	}
 	
