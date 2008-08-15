@@ -29,6 +29,7 @@ import koebe.frontend.action.ExportPSAction;
 import koebe.frontend.action.ExportRIBAction;
 import koebe.frontend.action.ExportSVGAction;
 import koebe.frontend.action.ExportU3DAction;
+import koebe.frontend.action.ProvideFeedbackAction;
 import koebe.frontend.action.ResetAction;
 import koebe.frontend.action.ShowAboutAction;
 import koebe.frontend.content.Viewer;
@@ -137,6 +138,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		fileMenu.add(new JSeparator());
 		fileMenu.add(resetAction);
 		fileMenu.add(new JSeparator());
+		fileMenu.add(new ProvideFeedbackAction(this));
 		fileMenu.add(closeAction);
 		menuBar.add(fileMenu);
 		
