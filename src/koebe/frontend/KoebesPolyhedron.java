@@ -95,6 +95,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 	 	filter = new ExtensionFileFilter("heds", "HalfEdgeDataStructure File");
 	private Action
 		closeAction = new CloseProgram(),
+		feedbackAction = null,
 		openFile = null,
 		saveFile = null,
 		exportU3D = null,
@@ -132,13 +133,14 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		openFile = new OpenGraph<CPVertex, CPEdge, CPFace>(editPanel.getEditPanel(), this, controller, filter);
 		saveFile = new SaveGraph(this, editPanel.getController(), filter);
 		resetAction = new ResetAction(controller);
+		feedbackAction = new ProvideFeedbackAction(this, "koebe", appName);
 		
 		fileMenu.add(openFile);
 		fileMenu.add(saveFile);
 		fileMenu.add(new JSeparator());
 		fileMenu.add(resetAction);
 		fileMenu.add(new JSeparator());
-		fileMenu.add(new ProvideFeedbackAction(this));
+		fileMenu.add(feedbackAction);
 		fileMenu.add(closeAction);
 		menuBar.add(fileMenu);
 		
