@@ -55,6 +55,7 @@ import de.jreality.backends.label.LabelUtility;
 import de.jreality.ui.viewerapp.SunflowMenu;
 import de.jreality.ui.viewerapp.actions.file.ExportSVG;
 import de.jreality.util.LoggingSystem;
+import de.varylab.feedback.swing.FeedbackAction;
 
 
 /**
@@ -158,6 +159,7 @@ public class AlexandrovsCap extends JFrame implements StatusChangedListener, Mai
 		fileMenu.add(new JSeparator());
 		fileMenu.add(resetAction);
 		fileMenu.add(new JSeparator());
+		fileMenu.add(new FeedbackAction(this, "alexandrovCap", appName));
 		fileMenu.add(closeAction);
 		menuBar.add(fileMenu);
 		

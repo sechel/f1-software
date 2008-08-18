@@ -11,26 +11,20 @@ import halfedge.frontend.graphtool.standard.EditTheta;
 import java.awt.BorderLayout;
 
 import javax.swing.Action;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JSeparator;
 import javax.swing.UIManager;
 
 import koebe.frontend.controller.MainController;
-
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.button.ClassicButtonShaper;
-import org.jvnet.substance.painter.GlassGradientPainter;
-import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
-import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
-import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
-
 import util.debug.DBGTracer;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
+import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+import de.varylab.feedback.swing.FeedbackAction;
 
 /**
  * A test implemetation for an HalfEdge editor
@@ -79,6 +73,8 @@ public class EditorTest extends JFrame implements StatusChangedListener{
 	private void createMenuBar(){
 		fileMenu.add(openAction);
 		fileMenu.add(saveAction);
+		fileMenu.add(new FeedbackAction(this, "halfedgeEditor", appName));
+		fileMenu.add(new JSeparator());
 		fileMenu.add(closeAction);
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
@@ -105,19 +101,19 @@ public class EditorTest extends JFrame implements StatusChangedListener{
 	
 	static{
 		try {
-			JFrame.setDefaultLookAndFeelDecorated(true);
-			JDialog.setDefaultLookAndFeelDecorated(true);
-			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
-			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
-			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
-			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
-			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
-			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
+//			JFrame.setDefaultLookAndFeelDecorated(true);
+//			JDialog.setDefaultLookAndFeelDecorated(true);
+//			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
+//			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
+//			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
+//			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
+//			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
+//			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
 		} catch (Exception e) {}
 	}
 	

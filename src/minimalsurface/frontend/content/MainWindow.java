@@ -74,12 +74,15 @@ import minimalsurface.frontend.macro.VertexQuadSubdivide;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
+import de.varylab.feedback.swing.FeedbackAction;
 
 
 public class MainWindow extends JFrame implements ListSelectionListener, ActionListener, MouseListener{
 
 	private static final long 
 		serialVersionUID = 1L;
+	private final String 
+		appName = "Minimal Surface Construction"; 
 	private MainController
 		controller = new MainController();
 	private MinimalSurfaceViewer
@@ -141,7 +144,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 	public MainWindow() {
 		setSize(800, 400);
 		setResizable(false);
-		setTitle("Minimal Surface Construction");
+		setTitle(appName);
 		setLocationRelativeTo(controller.getMainFrame());
 		setLocationByPlatform(false);
 	
@@ -185,6 +188,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		planToolBar.add(downButton);
 		planToolBar.add(templateEuclideanBtn);
 		planToolBar.add(templateSphericalBtn);
+		planToolBar.add(new FeedbackAction(this, "minimal", appName));
 		
 		actionOptionsPanel.setLayout(new BorderLayout());
 		

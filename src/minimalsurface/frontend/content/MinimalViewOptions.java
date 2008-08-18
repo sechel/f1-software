@@ -1,8 +1,7 @@
 package minimalsurface.frontend.content;
 
 import static java.awt.GridBagConstraints.REMAINDER;
-import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Disk;
-import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Ring;
+import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.EqualRadiusRing;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,11 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -71,14 +70,16 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		helperLinesWidthSlider = null,
 		vertexWidthSlider = null,
 		diskThicknessSlider = null;
-	private JRadioButton
-		diskRadio = null,
-		ringRadio = null;
+	private JComboBox
+		circleTypeCombo = null;
+	private JButton
+		updateRingsBtn = new JButton("Update Rings");
 	
 	
 	public static enum CircleType {
 		Disk,
-		Ring
+		Ring,
+		EqualRadiusRing
 	}
 	
 	
@@ -111,12 +112,9 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		vertexWidthSlider = new JSlider(0, 100, (int)(100.0*view.getVertexSize() / 0.1));
 		helperLinesWidthSlider = new JSlider(0, 100, (int)(100.0*view.getHelperLineWidth() / 0.1));
 		diskThicknessSlider = new JSlider(0, 100, (int)(100.0*view.getDiskThickness() / 0.3));
-		
-		diskRadio = new JRadioButton("Disks", view.getCircleType() == Disk);
-		ringRadio = new JRadioButton("Rings", view.getCircleType() == Ring);
-		ButtonGroup circleTypeGroup = new ButtonGroup();
-		circleTypeGroup.add(diskRadio);
-		circleTypeGroup.add(ringRadio);
+		circleTypeCombo = new JComboBox(CircleType.values());
+		circleTypeCombo.setSelectedItem(view.getCircleType());
+		circleTypeCombo.setEnabled(view.getCircleType() == EqualRadiusRing);
 		
 		this.view = view;
 		
@@ -210,9 +208,10 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		geomOptPanel.add(circlesColorBtn, c2);
 		
 		JPanel circleTypePanel = new JPanel();
-		circleTypePanel.setLayout(new GridLayout(1,2));
-		circleTypePanel.add(diskRadio);
-		circleTypePanel.add(ringRadio);
+		circleTypePanel.setLayout(new GridLayout(1,3));
+		circleTypePanel.add(new JLabel("Circle Style:"));
+		circleTypePanel.add(circleTypeCombo);
+		circleTypePanel.add(updateRingsBtn);
 		c2.weightx = 1.0;
 		geomOptPanel.add(circleTypePanel, c2);
 		
@@ -246,6 +245,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		shadingChecker.addActionListener(this);
 		showVerticesChecker.addActionListener(this);
 		helperLinesChecker.addActionListener(this);
+		updateRingsBtn.addActionListener(this);
 		
 		polyederColorBtn.addColorChangedListener(this);
 		light1ColorBtn.addColorChangedListener(this);
@@ -264,55 +264,57 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		helperLinesWidthSlider.addChangeListener(this);
 		diskThicknessSlider.addChangeListener(this);
 		
-		diskRadio.addActionListener(this);
-		ringRadio.addActionListener(this);
+		circleTypeCombo.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (antialiasChecker == e.getSource())
+		Object s = e.getSource();
+		if (antialiasChecker == s)
 			view.setAntialias(antialiasChecker.isSelected());
-		if (showPolyeder == e.getSource())
+		if (showPolyeder == s)
 			view.setShowSurface(showPolyeder.isSelected());
-		if (showMeshChecker == e.getSource())
+		if (showMeshChecker == s)
 			view.setShowMesh(showMeshChecker.isSelected());
-		if (light1Checker == e.getSource())
+		if (light1Checker == s)
 			view.setLight1On(light1Checker.isSelected());
-		if (light2Checker == e.getSource())
+		if (light2Checker == s)
 			view.setLight2On(light2Checker.isSelected());
-		if (shadingChecker == e.getSource())
+		if (shadingChecker == s)
 			view.setSmoothShading(shadingChecker.isSelected());
-		if (circlesChecker == e.getSource())
+		if (circlesChecker == s)
 			view.setShowCircles(circlesChecker.isSelected());
-		if (spheresChecker == e.getSource())
+		if (spheresChecker == s)
 			view.setShowSpheres(spheresChecker.isSelected());
-		if (showVerticesChecker == e.getSource())
+		if (showVerticesChecker == s)
 			view.setShowVertices(showVerticesChecker.isSelected());
-		if (helperLinesChecker == e.getSource())
+		if (helperLinesChecker == s)
 			view.setShowHelperLines(helperLinesChecker.isSelected());
-		if (diskRadio == e.getSource())
-			view.setCircleType(Disk);
-		if (ringRadio == e.getSource())
-			view.setCircleType(Ring);
+		if (circleTypeCombo == s || updateRingsBtn == s) {
+			CircleType type = CircleType.values()[circleTypeCombo.getSelectedIndex()];
+			view.setCircleType(type);
+			updateRingsBtn.setEnabled(type == EqualRadiusRing);
+		}
 		view.updateProperties();
 	}
 
 	
 	public void colorChanged(ColorChangedEvent cce) {
-		if (polyederColorBtn == cce.getSource())
+		Object s = cce.getSource();
+		if (polyederColorBtn == s)
 			view.setFaceColor(cce.getColor());
-		if (light1ColorBtn == cce.getSource())
+		if (light1ColorBtn == s)
 			view.setLight1Color(cce.getColor());
-		if (light2ColorBtn == cce.getSource())
+		if (light2ColorBtn == s)
 			view.setLight2Color(cce.getColor());
-		if (meshColorBtn == cce.getSource())
+		if (meshColorBtn == s)
 			view.setMeshColor(cce.getColor());
-		if (backgroundColorBtn == cce.getSource())
+		if (backgroundColorBtn == s)
 			view.setBackgroundColor(cce.getColor());
-		if (circlesColorBtn == cce.getSource())
+		if (circlesColorBtn == s)
 			view.setCirclesColor(cce.getColor());
-		if (spheresColorBtn == cce.getSource())
+		if (spheresColorBtn == s)
 			view.setSpheresColor(cce.getColor());
-		if (helperLinesColorBtn == cce.getSource())
+		if (helperLinesColorBtn == s)
 			view.setHelperLineColor(cce.getColor());
 		view.updateProperties();
 	}

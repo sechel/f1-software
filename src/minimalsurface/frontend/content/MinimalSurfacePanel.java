@@ -62,6 +62,7 @@ import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.geometry.IndexedLineSetFactory;
+import de.jreality.math.FactoredMatrix;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
 import de.jreality.scene.Appearance;
@@ -71,6 +72,7 @@ import de.jreality.scene.Light;
 import de.jreality.scene.PointLight;
 import de.jreality.scene.SceneGraphComponent;
 import de.jreality.scene.SceneGraphPath;
+import de.jreality.scene.SceneGraphVisitor;
 import de.jreality.scene.Sphere;
 import de.jreality.scene.Transformation;
 import de.jreality.scene.tool.Tool;
@@ -105,7 +107,9 @@ public class MinimalSurfacePanel extends JPanel{
 		sceneRoot = new SceneGraphComponent(),
 		polyhedronRoot = new SceneGraphComponent(),
 		geometryRoot = new SceneGraphComponent(),
-		linesRoot = new SceneGraphComponent();
+		linesRoot = new SceneGraphComponent(),
+		activeDisksRoot = new SceneGraphComponent(),
+		activeSpheresRoot = new SceneGraphComponent();
 	private Transformation
 		diskThicknessTransform = new Transformation();
 	private ViewerApp
@@ -437,14 +441,14 @@ public class MinimalSurfacePanel extends JPanel{
 	> SceneGraphComponent makeDiskSurface(HalfEdgeDataStructure<V, E, F> surface){
 		SceneGraphComponent disksSpheresRoot = new SceneGraphComponent();
 		disksSpheresRoot.setName("Disks and Spheres");
-		SceneGraphComponent disks = new SceneGraphComponent();
-		disks.setName("Disks");
-		SceneGraphComponent spheres = new SceneGraphComponent();
-		spheres.setName("Spheres");
-		disks.setAppearance(diskApp);
-		spheres.setAppearance(spheresApp);
-		disksSpheresRoot.addChild(disks);
-		disksSpheresRoot.addChild(spheres);
+		activeDisksRoot = new SceneGraphComponent();
+		activeDisksRoot.setName("Disks");
+		activeSpheresRoot = new SceneGraphComponent();
+		activeSpheresRoot.setName("Spheres");
+		activeDisksRoot.setAppearance(diskApp);
+		activeSpheresRoot.setAppearance(spheresApp);
+		disksSpheresRoot.addChild(activeDisksRoot);
+		disksSpheresRoot.addChild(activeSpheresRoot);
 		for (V v : surface.getVertices()){
 			try {
 				switch (v.getVertexLabel()){
@@ -488,9 +492,9 @@ public class MinimalSurfacePanel extends JPanel{
 						SceneGraphComponent disk = new SceneGraphComponent();
 						disk.setName("Circle");
 						disk.setTransformation(diskThicknessTransform);
-						transformC.addChild(disk);
 						disk.setGeometry(circleGeometry);
-						disks.addChild(transformC);
+						transformC.addChild(disk);
+						activeDisksRoot.addChild(transformC);
 						break;
 					case SPHERE:
 						Point4d c = v.getXYZW();
@@ -502,7 +506,7 @@ public class MinimalSurfacePanel extends JPanel{
 						sphere.setName("Sphere");
 						sphere.setGeometry(sphereGeometry);
 						MatrixBuilder.euclidean().translate(c.x, c.y, c.z).scale(radius).assignTo(sphere);
-						spheres.addChild(sphere);
+						activeSpheresRoot.addChild(sphere);
 						break;
 					case INTERSECTION:
 						break;
@@ -886,6 +890,11 @@ public class MinimalSurfacePanel extends JPanel{
 			S.assignTo(diskThicknessTransform);
 			setCircleType(Ring);
 			break;
+		case EqualRadiusRing:
+//			S = MatrixBuilder.euclidean();
+//			S.assignTo(diskThicknessTransform);
+//			setCircleType(circleType);
+			break;
 		}
 	}
 	
@@ -901,6 +910,24 @@ public class MinimalSurfacePanel extends JPanel{
 
 
 	public void setCircleType(CircleType circleType) {
+		CircleType oldType = this.circleType;
+		switch (circleType) {
+		case Disk:
+		case Ring:
+			if (oldType != CircleType.EqualRadiusRing) 
+				break;
+			activeDisksRoot.childrenWriteAccept(new SceneGraphVisitor() {
+				public void visit(SceneGraphComponent c) {
+					if (c.getName().equals("Circle Transform")) {
+						SceneGraphComponent circle = c.getChildComponent(0);
+						circle.setGeometry(circleGeometry);
+					} else {
+						c.childrenWriteAccept(this, false, false, false, false, false, true);
+					}
+				}
+			}, false, false, false, false, false, true);
+			break;
+		}
 		this.circleType = circleType;
 		IndexedFaceSet newGeom = null;
 		switch (circleType) {
@@ -911,9 +938,28 @@ public class MinimalSurfacePanel extends JPanel{
 			S.assignTo(diskThicknessTransform);
 			break;
 		case Ring:
+			ringGeometry = new Ring(diskThickness, 40, 20);
 			newGeom = ringGeometry;
 			S = MatrixBuilder.euclidean();
 			S.assignTo(diskThicknessTransform);
+			break;
+		case EqualRadiusRing:
+			newGeom = circleGeometry;
+			S = MatrixBuilder.euclidean();
+			S.assignTo(diskThicknessTransform);
+			activeDisksRoot.childrenWriteAccept(new SceneGraphVisitor() {
+				public void visit(SceneGraphComponent c) {
+					if (c.getName().equals("Circle Transform")) {
+						Transformation T = c.getTransformation();
+						SceneGraphComponent circle = c.getChildComponent(0);
+						FactoredMatrix fm = new FactoredMatrix(T);
+						double scale = fm.getStretch()[0];
+						circle.setGeometry(new Ring(diskThickness / scale, 40 , 20));
+					} else {
+						c.childrenWriteAccept(this, false, false, false, false, false, true);
+					}
+				}
+			}, false, false, false, false, false, true);
 			break;
 		}
 		circleGeometry.setVertexCountAndAttributes(newGeom.getVertexAttributes());
@@ -921,5 +967,6 @@ public class MinimalSurfacePanel extends JPanel{
 		circleGeometry.setFaceCountAndAttributes(newGeom.getFaceAttributes());
 		circleGeometry.setName(newGeom.getName());
 	}
+	
 	
 }

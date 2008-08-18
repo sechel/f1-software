@@ -29,7 +29,6 @@ import koebe.frontend.action.ExportPSAction;
 import koebe.frontend.action.ExportRIBAction;
 import koebe.frontend.action.ExportSVGAction;
 import koebe.frontend.action.ExportU3DAction;
-import koebe.frontend.action.ProvideFeedbackAction;
 import koebe.frontend.action.ResetAction;
 import koebe.frontend.action.ShowAboutAction;
 import koebe.frontend.content.Viewer;
@@ -40,19 +39,13 @@ import koebe.frontend.tool.EdgeQuadSubdivide;
 import koebe.frontend.tool.MedialSubdivide;
 import koebe.frontend.tool.ProjectTool;
 import koebe.frontend.tool.VertexQuadSubdivide;
-
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.button.ClassicButtonShaper;
-import org.jvnet.substance.painter.GlassGradientPainter;
-import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
-import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
-import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
-
 import util.debug.DBGTracer;
 import alexandrov.frontend.action.SetDebugModeAction;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
+import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+import de.varylab.feedback.swing.FeedbackAction;
 
 
 /**
@@ -133,7 +126,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		openFile = new OpenGraph<CPVertex, CPEdge, CPFace>(editPanel.getEditPanel(), this, controller, filter);
 		saveFile = new SaveGraph(this, editPanel.getController(), filter);
 		resetAction = new ResetAction(controller);
-		feedbackAction = new ProvideFeedbackAction(this, "koebe", appName);
+		feedbackAction = new FeedbackAction(this, "koebe", appName);
 		
 		fileMenu.add(openFile);
 		fileMenu.add(saveFile);
@@ -208,19 +201,19 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		try {
 //			JFrame.setDefaultLookAndFeelDecorated(true);
 //			JDialog.setDefaultLookAndFeelDecorated(true);
-			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceModerateLookAndFeel");
-			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
-			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
-			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
-			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
-			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
+//			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceModerateLookAndFeel");
+//			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
+//			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
+//			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
+//			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
+//			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-//			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
-//			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
-//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
+			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
+			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
+			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
 		} catch (Exception e) {}
 	}
 	
