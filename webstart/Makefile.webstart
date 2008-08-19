@@ -7,18 +7,20 @@ dirs:
 copy:	
 #	cp ../lib/jReality.jar /tmp/webstart/
 	cp ../lib/jSyntax.jar /tmp/webstart/
-#	cp ../lib/synthetica.jar /tmp/webstart/
-#	cp ../lib/syntheticaBlueSteel.jar /tmp/webstart/
-#	cp ../lib/syntheticaGreenDream.jar /tmp/webstart/
-#	cp ../lib/syntheticaSilverMoon.jar /tmp/webstart/
+	cp ../lib/synthetica.jar /tmp/webstart/
+	cp ../lib/syntheticaBlueSteel.jar /tmp/webstart/
+	cp ../lib/syntheticaGreenDream.jar /tmp/webstart/
+	cp ../lib/syntheticaSilverMoon.jar /tmp/webstart/
 	cp ../lib/mtj.jar /tmp/webstart/
 #	cp ../lib/jtem-beans.jar /tmp/webstart/
 	cp ../lib/numericalMethods.jar /tmp/webstart/
 	cp ../lib/vecmath.jar /tmp/webstart/
 	cp ../lib/mfc.jar /tmp/webstart/
 #	cp ../lib/bsh.jar /tmp/webstart/	
-#	cp ../lib/itext-1.4.6.jar /tmp/webstart/	
-	cp ../lib/substance.jar /tmp/webstart/
+	cp ../lib/itext-1.4.6.jar /tmp/webstart/	
+#	cp ../lib/substance.jar /tmp/webstart/
+	cp ../lib/feedback.jar /tmp/webstart/
+	cp ../lib/mysql-connector-java-5.1.6-bin.jar /tmp/webstart/
 	cp -rf ../bin/* /tmp/webstart/
 	
 unzip:	

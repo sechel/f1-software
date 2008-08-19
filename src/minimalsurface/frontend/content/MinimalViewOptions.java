@@ -114,7 +114,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		diskThicknessSlider = new JSlider(0, 100, (int)(100.0*view.getDiskThickness() / 0.3));
 		circleTypeCombo = new JComboBox(CircleType.values());
 		circleTypeCombo.setSelectedItem(view.getCircleType());
-		circleTypeCombo.setEnabled(view.getCircleType() == EqualRadiusRing);
+		updateRingsBtn.setEnabled(view.getCircleType() == EqualRadiusRing);
 		
 		this.view = view;
 		
