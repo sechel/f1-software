@@ -1,5 +1,6 @@
 package minimalsurface.frontend.content;
 
+import static image.ImageHook.getImage;
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.SOUTH;
 import static java.awt.GridBagConstraints.HORIZONTAL;
@@ -128,12 +129,12 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		planTable = new JTable(new PlanTableModel());
 	private JButton
 		constructButton = new JButton(new ConstructSurfaceAction()),
-		viewSurfaceButton = new JButton("View Minimal Surface", new ImageIcon(ImageHook.getImage("surface.png"))),
-		removeActionButton = new JButton(new ImageIcon(ImageHook.getImage("delete.png"))),
-		upButton = new JButton(new ImageIcon(ImageHook.getImage("up.png"))),
-		downButton = new JButton(new ImageIcon(ImageHook.getImage("down.png"))),
-		templateEuclideanBtn = new JButton("Eucl."),
-		templateSphericalBtn = new JButton("Spher.");
+		viewSurfaceButton = new JButton("View Minimal Surface", new ImageIcon(getImage("surface.png"))),
+		removeActionButton = new JButton(new ImageIcon(getImage("delete.png"))),
+		upButton = new JButton(new ImageIcon(getImage("up.png"))),
+		downButton = new JButton(new ImageIcon(getImage("down.png"))),
+		templateEuclideanBtn = new JButton(new ImageIcon(getImage("templateEuc.png"))),
+		templateSphericalBtn = new JButton(new ImageIcon(getImage("templateSph.png")));
 	private JProgressBar
 		progressBar = new JProgressBar(0, 100);
 	private JLabel
