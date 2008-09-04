@@ -263,7 +263,6 @@ public class KoebePolyhedron{
 		offset = new Point2d();
 	
 	public static Point2d baryCenter(HalfEdgeDataStructure<? extends HasXY, ?, ?> graph){
-		// compiler bug hack try with a later version (fixed in jdk >= 6.0)
 		List<? extends HasXY> vertices = graph.getVertices();
 		Point2d result = new Point2d(0,0);
 		for (HasXY v : vertices){
@@ -276,7 +275,6 @@ public class KoebePolyhedron{
 	}
 	
 	public static double meanLength(HalfEdgeDataStructure<? extends HasXY, ?, ?> graph){
-		// compiler bug hack try with a later version (fixed in jdk >= 6.0)
 		List<? extends HasXY> vertices = graph.getVertices();
 		double result = 0;
 		for (HasXY v : vertices){
