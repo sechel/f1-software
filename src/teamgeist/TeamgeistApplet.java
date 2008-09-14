@@ -14,18 +14,10 @@ import java.util.logging.Level;
 
 import javax.swing.JApplet;
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.button.ClassicButtonShaper;
-import org.jvnet.substance.painter.GlassGradientPainter;
-import org.jvnet.substance.painter.decoration.Glass3DDecorationPainter;
-import org.jvnet.substance.painter.highlight.GlassHighlightPainter;
-import org.jvnet.substance.theme.SubstanceSteelBlueTheme;
 
 import teamgeist.frontend.TeamgeistView;
 import teamgeist.frontend.controller.MainController;
@@ -33,6 +25,7 @@ import util.debug.DBGTracer;
 import alexandrov.graph.CPMEdge;
 import alexandrov.graph.CPMFace;
 import alexandrov.graph.CPMVertex;
+import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import de.jreality.backends.label.LabelUtility;
 import de.jreality.util.LoggingSystem;
 
@@ -126,18 +119,18 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 	
 	static{
 		try {
-			JFrame.setDefaultLookAndFeelDecorated(true);
-			JDialog.setDefaultLookAndFeelDecorated(true);
-			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
-			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
-			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
-			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
-			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
-			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
+//			JFrame.setDefaultLookAndFeelDecorated(true);
+//			JDialog.setDefaultLookAndFeelDecorated(true);
+//			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
+//			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
+//			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
+//			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
+//			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
+//			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
 			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
 			DBGTracer.setActive(true);
 		} catch (Exception e) {}
