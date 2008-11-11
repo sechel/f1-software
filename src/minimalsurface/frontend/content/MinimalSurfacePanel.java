@@ -348,7 +348,7 @@ public class MinimalSurfacePanel extends JPanel{
 	public void addLineGeometry(double[] start, double[] end) {
 		IndexedLineSetFactory ilsf = new IndexedLineSetFactory();
 		ilsf.setVertexCount(2);
-		ilsf.setLineCount(1);
+		ilsf.setEdgeCount(1);
 		ilsf.setVertexCoordinates(new double[][] {start, end});
 		ilsf.setEdgeIndices(new int[] {0, 1});
 		ilsf.update();

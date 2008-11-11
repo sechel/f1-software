@@ -494,7 +494,7 @@ public class AlexandrovPolytopView extends JPanel{
 		//outline
 		meshFactory = new IndexedLineSetFactory();
 		meshFactory.setVertexCount(vertexData.length);
-		meshFactory.setLineCount(edgeIndexData.length);
+		meshFactory.setEdgeCount(edgeIndexData.length);
 		meshFactory.setVertexCoordinates(vertexData);
 		meshFactory.setEdgeIndices(edgeIndexData);
 		if (showEdgeLengths)
@@ -602,7 +602,7 @@ public class AlexandrovPolytopView extends JPanel{
 		//outline
 		meshFactory = new IndexedLineSetFactory();
 		meshFactory.setVertexCount(vertexData.length);
-		meshFactory.setLineCount(edgeIndexData.length);
+		meshFactory.setEdgeCount(edgeIndexData.length);
 		meshFactory.setVertexCoordinates(vertexData);
 		meshFactory.setEdgeIndices(edgeIndexData);
 		if (showEdgeLengths)
