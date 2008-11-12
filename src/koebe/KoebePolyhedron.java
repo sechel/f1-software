@@ -228,8 +228,8 @@ public class KoebePolyhedron{
 			for (V v : medial.getVertices()){
 				if (v == medialNorth) continue;
 				V vertex = medialVertexMap.get(v);
-				vertex.setXYZW(v.getXYZW());
-				vertex.setXY(v.getXY());
+				v.setXYZW(vertex.getXYZW());
+				v.setXY(vertex.getXY());
 			}
 			medialNorth.getXYZW().set(0, 1, 0, 1);
 			
