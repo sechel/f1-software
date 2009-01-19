@@ -14,10 +14,12 @@ import javax.swing.filechooser.FileFilter;
  */
 public class PSFileFilter extends FileFilter {
 
+	@Override
 	public boolean accept(File f) {
 		return f.getName().toLowerCase().endsWith(".ps") || f.isDirectory();
 	}
 
+	@Override
 	public String getDescription() {
 		return "PS File *.ps";
 	}

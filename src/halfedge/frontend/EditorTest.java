@@ -9,6 +9,7 @@ import halfedge.frontend.controller.MainController.StatusChangedListener;
 import halfedge.frontend.graphtool.standard.EditTheta;
 
 import java.awt.BorderLayout;
+import java.awt.Frame;
 
 import javax.swing.Action;
 import javax.swing.JFrame;
@@ -23,7 +24,7 @@ import util.debug.DBGTracer;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.varylab.feedback.swing.FeedbackAction;
 
 /**
@@ -111,8 +112,8 @@ public class EditorTest extends JFrame implements StatusChangedListener{
 //			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+			SyntheticaLookAndFeel.setWindowsDecorated(false);
 			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
 		} catch (Exception e) {}
 	}
@@ -122,7 +123,7 @@ public class EditorTest extends JFrame implements StatusChangedListener{
 		DBGTracer.setActive(true);
 		mainApp = new EditorTest();
 		mainApp.setVisible(true);
-		mainApp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		mainApp.setExtendedState(Frame.MAXIMIZED_BOTH);
 		mainApp.addWindowListener(new MainWindowClosing());
 	}
 

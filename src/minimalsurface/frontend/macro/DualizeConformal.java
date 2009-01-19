@@ -27,10 +27,12 @@ public class DualizeConformal extends MacroAction {
 	protected boolean
 		mergeDegenerateFaces = true; 
 	
+	@Override
 	public String getName() {
 		return "Dualize Conformal";
 	}
 
+	@Override
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> 
 		process(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
 		

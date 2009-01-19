@@ -258,6 +258,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 				return;
 			}
 			new Thread("Minimal Surface Construction"){
+				@Override
 				public void run() {
 					HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph = null;
 					progressBar.setMaximum(creationPlan.size());
@@ -316,30 +317,37 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public Icon getVisualRepresentation(Transferable t) {
 			return actions[libraryTable.getSelectedRow()].getIcon();
 		}
 
+		@Override
 		protected Transferable createTransferable(JComponent c) {
 			return new ActionTranferable();
 		}
 		
+		@Override
 		public boolean canImport(JComponent comp, DataFlavor[] transferFlavors) {
 			return false;
 		}
 		
+		@Override
 		public void exportAsDrag(JComponent comp, InputEvent e, int action) {
 			super.exportAsDrag(comp, e, action);
 		}
 		
+		@Override
 		public void exportToClipboard(JComponent comp, Clipboard clip, int action) throws IllegalStateException {
 			super.exportToClipboard(comp, clip, action);
 		}
 		
+		@Override
 		protected void exportDone(JComponent source, Transferable data, int action) {
 			super.exportDone(source, data, action);
 		}
 		
+		@Override
 		public int getSourceActions(JComponent c) {
 			return COPY;
 		}
@@ -383,6 +391,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		private static final long 
 			serialVersionUID = 1L;
 	
+		@Override
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
 			return false;
 		}
@@ -405,6 +414,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			return null;
 		}
 		
+		@Override
 		public Class<?> getColumnClass(int col) {
 			if (col == 0)
 				return Integer.class;
@@ -425,6 +435,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			serialVersionUID = 1L;
 		
 		
+		@Override
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
 			return false;
 		}
@@ -446,6 +457,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			return null;
 		}
 		
+		@Override
 		public Class<?> getColumnClass(int col) {
 			if (col == 0)
 				return Icon.class;

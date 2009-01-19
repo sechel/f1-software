@@ -38,7 +38,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.vecmath.Point2d;
 
 import koebe.frontend.controller.MainController;
-
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;

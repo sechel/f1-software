@@ -20,6 +20,7 @@ public class MainController extends halfedge.frontend.controller.MainController<
 		normalize = true;
 
 
+	@Override
 	public void fireGraphChanged() {
 		super.fireGraphChanged();
 		updateKoebePolyhedron(normalize);

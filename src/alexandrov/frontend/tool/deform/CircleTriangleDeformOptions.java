@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class CircleTriangleDeformOptions extends JDialog implements ActionListener {
@@ -60,6 +61,7 @@ public class CircleTriangleDeformOptions extends JDialog implements ActionListen
 	}
 
 	private class FieldFocusListener extends FocusAdapter{
+		@Override
 		public void focusLost(FocusEvent e) {
 			verifyError();
 		}
@@ -107,7 +109,7 @@ public class CircleTriangleDeformOptions extends JDialog implements ActionListen
 		
 		c.gridwidth = REMAINDER;
 		c.fill = HORIZONTAL;
-		scaleField.setHorizontalAlignment(JTextField.RIGHT);
+		scaleField.setHorizontalAlignment(SwingConstants.RIGHT);
 		scaleField.addFocusListener(new FieldFocusListener());
 		add(scaleField, c);
 		

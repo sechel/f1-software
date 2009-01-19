@@ -37,6 +37,7 @@ public class AddLineTool extends AbstractTool implements GeometryTool {
 		this.view = view;
 	}
 	
+	@Override
 	public void activate(ToolContext tc) {
 		if (tc.getCurrentPick() == null || tc.getCurrentPick().getPickType() != PICK_TYPE_POINT){
 			tc.reject();

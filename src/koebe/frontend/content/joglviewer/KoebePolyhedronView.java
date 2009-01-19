@@ -23,6 +23,7 @@ import static javax.media.opengl.GL.GL_SRC_ALPHA;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Transparency;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
@@ -124,6 +125,7 @@ public class KoebePolyhedronView extends Mouse3DView implements Viewer, MouseWhe
 	
 	
 	
+	@Override
 	public void render(GLAutoDrawable draw) {
 		GL gl = draw.getGL();
 		gl.glScalef(mainScale, mainScale, mainScale);
@@ -201,7 +203,7 @@ public class KoebePolyhedronView extends Mouse3DView implements Viewer, MouseWhe
 	private void setColor(Color color, GLAutoDrawable draw){
 		GL gl = draw.getGL();
 		color.getColorComponents(c);
-		if (color.getTransparency() == Color.TRANSLUCENT){
+		if (color.getTransparency() == Transparency.TRANSLUCENT){
 			gl.glEnable(GL_BLEND);
 			gl.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			c[3] = color.getAlpha() / 255.0f;

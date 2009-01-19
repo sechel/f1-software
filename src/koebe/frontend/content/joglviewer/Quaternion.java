@@ -24,7 +24,7 @@ public class Quaternion implements java.io.Serializable{
 
 	public Quaternion(double angle, double[] vec) {
 		w = angle;
-		this.vec = (double[])vec.clone();
+		this.vec = vec.clone();
 	}
 
 	public Quaternion() {
@@ -191,6 +191,7 @@ public class Quaternion implements java.io.Serializable{
 		return (float) StrictMath.atan2(value, value2);
 	}	
 
+	@Override
 	public String toString() {
 		float[] angax = toAngleAxis();
 		return "Orientation: " + (float)Math.toDegrees(angax[0]) + "� um "

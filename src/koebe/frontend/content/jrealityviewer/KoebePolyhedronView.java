@@ -24,7 +24,6 @@ import static de.jreality.shader.CommonAttributes.VERTEX_DRAW;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.LinkedList;
@@ -161,7 +160,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
 		c.weightx = 1;
 		c.weighty = 1;
 		
-		add((Component) va.getContent(), c);
+		add(va.getContent(), c);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weighty = 0;
 		JPanel wrap = new JPanel();

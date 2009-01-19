@@ -91,6 +91,7 @@ public class AboutBox extends JDialog {
 	public static void main(String[] args) {
 		AboutBox b = new AboutBox(null);
 		b.addWindowListener(new WindowAdapter(){
+			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}

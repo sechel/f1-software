@@ -111,6 +111,7 @@ public class ShrinkPanel extends JPanel implements ComponentListener{
 		addComponentListener(this);
 	
 		upper_panel.addMouseListener(new MouseAdapter(){
+			@Override
 			public void mouseClicked(MouseEvent m) {
 				Dimension dim = getSize();
 				if (!floated && dim.width - name_space - name_box_height <= m.getX() && 
@@ -126,6 +127,7 @@ public class ShrinkPanel extends JPanel implements ComponentListener{
 	}
 	
 
+	@Override
 	public void setLayout(LayoutManager arg0) {
 		if (content_panel == null)
 			return;
@@ -133,37 +135,44 @@ public class ShrinkPanel extends JPanel implements ComponentListener{
 	}
 	
 
+	@Override
 	public Component add(Component arg0) {
 		content_panel.add(arg0);
 		return arg0;
 	}
 	
 
+	@Override
 	public void add(Component arg0, Object arg1) {
 		content_panel.add(arg0, arg1);
 	}
 	
 
+	@Override
 	public Component add(Component arg0, int arg1) {
 		return content_panel.add(arg0, arg1);
 	}
 	
 
+	@Override
 	public void add(Component arg0, Object arg1, int arg2) {
 		content_panel.add(arg0, arg1, arg2);
 	}
 	
+	@Override
 	public Component add(String arg0, Component arg1) {
 		return content_panel.add(arg0, arg1);
 	}
 
 
-    public void remove(Component arg0) {
+    @Override
+	public void remove(Component arg0) {
         content_panel.remove(arg0);
     }
 
 
-    public void removeAll() {
+    @Override
+	public void removeAll() {
         content_panel.removeAll();
     }
 
@@ -212,7 +221,8 @@ public class ShrinkPanel extends JPanel implements ComponentListener{
 			floated_panel = new JDialog(CPTestSuite.getMainFrame(), false);
 			floated_panel.setTitle(name);
 			floated_panel.addWindowListener(new WindowAdapter(){
-		        public void windowClosing(WindowEvent arg0) {
+		        @Override
+				public void windowClosing(WindowEvent arg0) {
 		            super.windowClosed(arg0);
 		            shrink();
 		        } 
@@ -285,6 +295,7 @@ public class ShrinkPanel extends JPanel implements ComponentListener{
 	
 	
 
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2D = (Graphics2D)g;
@@ -316,6 +327,7 @@ public class ShrinkPanel extends JPanel implements ComponentListener{
 
 
 
+	@Override
 	public int getWidth() {
 		return width;
 	}

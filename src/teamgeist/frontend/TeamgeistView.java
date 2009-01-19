@@ -22,7 +22,6 @@ import halfedge.HalfEdgeDataStructure;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.util.HashSet;
 
@@ -112,7 +111,7 @@ public class TeamgeistView extends JPanel {
 		setLayout(new BorderLayout());
 		va.update();
 		CameraUtility.getCamera(va.getCurrentViewer()).setFieldOfView(23);
-		add((Component) va.getViewingComponent(), BorderLayout.CENTER);
+		add(va.getViewingComponent(), BorderLayout.CENTER);
 		initScene();
 	}
 	

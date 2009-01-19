@@ -47,6 +47,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 
 import de.jreality.geometry.GeometryUtility;
+import de.jreality.geometry.IndexedFaceSetUtility;
 import de.jreality.math.P3;
 import de.jreality.math.Pn;
 import de.jreality.math.Rn;
@@ -199,9 +200,10 @@ public class WriterOBJ {
 	    SceneGraphVisitor v =new SceneGraphVisitor() {
 	    	    SceneGraphPath thePath = new SceneGraphPath();
 	    	    
-           public void visit(PointSet oldi) {
+           @Override
+		public void visit(PointSet oldi) {
            	// have to copy the geometry in case it is reused!
-           	PointSet i = (PointSet) SceneGraphUtility.copy(oldi);
+           	PointSet i = SceneGraphUtility.copy(oldi);
            	//System.err.println("point set is "+i);
            	if (i.getVertexAttributes(Attribute.COORDINATES) == null) return;
           	    double[][] v = i.getVertexAttributes(Attribute.COORDINATES).toDoubleArrayArray(null);
@@ -222,13 +224,13 @@ public class WriterOBJ {
            	v = ifs.getFaceAttributes(Attribute.NORMALS).toDoubleArrayArray(null);
                    nv = Rn.matrixTimesVector(null, cmp, v);
                    ifs.setFaceAttributes(Attribute.NORMALS, StorageModel.DOUBLE_ARRAY.array(nv[0].length).createWritableDataList(nv));
-           	       } else GeometryUtility.calculateAndSetFaceNormals(ifs);
+           	       } else IndexedFaceSetUtility.calculateAndSetFaceNormals(ifs);
               	   if (ifs.getVertexAttributes(Attribute.NORMALS) != null)	{
           	   		//System.out.println("Setting vertex normals");
                      v = ifs.getVertexAttributes(Attribute.NORMALS).toDoubleArrayArray(null);
                        nv = Rn.matrixTimesVector(null, cmp, v);
                        ifs.setVertexAttributes(Attribute.NORMALS, StorageModel.DOUBLE_ARRAY.array(nv[0].length).createWritableDataList(nv));
-           	       } else GeometryUtility.calculateAndSetVertexNormals(ifs);
+           	       } else IndexedFaceSetUtility.calculateAndSetVertexNormals(ifs);
              	   if (Rn.determinant(currentMatrix) < 0.0)	{           	
               	   		//System.out.println("Flipping normals");
               	   		v = ifs.getFaceAttributes(Attribute.NORMALS).toDoubleArrayArray(null);
@@ -249,7 +251,8 @@ public class WriterOBJ {
 	                geoms.add(foo);
 //	          	   }
             }
-           public void visit(SceneGraphComponent c) {
+           @Override
+		public void visit(SceneGraphComponent c) {
            	if (!c.isVisible())
            		return;
            	thePath.push(c);
@@ -258,7 +261,8 @@ public class WriterOBJ {
               //c.setName(c.getName() + "_flat");
                thePath.pop();
            }
-           public void visit(Sphere s)	{
+           @Override
+		public void visit(Sphere s)	{
            	    LoggingSystem.getLogger(GeometryUtility.class).log(Level.WARNING, "Can't flatten a sphere yet");
            }
        };

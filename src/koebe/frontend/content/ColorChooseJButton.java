@@ -73,6 +73,7 @@ public class ColorChooseJButton extends JButton implements ActionListener{
 	}
 	
 
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(color);
@@ -93,6 +94,7 @@ public class ColorChooseJButton extends JButton implements ActionListener{
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter(){
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent e) {
 				System.exit(0);
 			};

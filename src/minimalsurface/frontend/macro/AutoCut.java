@@ -1,5 +1,7 @@
 package minimalsurface.frontend.macro;
 
+import halfedge.HalfEdgeDataStructure;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +9,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
-import halfedge.HalfEdgeDataStructure;
 import minimalsurface.util.MinimalSurfaceUtility;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
@@ -20,10 +21,12 @@ public class AutoCut extends MacroAction {
 	private OptionPanel
 		optionPanel = null;
 	
+	@Override
 	public String getName() {
 		return "Auto Cut Singularities";
 	}
 
+	@Override
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> 
 		process(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
 		if (cutToBorderOnly)

@@ -25,7 +25,8 @@ extends Node<V, E, F> {
         private static final long
             serialVersionUID = 1L;
         
-        protected Vertex.Generic getThis() {
+        @Override
+		protected Vertex.Generic getThis() {
             return this;
         }
         

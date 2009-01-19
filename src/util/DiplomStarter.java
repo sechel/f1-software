@@ -22,15 +22,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-import alexandrov.frontend.AlexandrovsPolyhedron;
-
-import minimalsurface.frontend.MinimalSurfaces;
-
 import koebe.frontend.KoebesPolyhedron;
-
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+import minimalsurface.frontend.MinimalSurfaces;
+import alexandrov.frontend.AlexandrovsPolyhedron;
+import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 
 public class DiplomStarter extends JFrame implements ActionListener{
 
@@ -66,7 +64,7 @@ public class DiplomStarter extends JFrame implements ActionListener{
 		c.gridwidth = REMAINDER;
 		
 		add(titleLabel, c);
-		add(new JSeparator(JSeparator.HORIZONTAL), c);
+		add(new JSeparator(SwingConstants.HORIZONTAL), c);
 		add(viewPDFButton, c);
 		add(startKoebeButton, c);
 		add(startMinimalButton, c);
@@ -99,6 +97,7 @@ public class DiplomStarter extends JFrame implements ActionListener{
 	
 	private static void viewPDF(){
 		new Thread("Acroread Starter Thread"){
+			@Override
 			public void run() {
 				try {
 					File tmp = File.createTempFile("DiplomaThesis", ".pdf");
@@ -134,10 +133,10 @@ public class DiplomStarter extends JFrame implements ActionListener{
 	
 	static{
 		try {
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
+			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+			SyntheticaLookAndFeel.setWindowsDecorated(false);
+			SyntheticaLookAndFeel.setExtendedFileChooserEnabled(true);
+			SyntheticaLookAndFeel.setUseSystemFileIcons(true);
 			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
 		} catch (Exception e) {}
 	}

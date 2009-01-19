@@ -34,10 +34,12 @@ public class ExtensionFileFilter extends FileFilter {
 	}
 
 
+	@Override
 	public boolean accept(File f) {
 		return f.getName().toLowerCase().endsWith(ext) || f.isDirectory();
 	}
 
+	@Override
 	public String getDescription() {
 		return descr + " *." + ext;
 	}

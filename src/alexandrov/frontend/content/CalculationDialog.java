@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class CalculationDialog extends JDialog implements ActionListener {
@@ -72,6 +73,7 @@ public class CalculationDialog extends JDialog implements ActionListener {
 	}
 
 	private class FieldFocusListener extends FocusAdapter{
+		@Override
 		public void focusLost(FocusEvent e) {
 			verifyError();
 		}
@@ -119,7 +121,7 @@ public class CalculationDialog extends JDialog implements ActionListener {
 		
 		c.gridwidth = REMAINDER;
 		c.fill = HORIZONTAL;
-		errorField.setHorizontalAlignment(JTextField.RIGHT);
+		errorField.setHorizontalAlignment(SwingConstants.RIGHT);
 		errorField.addFocusListener(new FieldFocusListener());
 		add(errorField, c);
 		

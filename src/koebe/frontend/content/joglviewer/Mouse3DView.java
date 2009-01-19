@@ -54,6 +54,7 @@ public abstract class Mouse3DView extends JPanel implements GLEventListener, Run
 		glCanvas.addGLEventListener(this);
 		glCanvas.addMouseMotionListener(this);
 		glCanvas.addMouseListener(new MouseAdapter(){
+			@Override
 			public void mousePressed(MouseEvent e) {
 				last_drag_x = e.getX();
 				last_drag_y = e.getY();
@@ -89,6 +90,7 @@ public abstract class Mouse3DView extends JPanel implements GLEventListener, Run
 	}
 
 	
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		synchronized (this){

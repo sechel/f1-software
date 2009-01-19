@@ -34,6 +34,7 @@ extends Node<V, E, F> {
 		private static final long 
 			serialVersionUID = 1L;
 
+		@Override
 		protected Edge.Generic getThis() {
 			return this;
 		}

@@ -42,6 +42,7 @@ public class CPEdge extends Edge<CPVertex, CPEdge, CPFace> implements HasTheta, 
 			oppositeEdge.theta = theta;
 	}
 	
+	@Override
 	public String toString() {
 		return super.toString();
 	}

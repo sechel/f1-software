@@ -59,7 +59,7 @@ import alexandrov.frontend.tool.deform.WankelDeformTool;
 import alexandrov.graph.CPMEdge;
 import alexandrov.graph.CPMFace;
 import alexandrov.graph.CPMVertex;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.jreality.backends.label.LabelUtility;
 import de.jreality.ui.viewerapp.SunflowMenu;
 import de.jreality.util.LoggingSystem;
@@ -295,10 +295,10 @@ public class AlexandrovsPolyhedron extends JFrame implements StatusChangedListen
 //			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
+			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+			SyntheticaLookAndFeel.setWindowsDecorated(false);
+			SyntheticaLookAndFeel.setExtendedFileChooserEnabled(true);
+			SyntheticaLookAndFeel.setUseSystemFileIcons(true);
 			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
 			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
 		} catch (Exception e) {}

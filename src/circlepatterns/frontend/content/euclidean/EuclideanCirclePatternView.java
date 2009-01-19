@@ -76,6 +76,7 @@ public class EuclideanCirclePatternView extends JPanel{
 	}
 	
 	
+	@Override
 	public void paint(Graphics gNorm) {
 		Dimension dim = getSize();
 		Graphics2D g = (Graphics2D)gNorm;
@@ -177,6 +178,7 @@ public class EuclideanCirclePatternView extends JPanel{
 		private boolean
 			antialiasingState = antialiasing;
 		
+		@Override
 		public void mouseDragged(MouseEvent e) {
 			center = new Point(center.x + lastMouseDrag.x - e.getX(), center.y + lastMouseDrag.y - e.getY());
 			lastMouseDrag = e.getPoint();
@@ -184,15 +186,18 @@ public class EuclideanCirclePatternView extends JPanel{
 		}
 
 
+		@Override
 		public void mouseMoved(MouseEvent e) {}
 
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 			antialiasingState = antialiasing;
 			antialiasing = false;
 			lastMouseDrag = e.getPoint();	
 		}
 		
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			antialiasing = antialiasingState;
 			update();

@@ -49,7 +49,8 @@ public class ShrinkPanelContainer extends JScrollPane implements MouseMotionList
 	}
 	
 	
-    public Component add(Component arg0) {
+    @Override
+	public Component add(Component arg0) {
         if (arg0 instanceof ShrinkPanel){
             addShrinkPanel((ShrinkPanel) arg0);
             return arg0;
@@ -90,6 +91,7 @@ public class ShrinkPanelContainer extends JScrollPane implements MouseMotionList
 	    content.remove(panel);
 	}
 
+	@Override
 	public void removeAll(){
 	    content.removeAll();
 	}
@@ -132,7 +134,8 @@ public class ShrinkPanelContainer extends JScrollPane implements MouseMotionList
 
 
 
-    public int getWidth() {
+    @Override
+	public int getWidth() {
         return width;
     }
 

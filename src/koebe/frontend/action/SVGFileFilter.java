@@ -11,10 +11,12 @@ import javax.swing.filechooser.FileFilter;
  */
 public class SVGFileFilter extends FileFilter {
 
+	@Override
 	public boolean accept(File f) {
 		return f.getName().toLowerCase().endsWith(".svg") || f.isDirectory();
 	}
 
+	@Override
 	public String getDescription() {
 		return "SVG File *.svg";
 	}

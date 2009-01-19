@@ -32,6 +32,7 @@ public class CPMEdge extends Edge<CPMVertex, CPMEdge, CPMFace> implements HasAng
 	private boolean
 		isHidden = false;
 	
+	@Override
 	protected CPMEdge getThis() {
 		return this;
 	}
@@ -44,6 +45,7 @@ public class CPMEdge extends Edge<CPMVertex, CPMEdge, CPMFace> implements HasAng
 		this.length = length;
 	}
 	
+	@Override
 	public String toString() {
 		return super.toString() + " length = " + length + "S: " + getStartVertex() + " T: " + getTargetVertex(); 
 	}

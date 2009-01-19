@@ -42,7 +42,6 @@ import halfedge.decorations.HasXYZW;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
@@ -213,7 +212,7 @@ public class MinimalSurfacePanel extends JPanel{
 		
 		c.fill = GridBagConstraints.BOTH;
 		c.weighty = 1;
-		add((Component) viewerApp.getContent(), c);
+		add(viewerApp.getContent(), c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weighty = 0;
@@ -917,6 +916,7 @@ public class MinimalSurfacePanel extends JPanel{
 			if (oldType != CircleType.EqualRadiusRing) 
 				break;
 			activeDisksRoot.childrenWriteAccept(new SceneGraphVisitor() {
+				@Override
 				public void visit(SceneGraphComponent c) {
 					if (c.getName().equals("Circle Transform")) {
 						SceneGraphComponent circle = c.getChildComponent(0);
@@ -948,6 +948,7 @@ public class MinimalSurfacePanel extends JPanel{
 			S = MatrixBuilder.euclidean();
 			S.assignTo(diskThicknessTransform);
 			activeDisksRoot.childrenWriteAccept(new SceneGraphVisitor() {
+				@Override
 				public void visit(SceneGraphComponent c) {
 					if (c.getName().equals("Circle Transform")) {
 						Transformation T = c.getTransformation();

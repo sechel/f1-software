@@ -55,6 +55,7 @@ public class MainController extends
 	}
 	
 	
+	@Override
 	public void setEditedGraph(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> editedGraph) {
 		super.setEditedGraph(editedGraph);
 		setEditorMode(EditorMode.GraphEditMode);

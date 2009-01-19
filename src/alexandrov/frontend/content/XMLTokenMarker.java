@@ -26,7 +26,8 @@ public class XMLTokenMarker extends TokenMarker {
    public XMLTokenMarker() {
    }
    
-   public byte markTokensImpl(byte token, Segment line, int lineIndex) {
+   @Override
+public byte markTokensImpl(byte token, Segment line, int lineIndex) {
       char[] array = line.array;
       int offset = line.offset;
       int lastOffset = offset;

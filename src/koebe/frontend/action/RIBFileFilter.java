@@ -13,10 +13,12 @@ import javax.swing.filechooser.FileFilter;
  */
 public class RIBFileFilter extends FileFilter {
 
+	@Override
 	public boolean accept(File f) {
 		return f.getName().toLowerCase().endsWith(".rib") || f.isDirectory();
 	}
 
+	@Override
 	public String getDescription() {
 		return "Renderman File *.rib";
 	}

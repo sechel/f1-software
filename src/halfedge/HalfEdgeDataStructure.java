@@ -396,6 +396,7 @@ public class HalfEdgeDataStructure
 		};
 	}
 	
+	@Override
 	public String toString() {
 		StringBuffer result = new StringBuffer();
 		result.append("HEGraph --------\n");

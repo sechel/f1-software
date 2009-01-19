@@ -5,6 +5,7 @@ import halfedge.frontend.action.ExtensionFileFilter;
 import image.ImageHook;
 
 import java.awt.BorderLayout;
+import java.awt.Frame;
 import java.io.File;
 
 import javax.swing.Action;
@@ -31,7 +32,7 @@ import circlepatterns.frontend.content.spherical.SphericalComputationShrinker;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.varylab.feedback.swing.FeedbackAction;
 
 
@@ -136,8 +137,8 @@ public class CPTestSuite extends JFrame {
 //			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
 //			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+			SyntheticaLookAndFeel.setWindowsDecorated(false);
 			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
 		} catch (Exception e) {}
 	}
@@ -146,7 +147,7 @@ public class CPTestSuite extends JFrame {
 	public static void main(String[] args) {
 		mainApp = new CPTestSuite();
 		mainApp.setVisible(true);
-		mainApp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		mainApp.setExtendedState(Frame.MAXIMIZED_BOTH);
 		mainApp.addWindowListener(new MainWindowClosing());
 		setStatus("Welcome");
 	}

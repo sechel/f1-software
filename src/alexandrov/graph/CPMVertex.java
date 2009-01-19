@@ -72,6 +72,7 @@ public class CPMVertex extends Vertex<CPMVertex, CPMEdge, CPMFace> implements Ha
 		this.radius = radius;
 	}
 
+	@Override
 	public String toString() {
 		return super.toString() + " radius = " + radius;
 	}

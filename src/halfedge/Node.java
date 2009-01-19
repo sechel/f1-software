@@ -45,6 +45,7 @@ implements Serializable, Cloneable{
 		this.index = index;
 	}
 
+	@Override
 	public String toString() {
 		return getClass().getSimpleName() + (halfEdgeDataStructure == null ? " (removed)" : " " + index);
 	}

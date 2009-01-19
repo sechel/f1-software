@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class WankelDeformOptions extends JDialog implements ActionListener {
@@ -63,6 +64,7 @@ public class WankelDeformOptions extends JDialog implements ActionListener {
 	}
 
 	private class FieldFocusListener extends FocusAdapter{
+		@Override
 		public void focusLost(FocusEvent e) {
 			verifyError();
 		}
@@ -110,7 +112,7 @@ public class WankelDeformOptions extends JDialog implements ActionListener {
 		
 		c.gridwidth = REMAINDER;
 		c.fill = HORIZONTAL;
-		scaleField.setHorizontalAlignment(JTextField.RIGHT);
+		scaleField.setHorizontalAlignment(SwingConstants.RIGHT);
 		scaleField.addFocusListener(new FieldFocusListener());
 		add(scaleField, c);
 		

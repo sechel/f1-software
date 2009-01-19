@@ -37,6 +37,7 @@ public class RemoveTool extends AbstractTool implements GeometryTool {
 		this.panel = panel;
 	}
 	
+	@Override
 	public void activate(ToolContext tc) {
 		if (tc.getCurrentPick() == null){
 			tc.reject();
@@ -54,6 +55,7 @@ public class RemoveTool extends AbstractTool implements GeometryTool {
 	}
 
 	
+	@Override
 	public void perform(ToolContext tc) {
 		System.out.println("RemoveCircleTool.perform()");
 	}

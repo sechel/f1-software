@@ -22,7 +22,7 @@ import math.util.VecmathTools;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
-import de.jreality.geometry.GeometryUtility;
+import de.jreality.geometry.IndexedFaceSetUtility;
 import de.jreality.math.Rn;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.data.DoubleArrayArray;
@@ -101,7 +101,7 @@ public class DualizeTool implements GraphTool<CPVertex, CPEdge, CPFace> {
 		
 		ifs.setVertexCountAndAttributes(COORDINATES, new DoubleArrayArray.Array(newVertices));
 		ifs.setFaceCountAndAttributes(INDICES, new IntArrayArray.Array(newFaces));
-		GeometryUtility.calculateAndSetFaceNormals(ifs);
+		IndexedFaceSetUtility.calculateAndSetFaceNormals(ifs);
 		jRViewer.setPolyhedron(ifs);
 		return true;
 	}

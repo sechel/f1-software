@@ -40,6 +40,7 @@ public class RemoveEarTool extends AbstractTool implements GeometryTool {
 		this.view = view;
 	}
 	
+	@Override
 	public void activate(ToolContext tc) {
 		if (tc.getCurrentPick() == null){
 			tc.reject();
@@ -80,6 +81,7 @@ public class RemoveEarTool extends AbstractTool implements GeometryTool {
 	}
 	
 	
+	@Override
 	public void perform(ToolContext tc) {
 	}
 

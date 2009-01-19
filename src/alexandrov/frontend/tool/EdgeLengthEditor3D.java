@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -73,6 +74,7 @@ public class EdgeLengthEditor3D extends ShrinkPanel implements ChangeListener, A
 
 	
 	private class FieldFocusListener extends FocusAdapter{
+		@Override
 		public void focusLost(FocusEvent e) {
 			verifyError();
 		}
@@ -107,7 +109,7 @@ public class EdgeLengthEditor3D extends ShrinkPanel implements ChangeListener, A
 		paramPanel.setLayout(new GridLayout(1, 4, 3, 3));
 		paramPanel.add(new JLabel("Error"));
 		paramPanel.add(errorField);
-		errorField.setHorizontalAlignment(JTextField.RIGHT);
+		errorField.setHorizontalAlignment(SwingConstants.RIGHT);
 		errorField.addFocusListener(new FieldFocusListener());
 		paramPanel.add(new JLabel("Max Iterations"));
 		paramPanel.add(maxIterSpinner);

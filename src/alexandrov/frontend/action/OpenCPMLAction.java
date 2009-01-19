@@ -40,6 +40,7 @@ public class OpenCPMLAction extends OpenGraph<CPMVertex, CPMEdge, CPMFace> {
 	}
 
 	
+	@Override
 	public void openFile(File file) {
 		if (file.getName().endsWith(".cpml")){
 			try {

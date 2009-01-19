@@ -35,6 +35,7 @@ public class EdgePickTool extends AbstractTool {
 		addCurrentSlot(InputSlot.getDevice("PointerTransformation"), "changed edge lengths");
 	}
 	
+	@Override
 	public void activate(ToolContext tc) {
 		if (edgeIDMap == null)
 			return;
@@ -50,6 +51,7 @@ public class EdgePickTool extends AbstractTool {
 		}
 	}
 
+	@Override
 	public void perform(ToolContext tc) {
 		DoubleArray pointerMatrix = tc.getTransformationMatrix(InputSlot.getDevice("PointerTransformation"));
 		if (editedEdge != null){
@@ -60,6 +62,7 @@ public class EdgePickTool extends AbstractTool {
 		}
 	}
 
+	@Override
 	public void deactivate(ToolContext tc) {
 		editedEdge = null;
 	}

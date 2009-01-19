@@ -1,7 +1,5 @@
 package circlepatterns.graph;
 
-import java.util.List;
-
 import halfedge.Face;
 import halfedge.decorations.HasCapitalPhi;
 import halfedge.decorations.HasGradientValue;
@@ -10,6 +8,8 @@ import halfedge.decorations.HasRadius;
 import halfedge.decorations.HasRho;
 import halfedge.decorations.HasXY;
 import halfedge.decorations.HasXYZW;
+
+import java.util.List;
 
 import javax.vecmath.Point2d;
 import javax.vecmath.Point4d;
@@ -74,6 +74,7 @@ public class CPFace extends Face<CPVertex, CPEdge, CPFace> implements HasGradien
 	}
 	
 	
+	@Override
 	public String toString() {
 		return super.toString();// + ": rho=" + rho;
 	}

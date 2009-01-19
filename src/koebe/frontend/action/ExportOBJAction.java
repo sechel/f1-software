@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import koebe.frontend.content.jrealityviewer.KoebePolyhedronView;
-
 import de.jreality.writer.WriterOBJ;
 
 

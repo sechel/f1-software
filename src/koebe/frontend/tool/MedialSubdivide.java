@@ -32,6 +32,7 @@ public class MedialSubdivide extends GenerateMedialGraph  {
 	protected Icon 
 		icon = new ImageIcon(ImageHook.getImage("medialsubdivide.png"));
 
+	@Override
 	public Boolean initTool() {
 		super.initTool();
 		DBGTracer.setActive(true);
@@ -53,25 +54,30 @@ public class MedialSubdivide extends GenerateMedialGraph  {
 		return false;
 	}
 	
+	@Override
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		return false;
 	}	
 	
 		
+	@Override
 	public void paint(GraphGraphics g) {
 
 	}
 	
 	
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 	
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}
 	
 	
+	@Override
 	public String getShortDescription() {
 		return "Create Medial Graph";
 	}

@@ -4,6 +4,7 @@ import halfedge.HalfEdgeUtility;
 import image.ImageHook;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
@@ -82,7 +83,7 @@ public class ComputeSphericalCirclePattern extends AbstractAction {
 	public ComputeSphericalCirclePattern() {
 		putValue(Action.NAME, "Compute Circle Pattern");
 		putValue(Action.SMALL_ICON, new ImageIcon(ImageHook.getImage("process.gif")));
-		putValue(Action.MNEMONIC_KEY, KeyEvent.SHIFT_DOWN_MASK | KeyEvent.VK_C);
+		putValue(Action.MNEMONIC_KEY, InputEvent.SHIFT_DOWN_MASK | KeyEvent.VK_C);
 	}
 	
 	

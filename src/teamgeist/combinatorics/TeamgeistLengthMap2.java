@@ -51,6 +51,7 @@ public class TeamgeistLengthMap2 implements EdgeLengthMap{
 			return value;
 		}
 		
+		@Override
 		public String toString() {
 			return value.toString();
 		}

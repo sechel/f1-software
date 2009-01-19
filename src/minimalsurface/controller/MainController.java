@@ -16,6 +16,7 @@ public class MainController extends halfedge.frontend.controller.MainController<
 		graphEditor = null;
 
 
+	@Override
 	public void fireGraphChanged() {
 		super.fireGraphChanged();
 	}

@@ -25,7 +25,6 @@ import halfedge.HalfEdgeDataStructure;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -196,7 +195,7 @@ public class AlexandrovPolytopView extends JPanel{
 		
 		c.fill = GridBagConstraints.BOTH;
 		c.weighty = 1;
-		add((Component) viewerApp.getContent(), c);
+		add(viewerApp.getContent(), c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weighty = 0;
@@ -379,6 +378,7 @@ public class AlexandrovPolytopView extends JPanel{
 	}
 	
 	
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		if (updateActiveGeometry){

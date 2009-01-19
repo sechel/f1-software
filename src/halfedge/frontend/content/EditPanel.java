@@ -84,6 +84,7 @@ public class EditPanel
 	
 	
 	
+	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		graphics.g = g2d;

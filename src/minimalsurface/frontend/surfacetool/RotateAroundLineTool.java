@@ -49,6 +49,7 @@ public class RotateAroundLineTool extends AbstractTool implements GeometryTool{
 		this.view = view;
 	}
 	
+	@Override
 	public void activate(ToolContext tc) {
 		if (tc.getCurrentPick() == null || tc.getCurrentPick().getPickType() != PICK_TYPE_POINT){
 			tc.reject();
@@ -101,7 +102,7 @@ public class RotateAroundLineTool extends AbstractTool implements GeometryTool{
 
 
 	private SceneGraphComponent copy(SceneGraphComponent c){
-		SceneGraphComponent copy = (SceneGraphComponent)SceneGraphUtility.copy(c);
+		SceneGraphComponent copy = SceneGraphUtility.copy(c);
 		copy.setGeometry(c.getGeometry());
 		copy.setTransformation(c.getTransformation());
 		copy.setAppearance(c.getAppearance());
@@ -112,6 +113,7 @@ public class RotateAroundLineTool extends AbstractTool implements GeometryTool{
 	
 	
 	
+	@Override
 	public void perform(ToolContext tc) {
 		System.out.println("DomainMirrorTool.perform()");
 	}
