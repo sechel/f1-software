@@ -17,7 +17,6 @@
 		<j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+" java-vm-args="-XX:ThreadStackSize=8192 -XX:+AggressiveHeap"/>
 		<jar href="matheonF1webstart.jar"/>
 		<extension name="jReality" href="http://www3.math.tu-berlin.de/jreality/ws/jReality.jnlp" />
-		<extension name="jogl" href="http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jnlp" />
 	</resources>
   	<application-desc main-class="minimalsurface.frontend.MinimalSurfaces"/>
 </jnlp>
