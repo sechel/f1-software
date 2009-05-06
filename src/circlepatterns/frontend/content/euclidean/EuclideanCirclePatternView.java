@@ -178,7 +178,6 @@ public class EuclideanCirclePatternView extends JPanel{
 		private boolean
 			antialiasingState = antialiasing;
 		
-		@Override
 		public void mouseDragged(MouseEvent e) {
 			center = new Point(center.x + lastMouseDrag.x - e.getX(), center.y + lastMouseDrag.y - e.getY());
 			lastMouseDrag = e.getPoint();
@@ -186,7 +185,6 @@ public class EuclideanCirclePatternView extends JPanel{
 		}
 
 
-		@Override
 		public void mouseMoved(MouseEvent e) {}
 
 
