@@ -158,7 +158,7 @@ public class Converter {
 	
 	
 	
-	private static class DualHashMap<K1, K2, V> implements Cloneable{
+	public static class DualHashMap<K1, K2, V> implements Cloneable{
 
 		private HashMap<K1, HashMap<K2, V>>
 			map = new HashMap<K1, HashMap<K2,V>>();
