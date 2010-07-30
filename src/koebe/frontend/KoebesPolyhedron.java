@@ -29,6 +29,7 @@ import koebe.frontend.action.ExportPSAction;
 import koebe.frontend.action.ExportRIBAction;
 import koebe.frontend.action.ExportSVGAction;
 import koebe.frontend.action.ExportU3DAction;
+import koebe.frontend.action.ExportVRMLAction;
 import koebe.frontend.action.ResetAction;
 import koebe.frontend.action.ShowAboutAction;
 import koebe.frontend.content.Viewer;
@@ -91,6 +92,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		feedbackAction = null,
 		openFile = null,
 		saveFile = null,
+		exportVRML = null,
 		exportU3D = null,
 		exportRIB = null,
 		exportPS = null,
@@ -139,11 +141,13 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		
 		if (koebesPolyederView instanceof koebe.frontend.content.jrealityviewer.KoebePolyhedronView) {
 			koebe.frontend.content.jrealityviewer.KoebePolyhedronView jRViewer = (koebe.frontend.content.jrealityviewer.KoebePolyhedronView) koebesPolyederView;
+			exportVRML = new ExportVRMLAction(this, jRViewer);
 			exportU3D = new ExportU3DAction(this, jRViewer);
 			exportRIB = new ExportRIBAction(this, jRViewer.getViewer());
 			exportPS = new ExportPSAction(this, jRViewer.getViewer());
 			exportSVG = new ExportSVGAction(this, jRViewer.getViewer());
 			exportOBJ = new ExportOBJAction(this, jRViewer);
+			exportMenu.add(exportVRML);
 			exportMenu.add(exportU3D);
 			exportMenu.add(exportRIB);
 			exportMenu.add(exportOBJ);
