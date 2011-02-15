@@ -1,22 +1,20 @@
 package discreteRiemann;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import de.jtem.blas.IntegerMatrix;
-import discreteRiemann.DiscreteConformalStructure.ConfEdge;
-import discreteRiemann.DiscreteConformalStructure.ConfFace;
-import discreteRiemann.DiscreteConformalStructure.ConfVertex;
-
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
 import halfedge.Vertex.Generic;
-import junit.framework.Assert;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import junit.framework.TestCase;
+import discreteRiemann.DiscreteConformalStructure.ConfEdge;
+import discreteRiemann.DiscreteConformalStructure.ConfFace;
+import discreteRiemann.DiscreteConformalStructure.ConfVertex;
 
 public class HomotopyUtilityTest extends TestCase {
 

@@ -1,9 +1,6 @@
 package discreteRiemann;
 
-import halfedge.frontend.StandardEditor;
-
 import java.util.List;
-
 
 import junit.framework.TestCase;
 import de.jtem.mfc.field.Complex;

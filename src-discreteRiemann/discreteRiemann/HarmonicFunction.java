@@ -1,12 +1,11 @@
 package discreteRiemann;
 
-import java.util.Arrays;
-import java.util.List;
-
 import halfedge.Edge;
 import halfedge.Face;
-import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class HarmonicFunction 
 <

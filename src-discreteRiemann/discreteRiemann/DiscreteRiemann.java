@@ -7,7 +7,6 @@ import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import de.jtem.blas.ComplexMatrix;
@@ -18,8 +17,6 @@ import de.jtem.riemann.theta.SiegelReduction;
 import discreteRiemann.DiscreteConformalStructure.ConfEdge;
 import discreteRiemann.DiscreteConformalStructure.ConfFace;
 import discreteRiemann.DiscreteConformalStructure.ConfVertex;
-import discreteRiemann.HarmonicFunction.OnDual;
-import discreteRiemann.HarmonicFunction.OnGraph;
 
 public class DiscreteRiemann 
 <

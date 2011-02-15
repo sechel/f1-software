@@ -1,17 +1,17 @@
 package discreteRiemann;
 
-import java.awt.Color;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.List;
-
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
 import halfedge.generator.FaceByFaceGenerator;
+
+import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.List;
+
 import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.ui.viewerapp.ViewerApp;
@@ -19,8 +19,6 @@ import de.jreality.writer.WriterOBJ;
 import de.jtem.mfc.field.Complex;
 import de.jtem.mfc.vector.Real3;
 import discreteRiemann.DiscreteConformalStructure.ConfEdge;
-import discreteRiemann.DiscreteConformalStructure.ConfFace;
-import discreteRiemann.DiscreteConformalStructure.ConfVertex;
 
 public abstract class DiscreteImmersionR3 <
 V extends Vertex<V, E, F>,

@@ -1,8 +1,8 @@
 package discreteRiemann;
 
+import junit.framework.TestCase;
 import de.jtem.mfc.field.Complex;
 import de.jtem.mfc.vector.Real3;
-import junit.framework.TestCase;
 
 public class DiscreteSchottkyTest extends TestCase {
 

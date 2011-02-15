@@ -9,17 +9,10 @@ import halfedge.generator.FaceByFaceGenerator;
 import java.io.File;
 import java.io.IOException;
 
-import de.jreality.geometry.GeometryUtility;
-import de.jreality.geometry.IndexedFaceSetFactory;
-import de.jreality.geometry.IndexedFaceSetUtility;
 import de.jreality.reader.ReaderJVX;
-import de.jreality.reader.ReaderOBJ;
-import de.jreality.reader.ReaderVRML;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.SceneGraphComponent;
-import de.jreality.scene.SceneGraphNode;
 import de.jreality.scene.data.Attribute;
-import de.jreality.ui.viewerapp.ViewerApp;
 import de.jtem.blas.ComplexMatrix;
 import de.jtem.blas.IntegerMatrix;
 import de.jtem.mfc.field.Complex;

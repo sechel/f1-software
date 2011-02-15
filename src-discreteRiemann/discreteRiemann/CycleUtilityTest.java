@@ -8,12 +8,10 @@ import halfedge.Vertex;
 import java.util.Arrays;
 import java.util.List;
 
-
+import junit.framework.TestCase;
 import discreteRiemann.DiscreteConformalStructure.ConfEdge;
 import discreteRiemann.DiscreteConformalStructure.ConfFace;
 import discreteRiemann.DiscreteConformalStructure.ConfVertex;
-
-import junit.framework.TestCase;
 
 public class CycleUtilityTest extends TestCase {
 
@@ -109,7 +107,7 @@ public class CycleUtilityTest extends TestCase {
 	
 		factory.setRho(1);
 		
-		Edge e = dcs.getEdge(0);
+		ConfEdge e = dcs.getEdge(0);
 		
 		double[] alpha = new double[dcs.getNumEdges()];
 		Arrays.fill(alpha, 1.);
@@ -152,10 +150,10 @@ public class CycleUtilityTest extends TestCase {
 	
 		factory.setRho(1);
 		
-		Edge e = dcs.getEdge(0);
+		ConfEdge e = dcs.getEdge(0);
 		
-		List<Edge> a = TorusUtility.getZicZacCycle(e);
-		List<Edge> b = TorusUtility.getZicZacCycle(e.getNextEdge());
+		List<ConfEdge> a = TorusUtility.getZicZacCycle(e);
+		List<ConfEdge> b = TorusUtility.getZicZacCycle(e.getNextEdge());
 		
 		
 		factory.setQuadCycle(a);

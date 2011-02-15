@@ -1,6 +1,6 @@
 package discreteRiemann;
 
-	import de.jtem.numericalMethods.calculus.function.*;
+	import de.jtem.numericalMethods.calculus.function.RealFunctionOfSeveralVariablesWithGradient;
 import de.jtem.numericalMethods.calculus.minimizing.BrentOnLine;
 import de.jtem.numericalMethods.calculus.minimizing.DBrentOnLine;
 import de.jtem.numericalMethods.calculus.minimizing.Info;

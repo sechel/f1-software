@@ -1,7 +1,5 @@
 package discreteRiemann;
 
-import java.lang.reflect.Array;
-
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -9,7 +7,9 @@ import halfedge.Vertex;
 import halfedge.decorations.HasLength;
 import halfedge.generator.FaceByFaceGenerator;
 import halfedge.surfaceutilities.ConsistencyCheck;
-import de.jreality.scene.data.Attribute;
+
+import java.lang.reflect.Array;
+
 import de.jtem.blas.ComplexMatrix;
 import de.jtem.mfc.field.Complex;
 import de.jtem.mfc.group.Moebius;

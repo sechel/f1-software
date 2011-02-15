@@ -9,10 +9,9 @@ import halfedge.Vertex;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.xerces.internal.parsers.IntegratedParserConfiguration;
-
-import de.jtem.numericalMethods.util.Arrays;
 import de.jtem.blas.RealMatrix;
+import de.jtem.numericalMethods.util.Arrays;
+import discreteRiemann.DiscreteConformalStructure.ConfEdge;
 
 public class CycleUtility {
 
@@ -80,8 +79,12 @@ public class CycleUtility {
 	}
 
 	/** @deprecated */
-	static int[][] computeEps( List<? extends Edge> quadCycle) {
-		HalfEdgeDataStructure heds = quadCycle.get(0).getHalfEdgeDataStructure();
+	static <
+		V extends Vertex<V, E, F>,
+		E extends Edge<V, E, F>,
+		F extends Face<V, E, F>
+	> int[][] computeEps( List<E> quadCycle) {
+		HalfEdgeDataStructure<V, E, F> heds = quadCycle.get(0).getHalfEdgeDataStructure();
 		
 		int [][] eps = new int[2][];
 		eps[0] = new int[heds.getNumEdges()];
@@ -91,14 +94,18 @@ public class CycleUtility {
 	}
 	
 	/** @deprecated */
-	static void computeEps( List<? extends Edge> quadCycle, int [][] eps ) {
+	static <
+		V extends Vertex<V, E, F>,
+		E extends Edge<V, E, F>,
+		F extends Face<V, E, F>
+	> void computeEps( List<E> quadCycle, int [][] eps ) {
 		
 		int [][] signs = computeSigns( quadCycle );
 		Arrays.fill(eps[0],0);
 		Arrays.fill(eps[1],0);
 		
 		for( int i=0; i<quadCycle.size(); i++ ) {
-			Edge e = quadCycle.get(i);
+			E e = quadCycle.get(i);
 			
 			eps[0][e.getIndex()] = signs[0][i];
 			eps[1][e.getIndex()] = signs[1][i];
@@ -121,11 +128,11 @@ public class CycleUtility {
 		}
 	}
 	
-	static void computeEpsOnGraph( List<? extends Edge> quadCycle, int [] eps ) {
+	static void computeEpsOnGraph( List<ConfEdge> quadCycle, int [] eps ) {
 		computeEps( quadCycle, eps, signsOnGraph( quadCycle ) );
 	}
 	
-	static void computeEpsOnDual( List<? extends Edge> quadCycle, int [] eps ) {
+	static void computeEpsOnDual( List<ConfEdge> quadCycle, int [] eps ) {
 		computeEps( quadCycle, eps, signsOnDual( quadCycle ) );
 	}
 	

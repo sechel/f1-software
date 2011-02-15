@@ -8,14 +8,13 @@ import halfedge.generator.FaceByFaceGenerator;
 import halfedge.surfaceutilities.ConsistencyCheck;
 
 import java.lang.reflect.Array;
+import java.util.List;
 
 import de.jtem.blas.IntegerMatrix;
 import de.jtem.blas.RealMatrix;
 import discreteRiemann.DiscreteConformalStructure.ConfEdge;
 import discreteRiemann.DiscreteConformalStructure.ConfFace;
 import discreteRiemann.DiscreteConformalStructure.ConfVertex;
-
-import java.util.List;
 
 public class SilholsGenusExamples {
 
@@ -340,7 +339,7 @@ public class SilholsGenusExamples {
 	}
 
 	public static void main(String[] args) {
-		HalfEdgeDataStructure ds = create2x4bQuadExample(ConfVertex.class, ConfEdge.class, ConfFace.class );
+		HalfEdgeDataStructure<ConfVertex, ConfEdge, ConfFace> ds = create2x4bQuadExample(ConfVertex.class, ConfEdge.class, ConfFace.class );
 		
 		System.out.println( ds.getNumEdges() );
 	
@@ -349,9 +348,9 @@ public class SilholsGenusExamples {
 
 		DirichletFunctional.Factory<ConfVertex, ConfEdge, ConfFace> factory = new DirichletFunctional.Factory(dr.dcs);
 		
-		List<List<Edge>> basisOnGraph = dr.basisOnGraph;
-		List<List<Edge>> quadBasis   = CycleUtility.cyclesToQuads(basisOnGraph);
-		List<List<Edge>> basisOnDual = CycleUtility.quadsToDualCycles(quadBasis);
+		List<List<ConfEdge>> basisOnGraph = dr.basisOnGraph;
+		List<List<ConfEdge>> quadBasis   = CycleUtility.cyclesToQuads(basisOnGraph);
+		List<List<ConfEdge>> basisOnDual = CycleUtility.quadsToDualCycles(quadBasis);
 
 		RealMatrix  wg = new RealMatrix( HarmonicUtility.cohomologyBasisOnGraph(quadBasis,factory) );
 	

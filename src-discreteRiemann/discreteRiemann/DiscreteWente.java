@@ -8,8 +8,6 @@ import halfedge.generator.FaceByFaceGenerator;
 
 import java.lang.reflect.Array;
 
-import oldCMC.CMCTorusImmersionR3;
-import oldCMC.WenteTorus;
 import de.jtem.blas.ComplexMatrix;
 import de.jtem.mfc.field.Complex;
 import de.jtem.mfc.vector.Real3;

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Matheon/native/win32"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="src-image"/>
 	<classpathentry kind="src" path="src-testing"/>
+	<classpathentry excluding="discreteRiemann/DiscreteWente.java|discreteRiemann/DiscreteWenteTest.java" kind="src" path="src-discreteRiemann"/>
 	<classpathentry kind="lib" path="lib/mtj.jar" sourcepath="lib/mtjsrc.zip">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/homes/combi/sechel/matheon/lib/mtjDoc.jar!/doc"/>
@@ -32,6 +37,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/jreality"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/feedback.jar"/>
-	<classpathentry kind="lib" path="/jreality/lib/jogl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

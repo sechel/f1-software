@@ -3,14 +3,12 @@ package discreteRiemann;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
-import halfedge.HalfEdgeUtility;
 import halfedge.Vertex;
 import halfedge.generator.FaceByFaceGenerator;
 import halfedge.surfaceutilities.ConsistencyCheck;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TorusUtility {
 

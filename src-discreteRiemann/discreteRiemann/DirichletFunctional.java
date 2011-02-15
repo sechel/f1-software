@@ -3,22 +3,12 @@ package discreteRiemann;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
-import halfedge.HalfEdgeUtility;
 import halfedge.Vertex;
-import halfedge.decorations.HasXY;
 
 import java.util.Arrays;
 import java.util.List;
 
-import de.jreality.scene.Cylinder;
-import de.jtem.function.real.RealFunction;
-import de.jtem.numericalMethods.algebra.linear.MatrixOperations;
-import de.jtem.numericalMethods.algebra.linear.VectorOperations;
 import de.jtem.numericalMethods.calculus.function.RealFunctionOfSeveralVariablesWithGradient;
-//import de.jtem.numericalMethods.calculus.minimizing.ConjugateGradient;
-import discreteRiemann.DiscreteConformalStructure.ConfEdge;
-import discreteRiemann.DiscreteConformalStructure.ConfFace;
-import discreteRiemann.DiscreteConformalStructure.ConfVertex;
 
 /**
  * @author mercat
@@ -243,7 +233,7 @@ F extends Face<V, E, F>
 			}
 		}
 		
-		public void setQuadCycle( List<? extends Edge> quadCycle ) {
+		public void setQuadCycle( List<E> quadCycle ) {
 			CycleUtility.computeEps( quadCycle, new int[][] { f.eps, fs.eps } );
 		}
 		

@@ -2,11 +2,8 @@ package discreteRiemann;
 
 import java.util.HashMap;
 
-
-
 import de.jtem.blas.ComplexMatrix;
 import de.jtem.mfc.field.Complex;
-import de.jtem.numericalMethods.util.ArrayUtilities;
 import de.jtem.riemann.theta.SiegelReduction;
 
 	

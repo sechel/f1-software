@@ -4,15 +4,14 @@ import halfedge.HalfEdgeDataStructure;
 
 import java.util.List;
 
+import junit.framework.TestCase;
 import de.jtem.blas.ComplexMatrix;
 import de.jtem.blas.IntegerMatrix;
 import de.jtem.blas.RealMatrix;
 import de.jtem.mfc.field.Complex;
-import de.jtem.riemann.theta.SiegelReduction;
 import discreteRiemann.DiscreteConformalStructure.ConfEdge;
 import discreteRiemann.DiscreteConformalStructure.ConfFace;
 import discreteRiemann.DiscreteConformalStructure.ConfVertex;
-import junit.framework.TestCase;
 
 public class DiscreteRiemannUtilityTest extends TestCase {
 

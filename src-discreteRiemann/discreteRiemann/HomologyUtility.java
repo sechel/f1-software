@@ -1,6 +1,6 @@
 package discreteRiemann;
 
-import de.jtem.blas.*;
+import de.jtem.blas.IntegerMatrix;
 
 public class HomologyUtility {
 

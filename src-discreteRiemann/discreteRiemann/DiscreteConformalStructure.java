@@ -1,16 +1,16 @@
 package discreteRiemann;
 
-import java.util.List;
-
-import javax.vecmath.Point2d;
-
-import de.jtem.mfc.field.Complex;
-
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
 import halfedge.decorations.HasXY;
+
+import java.util.List;
+
+import javax.vecmath.Point2d;
+
+import de.jtem.mfc.field.Complex;
 
 /**
  * A special HalfEdgeDataStructure such that its edges carry

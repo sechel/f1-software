@@ -9,11 +9,8 @@ import halfedge.generator.FaceByFaceGenerator;
 import halfedge.surfaceutilities.ConsistencyCheck;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import discreteRiemann.HarmonicFunction.OnGraph;
 
 public class SubdivisionUtility <
 V extends Vertex<V, E, F>,

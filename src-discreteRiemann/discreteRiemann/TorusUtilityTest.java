@@ -1,14 +1,14 @@
 package discreteRiemann;
 
-import java.util.ArrayList;
-
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
 import halfedge.surfaceutilities.ConsistencyCheck;
+
+import java.util.ArrayList;
+
 import junit.framework.TestCase;
-import discreteRiemann.TorusUtility;
 
 public class TorusUtilityTest extends TestCase {
 
@@ -27,7 +27,7 @@ public class TorusUtilityTest extends TestCase {
 		assertEquals(heds.getNumEdges(), 4*m*n);
 		assertEquals(heds.getNumFaces(), m*n);
 
-	Edge e, e0 = heds.getEdge(0); //  horizontal
+		Edge.Generic e, e0 = heds.getEdge(0); //  horizontal
 		e = e0;
 
 		
@@ -39,7 +39,7 @@ public class TorusUtilityTest extends TestCase {
 		
 		 assertEquals(i,n);		
 		 
-	final Edge e1 = e0.getNextEdge(); // vertical edge
+	final Edge.Generic e1 = e0.getNextEdge(); // vertical edge
 
 
 	
@@ -53,10 +53,10 @@ public class TorusUtilityTest extends TestCase {
 	
 	 assertEquals(i,m);	
 
-	 ArrayList zzV = TorusUtility.getZicZacCycle(e1);
+	 ArrayList<Edge.Generic> zzV = TorusUtility.getZicZacCycle(e1);
 	 assertEquals(zzV.size(),2*n);
 	 
-	 ArrayList zzH = TorusUtility.getZicZacCycle(e0);
+	 ArrayList<Edge.Generic> zzH = TorusUtility.getZicZacCycle(e0);
 	 assertEquals(zzH.size(),2*m);
 	
 	 
@@ -73,10 +73,10 @@ public class TorusUtilityTest extends TestCase {
 		assertEquals(heds.getNumEdges(), 4*m*n);
 		assertEquals(heds.getNumFaces(), m*n);
 
-	Edge e, e0 = heds.getEdge(2); //  horizontal
+		Edge.Generic e, e0 = heds.getEdge(2); //  horizontal
 		e = e0;
 
-		ArrayList<Edge> eH = new ArrayList<Edge>();
+		ArrayList<Edge.Generic> eH = new ArrayList<Edge.Generic>();
 		
 			int i=0;
 		 do { // horizontal cycle
@@ -87,12 +87,12 @@ public class TorusUtilityTest extends TestCase {
 		
 		 assertEquals(i,m);		
 		 
-	final Edge e1 = e0.getNextEdge(); // vertical edge
+	final Edge.Generic e1 = e0.getNextEdge(); // vertical edge
 
 
 	
 	e = e1; 
-	ArrayList<Edge> eV = new ArrayList<Edge>();
+	ArrayList<Edge.Generic> eV = new ArrayList<Edge.Generic>();
 	
 	i=0;
 	 do { // vertical cycle
@@ -103,7 +103,7 @@ public class TorusUtilityTest extends TestCase {
 	
 	 assertEquals(i,n*m); // lcf(n,m) in general, here gcd(n,m)=1, 	
 
-	 ArrayList zzH = TorusUtility.getZicZacCycle(e1.getOppositeEdge());
+	 ArrayList<Edge.Generic> zzH = TorusUtility.getZicZacCycle(e1.getOppositeEdge());
 	 assertEquals(zzH.size(),2*m);
 
 	 
