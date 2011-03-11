@@ -6,6 +6,7 @@ import javax.swing.UIManager;
 import minimalsurface.frontend.content.MainWindow;
 import util.debug.DBGTracer;
 import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
+import de.jreality.plugin.JRViewer;
 
 
 /**
@@ -48,6 +49,7 @@ public class MinimalSurfaces{
 	
 	public static void main(String[] args) {
 		DBGTracer.setActive(false);
+		JRViewer.getLastJRViewer();
 		mainWindow = new MainWindow();
 		if (isStandAlone)
 			mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
