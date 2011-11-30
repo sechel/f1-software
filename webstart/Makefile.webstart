@@ -1,6 +1,7 @@
 jar: dirs copy unzip clean pack sign access
 
 dirs:
+	chmod -R +rw /tmp/webstart
 	rm -rf /tmp/webstart
 	mkdir /tmp/webstart
 	
@@ -27,6 +28,7 @@ unzip:
 	for jar in /tmp/webstart/*.jar;do unzip -o $$jar -d /tmp/webstart; chmod -R +rwx /tmp/webstart/org; done
 	
 clean:
+	chmod -R +rw /tmp/webstart
 	rm -f /tmp/webstart/*.jar
 	rm -f /tmp/webstart/*.c	
 	rm -rf /tmp/webstart/META-INF
