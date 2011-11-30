@@ -186,22 +186,28 @@ public class Alexandrov {
 		// initial radii for a convex metric
 		Vector gamma = CPMCurvatureFunctional.getGamma(graph);
 		double initRadius = 1;
-		boolean isConvex = false;
+		boolean polytopeIsValid = false;
 		do {
 			initRadius *= 2;
 			for (V v : graph.getVertices())
 				v.setRadius(initRadius);
 			try {
-				isConvex = CPMCurvatureFunctional.isConvex(graph);
+				polytopeIsValid = CPMCurvatureFunctional.isConvex(graph);
 				Vector k = CPMCurvatureFunctional.getCurvature(graph);
-				for (int i = 0; i < k.size(); i++)
-					if (k.get(i) < (2*Math.PI - gamma.get(i)) / 2)
-						isConvex = false;
+				for (int i = 0; i < k.size(); i++) {
+					double delta = 2*Math.PI - gamma.get(i);
+					if (k.get(i) < -1E-3 || delta < k.get(i)) {
+						polytopeIsValid = false;
+					}
+				}
 				CPMCurvatureFunctional.getCurvatureDerivative(graph);
 			} catch (TriangulationException fnde){
-				isConvex = false;
+				polytopeIsValid = false;
 			}
-		} while (!isConvex);
+			if (Double.isInfinite(initRadius)) {
+				throw new TriangulationException("Could not find valid initial radii");
+			}
+		} while (!polytopeIsValid);
 		DBGTracer.msg("Setting initial radii to :" + initRadius);
 		
 		Matrix jacobi = CPMCurvatureFunctional.getCurvatureDerivative(graph);

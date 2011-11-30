@@ -35,6 +35,9 @@ import no.uib.cipr.matrix.Vector;
  */
 public class CPMCurvatureFunctional {
 
+	private static final double
+		eps = 1E-5;
+	
 	private static Double cot(Double phi){
 		return -tan(phi + PI/2);
 	}
@@ -47,7 +50,7 @@ public class CPMCurvatureFunctional {
 	> boolean isMetricConvex(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
 		for (V v : graph.getVertices()){
 			Double gamma = getGammaAt(v);
-			if (gamma >= 2*PI){
+			if (gamma >= 2*PI + eps){
 				return false;
 			}
 		}
@@ -92,7 +95,7 @@ public class CPMCurvatureFunctional {
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
 	> boolean isLocallyConvex(E edge) throws TriangulationException{
-		return getAlpha(edge) + getAlpha(edge.getOppositeEdge()) <= PI;
+		return getAlpha(edge) + getAlpha(edge.getOppositeEdge()) <= PI + eps;
 	}
 	
 	
