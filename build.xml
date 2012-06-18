@@ -56,6 +56,9 @@
     <javac srcdir="${src}" destdir="${build}" source="1.6">
       <classpath refid="build.classpath" />
     </javac>
+  	<copy todir="${build}">
+  		<fileset dir="${src-image}" includes="**"/>
+  	</copy>
   	<!--
     <javac srcdir="${src-unfold}" destdir="${build}" source="1.5">
       <classpath refid="build.classpath" />
