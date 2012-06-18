@@ -267,7 +267,7 @@ public class AlexandrovPolytopView extends JPanel{
         meshApp.setAttribute(POINT_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
         meshApp.setAttribute(POINT_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         meshRoot.setAppearance(meshApp);
-        meshRoot.setGeometry(meshGeometry);
+//        meshRoot.setGeometry(meshGeometry);
         meshRoot.setVisible(showMesh);
         meshRoot.setName("Mesh");
         geometryRoot.addChild(meshRoot);
