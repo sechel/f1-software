@@ -187,7 +187,7 @@ public class MinimalSurfacePanel extends JPanel{
 	private Geometry
 		sphereGeometry = new Sphere();
 
-	private HalfEdgeDataStructure<?, ?, ?>
+	private HalfEdgeDataStructure<CPVertex, CPEdge, CPFace>
 		activeSurface = null;
 	
 	
@@ -369,14 +369,9 @@ public class MinimalSurfacePanel extends JPanel{
 	
 	
 	
-	public 	
-	<
-		V extends Vertex<V, E, F> & HasXYZW & HasQuadGraphLabeling,
-		E extends Edge<V, E, F>,
-		F extends Face<V, E, F> & HasXYZW
-	> void addSurface(HalfEdgeDataStructure<V, E, F> surface){
+	public void addSurface(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> surface){
 		double[][] vertexData = new double[surface.getNumVertices()][];
-		for (V v : surface.getVertices()){
+		for (CPVertex v : surface.getVertices()){
 			VecmathTools.dehomogenize(v.getXYZW());
 			if (VecmathTools.isNAN(v.getXYZW())){
 				v.getXYZW().set(0, 0, 0, 1);
@@ -387,11 +382,11 @@ public class MinimalSurfacePanel extends JPanel{
 		}
 		int[][] faceData = new int[surface.getNumFaces()][];
 		double[][] faceVertexData = new double[surface.getNumFaces()][];
-		for (F f : surface.getFaces()){
-			List<E> b = f.getBoundary();
+		for (CPFace f : surface.getFaces()){
+			List<CPEdge> b = f.getBoundary();
 			faceData[f.getIndex()] = new int[b.size()];
 			int counter = 0;
-			for (E e : b){
+			for (CPEdge e : b){
 				faceData[f.getIndex()][counter] = e.getTargetVertex().getIndex();
 				counter++;
 			}
