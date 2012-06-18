@@ -44,6 +44,7 @@ public class CutAtEdge implements GraphTool<CPVertex, CPEdge, CPFace>  {
 
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
+		CPEdge edge = CPEdge.class.cast(operation.edge);
 		switch (operation){
 			case SELECT_VERTEX:
 				break;
@@ -51,7 +52,7 @@ public class CutAtEdge implements GraphTool<CPVertex, CPEdge, CPFace>  {
 				break;
 			case SELECT_EDGE:
 				try {
-					GraphUtility.cutAtEdge((CPEdge)operation.edge);
+					GraphUtility.cutAtEdge(edge);
 				} catch (IllegalArgumentException e){
 					DBGTracer.stackTrace(e);
 					controller.setStatus(e.getMessage());

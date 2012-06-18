@@ -54,14 +54,15 @@ public class EditEdgeLength implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 	}
 
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
+		CPMEdge e = CPMEdge.class.cast(operation.edge);
 		switch (operation){
 		case SELECT_EDGE:
-			double newLength = LengthEditDialog.showEdgeLengthDialog(controller.getMainPanel(), ((CPMEdge)operation.edge).getLength());
+			double newLength = LengthEditDialog.showEdgeLengthDialog(controller.getMainPanel(), e.getLength());
 			if (newLength == -1)
 				break;
 			else {
-				((CPMEdge)operation.edge).setLength(newLength);
-				((CPMEdge)operation.edge).getOppositeEdge().setLength(newLength);
+				e.setLength(newLength);
+				e.getOppositeEdge().setLength(newLength);
 				controller.fireGraphChanged();
 			}
 			break;

@@ -49,7 +49,7 @@ public class EdgeFlipTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 		switch (operation){
 		case SELECT_EDGE:
 			try {
-					((CPMEdge)operation.edge).flip();
+					CPMEdge.class.cast(operation.edge).flip();
 				} catch (TriangulationException e) {
 					e.printStackTrace();
 				}

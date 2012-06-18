@@ -7,12 +7,12 @@
   <property name="src-image" location="src-image"/>
   <property name="src-unfold" location="src-unfold"/>  
   
-  <property name="build" location="build"/>
+  <property name="build" location="bin"/>
   <property name="lib" location="lib"/>
   <property name="api" location="api"/>
   
   <property name="test.src" location="src-testing"/>
-  <property name="test.build" location="build"/>
+  <property name="test.build" location="bin-test"/>
   <property name="test.lib" location="lib"/>
 
   <path id="build.classpath">
@@ -27,6 +27,10 @@
       <include name="jReality.jar"/>
       <include name="junit.jar"/>
       <include name="synthetica.jar"/>
+      <include name="mfc.jar"/>
+      <include name="itext-1.4.6.jar"/>
+      <include name="feedback.jar"/>
+      <include name="java2D.jar"/>
     </fileset>
   </path>
 
@@ -46,10 +50,10 @@
     description="compile the source " >
     <!-- Compile the java code from ${src} into ${build} -->
     <mkdir dir="${build}"/>
-    <javac srcdir="${src-image}" destdir="${build}" source="1.5">
+    <javac srcdir="${src-image}" destdir="${build}" source="1.6">
       <classpath refid="build.classpath" />
     </javac>    
-    <javac srcdir="${src}" destdir="${build}" source="1.5">
+    <javac srcdir="${src}" destdir="${build}" source="1.6">
       <classpath refid="build.classpath" />
     </javac>
   	<!--

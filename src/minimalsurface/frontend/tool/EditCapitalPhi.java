@@ -71,13 +71,14 @@ public class EditCapitalPhi implements GraphTool<CPVertex, CPEdge, CPFace> {
 	}
 
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
+		CPFace f = CPFace.class.cast(operation.face);	
 		switch (operation){
 		case SELECT_FACE:
-			double newPhi = PhiEditorDialog.showEdgeLengthDialog(controller.getGraphEditor(), ((CPFace)operation.face).getCapitalPhi());
+			double newPhi = PhiEditorDialog.showEdgeLengthDialog(controller.getGraphEditor(), f.getCapitalPhi());
 			if (newPhi == -1)
 				break;
 			else {
-				((CPFace)operation.face).setCapitalPhi(newPhi);
+				f.setCapitalPhi(newPhi);
 				controller.fireGraphChanged();
 			}
 			break;

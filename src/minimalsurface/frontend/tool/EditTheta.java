@@ -78,14 +78,15 @@ public class EditTheta implements GraphTool<CPVertex, CPEdge, CPFace> {
 	}
 
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
+		CPEdge e = CPEdge.class.cast(operation.edge);
 		switch (operation){
 		case SELECT_EDGE:
-			double newTheta = ThetaEditorDialog.showEdgeThetaDialog(controller.getGraphEditor(), ((CPEdge)operation.edge).getTheta());
+			double newTheta = ThetaEditorDialog.showEdgeThetaDialog(controller.getGraphEditor(), e.getTheta());
 			if (newTheta == -1)
 				break;
 			else {
-				((CPEdge)operation.edge).setTheta(newTheta);
-				((CPEdge)operation.edge).getOppositeEdge().setTheta(newTheta);
+				e.setTheta(newTheta);
+				e.getOppositeEdge().setTheta(newTheta);
 				controller.fireGraphChanged();
 			}
 			break;
