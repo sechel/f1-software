@@ -160,6 +160,7 @@ public class CPMLReader
 			throw new GraphReaderException("Empty triangle list found!");
 		int numTriangles = triangleList.getLength();
 		for (int i = 0; i < numTriangles; i++){
+			try {
 			Element triangleElement = (Element) triangleList.item(i); 
 			FaceClass triangle = halfedge.addNewFace();
 			Integer a = -1;
@@ -175,6 +176,10 @@ public class CPMLReader
 			EdgeClass aEdge = undirectedEdgeMap.get(a);
 			EdgeClass bEdge = undirectedEdgeMap.get(b);
 			EdgeClass cEdge = undirectedEdgeMap.get(c);
+			
+			if (aEdge == null || bEdge == null || cEdge == null) {
+				throw new GraphReaderException("edge not found: " + a + ": " + aEdge + ", " + b + ": " + bEdge + ", " + c + ": " + cEdge);
+			}
 			
 			if (aEdge.getLeftFace() != null)
 				aEdge = aEdge.getOppositeEdge();
@@ -235,6 +240,10 @@ public class CPMLReader
 				NodeList propList = triangleElement.getElementsByTagName("property");
 				for (int j = 0; j < propList.getLength(); j++)
 					readProperty(triangle, (Element)propList.item(j));
+			}
+			} catch (Throwable t) {
+				t.printStackTrace();
+				throw new RuntimeException(t);
 			}
 		}
 		
