@@ -255,7 +255,7 @@ public class AlexandrovPolytopView extends JPanel{
         lengthTextShader.setScale(0.0017);
         meshApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, meshColor);
         meshApp.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        meshApp.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);
+        meshApp.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         meshApp.setAttribute(FACE_DRAW, false);
         meshApp.setAttribute(TUBES_DRAW, true);
         meshApp.setAttribute(TUBE_RADIUS, meshWidth);
@@ -265,7 +265,7 @@ public class AlexandrovPolytopView extends JPanel{
         meshApp.setAttribute(POINT_RADIUS, meshWidth);
         meshApp.setAttribute(POINT_SHADER + "." + DIFFUSE_COLOR, meshColor);
         meshApp.setAttribute(POINT_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        meshApp.setAttribute(POINT_SHADER + "." + SPECULAR_EXPONENT, 30);
+        meshApp.setAttribute(POINT_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         meshRoot.setAppearance(meshApp);
         meshRoot.setGeometry(meshGeometry);
         meshRoot.setVisible(showMesh);
@@ -292,7 +292,7 @@ public class AlexandrovPolytopView extends JPanel{
 		polyederApp.setAttribute(POLYGON_SHADER + "." + SMOOTH_SHADING, smoothShading);
         polyederApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, faceColor);
         polyederApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        polyederApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30);
+        polyederApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         polyederApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COEFFICIENT, 0.7);
         polyederApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, faceColor);
         polyederApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);
