@@ -1,7 +1,6 @@
 jar: dirs copy unzip clean pack sign access
 
 dirs:
-	chmod -R +rw /tmp/webstart
 	rm -rf /tmp/webstart
 	mkdir /tmp/webstart
 	
