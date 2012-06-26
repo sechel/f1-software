@@ -7,7 +7,7 @@
   <property name="src-image" location="src-image"/>
   <property name="src-unfold" location="src-unfold"/>  
   
-  <property name="build" location="bin"/>
+  <property name="build" location="build"/>
   <property name="lib" location="lib"/>
   <property name="api" location="api"/>
   
@@ -58,6 +58,8 @@
     </javac>
   	<copy todir="${build}">
   		<fileset dir="${src-image}" includes="**"/>
+  		<fileset dir="${src}" includes="teamgeist/data/**"/>
+  		<fileset dir="${src}" includes="minimalsurface/frontend/macro/predefined/**"/>
   	</copy>
   	<!--
     <javac srcdir="${src-unfold}" destdir="${build}" source="1.5">
