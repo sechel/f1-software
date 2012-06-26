@@ -7,7 +7,7 @@
   <property name="src-image" location="src-image"/>
   <property name="src-unfold" location="src-unfold"/>  
   
-  <property name="build" location="build"/>
+  <property name="build" location="bin"/>
   <property name="lib" location="lib"/>
   <property name="api" location="api"/>
   
@@ -59,6 +59,7 @@
   	<copy todir="${build}">
   		<fileset dir="${src-image}" includes="**"/>
   		<fileset dir="${src}" includes="teamgeist/data/**"/>
+  		<fileset dir="${src}" includes="teamgeist/combinatorics/teamgeist_triang2_cut.cpm"/>
   		<fileset dir="${src}" includes="minimalsurface/frontend/macro/predefined/**"/>
   	</copy>
   	<!--
