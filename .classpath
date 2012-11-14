@@ -26,15 +26,16 @@
 	<classpathentry kind="lib" path="lib/jSyntax.jar"/>
 	<classpathentry kind="lib" path="lib/substance.jar"/>
 	<classpathentry kind="lib" path="lib/swingx.jar"/>
-	<classpathentry kind="lib" path="lib/synthetica.jar"/>
 	<classpathentry kind="lib" path="lib/syntheticaBlueSteel.jar"/>
 	<classpathentry kind="lib" path="lib/syntheticaGreenDream.jar"/>
 	<classpathentry kind="lib" path="lib/syntheticaSilverMoon.jar"/>
 	<classpathentry kind="lib" path="lib/gluegen-rt.jar"/>
 	<classpathentry kind="lib" path="lib/jogl.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="lib/jReality.jar"/>
+	<classpathentry kind="lib" path="lib/jrworkspace.jar"/>
+	<classpathentry kind="lib" path="lib/synthetica.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jreality"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/feedback.jar"/>
 	<classpathentry kind="output" path="bin"/>
