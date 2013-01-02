@@ -1,4 +1,7 @@
-jar: dirs copy unzip clean pack sign access
+jar: build dirs copy unzip clean pack sign access
+
+build:
+	cd ..; ant
 
 dirs:
 	rm -rf /tmp/webstart
