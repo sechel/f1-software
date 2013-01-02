@@ -21,6 +21,7 @@ public class CalculatePolyhedronThread implements IterationMonitor, Runnable, Re
 	private MainController
 		controller = null;
 	private Double
+		initRadiusFactor = 2.0,
 		endError = 1E-2,
 		startError = 0.0;
 	private Integer
@@ -96,16 +97,16 @@ public class CalculatePolyhedronThread implements IterationMonitor, Runnable, Re
 			controller.setCalculationRemote(this);
 			switch (method) {
 				case FastButDangerous:
-					Alexandrov2.constructPolyhedron(graph, endError, maxIterations, this, this);
+					Alexandrov2.constructPolyhedron(graph, initRadiusFactor, endError, maxIterations, this, this);
 					break;
 				case SlowAndSafe:
-					Alexandrov.constructPolyhedron(graph, endError, maxIterations, this);
+					Alexandrov.constructPolyhedron(graph, initRadiusFactor, endError, maxIterations, this);
 					break;
 				case FastMultiCPU:
-					AlexandrovMultiCPU.constructPolyhedron(graph, endError, maxIterations, this, this);
+					AlexandrovMultiCPU.constructPolyhedron(graph, initRadiusFactor, endError, maxIterations, this, this);
 					break;
 				case Simple:
-					AlexandrovSimple.constructPolyhedron(graph, endError, maxIterations, this);
+					AlexandrovSimple.constructPolyhedron(graph, initRadiusFactor, endError, maxIterations, this);
 					break;
 			}
 			controller.setCalculationRemote(null);
@@ -143,6 +144,13 @@ public class CalculatePolyhedronThread implements IterationMonitor, Runnable, Re
 	
 	public void setMethod(CalculationMethod method) {
 		this.method = method;
+	}
+	
+	public void setInitRadiusFactor(Double initRadiusFactor) {
+		this.initRadiusFactor = initRadiusFactor;
+	}
+	public Double getInitRadiusFactor() {
+		return initRadiusFactor;
 	}
 	
 }

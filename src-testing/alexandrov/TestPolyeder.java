@@ -68,7 +68,7 @@ public class TestPolyeder extends TestCase {
 	
 	public void testPolyeder() throws Exception {
 		HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph = TestData.getTestGraph("flippyramide.cpm");
-		Alexandrov.constructPolyhedron(graph, 1E-10, 30, null);
+		Alexandrov.constructPolyhedron(graph, 2.0, 1E-10, 30, null);
 		Vector kappa = CPMCurvatureFunctional.getCurvature(graph);
 		DBGTracer.msg("End error: " + kappa.norm(Norm.Two));
 		assertTrue(kappa.norm(Norm.Two) <= error);

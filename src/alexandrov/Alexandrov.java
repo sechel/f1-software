@@ -161,7 +161,7 @@ public class Alexandrov {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> void constructPolyhedron(HalfEdgeDataStructure<V, E, F> graph, Double error, Integer maxInterations, IterationMonitor mon) 
+	> void constructPolyhedron(HalfEdgeDataStructure<V, E, F> graph, double initRadiusFacor, Double error, Integer maxInterations, IterationMonitor mon) 
 	throws TriangulationException, NotConvergentException{
 		if (mon != null)
 			mon.setIteration(0, 0.0);
@@ -185,10 +185,10 @@ public class Alexandrov {
 		
 		// initial radii for a convex metric
 		Vector gamma = CPMCurvatureFunctional.getGamma(graph);
-		double initRadius = 1;
+		double initRadius = 1.0;
 		boolean polytopeIsValid = false;
 		do {
-			initRadius *= 2;
+			initRadius *= initRadiusFacor;
 			for (V v : graph.getVertices())
 				v.setRadius(initRadius);
 			try {

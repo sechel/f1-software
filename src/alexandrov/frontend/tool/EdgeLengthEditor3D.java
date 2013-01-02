@@ -171,7 +171,7 @@ public class EdgeLengthEditor3D extends ShrinkPanel implements ChangeListener, A
 					AlexandrovCap.constructCap(view.getActiveGraph(), getError(), getMaxIterations());
 					break;
 				case VIEWER_MODE_POLYHEDRON:
-					Alexandrov2.constructPolyhedron(view.getActiveGraph(), getError(), getMaxIterations(), null, null);
+					Alexandrov2.constructPolyhedron(view.getActiveGraph(), 2.0, getError(), getMaxIterations(), null, null);
 					break;
 				}
 				view.updateGeometry();

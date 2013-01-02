@@ -78,6 +78,7 @@ public class CalculateFromXMLTool implements GraphTool<CPMVertex, CPMEdge, CPMFa
 			controller.setStatus("graph not 3-connected");
 			return false;
 		}
+		calcThread.setInitRadiusFactor(getCalculationDialog().getInitialRadiusFactor());
 		calcThread.setMethod(getCalculationDialog().getMethod());
 		calcThread.setError(getCalculationDialog().getError());
 		calcThread.setMaxIterations(getCalculationDialog().getMaxIterations());

@@ -82,10 +82,10 @@ public class CalculateTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 			newGraph = new HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace>(controller.getEditedGraph());
 			switch (optionsDialog.getMethod()){
 			case SlowAndSafe:
-				Alexandrov.constructPolyhedron(newGraph, getCalculationDialog().getError(), getCalculationDialog().getMaxIterations(), null);
+				Alexandrov.constructPolyhedron(newGraph, getCalculationDialog().getInitialRadiusFactor(), getCalculationDialog().getError(), getCalculationDialog().getMaxIterations(), null);
 				break;
 			case FastButDangerous:
-				Alexandrov2.constructPolyhedron(newGraph, getCalculationDialog().getError(), getCalculationDialog().getMaxIterations(), null, null);
+				Alexandrov2.constructPolyhedron(newGraph, getCalculationDialog().getInitialRadiusFactor(), getCalculationDialog().getError(), getCalculationDialog().getMaxIterations(), null, null);
 				break;
 			}
 			controller.setStatus("polytop successfully constructed");

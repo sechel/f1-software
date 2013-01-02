@@ -135,7 +135,7 @@ public class CalculateTeamgeistThread implements IterationMonitor, Runnable {
 			HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> newGraph = new HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace>(graph);
 			try {
 				long time = System.currentTimeMillis();
-				Alexandrov2.constructPolyhedron(newGraph, endError, maxIterations, this, null);
+				Alexandrov2.constructPolyhedron(newGraph, 2.0, endError, maxIterations, this, null);
 				Double sphereDistance = HaussdorfDistance.getDistanceToSphere(newGraph);
 				double sec = (System.currentTimeMillis() - time) / 1000.0;
 				if (stop == true){

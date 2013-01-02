@@ -133,14 +133,14 @@ public class RandomCheckTool implements GraphTool<CPMVertex, CPMEdge, CPMFace>, 
 			controller.setStatus("calculation... ");
 			HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> runGraph = new HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace>(graph);
 			try {
-				Alexandrov2.constructPolyhedron(runGraph, 1E-5, 50, null, null);
+				Alexandrov2.constructPolyhedron(runGraph, 2.0, 1E-5, 50, null, null);
 			} catch (Exception e1) {
 				report.append(e1.getMessage() + "\n");
 				int result = JOptionPane.showConfirmDialog(controller.getMainPanel(), e1.getMessage() + "\nTry the safe algorithm?");
 				if (result == JOptionPane.OK_OPTION){
 					runGraph = new HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace>(graph);
 					try {
-						Alexandrov.constructPolyhedron(runGraph, 1E-5, 50, null);
+						Alexandrov.constructPolyhedron(runGraph, 2.0, 1E-5, 50, null);
 						view.updatePolyhedron(runGraph);
 						view.encompass();
 						result = JOptionPane.showConfirmDialog(controller.getMainPanel(), "success in 2nd try: continue?");

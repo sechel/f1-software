@@ -167,7 +167,7 @@ public class AlexandrovMultiCPU {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> void constructPolyhedron(HalfEdgeDataStructure<V, E, F> graph, Double error, Integer maxInterations, IterationMonitor mon, RemoteControl rc) 
+	> void constructPolyhedron(HalfEdgeDataStructure<V, E, F> graph, double initRadiusFacor, Double error, Integer maxInterations, IterationMonitor mon, RemoteControl rc) 
 	throws TriangulationException, NotConvergentException{
 		if (mon != null)
 			mon.setIteration(0, 0.0);
@@ -198,7 +198,7 @@ public class AlexandrovMultiCPU {
 		do {
 			if (rc != null && rc.isStopAsFastAsPossible())
 				return;
-			initRadius *= 2;
+			initRadius *= initRadiusFacor;
 			for (V v : graph.getVertices())
 				v.setRadius(initRadius);
 			try {

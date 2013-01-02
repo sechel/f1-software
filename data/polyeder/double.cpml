@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE convexPolyhedralMetric>
+<cpml description="default tetrahedron">
+	<edgelist>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="1.999"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+		<edge length="1.0"/>
+	</edgelist>
+	<trianglelist>
+		<triangle a="0" b="1" c="4"/>
+		<triangle a="2" b="5" c="1"/>
+		<triangle a="3" b="2" c="0"/>
+		<triangle a="3" b="8" c="6"/>
+		<triangle a="4" b="7" c="8"/>
+		<triangle a="5" b="6" c="7"/>
+	</trianglelist>
+</cpml>

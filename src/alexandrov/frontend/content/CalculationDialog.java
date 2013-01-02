@@ -32,13 +32,16 @@ public class CalculationDialog extends JDialog implements ActionListener {
 		okBtn = new JButton("Calculate"),
 		cancelBtn = new JButton("Cancel");
 	private SpinnerNumberModel
+		initRadiusFactorModel = new SpinnerNumberModel(2.0, 2.0, 100.0, 1.0),
 		maxIterModel = new SpinnerNumberModel(100, 1, 10000, 1);
 	private JSpinner 
+		initRadiusSpinner = new JSpinner(initRadiusFactorModel),
 		maxIterSpinner = new JSpinner(maxIterModel);
 	private JTextField
 		errorField = new JTextField("" + getError());
 	private JLabel 
-		erroLabel = new JLabel("Error"),
+		initRadiusFactorLabel = new JLabel("Initial Radius Factor"),
+		erroLabel = new JLabel("Curvature Residual"),
 		maxIterLabel = new JLabel("Maximum Iterations");
 	
 	public enum CalculationMethod{
@@ -112,23 +115,27 @@ public class CalculationDialog extends JDialog implements ActionListener {
 	private void makeLayout() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		
-		c.fill = NONE; 
 		c.anchor = WEST;
+		c.fill = HORIZONTAL;
+
+		c.gridwidth = RELATIVE;
+		c.fill = NONE;
+		add(initRadiusFactorLabel, c);
+		c.gridwidth = REMAINDER;
+		c.fill = HORIZONTAL;
+		add(initRadiusSpinner, c);
+		
 		c.gridwidth = RELATIVE;
 		c.insets = new Insets(3,3,3,3);
 		add(erroLabel, c);
-		
 		c.gridwidth = REMAINDER;
-		c.fill = HORIZONTAL;
 		errorField.setHorizontalAlignment(SwingConstants.RIGHT);
 		errorField.addFocusListener(new FieldFocusListener());
 		add(errorField, c);
-		
+
 		c.gridwidth = RELATIVE;
 		c.fill = NONE;
 		add(maxIterLabel, c);
-		
 		c.gridwidth = REMAINDER;
 		c.fill = HORIZONTAL;
 		add(maxIterSpinner, c);
@@ -136,7 +143,6 @@ public class CalculationDialog extends JDialog implements ActionListener {
 		c.gridwidth = RELATIVE;
 		c.fill = NONE;
 		add(new JLabel("Method"), c);
-		
 		c.gridwidth = REMAINDER;
 		c.fill = HORIZONTAL;
 		add(methodCombo, c);
@@ -177,6 +183,10 @@ public class CalculationDialog extends JDialog implements ActionListener {
 	
 	public void setMethod(CalculationMethod method){
 		methodCombo.setSelectedItem(method);
+	}
+	
+	public double getInitialRadiusFactor() {
+		return initRadiusFactorModel.getNumber().doubleValue();
 	}
 	
 	public static void main(String[] args) {
