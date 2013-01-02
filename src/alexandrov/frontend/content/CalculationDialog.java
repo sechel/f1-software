@@ -117,7 +117,8 @@ public class CalculationDialog extends JDialog implements ActionListener {
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = WEST;
 		c.fill = HORIZONTAL;
-
+		c.insets = new Insets(3,3,3,3);
+		
 		c.gridwidth = RELATIVE;
 		c.fill = NONE;
 		add(initRadiusFactorLabel, c);
@@ -126,7 +127,6 @@ public class CalculationDialog extends JDialog implements ActionListener {
 		add(initRadiusSpinner, c);
 		
 		c.gridwidth = RELATIVE;
-		c.insets = new Insets(3,3,3,3);
 		add(erroLabel, c);
 		c.gridwidth = REMAINDER;
 		errorField.setHorizontalAlignment(SwingConstants.RIGHT);
