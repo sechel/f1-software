@@ -29,6 +29,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Window;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.HashMap;
@@ -59,7 +60,6 @@ import de.jreality.scene.IndexedLineSet;
 import de.jreality.scene.Light;
 import de.jreality.scene.PointLight;
 import de.jreality.scene.SceneGraphComponent;
-import de.jreality.scene.SceneGraphPath;
 import de.jreality.scene.Viewer;
 import de.jreality.scene.data.Attribute;
 import de.jreality.scene.data.DoubleArrayArray;
@@ -324,15 +324,19 @@ public class AlexandrovPolytopView extends JPanel{
 	
 	
 	public void encompass(){
-		SwingUtilities.invokeLater(new Runnable(){
-			public void run() {
-				SceneGraphPath scenePath = new SceneGraphPath();
-				scenePath.push(sceneRoot);
-				SceneGraphPath cameraPath = viewerApp.getJrScene().getPath("cameraPath");
-				SceneGraphPath avatarPath = viewerApp.getJrScene().getPath("avatarPath");
-				CameraUtility.encompass(avatarPath, scenePath, cameraPath, 1, 0);				
-			}
-		});
+//		SwingUtilities.invokeLater(new Runnable(){
+//			public void run() {
+//				SceneGraphPath scenePath = new SceneGraphPath();
+//				scenePath.push(sceneRoot);
+//				SceneGraphPath cameraPath = viewerApp.getJrScene().getPath("cameraPath");
+//				SceneGraphPath avatarPath = viewerApp.getJrScene().getPath("avatarPath");
+//				CameraUtility.encompass(avatarPath, scenePath, cameraPath, 1.3, 0);				
+//			}
+//		});
+		CameraUtility.encompass(getViewer());
+		Window w = SwingUtilities.getWindowAncestor(this);
+		SwingUtilities.updateComponentTreeUI(w);
+		getViewer().render();
 	}
 	
 	
@@ -352,6 +356,7 @@ public class AlexandrovPolytopView extends JPanel{
 			updatePolyhedron(activeGraph);			
 			break;
 		}
+		encompass();
 	}
 	
 	
@@ -390,6 +395,7 @@ public class AlexandrovPolytopView extends JPanel{
 				makeCap(activeGraph);
 				break;
 			}
+			encompass();
 			updateActiveGeometry = false;
 		}
 	}
