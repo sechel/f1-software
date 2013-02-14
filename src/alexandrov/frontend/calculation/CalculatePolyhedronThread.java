@@ -121,7 +121,7 @@ public class CalculatePolyhedronThread implements IterationMonitor, Runnable, Re
 			controller.setCalculationRemote(null);
 			return;
 		}
-		viewer.updatePolyhedron(graph);
+		viewer.updateGeometry(graph);
 		viewer.encompass();
 	}
 

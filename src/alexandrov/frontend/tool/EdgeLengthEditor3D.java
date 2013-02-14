@@ -174,7 +174,7 @@ public class EdgeLengthEditor3D extends ShrinkPanel implements ChangeListener, A
 					Alexandrov2.constructPolyhedron(view.getActiveGraph(), 2.0, getError(), getMaxIterations(), null, null);
 					break;
 				}
-				view.updateGeometry();
+				view.updateGeometry(view.getActiveGraph());
 				controller.setStatus("successfully constructed");
 			} catch (Exception e1) {
 				controller.setStatus(e1.getMessage());

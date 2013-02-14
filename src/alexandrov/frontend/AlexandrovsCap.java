@@ -1,5 +1,6 @@
 package alexandrov.frontend;
 
+import static alexandrov.frontend.content.ViewerMode.VIEWER_MODE_CAP;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.frontend.StandardEditor;
 import halfedge.frontend.action.ExtensionFileFilter;
@@ -128,7 +129,7 @@ public class AlexandrovsCap extends JFrame implements StatusChangedListener, Mai
 		defaultEditPanel.getController().getAppearanceController().setShowVertexIndices(true);
 		defaultEditPanel.getEditPanel().setDrawGrid(false);
 		
-		polytopView = new AlexandrovPolytopView(controller);
+		polytopView = new AlexandrovPolytopView(controller, VIEWER_MODE_CAP);
 		controller.setPolytopView(polytopView);
 		
 		defaultEditPanel.getController().addStatusChangedListener(this);

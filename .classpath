@@ -18,7 +18,7 @@
 	<classpathentry kind="lib" path="lib/bsh.jar"/>
 	<classpathentry kind="lib" path="lib/blas.jar"/>
 	<classpathentry kind="lib" path="lib/vecmath.jar"/>
-	<classpathentry kind="lib" path="lib/numericalMethods.jar" sourcepath="/homes/geometer/sechel/matheon/lib/numericalMethodsSrc.jar"/>
+	<classpathentry kind="lib" path="lib/numericalMethods.jar" sourcepath="/numericalMethods"/>
 	<classpathentry kind="lib" path="lib/jSyntax.jar"/>
 	<classpathentry kind="lib" path="lib/substance.jar"/>
 	<classpathentry kind="lib" path="lib/swingx.jar"/>

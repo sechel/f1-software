@@ -82,7 +82,7 @@ public class CalculateCapTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> 
 			controller.setStatus(e.getMessage());
 			return false;
 		}
-		viewer.updateCap(newGraph);
+		viewer.updateGeometry(newGraph);
 		viewer.encompass();
 		return false;
 	}

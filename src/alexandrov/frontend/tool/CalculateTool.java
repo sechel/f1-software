@@ -93,7 +93,7 @@ public class CalculateTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 			controller.setStatus(e.getMessage());
 			return false;
 		}
-		viewer.updatePolyhedron(newGraph);
+		viewer.updateGeometry(newGraph);
 		viewer.encompass();
 		return false;
 	}

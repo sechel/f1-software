@@ -1,5 +1,6 @@
 package alexandrov.frontend;
 
+import static alexandrov.frontend.content.ViewerMode.VIEWER_MODE_POLYHEDRON;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.frontend.StandardEditor;
 import halfedge.frontend.action.ExtensionFileFilter;
@@ -143,7 +144,7 @@ public class AlexandrovsPolyhedron extends JFrame implements StatusChangedListen
 		defaultEditPanel.getController().getAppearanceController().setShowVertexIndices(true);
 		defaultEditPanel.getEditPanel().setDrawGrid(false);
 		
-		polytopView = new AlexandrovPolytopView(controller);
+		polytopView = new AlexandrovPolytopView(controller, VIEWER_MODE_POLYHEDRON);
 		controller.setPolytopView(polytopView);
 		
 		defaultEditPanel.getController().addStatusChangedListener(this);

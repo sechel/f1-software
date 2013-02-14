@@ -26,7 +26,6 @@ import halfedge.HalfEdgeDataStructure;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Window;
@@ -172,8 +171,9 @@ public class AlexandrovPolytopView extends JPanel{
 	private AlexandrovOptionPanel
 		viewOptPanel = null;
 	
-	public AlexandrovPolytopView(MainController controller){
+	public AlexandrovPolytopView(MainController controller, ViewerMode mode){
 		this.controller = controller;
+		this.viewerMode = mode;
 		viewOptPanel = new AlexandrovOptionPanel(controller, this);
 		edgeLengthEditor = new EdgeLengthEditor3D(this, controller);
 		edgePickTool = new EdgePickTool(edgeLengthEditor);
@@ -324,19 +324,8 @@ public class AlexandrovPolytopView extends JPanel{
 	
 	
 	public void encompass(){
-//		SwingUtilities.invokeLater(new Runnable(){
-//			public void run() {
-//				SceneGraphPath scenePath = new SceneGraphPath();
-//				scenePath.push(sceneRoot);
-//				SceneGraphPath cameraPath = viewerApp.getJrScene().getPath("cameraPath");
-//				SceneGraphPath avatarPath = viewerApp.getJrScene().getPath("avatarPath");
-//				CameraUtility.encompass(avatarPath, scenePath, cameraPath, 1.3, 0);				
-//			}
-//		});
 		CameraUtility.encompass(getViewer());
-		Window w = SwingUtilities.getWindowAncestor(this);
-		SwingUtilities.updateComponentTreeUI(w);
-		getViewer().render();
+		getViewer().renderAsync();
 	}
 	
 	
@@ -347,57 +336,21 @@ public class AlexandrovPolytopView extends JPanel{
 	}
 	
 	
-	public void updateGeometry(){
+	public void updateGeometry(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph){
+		this.activeGraph = graph;
 		switch (viewerMode){
 		case VIEWER_MODE_CAP:
-			updateCap(activeGraph);
+			basePlaneRoot.setVisible(true);
+	        zeroRoot.setVisible(false);
+			makeCap(activeGraph);
 			break;
 		case VIEWER_MODE_POLYHEDRON:
-			updatePolyhedron(activeGraph);			
+			basePlaneRoot.setVisible(false);
+			zeroRoot.setVisible(true);
+			makePolyhedron(graph);
 			break;
 		}
 		encompass();
-	}
-	
-	
-	public void updateCap(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph){
-		viewerMode = ViewerMode.VIEWER_MODE_CAP;
-		basePlaneRoot.setVisible(true);
-        zeroRoot.setVisible(false);
-		activeGraph = graph;
-		updateActiveGeometry();
-	}
-	
-	
-	public void updatePolyhedron(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph){
-		viewerMode = ViewerMode.VIEWER_MODE_POLYHEDRON;
-		basePlaneRoot.setVisible(false);
-		zeroRoot.setVisible(true);
-		activeGraph = graph;
-		updateActiveGeometry();
-	}
-	
-	private void updateActiveGeometry(){
-		updateActiveGeometry = true;
-		repaint();
-	}
-	
-	
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
-		if (updateActiveGeometry){
-			switch (viewerMode){
-			case VIEWER_MODE_POLYHEDRON:
-				makePolyhedron(activeGraph);
-				break;
-			case VIEWER_MODE_CAP:
-				makeCap(activeGraph);
-				break;
-			}
-			encompass();
-			updateActiveGeometry = false;
-		}
 	}
 	
 	
@@ -879,7 +832,7 @@ public class AlexandrovPolytopView extends JPanel{
 
 	public void setShowFlippedEdges(boolean showFlippedEdges) {
 		this.showFlippedEdges = showFlippedEdges;
-		updateGeometry();
+		updateGeometry(activeGraph);
 	}
 
 	public boolean isShowEdgeLengths() {
@@ -892,12 +845,12 @@ public class AlexandrovPolytopView extends JPanel{
 
 	public void setShowEdgeLengths(boolean showEdgeLengths) {
 		this.showEdgeLengths = showEdgeLengths;
-		updateGeometry();
+		updateGeometry(activeGraph);
 	}
 
 	public void setShowVertexIndices(boolean showVertexIndeices) {
 		this.showVertexIndices = showVertexIndeices;
-		updateGeometry();
+		updateGeometry(activeGraph);
 	}
 
 
@@ -908,6 +861,9 @@ public class AlexandrovPolytopView extends JPanel{
 
 	public ViewerMode getViewerMode() {
 		return viewerMode;
+	}
+	public void setViewerMode(ViewerMode viewerMode) {
+		this.viewerMode = viewerMode;
 	}
 
 
@@ -936,7 +892,7 @@ public class AlexandrovPolytopView extends JPanel{
 
 	public void setHideHiddenEdges(boolean hideHiddenEdges) {
 		this.hideHiddenEdges = hideHiddenEdges;
-		updateGeometry();
+		updateGeometry(activeGraph);
 	}
 
 
@@ -958,6 +914,5 @@ public class AlexandrovPolytopView extends JPanel{
 	public SceneGraphComponent getPolyhedron(){
 		return polyederRoot;
 	}
-	
 	
 }

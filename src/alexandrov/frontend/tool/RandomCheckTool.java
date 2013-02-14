@@ -141,7 +141,7 @@ public class RandomCheckTool implements GraphTool<CPMVertex, CPMEdge, CPMFace>, 
 					runGraph = new HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace>(graph);
 					try {
 						Alexandrov.constructPolyhedron(runGraph, 2.0, 1E-5, 50, null);
-						view.updatePolyhedron(runGraph);
+						view.updateGeometry(runGraph);
 						view.encompass();
 						result = JOptionPane.showConfirmDialog(controller.getMainPanel(), "success in 2nd try: continue?");
 						if (result != JOptionPane.OK_OPTION)
@@ -156,7 +156,7 @@ public class RandomCheckTool implements GraphTool<CPMVertex, CPMEdge, CPMFace>, 
 			report.append("Polytop sucessfully calculated.\n");
 			controller.setStatus("polytop sucessfully calculated.\n");
 			report.append("Performed flips: " + Delaunay.getNumFlips(runGraph) + ", Effective flips: " + Delaunay.getNumEffectiveFlips(runGraph) + "\n");
-			view.updatePolyhedron(runGraph);
+			view.updateGeometry(runGraph);
 			view.encompass();
 			for (CPMVertex v : runGraph.getVertices()){
 				if (v.getRadius() < smallRadiusThreashold){

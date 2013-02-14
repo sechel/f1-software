@@ -63,6 +63,8 @@ public class Alexandrov2 {
 		firstVertex.setXYZW(new Point4d(rx, 0, 0, 1));
 		secondVertex.setXYZW(new Point4d(y1, y2, 0, 1));
 		
+//		System.out.println("layout start: " + firstVertex.getXYZW() + ", " + secondVertex.getXYZW());
+		
 		Stack<E> layoutEdges = new Stack<E>();
 		HashSet<V> readyVertices = new HashSet<V>();
 		readyVertices.add(firstVertex);
@@ -152,8 +154,12 @@ public class Alexandrov2 {
 		Point4d x1 = edge.getTargetVertex().getXYZW();
 		Point4d x2 = edge.getStartVertex().getXYZW();
 		Point4d guess = cross(x1, x2);
+//		System.out.println(String.format("tr: %s, %s, %s", x1.toString(), x2.toString(), guess.toString()));
 		double[] x = new double[]{guess.x, guess.y, guess.z};
 		Broyden.search(rootFinder, x);
+		if (Double.isNaN(x[0]) || Double.isNaN(x[1]) || Double.isNaN(x[2])) {
+			System.out.println("Alexandrov2.getPyramideTip()");
+		}
 		return new Point4d(x[0], x[1], x[2], 1);
 	}
 

@@ -332,6 +332,7 @@ public class AlexandrovCap {
 			FileInputStream in = new FileInputStream(new File("testing/data/tetraedercap.cpm"));
 			HESerializableReader<CPMVertex, CPMEdge, CPMFace> reader = new HESerializableReader<CPMVertex, CPMEdge, CPMFace>(in);
 			graph = reader.readHalfEdgeDataStructure();
+			reader.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
