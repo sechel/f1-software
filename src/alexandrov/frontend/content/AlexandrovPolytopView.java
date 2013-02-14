@@ -28,7 +28,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Window;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.HashMap;
@@ -38,7 +37,6 @@ import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import util.debug.DBGTracer;
 import alexandrov.frontend.controller.MainController;
@@ -71,6 +69,7 @@ import de.jreality.shader.ShaderUtility;
 import de.jreality.tools.EncompassTool;
 import de.jreality.ui.viewerapp.ViewerApp;
 import de.jreality.util.CameraUtility;
+import de.jreality.util.RenderTrigger;
 
 
 /**
@@ -111,6 +110,8 @@ public class AlexandrovPolytopView extends JPanel{
 		meshGeometry = meshFactory.getIndexedLineSet();
 	private IndexedFaceSet		
 		polyederGeometry = polyederFactory.getIndexedFaceSet();
+	private RenderTrigger
+		renderTrigger = new RenderTrigger();
 	
 	//tools
 	private EdgeLengthEditor3D
@@ -205,7 +206,7 @@ public class AlexandrovPolytopView extends JPanel{
 		add(wrap, c);
 		viewOptPanel.setShrinked(true);
 
-		updateProperties();
+//		updateProperties();
 	}
 
 	
@@ -315,26 +316,20 @@ public class AlexandrovPolytopView extends JPanel{
 
 	    viewerApp = new ViewerApp(scene);
 	    viewerApp.update();
+	    
+	    renderTrigger.addViewer(getViewer());
+	    renderTrigger.startCollect();
+		renderTrigger.addSceneGraphComponent(sceneRoot);
 	}
-	
-
-	public void updateProperties(){
-		getViewer().render();
-	}
-	
 	
 	public void encompass(){
 		CameraUtility.encompass(getViewer());
-		getViewer().renderAsync();
 	}
-	
 	
 	public void resetGeometry(){
 		polyederRoot.setGeometry(null);
 		meshRoot.setGeometry(null);
-		getViewer().render();
 	}
-	
 	
 	public void updateGeometry(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph){
 		this.activeGraph = graph;
@@ -466,8 +461,6 @@ public class AlexandrovPolytopView extends JPanel{
 		meshRoot.setGeometry(meshGeometry);
 		
 		edgePickTool.setEdgeIDMap(edgeIDMap);
-		
-		getViewer().render();
 	}
 	
 	

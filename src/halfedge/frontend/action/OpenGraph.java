@@ -85,6 +85,7 @@ public class OpenGraph
 			HESerializableReader<V, E, F> reader = new HESerializableReader<V, E, F>(fis);
 			controller.setEditedGraph(reader.readHalfEdgeDataStructure());
 			controller.fireGraphChanged();
+			reader.close();
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(parent, "Error while loding graph: " + file.getName() + "\n" + e1.getMessage());
 		}

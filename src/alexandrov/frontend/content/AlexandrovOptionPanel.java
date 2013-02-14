@@ -248,7 +248,6 @@ public class AlexandrovOptionPanel extends ShrinkPanel implements ActionListener
 			view.setSmoothShading(smoothShadingChecker.isSelected());
 		if (hideHiddenEdgesChecker == e.getSource())
 			view.setHideHiddenEdges(hideHiddenEdgesChecker.isSelected());
-		view.updateProperties();
 	}
 
 	
@@ -263,7 +262,6 @@ public class AlexandrovOptionPanel extends ShrinkPanel implements ActionListener
 			view.setMeshColor(cce.getColor());
 		if (backgroundColorBtn == cce.getSource())
 			view.setBackgroundColor(cce.getColor());
-		view.updateProperties();
 	}
 
 	public void stateChanged(ChangeEvent e) {
@@ -275,7 +273,6 @@ public class AlexandrovOptionPanel extends ShrinkPanel implements ActionListener
 			view.setLight2intensity(light2IntesSlider.getValue() * 12.0 / 100.0);
 		if (e.getSource() == meshWidthSlider)
 			view.setMeshWidth(meshWidthSlider.getValue() * 0.1 / 100.0);
-		view.updateProperties();
 	}
 	
 	

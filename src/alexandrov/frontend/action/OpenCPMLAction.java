@@ -35,7 +35,7 @@ public class OpenCPMLAction extends OpenGraph<CPMVertex, CPMEdge, CPMFace> {
 	public OpenCPMLAction(EditPanel<CPMVertex, CPMEdge, CPMFace> editor, Component parent, MainController controller, ExtensionFileFilter filter) {
 		super(editor, parent, controller, filter);
 		this.controller = controller;
-		ExtensionFileFilter cpmlFilter = new ExtensionFileFilter("cpml", "Comvex Metric File (xml)");
+		ExtensionFileFilter cpmlFilter = new ExtensionFileFilter("cpml", "Convex Metric File (xml)");
 		openChooser.addChoosableFileFilter(cpmlFilter);
 	}
 
@@ -51,6 +51,7 @@ public class OpenCPMLAction extends OpenGraph<CPMVertex, CPMEdge, CPMFace> {
 					buf.append(line + "\n");
 				}
 				controller.setCPMLGraph(buf.toString());
+				reader.close();
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(parent, "Error while loding graph: " + file.getName() + "\n" + e1.getMessage());
 			}

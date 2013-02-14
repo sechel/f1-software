@@ -51,7 +51,7 @@ public class EdgeLengthEditor3D extends ShrinkPanel implements ChangeListener, A
 	private JCheckBox
 		dragEditChecker = new JCheckBox("Mouse Drag Edit");
 	private JTextField
-		errorField = new JTextField("1E-2");
+		errorField = new JTextField("1E-5");
 	private SpinnerNumberModel
 		maxIterModel = new SpinnerNumberModel(100, 1, 10000, 1);
 	private JSpinner

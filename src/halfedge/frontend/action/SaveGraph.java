@@ -79,6 +79,7 @@ public class SaveGraph extends AbstractAction {
 				fos = new FileOutputStream(file);
 				HESerializableWriter writer = new HESerializableWriter(fos);
 				writer.writeHalfEdgeDataStructure(controller.getEditedGraph());
+				writer.close();
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(parent, e1.getMessage());
 			}

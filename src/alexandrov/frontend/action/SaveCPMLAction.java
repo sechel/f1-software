@@ -57,7 +57,7 @@ public class SaveCPMLAction extends AbstractAction {
 		saveChooser.setDialogType(JFileChooser.SAVE_DIALOG);
 		saveChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		ExtensionFileFilter cpmlFilter = new ExtensionFileFilter("cpml",
-				"Comvex Metric File (xml)");
+				"Convex Metric File (xml)");
 		saveChooser.addChoosableFileFilter(cpmlFilter);
 	}
 

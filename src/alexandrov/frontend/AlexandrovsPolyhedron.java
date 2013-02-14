@@ -115,7 +115,7 @@ public class AlexandrovsPolyhedron extends JFrame implements StatusChangedListen
 		splitter = null;
 	
 	private ExtensionFileFilter
-		filter = new ExtensionFileFilter("cpm", "Comvex Metric File (binary)");
+		filter = new ExtensionFileFilter("cpm", "Convex Metric File (binary)");
 	private Action
 		closeAction = new CloseProgram(),
 		feedbackAction = null,
