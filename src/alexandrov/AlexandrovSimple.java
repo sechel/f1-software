@@ -14,9 +14,6 @@ import halfedge.triangulationutilities.TriangulationException;
 import halfedge.util.Consistency;
 
 import java.util.HashSet;
-import java.util.Stack;
-
-import javax.vecmath.Point4d;
 
 import math.optimization.FunctionNotDefinedException;
 import math.optimization.IterationMonitor;
@@ -29,8 +26,6 @@ import no.uib.cipr.matrix.Vector.Norm;
 import util.debug.DBGTracer;
 import alexandrov.math.CPMCurvatureFunctional;
 import alexandrov.math.CPMLinearizable;
-import de.jtem.numericalMethods.calculus.function.RealVectorValuedFunctionOfSeveralVariablesWithJacobien;
-import de.jtem.numericalMethods.calculus.rootFinding.Broyden;
 
 /**
  * Calculates and layouts the polyhedron from the given graph. 
@@ -43,119 +38,6 @@ public class AlexandrovSimple {
 
 	private static Double
 		solverError = 1E-10;
-	
-	private static <
-		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
-		E extends Edge<V, E, F> & IsFlippable,
-		F extends Face<V, E, F>
-	> void layoutPolyeder(HalfEdgeDataStructure<V, E, F> graph){
-		V firstVertex = graph.getVertex(0);
-		E firstEdge = firstVertex.getConnectedEdge();
-		V secondVertex = firstEdge.getStartVertex();
-		
-		Double rx = firstVertex.getRadius();
-		Double ry = secondVertex.getRadius();
-		Double lxy = firstEdge.getLength();
-		Double y1 = (rx*rx + ry*ry - lxy*lxy) / (2*rx);
-		Double y2 = Math.sqrt(ry*ry - y1*y1);
-		
-		firstVertex.setXYZW(new Point4d(rx, 0, 0, 1));
-		secondVertex.setXYZW(new Point4d(y1, y2, 0, 1));
-		
-		Stack<E> layoutEdges = new Stack<E>();
-		HashSet<V> readyVertices = new HashSet<V>();
-		readyVertices.add(firstVertex);
-		readyVertices.add(secondVertex);
-		layoutEdges.push(firstEdge);
-		layoutEdges.push(firstEdge.getOppositeEdge());
-		while (!layoutEdges.isEmpty()){
-			E edge = layoutEdges.pop();
-			E e1 = edge.getNextEdge();
-			E e2 = edge.getPreviousEdge();
-			V xVertex = e1.getTargetVertex();
-			if (readyVertices.contains(xVertex))
-				continue;
-			xVertex.setXYZW(getPyramideTip(edge));
-			layoutEdges.push(e1.getOppositeEdge());
-			layoutEdges.push(e2.getOppositeEdge());
-			readyVertices.add(xVertex);
-		}
-	} 
-
-	
-	private static class TipRootFinder <
-		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
-		E extends Edge<V, E, F> & IsFlippable,
-		F extends Face<V, E, F>
-	> implements RealVectorValuedFunctionOfSeveralVariablesWithJacobien{
-
-		private double[][]
-			x = new double[3][4];
-		private double[]
-		    r = new double[3];
-			
-		public TipRootFinder(E edge){
-			r[0] = edge.getNextEdge().getLength();
-			r[1] = edge.getPreviousEdge().getLength();
-			r[2] = edge.getNextEdge().getTargetVertex().getRadius();
-			edge.getTargetVertex().getXYZW().get(x[0]);
-			edge.getStartVertex().getXYZW().get(x[1]);
-			x[2][3] = 1;
-			for (int i = 0; i < x.length; i++)
-				for (int j = 0; j < 3; j++)
-					x[i][j] = x[i][j] / x[i][3];
-		}
-		
-		public void eval(double[] p, double[] fx, int offset) {
-			for (int i = 0; i < 3; i++){
-				fx[i + offset] = (p[0]-x[i][0])*(p[0]-x[i][0]) + 
-								 (p[1]-x[i][1])*(p[1]-x[i][1]) + 
-								 (p[2]-x[i][2])*(p[2]-x[i][2]) - 
-								 r[i]*r[i];
-			}
-		}
-		
-		public void eval(double[] p, double[] fx, int offset, double[][] jac) {
-			eval(p, fx, offset);
-			for (int i = 0; i < jac.length; i++) {
-				for (int j = 0; j < jac[i].length; j++) {
-					jac[i][j] = 2*(p[j] - x[i][j]);
-				}
-			}
-		}
-
-		public int getDimensionOfTargetSpace() {
-			return 3;
-		}
-
-		public int getNumberOfVariables() {
-			return 3;
-		}
-
-	}
-	
-	
-	private static Point4d cross(Point4d x1, Point4d x2){
-		Point4d result = new Point4d(x1.y*x2.z - x1.z*x2.y, x1.z*x2.x - x1.x*x2.z, x1.x*x2.y - x1.y*x2.x, 1);
-		result.scale(1 / (x1.w*x2.w));
-		return result;
-	}
-	
-
-	private static  <
-		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
-		E extends Edge<V, E, F> & IsFlippable,
-		F extends Face<V, E, F>
-	> Point4d getPyramideTip(E edge){
-		TipRootFinder<V, E, F> rootFinder = new TipRootFinder<V, E, F>(edge);
-		Point4d x1 = edge.getTargetVertex().getXYZW();
-		Point4d x2 = edge.getStartVertex().getXYZW();
-		Point4d guess = cross(x1, x2);
-		double[] x = new double[]{guess.x, guess.y, guess.z};
-		Broyden.search(rootFinder, x);
-		return new Point4d(x[0], x[1], x[2], 1);
-	}
-
 
 	public static <
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
@@ -285,7 +167,7 @@ public class AlexandrovSimple {
 			throw new NotConvergentException("Polytop has not been constructed within the maximum iterations! ", kappa.norm(Norm.Two));
 	
 		DBGTracer.msg("layouting...");
-		layoutPolyeder(graph);
+		AlexandrovUtility.layoutPolyeder(graph);
 	}
 
 	protected static <

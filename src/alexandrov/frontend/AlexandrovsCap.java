@@ -51,7 +51,6 @@ import alexandrov.frontend.tool.SetPlanarLengthsTool;
 import alexandrov.graph.CPMEdge;
 import alexandrov.graph.CPMFace;
 import alexandrov.graph.CPMVertex;
-import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.jreality.backends.label.LabelUtility;
 import de.jreality.ui.viewerapp.SunflowMenu;
 import de.jreality.ui.viewerapp.actions.file.ExportSVG;
@@ -251,9 +250,10 @@ public class AlexandrovsCap extends JFrame implements StatusChangedListener, Mai
 			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaLookAndFeel.setWindowsDecorated(false);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+//			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaLookAndFeel.setWindowsDecorated(false);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
 	}
 	

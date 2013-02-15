@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE convexPolyhedralMetric>
+<cpml description="exported by alexandrov polytop editor">
+	<edgelist>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.7320508076" index="30">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="31">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="32">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="33">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="34">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="35">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="36">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="37">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="38">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="39">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="40">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="41">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="42">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="43">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="44">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="45">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="46">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="47">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="48">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="49">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="50">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="51">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="52">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="53">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="54">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="55">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="56">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.7320508076" index="77">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="78">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="79">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="80">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="81">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="82">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="83">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="84">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="85">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="86">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="87">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="88">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="89">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="90">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="91">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="92">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="93">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="94">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="95">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="96">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="97">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="98">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="99">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="100">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="101">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="102">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="103">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.1046719125"/>
+		<edge length="0.7320508076" index="114">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="115">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="116">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="117">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="118">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="119">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="120">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="121">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="122">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="123">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="124">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="125">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="126">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="127">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="128">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="129">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="130">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="131">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="132">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="133">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="134">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="135">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="136">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="137">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="138">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="139">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="140">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="141">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="142">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="143">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="144">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="145">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="146">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="147">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="148">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="149">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="150">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.7320508076" index="151">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6180339887" index="152">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.486289651" index="153">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.3382612127" index="154">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.1755705046" index="155">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="156">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="157">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="158">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="159">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="160">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="161">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="162">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="163">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.6807264427" index="164">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.5581216193" index="165">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.4188664899" index="166">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+		<edge length="0.2652261319" index="167">
+			<property name="hidden" type="boolean" value="true"/>
+		</edge>
+	</edgelist>
+	<trianglelist>
+		<triangle a="44" b="0" c="29"/>
+		<triangle a="43" b="1" c="56"/>
+		<triangle a="42" b="2" c="55"/>
+		<triangle a="41" b="3" c="54"/>
+		<triangle a="40" b="4" c="53"/>
+		<triangle a="31" b="5" c="45"/>
+		<triangle a="32" b="6" c="46"/>
+		<triangle a="33" b="7" c="47"/>
+		<triangle a="34" b="8" c="48"/>
+		<triangle a="10" b="9" c="34"/>
+		<triangle a="33" b="11" c="48"/>
+		<triangle a="32" b="12" c="47"/>
+		<triangle a="31" b="13" c="46"/>
+		<triangle a="30" b="14" c="45"/>
+		<triangle a="36" b="15" c="49"/>
+		<triangle a="37" b="16" c="50"/>
+		<triangle a="38" b="17" c="51"/>
+		<triangle a="39" b="18" c="52"/>
+		<triangle a="20" b="19" c="39"/>
+		<triangle a="38" b="21" c="52"/>
+		<triangle a="37" b="22" c="51"/>
+		<triangle a="36" b="23" c="50"/>
+		<triangle a="35" b="24" c="49"/>
+		<triangle a="41" b="25" c="53"/>
+		<triangle a="42" b="26" c="54"/>
+		<triangle a="43" b="27" c="55"/>
+		<triangle a="44" b="28" c="56"/>
+		<triangle a="35" b="30" c="40"/>
+		<triangle a="91" b="9" c="76"/>
+		<triangle a="90" b="8" c="103"/>
+		<triangle a="89" b="7" c="102"/>
+		<triangle a="88" b="6" c="101"/>
+		<triangle a="87" b="5" c="100"/>
+		<triangle a="78" b="4" c="92"/>
+		<triangle a="79" b="3" c="93"/>
+		<triangle a="80" b="2" c="94"/>
+		<triangle a="81" b="1" c="95"/>
+		<triangle a="57" b="0" c="81"/>
+		<triangle a="80" b="58" c="95"/>
+		<triangle a="79" b="59" c="94"/>
+		<triangle a="78" b="60" c="93"/>
+		<triangle a="77" b="61" c="92"/>
+		<triangle a="83" b="62" c="96"/>
+		<triangle a="84" b="63" c="97"/>
+		<triangle a="85" b="64" c="98"/>
+		<triangle a="86" b="65" c="99"/>
+		<triangle a="67" b="66" c="86"/>
+		<triangle a="85" b="68" c="99"/>
+		<triangle a="84" b="69" c="98"/>
+		<triangle a="83" b="70" c="97"/>
+		<triangle a="82" b="71" c="96"/>
+		<triangle a="88" b="72" c="100"/>
+		<triangle a="89" b="73" c="101"/>
+		<triangle a="90" b="74" c="102"/>
+		<triangle a="91" b="75" c="103"/>
+		<triangle a="82" b="77" c="87"/>
+		<triangle a="128" b="29" c="57"/>
+		<triangle a="127" b="28" c="140"/>
+		<triangle a="126" b="27" c="139"/>
+		<triangle a="125" b="26" c="138"/>
+		<triangle a="124" b="25" c="137"/>
+		<triangle a="115" b="24" c="129"/>
+		<triangle a="116" b="23" c="130"/>
+		<triangle a="117" b="22" c="131"/>
+		<triangle a="118" b="21" c="132"/>
+		<triangle a="104" b="20" c="118"/>
+		<triangle a="117" b="105" c="132"/>
+		<triangle a="116" b="106" c="131"/>
+		<triangle a="115" b="107" c="130"/>
+		<triangle a="114" b="108" c="129"/>
+		<triangle a="120" b="109" c="133"/>
+		<triangle a="121" b="110" c="134"/>
+		<triangle a="122" b="111" c="135"/>
+		<triangle a="123" b="112" c="136"/>
+		<triangle a="66" b="113" c="123"/>
+		<triangle a="122" b="65" c="136"/>
+		<triangle a="121" b="64" c="135"/>
+		<triangle a="120" b="63" c="134"/>
+		<triangle a="119" b="62" c="133"/>
+		<triangle a="125" b="61" c="137"/>
+		<triangle a="126" b="60" c="138"/>
+		<triangle a="127" b="59" c="139"/>
+		<triangle a="128" b="58" c="140"/>
+		<triangle a="119" b="114" c="124"/>
+		<triangle a="155" b="19" c="104"/>
+		<triangle a="154" b="18" c="167"/>
+		<triangle a="153" b="17" c="166"/>
+		<triangle a="152" b="16" c="165"/>
+		<triangle a="151" b="15" c="164"/>
+		<triangle a="142" b="14" c="156"/>
+		<triangle a="143" b="13" c="157"/>
+		<triangle a="144" b="12" c="158"/>
+		<triangle a="145" b="11" c="159"/>
+		<triangle a="76" b="10" c="145"/>
+		<triangle a="144" b="75" c="159"/>
+		<triangle a="143" b="74" c="158"/>
+		<triangle a="142" b="73" c="157"/>
+		<triangle a="141" b="72" c="156"/>
+		<triangle a="147" b="71" c="160"/>
+		<triangle a="148" b="70" c="161"/>
+		<triangle a="149" b="69" c="162"/>
+		<triangle a="150" b="68" c="163"/>
+		<triangle a="113" b="67" c="150"/>
+		<triangle a="149" b="112" c="163"/>
+		<triangle a="148" b="111" c="162"/>
+		<triangle a="147" b="110" c="161"/>
+		<triangle a="146" b="109" c="160"/>
+		<triangle a="152" b="108" c="164"/>
+		<triangle a="153" b="107" c="165"/>
+		<triangle a="154" b="106" c="166"/>
+		<triangle a="155" b="105" c="167"/>
+		<triangle a="146" b="141" c="151"/>
+	</trianglelist>
+</cpml>

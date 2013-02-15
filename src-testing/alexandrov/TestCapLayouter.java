@@ -18,7 +18,7 @@ public class TestCapLayouter extends TestCase {
 	public void testLayout() throws Exception {
 		HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph = TestData.getTestGraph("zeltCap.cpm");
 		AlexandrovCap.constructCap_internal(graph, error, maxIterations);
-		AlexandrovCap.layoutCap(graph, false);
+		AlexandrovUtility.layoutCap(graph, false);
 		
 		for (CPMEdge e : graph.getEdges()){
 			double length = e.getTargetVertex().getXYZW().distance(e.getStartVertex().getXYZW());

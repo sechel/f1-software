@@ -346,6 +346,7 @@ public class AlexandrovPolytopView extends JPanel{
 			break;
 		}
 		encompass();
+		getViewer().renderAsync();
 	}
 	
 	
