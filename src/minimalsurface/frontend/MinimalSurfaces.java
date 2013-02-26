@@ -5,7 +5,6 @@ import javax.swing.UIManager;
 
 import minimalsurface.frontend.content.MainWindow;
 import util.debug.DBGTracer;
-import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.jreality.plugin.JRViewer;
 
 
@@ -36,11 +35,12 @@ public class MinimalSurfaces{
 //			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaLookAndFeel.setWindowsDecorated(false);
-			SyntheticaLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaLookAndFeel.setUseSystemFileIcons(true);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaGreenDreamLookAndFeel");
+//			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaLookAndFeel.setWindowsDecorated(false);
+//			SyntheticaLookAndFeel.setExtendedFileChooserEnabled(true);
+//			SyntheticaLookAndFeel.setUseSystemFileIcons(true);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaGreenDreamLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
