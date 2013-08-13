@@ -213,11 +213,12 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 //			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaLookAndFeel.setWindowsDecorated(false);
-			SyntheticaLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaLookAndFeel.setUseSystemFileIcons(true);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
+//			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaLookAndFeel.setWindowsDecorated(false);
+//			SyntheticaLookAndFeel.setExtendedFileChooserEnabled(true);
+//			SyntheticaLookAndFeel.setUseSystemFileIcons(true);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
 	}
 	
