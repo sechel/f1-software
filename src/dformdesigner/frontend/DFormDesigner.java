@@ -4,7 +4,6 @@ import halfedge.frontend.controller.MainController;
 import halfedge.frontend.controller.MainController.StatusChangedListener;
 
 import java.awt.BorderLayout;
-import java.util.logging.Level;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,9 +18,6 @@ import alexandrov.frontend.action.MainWindowClosing;
 import alexandrov.graph.CPMEdge;
 import alexandrov.graph.CPMFace;
 import alexandrov.graph.CPMVertex;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
-import de.jreality.backends.label.LabelUtility;
-import de.jreality.util.LoggingSystem;
 import de.jtem.java2d.SceneComponent;
 import de.jtem.java2dx.modelling.GraphicsModeller2DPanel;
 
@@ -114,12 +110,13 @@ public class DFormDesigner extends JFrame implements StatusChangedListener, Chan
 		try {
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
-			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
-			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
+//			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
+//			SyntheticaStandardLookAndFeel.setExtendedFileChooserEnabled(true);
+//			SyntheticaStandardLookAndFeel.setUseSystemFileIcons(true);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
+//			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
 	}
 	

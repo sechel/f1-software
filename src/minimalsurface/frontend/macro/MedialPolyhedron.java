@@ -8,8 +8,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import koebe.KoebePolyhedron;
-import koebe.PolyederNormalizer;
 import koebe.KoebePolyhedron.KoebePolyhedronContext;
+import koebe.PolyederNormalizer;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;

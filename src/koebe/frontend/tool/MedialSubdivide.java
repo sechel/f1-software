@@ -11,8 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import koebe.KoebePolyhedron;
-import koebe.PolyederNormalizer;
 import koebe.KoebePolyhedron.KoebePolyhedronContext;
+import koebe.PolyederNormalizer;
 import util.debug.DBGTracer;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;

@@ -15,8 +15,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import koebe.KoebePolyhedron;
-import koebe.PolyederNormalizer;
 import koebe.KoebePolyhedron.KoebePolyhedronContext;
+import koebe.PolyederNormalizer;
 import koebe.frontend.content.jrealityviewer.KoebePolyhedronView;
 import koebe.frontend.controller.MainController;
 import koebe.frontend.tool.EdgeQuadSubdivide;

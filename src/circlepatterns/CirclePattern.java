@@ -22,8 +22,8 @@ import no.uib.cipr.matrix.Vector;
 import no.uib.cipr.matrix.VectorEntry;
 import circlepatterns.layout.CPLayout;
 import circlepatterns.math.CPEuclideanOptimizable;
-import circlepatterns.math.CPSphericalOptimizable;
 import circlepatterns.math.CPSphericalFunctional.SpecialEdgeFlag;
+import circlepatterns.math.CPSphericalOptimizable;
 
 public class CirclePattern {
 

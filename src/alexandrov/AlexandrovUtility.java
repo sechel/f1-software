@@ -17,7 +17,6 @@ import javax.vecmath.Matrix4d;
 import javax.vecmath.Point4d;
 
 import alexandrov.math.CapCurvatureFunctional;
-
 import de.jtem.numericalMethods.calculus.function.RealVectorValuedFunctionOfSeveralVariablesWithJacobien;
 import de.jtem.numericalMethods.calculus.rootFinding.Broyden;
 

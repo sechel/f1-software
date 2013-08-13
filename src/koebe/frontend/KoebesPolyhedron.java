@@ -45,7 +45,6 @@ import alexandrov.frontend.action.SetDebugModeAction;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
-import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.varylab.feedback.swing.FeedbackAction;
 
 

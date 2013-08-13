@@ -25,10 +25,10 @@ import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 import circlepatterns.layout.CPLayout;
-import circlepatterns.math.CPSphericalOptimizable;
 import circlepatterns.math.CPSphericalFunctional.FlagFalse;
 import circlepatterns.math.CPSphericalFunctional.FlagGuess;
 import circlepatterns.math.CPSphericalFunctional.SpecialEdgeFlag;
+import circlepatterns.math.CPSphericalOptimizable;
 
 
 /**

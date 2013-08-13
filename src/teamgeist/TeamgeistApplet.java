@@ -71,8 +71,10 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 //			SyntheticaStandardLookAndFeel.setAntiAliasEnabled(true);
 //			SyntheticaStandardLookAndFeel.setWindowsDecorated(false);
 //			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
-			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
+//			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
+		
 		super.init();
 		setLayout(new BorderLayout());
 		add(viewer, BorderLayout.CENTER);

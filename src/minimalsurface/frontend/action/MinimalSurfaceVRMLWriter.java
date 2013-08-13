@@ -6,8 +6,8 @@ import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
 import halfedge.decorations.HasQuadGraphLabeling;
-import halfedge.decorations.HasXYZW;
 import halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel;
+import halfedge.decorations.HasXYZW;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;

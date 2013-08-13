@@ -105,9 +105,9 @@ public class TeamgeistDesigner extends JFrame implements StatusChangedListener{
 	
 	static{
 		try {
-			JFrame.setDefaultLookAndFeelDecorated(true);
-			JDialog.setDefaultLookAndFeelDecorated(true);
-			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
+//			JFrame.setDefaultLookAndFeelDecorated(true);
+//			JDialog.setDefaultLookAndFeelDecorated(true);
+//			UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
 //			SubstanceLookAndFeel.setCurrentTheme(new SubstanceSteelBlueTheme());
 //			SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());
 //			SubstanceLookAndFeel.setCurrentDecorationPainter(new Glass3DDecorationPainter());
@@ -115,10 +115,11 @@ public class TeamgeistDesigner extends JFrame implements StatusChangedListener{
 //			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaLookAndFeel.setWindowsDecorated(false);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
-			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
+//			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaLookAndFeel.setWindowsDecorated(false);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+//			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			DBGTracer.setActive(false);
 		} catch (Exception e) {}
 	}
