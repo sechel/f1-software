@@ -225,7 +225,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
         //mesh
         meshApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, meshColor);
         meshApp.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        meshApp.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);
+        meshApp.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         meshApp.setAttribute(FACE_DRAW, false);
         meshApp.setAttribute(TUBES_DRAW, true);
         meshApp.setAttribute(TUBE_RADIUS, meshWidth);
@@ -235,7 +235,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
         meshApp.setAttribute(POINT_RADIUS, meshWidth);
         meshApp.setAttribute(POINT_SHADER + "." + DIFFUSE_COLOR, meshColor);
         meshApp.setAttribute(POINT_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        meshApp.setAttribute(POINT_SHADER + "." + SPECULAR_EXPONENT, 30);
+        meshApp.setAttribute(POINT_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         meshRoot.setAppearance(meshApp);
         meshRoot.setGeometry(meshgeometry);
         meshRoot.setVisible(showMesh);
@@ -244,7 +244,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
         //circles1
         circles1App.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, circles1Color);
         circles1App.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        circles1App.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);
+        circles1App.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         circles1App.setAttribute(FACE_DRAW, false);
         circles1App.setAttribute(TUBES_DRAW, true);
         circles1App.setAttribute(TUBE_RADIUS, circles1Width);
@@ -260,7 +260,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
         //circles2
         circles2App.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, circles2Color);
         circles2App.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        circles2App.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);
+        circles2App.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         circles2App.setAttribute(FACE_DRAW, false);
         circles2App.setAttribute(TUBES_DRAW, true);
         circles2App.setAttribute(TUBE_RADIUS, circles2Width);
@@ -277,7 +277,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
         polyhedronApp.setAttribute(POLYGON_SHADER, "flat");
         polyhedronApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, faceColor);
         polyhedronApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        polyhedronApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30);
+        polyhedronApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         polyhedronApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COEFFICIENT, 0.7);
         polyhedronApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, faceColor);
         polyhedronApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);
@@ -298,7 +298,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
         sphereApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, sphereColor);
         sphereApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);
         sphereApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        sphereApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30);
+        sphereApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30.0);
         sphereApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COEFFICIENT, 0.7);
         sphereApp.setAttribute(VERTEX_DRAW, false);
         sphereApp.setAttribute(TRANSPARENCY, transparencySphereValue);

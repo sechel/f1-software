@@ -28,7 +28,7 @@
 	<classpathentry kind="lib" path="lib/gluegen-rt.jar"/>
 	<classpathentry kind="lib" path="lib/jogl.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.6-bin.jar"/>
-	<classpathentry kind="lib" path="lib/jReality.jar"/>
+	<classpathentry kind="lib" path="lib/jReality.jar" sourcepath="/jreality"/>
 	<classpathentry kind="lib" path="lib/jrworkspace.jar"/>
 	<classpathentry kind="lib" path="lib/synthetica.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>

@@ -180,7 +180,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		JSplitPane splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, editPanel, koebesPolyederView.getViewerComponent());
 		splitter.setOneTouchExpandable(true);
 		splitter.setResizeWeight(0.5);
-		splitter.setDividerLocation(390);
+//		splitter.setDividerLocation(390);
 		splitter.setContinuousLayout(true);
 		
 		add(splitter, BorderLayout.CENTER);
@@ -230,7 +230,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 			mainApp.addWindowListener(new MainWindowClosing());
 		mainApp.koebesPolyederView.update();
 		mainApp.validate();
-		mainApp.setSize(800, 500);
+		mainApp.setSize(900, 500);
 	}
 
 	
