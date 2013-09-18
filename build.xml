@@ -12,7 +12,7 @@
 	<property name="api" location="api"/>
 
 	<property name="test.src" location="src-testing"/>
-	<property name="test.build" location="bin-test"/>
+	<property name="test.build" location="build-test"/>
 	<property name="test.lib" location="lib"/>
 
 	<path id="build.classpath">
