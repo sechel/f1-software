@@ -1,11 +1,9 @@
 package teamgeist;
 
 import java.awt.BorderLayout;
-import java.util.logging.Level;
 
 import javax.swing.Action;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -27,9 +25,6 @@ import alexandrov.frontend.action.CloseProgram;
 import alexandrov.frontend.action.MainWindowClosing;
 import alexandrov.frontend.action.SetDebugModeAction;
 import circlepatterns.frontend.content.ShrinkPanelContainer;
-import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
-import de.jreality.backends.label.LabelUtility;
-import de.jreality.util.LoggingSystem;
 
 public class TeamgeistDesigner extends JFrame implements StatusChangedListener{
 

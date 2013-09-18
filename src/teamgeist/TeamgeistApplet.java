@@ -25,7 +25,6 @@ import util.debug.DBGTracer;
 import alexandrov.graph.CPMEdge;
 import alexandrov.graph.CPMFace;
 import alexandrov.graph.CPMVertex;
-import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.jreality.backends.label.LabelUtility;
 import de.jreality.util.LoggingSystem;
 
@@ -131,9 +130,10 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 //			SubstanceLookAndFeel.setCurrentGradientPainter(new GlassGradientPainter());
 //			SubstanceLookAndFeel.setCurrentHighlightPainter(new GlassHighlightPainter());
 //			UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
-			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaLookAndFeel.setWindowsDecorated(false);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+//			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaLookAndFeel.setWindowsDecorated(false);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			LoggingSystem.getLogger(LabelUtility.class).setLevel(Level.OFF);
 			DBGTracer.setActive(true);
 		} catch (Exception e) {}

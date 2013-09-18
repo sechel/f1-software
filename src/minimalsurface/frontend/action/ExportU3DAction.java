@@ -93,7 +93,7 @@ public class ExportU3DAction extends AbstractAction {
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
 				WriterU3D writer = new WriterU3D();
-				JrScene scene = viewer.getViewerApp().getJrScene();
+				JrScene scene = new JrScene(viewer.getSceneRoot());
 				writer.writeScene(scene, fos);
 				fos.close();
 			} catch (Exception e1) {

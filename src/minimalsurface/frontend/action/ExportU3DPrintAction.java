@@ -116,7 +116,7 @@ public class ExportU3DPrintAction extends AbstractAction {
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
 				WriterU3D writer = new WriterU3D();
-				JrScene scene = viewer.getViewerApp().getJrScene();
+				JrScene scene = new JrScene(viewer.getSceneRoot());
 				SceneGraphComponent surface = getSurfaceComponent(scene);
 				IndexedFaceSet surfaceGeom = (IndexedFaceSet) surface.getGeometry();
 				ThickenedSurfaceFactory tsf = new ThickenedSurfaceFactory(surfaceGeom);

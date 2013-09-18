@@ -10,10 +10,10 @@ import static de.jreality.writer.u3d.U3DAttribute.U3D_NONORMALS;
 import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
+import de.jreality.plugin.JRViewer;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.data.Attribute;
 import de.jreality.scene.data.DataList;
-import de.jreality.ui.viewerapp.ViewerApp;
 
 
 public class Disk extends IndexedFaceSet{
@@ -121,7 +121,7 @@ public class Disk extends IndexedFaceSet{
 	
 	public static void main(String[] args) {
 		Disk d = new Disk(20, 0.1);
-		ViewerApp.display(d);
+		JRViewer.display(d);
 	}
 	
 	

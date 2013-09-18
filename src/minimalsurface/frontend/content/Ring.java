@@ -2,8 +2,8 @@ package minimalsurface.frontend.content;
 
 import static de.jreality.shader.CommonAttributes.EDGE_DRAW;
 import static de.jreality.shader.CommonAttributes.VERTEX_DRAW;
-import static de.jreality.ui.viewerapp.ViewerApp.display;
 import de.jreality.geometry.ParametricSurfaceFactory;
+import de.jreality.plugin.JRViewer;
 import de.jreality.scene.Appearance;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.proxy.scene.SceneGraphComponent;
@@ -74,7 +74,7 @@ public class Ring extends IndexedFaceSet {
 		SceneGraphComponent c = new SceneGraphComponent();
 		c.setGeometry(r);
 		c.setAppearance(app);
-		display(c);
+		JRViewer.display(c);
 	}
 	
 	

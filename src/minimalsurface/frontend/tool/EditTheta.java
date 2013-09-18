@@ -90,6 +90,8 @@ public class EditTheta implements GraphTool<CPVertex, CPEdge, CPFace> {
 				controller.fireGraphChanged();
 			}
 			break;
+		default:
+			break;			
 		}
 		controller.refreshEditor();
 		return false;

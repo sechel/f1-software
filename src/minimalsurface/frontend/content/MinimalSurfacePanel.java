@@ -48,6 +48,7 @@ import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.vecmath.Point4d;
 import javax.vecmath.Vector3d;
 
@@ -64,23 +65,25 @@ import de.jreality.geometry.IndexedLineSetFactory;
 import de.jreality.math.FactoredMatrix;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
+import de.jreality.plugin.JRViewer;
+import de.jreality.plugin.JRViewer.ContentType;
+import de.jreality.plugin.JRViewerUtility;
+import de.jreality.plugin.basic.Scene;
 import de.jreality.scene.Appearance;
 import de.jreality.scene.Geometry;
 import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.Light;
 import de.jreality.scene.PointLight;
 import de.jreality.scene.SceneGraphComponent;
-import de.jreality.scene.SceneGraphPath;
 import de.jreality.scene.SceneGraphVisitor;
 import de.jreality.scene.Sphere;
 import de.jreality.scene.Transformation;
+import de.jreality.scene.Viewer;
 import de.jreality.scene.tool.Tool;
 import de.jreality.tools.ClickWheelCameraZoomTool;
 import de.jreality.tools.DraggingTool;
 import de.jreality.tools.EncompassTool;
 import de.jreality.tools.RotateTool;
-import de.jreality.ui.viewerapp.ViewerApp;
-import de.jreality.util.CameraUtility;
 
 
 /**
@@ -111,10 +114,8 @@ public class MinimalSurfacePanel extends JPanel{
 		activeSpheresRoot = new SceneGraphComponent();
 	private Transformation
 		diskThicknessTransform = new Transformation();
-	private ViewerApp
-		viewerApp = new ViewerApp(sceneRoot);
-	private SceneGraphPath
-		cameraPath=new SceneGraphPath();
+	private JRViewer
+		viewer = new JRViewer(true);
 	private IndexedFaceSet
 		activeFaceSet = null;
 //		invertedFaceSet = null;
@@ -153,7 +154,7 @@ public class MinimalSurfacePanel extends JPanel{
 		surfaceAppearance = new Appearance(),
 		diskApp = new Appearance(),
 		spheresApp = new Appearance(),
-		rootApp = viewerApp.getCurrentViewer().getSceneRoot().getAppearance(),
+		rootApp = new Appearance(),
 		linesApp = new Appearance();
 	
 	private boolean
@@ -195,7 +196,15 @@ public class MinimalSurfacePanel extends JPanel{
 		this.controller = controller;
 		
 		initScene();
-		viewerApp.update();
+		viewer.addContentSupport(ContentType.Raw);
+		viewer.addContentUI();
+		viewer.addBasicUI();
+		viewer.setShowPanelSlots(false, false, false, false);
+		viewer.setShowMenuBar(false);
+		viewer.setShowToolBar(false);
+		viewer.setContent(sceneRoot);
+		viewer.getController().setPropertyEngineEnabled(false);
+		JRootPane viewerRoot = viewer.startupLocal();
 		
 		MinimalViewOptions viewOptPanel = new MinimalViewOptions(controller, this);
 		
@@ -212,7 +221,7 @@ public class MinimalSurfacePanel extends JPanel{
 		
 		c.fill = GridBagConstraints.BOTH;
 		c.weighty = 1;
-		add(viewerApp.getContent(), c);
+		add(viewerRoot, c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weighty = 0;
@@ -358,16 +367,12 @@ public class MinimalSurfacePanel extends JPanel{
 	
 	
 	public void updateProperties(){
-		viewerApp.getCurrentViewer().render();
+		viewer.getViewer().render();
 	}
 	
-	
-	@SuppressWarnings("unchecked")
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> getActiveSurface(){
-		return (HalfEdgeDataStructure<CPVertex, CPEdge, CPFace>)activeSurface;
+		return activeSurface;
 	}
-	
-	
 	
 	public void addSurface(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> surface){
 		double[][] vertexData = new double[surface.getNumVertices()][];
@@ -534,26 +539,22 @@ public class MinimalSurfacePanel extends JPanel{
 	
 	
 	public void encompass(){
-		SceneGraphPath scenePath = new SceneGraphPath();
-		scenePath.push(sceneRoot);
-		CameraUtility.encompass(cameraPath, scenePath, cameraPath, 1, 0);
+		Scene scene = viewer.getPlugin(Scene.class);
+		JRViewerUtility.encompassEuclidean(scene);
 	}
 	
-	
-
-	public ViewerApp getViewerApp(){
-		return viewerApp;
-	}
-
 
 	public void update() {
-		getViewerApp().getCurrentViewer().render();
+		viewer.getViewer().render();
 	}
 	
 	public JComponent getViewerComponent() {
 		return this;
 	}
 
+	public Viewer getViewer() {
+		return viewer.getViewer();
+	}
 
 	public boolean isAntialias() {
 		return antialias;
@@ -906,6 +907,7 @@ public class MinimalSurfacePanel extends JPanel{
 	public void setCircleType(CircleType circleType) {
 		CircleType oldType = this.circleType;
 		switch (circleType) {
+		default:
 		case Disk:
 		case Ring:
 			if (oldType != CircleType.EqualRadiusRing) 

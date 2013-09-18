@@ -204,6 +204,7 @@ public class MinimalSurfaceVRMLWriter {
 				o.println("\t\t\tchildren [");
 					o.println("\t\t\t\tShape {");
 					switch (v.getVertexLabel()){
+					default:
 					case CIRCLE:
 						o.println("\t\t\t\t\tappearance Appearance {");
 						o.println("\t\t\t\t\tmaterial Material {");

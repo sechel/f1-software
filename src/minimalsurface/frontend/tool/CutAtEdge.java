@@ -59,6 +59,8 @@ public class CutAtEdge implements GraphTool<CPVertex, CPEdge, CPFace>  {
 				}
 				controller.fireGraphChanged();
 				break;
+			default:
+				break;				
 		}
 		return false;
 	}

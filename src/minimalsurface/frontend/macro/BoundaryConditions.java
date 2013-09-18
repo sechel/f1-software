@@ -244,15 +244,15 @@ public class BoundaryConditions extends MacroAction {
 			Object[] faces = interestList.getSelectedValues();
 			for (Object of : faces){
 				CPFace f = (CPFace)of;
-				if (s == guessPhi){
-					double phi = 0.0;
-					for (CPEdge b : f.getBoundary()){
-						if (b.isInteriorEdge())
-							phi += PI / 2;
-						else
-							phi += PI;
-					}
-				}
+//				if (s == guessPhi){
+//					double phi = 0.0;
+//					for (CPEdge b : f.getBoundary()){
+//						if (b.isInteriorEdge())
+//							phi += PI / 2;
+//						else
+//							phi += PI;
+//					}
+//				}
 				if (s == piButton)
 					f.setCapitalPhi(PI);
 				if (s == twoPiButton)

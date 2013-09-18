@@ -4,6 +4,10 @@ import halfedge.HalfEdgeDataStructure;
 
 import java.util.List;
 
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import junit.framework.TestCase;
 import de.jtem.blas.ComplexMatrix;
 import de.jtem.blas.IntegerMatrix;
@@ -13,8 +17,10 @@ import discreteRiemann.DiscreteConformalStructure.ConfEdge;
 import discreteRiemann.DiscreteConformalStructure.ConfFace;
 import discreteRiemann.DiscreteConformalStructure.ConfVertex;
 
-public class DiscreteRiemannUtilityTest extends TestCase {
+public class DiscreteRiemannUtilityTest {
 
+	@Test
+	@Ignore
 	public void testShow() {
 //		int m=11, n=17;
 //		int twist = 2;
@@ -87,6 +93,7 @@ public class DiscreteRiemannUtilityTest extends TestCase {
 
 	}
 	
+	@Test
 	public void testPeriodMatrices() {
 		int m=11, n=17;
 		for(int twist = 0; twist<m; twist++){
@@ -177,20 +184,21 @@ public class DiscreteRiemannUtilityTest extends TestCase {
 
 			if(twist<=m/2) {
 				System.out.println("twist: "+twist+" t: "+(-twist*1./m)+"+"+(n*1./m)+"i tau: "+tau+Math.abs(twist*1./m + tau.re));
-				assertTrue(Math.abs(twist*1./m + tau.re)<1e-6);		
+				Assert.assertTrue(Math.abs(twist*1./m + tau.re)<1e-6);		
 			}
 			else {
 				System.out.println("twist: "+twist+" t: "+((m-twist)*1./m)+"+"+(n*1./m)+"i tau: "+tau+Math.abs((twist-m)*1./m + tau.re));
-				assertTrue(Math.abs((twist-m)*1./m + tau.re)<1e-6);
+				Assert.assertTrue(Math.abs((twist-m)*1./m + tau.re)<1e-6);
 			}
 
-			assertTrue(Math.abs(n*1./m- tau.im)<1e-6);
+			Assert.assertTrue(Math.abs(n*1./m- tau.im)<1e-6);
 
 			System.out.println( "finished matrix:  " + (System.currentTimeMillis()-t));t = System.currentTimeMillis();
 		}
 
 	}
 
+	@Test
 	public void testStar() {
 		int m=7, n=11;
 //		for(int twist = 0; twist<m; twist++)
@@ -214,13 +222,13 @@ public class DiscreteRiemannUtilityTest extends TestCase {
 			double[] ssform = DiscreteRiemannUtility.starDual(dcs,DiscreteRiemannUtility.star(dcs, form));
 
 			for (ConfEdge e : dcs.edgeList){
-				assertTrue(Math.abs(
+				Assert.assertTrue(Math.abs(
 						form[e.getIndex()]+ssform[e.getIndex()])<1e-10);
 			}
 			ssform = DiscreteRiemannUtility.star(dcs,DiscreteRiemannUtility.starDual(dcs, form));
 
 			for (ConfEdge e : dcs.edgeList){
-				assertTrue(Math.abs(
+				Assert.assertTrue(Math.abs(
 						form[e.getIndex()]+ssform[e.getIndex()])<1e-10);
 			}
 
@@ -230,6 +238,7 @@ public class DiscreteRiemannUtilityTest extends TestCase {
 
 	}
 
+	@Test
 	public void testPeriods() {
 		int m=7, n=11;
 		for(int twist = 0; twist<m; twist++){
@@ -252,15 +261,15 @@ public class DiscreteRiemannUtilityTest extends TestCase {
 
 			double[][] periods = CycleUtility.periods(forms, quadBasis);
 			//System.out.println(new RealMatrix(periods));
-			assertEquals(periods.length,forms.size());
+			Assert.assertEquals(periods.length,forms.size());
 			int g = quadBasis.size();
 			for(int i = 0; i< periods.length; i++){
-				assertEquals(periods[i].length,2*g);
+				Assert.assertEquals(periods[i].length,2*g);
 				for(int j = 0; j< g; j++){
 					//				System.out.println("tw:"+twist+" i="+i+" j="+j+": "+periods[i][j]+": "+periods[i][j+g]);
-					assertTrue(
+					Assert.assertTrue(
 							Math.abs(Math.abs(periods[i][j])-((i==j)?0.:1.)) < 1e-9);	
-					assertTrue(
+					Assert.assertTrue(
 							Math.abs(periods[i][j+g]-periods[i][j]) < 1e-9);	
 				}
 			}

@@ -1,106 +1,92 @@
 <project name="f1-software" default="build" basedir=".">
-  <description>
+	<description>
     build file for f1-software
   </description>
-  <!-- set global properties for this build -->
-  <property name="src" location="src"/>
-  <property name="src-image" location="src-image"/>
-  <property name="src-unfold" location="src-unfold"/>  
-  
-  <property name="build" location="bin"/>
-  <property name="lib" location="lib"/>
-  <property name="api" location="api"/>
-  
-  <property name="test.src" location="src-testing"/>
-  <property name="test.build" location="bin-test"/>
-  <property name="test.lib" location="lib"/>
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+	<property name="src-image" location="src-image"/>
+	<property name="src-unfold" location="src-unfold"/>
 
-  <path id="build.classpath">
-    <pathelement location="${build}"/>
-    <fileset dir="${lib}">
-      <include name="commons-collections-3.2.jar"/>
-      <include name="jogl.jar"/>
-      <include name="jSyntax.jar"/>
-      <include name="mtj.jar"/>
-      <include name="numericalMethods.jar"/>
-      <include name="vecmath.jar"/>
-      <include name="jReality.jar"/>
-      <include name="junit.jar"/>
-      <include name="synthetica.jar"/>
-      <include name="mfc.jar"/>
-      <include name="itext-1.4.6.jar"/>
-      <include name="feedback.jar"/>
-      <include name="java2D.jar"/>
-    </fileset>
-  </path>
+	<property name="build" location="build"/>
+	<property name="lib" location="lib"/>
+	<property name="api" location="api"/>
 
-  <path id="test.classpath">
-    <path refid="build.classpath" />
-    <pathelement location="${test.build}" />
-  </path>
+	<property name="test.src" location="src-testing"/>
+	<property name="test.build" location="bin-test"/>
+	<property name="test.lib" location="lib"/>
 
-  
-  <target name="init">
-    <!-- Create the time stamp -->
-    <tstamp/>
-    <!-- Create the build directory structure used by compile -->
-  </target>
-  
-  <target name="build" depends="init"
-    description="compile the source " >
-    <!-- Compile the java code from ${src} into ${build} -->
-    <mkdir dir="${build}"/>
-    <javac srcdir="${src-image}" destdir="${build}" source="1.6">
-      <classpath refid="build.classpath" />
-    </javac>    
-    <javac srcdir="${src}" destdir="${build}" source="1.6">
-      <classpath refid="build.classpath" />
-    </javac>
-  	<copy todir="${build}">
-  		<fileset dir="${src-image}" includes="**"/>
-  		<fileset dir="${src}" includes="teamgeist/data/**"/>
-  		<fileset dir="${src}" includes="teamgeist/combinatorics/teamgeist_triang2_cut.cpm"/>
-  		<fileset dir="${src}" includes="minimalsurface/frontend/macro/predefined/**"/>
-  	</copy>
-  	<!--
-    <javac srcdir="${src-unfold}" destdir="${build}" source="1.5">
-      <classpath refid="build.classpath" />
-    </javac>            
-    -->
-  </target>
-  
-  <target name="test-build" depends="init, build" 
+	<path id="build.classpath">
+		<pathelement location="${build}"/>
+		<fileset dir="${lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<path id="test.classpath">
+		<path refid="build.classpath" />
+		<pathelement location="${test.build}" />
+	</path>
+
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+	</target>
+
+	<target name="build" depends="init" description="compile the source">
+		<mkdir dir="${build}"/>
+		<javac srcdir="${src-image}" destdir="${build}" source="1.6">
+			<classpath refid="build.classpath" />
+		</javac>
+		<javac srcdir="${src}" destdir="${build}" source="1.6">
+			<classpath refid="build.classpath" />
+			<exclude name="**/joglviewer/**/*"/>
+		</javac>
+		<copy todir="${build}">
+			<fileset dir="${src-image}" includes="**"/>
+			<fileset dir="${src}" includes="teamgeist/data/**"/>
+			<fileset dir="${src}" includes="teamgeist/combinatorics/teamgeist_triang2_cut.cpm"/>
+			<fileset dir="${src}" includes="minimalsurface/frontend/macro/predefined/**"/>
+		</copy>
+	</target>
+
+	<target name="test-build" depends="init, build" 
     description="compile the tests" >
-    <mkdir dir="${test.build}"/>
-    <javac srcdir="${test.src}" destdir="${test.build}" source="1.5">
-      <classpath refid="test.classpath" />
-    </javac>
-  </target>
-  
-  <target name="test" depends="init, test-build" >
-    <junit fork="yes" haltonfailure="yes">
-      <classpath refid="test.classpath" />
-      <assertions>
-    	<enable/>
-      </assertions>
-      <formatter type="brief" usefile="false"/>
-      <batchtest>
-        <fileset dir="${test.src}">
-          <include name="**/*Test*.java" />
-        </fileset>
-      </batchtest>
-    </junit>
-  </target>
-  
-  <target name="javadoc" depends="init" description="generate javadocs">
-    <javadoc sourcepath="${src}" destdir="${api}" packagenames="*" 
+		<mkdir dir="${test.build}"/>
+		<javac srcdir="${test.src}" destdir="${test.build}" source="1.5">
+			<classpath refid="test.classpath" />
+		</javac>
+		<copy todir="${test.build}">
+			<fileset dir="${test.src}" includes="data/**"/>
+		</copy>
+	</target>
+
+	<target name="test" depends="init, test-build" >
+		<junit fork="yes" haltonfailure="yes">
+			<classpath refid="test.classpath" />
+			<assertions>
+				<enable/>
+			</assertions>
+			<formatter type="brief" usefile="false"/>
+			<batchtest>
+				<fileset dir="${test.src}">
+					<include name="**/*Test*.java" />
+					<exclude name="util/TestData.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="javadoc" depends="init" description="generate javadocs">
+		<javadoc sourcepath="${src}" destdir="${api}" packagenames="*" 
       source="1.5" access="protected"/>
-  </target>
-  
-  <target name="clean"
+	</target>
+
+	<target name="clean"
     description="clean up" >
-    <delete dir="${build}"/>
-    <delete dir="${test.build}" />
-    <delete dir="${api}"/>
-  </target>
+		<delete dir="${build}"/>
+		<delete dir="${test.build}" />
+		<delete dir="${api}"/>
+	</target>
 </project>

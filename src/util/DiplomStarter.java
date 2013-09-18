@@ -28,7 +28,6 @@ import javax.swing.UIManager;
 import koebe.frontend.KoebesPolyhedron;
 import minimalsurface.frontend.MinimalSurfaces;
 import alexandrov.frontend.AlexandrovsPolyhedron;
-import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 
 public class DiplomStarter extends JFrame implements ActionListener{
 
@@ -124,6 +123,7 @@ public class DiplomStarter extends JFrame implements ActionListener{
 						System.out.println(line);
 					}
 					input.close();
+					in.close();
 				} catch (Exception err) {
 					err.printStackTrace();
 				}
@@ -133,11 +133,12 @@ public class DiplomStarter extends JFrame implements ActionListener{
 	
 	static{
 		try {
-			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
-			SyntheticaLookAndFeel.setWindowsDecorated(false);
-			SyntheticaLookAndFeel.setExtendedFileChooserEnabled(true);
-			SyntheticaLookAndFeel.setUseSystemFileIcons(true);
-			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
+//			SyntheticaLookAndFeel.setAntiAliasEnabled(true);
+//			SyntheticaLookAndFeel.setWindowsDecorated(false);
+//			SyntheticaLookAndFeel.setExtendedFileChooserEnabled(true);
+//			SyntheticaLookAndFeel.setUseSystemFileIcons(true);
+//			UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
 	}
 	

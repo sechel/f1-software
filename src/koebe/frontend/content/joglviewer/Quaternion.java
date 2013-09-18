@@ -194,7 +194,7 @@ public class Quaternion implements java.io.Serializable{
 	@Override
 	public String toString() {
 		float[] angax = toAngleAxis();
-		return "Orientation: " + (float)Math.toDegrees(angax[0]) + "� um "
+		return "Orientation: " + (float)Math.toDegrees(angax[0]) + "Grad um "
 			+ angax[1] + ", "
 			+ angax[2] + ", "
 			+ angax[3];

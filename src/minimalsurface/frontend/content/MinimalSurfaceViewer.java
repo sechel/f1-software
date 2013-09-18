@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -38,7 +37,7 @@ import circlepatterns.graph.CPVertex;
 import de.jreality.ui.viewerapp.SunflowMenu;
 import de.jreality.util.LoggingSystem;
 
-public class MinimalSurfaceViewer extends JDialog {
+public class MinimalSurfaceViewer extends JFrame {
 
 	private static final long 
 		serialVersionUID = 1L;
@@ -55,7 +54,6 @@ public class MinimalSurfaceViewer extends JDialog {
 
 	
 	public MinimalSurfaceViewer(JFrame parent, MainController controller) {
-		super(parent);
 		setSize(600, 600);
 		setTitle("Minimal Surface Viewer");
 		setLocationRelativeTo(parent);
@@ -87,7 +85,7 @@ public class MinimalSurfaceViewer extends JDialog {
 		importMenu.add(importOBJ);
 		
 	    try {
-	    	exportMenu.add(new SunflowMenu(minimalSurfacePanel.getViewerApp()));
+	    	exportMenu.add(new SunflowMenu(minimalSurfacePanel.getViewer()));
 	    } catch (Exception e) {
 	    	LoggingSystem.getLogger(this).log(CONFIG, "no sunflow", e);
 	    }
@@ -126,6 +124,7 @@ public class MinimalSurfaceViewer extends JDialog {
 	public void view(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> surface){
 		minimalSurfacePanel.resetGeometry();
 		minimalSurfacePanel.addSurface(surface);
+		minimalSurfacePanel.encompass();
 		minimalSurfacePanel.repaint();
 	}
 	
