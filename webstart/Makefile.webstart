@@ -7,7 +7,7 @@ dirs:
 	rm -rf /tmp/webstart
 	mkdir /tmp/webstart
 	
-copy:	
+copy:
 #	cp ../lib/jReality.jar /tmp/webstart/
 	cp ../lib/jSyntax.jar /tmp/webstart/
 	cp ../lib/synthetica.jar /tmp/webstart/

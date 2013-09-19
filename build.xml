@@ -1,45 +1,88 @@
-<project name="f1-software" default="build" basedir=".">
+<project name="f1-software" default="release" basedir=".">
 	<description>
     build file for f1-software
   </description>
-	<!-- set global properties for this build -->
+	
+	<property file="custom.properties"/>
+	<property file="default.properties"/>	
+	
+	<tstamp>
+		<format property="time" pattern="yyyyMMddHHmm" />
+	</tstamp>
+	<tstamp>
+		<format property="date" pattern="yyyy-MM-dd" />
+	</tstamp>
+	<property name="version" value="${time}"/>
+	<property name="vendor" value="Stefan Sechelmann"/>
+
 	<property name="src" location="src"/>
 	<property name="src-image" location="src-image"/>
 	<property name="src-unfold" location="src-unfold"/>
 
 	<property name="build" location="build"/>
-	<property name="lib" location="lib"/>
-	<property name="api" location="api"/>
+	<property name="lib" value="lib"/>
+	<property name="release" value="release/${date}"/>
 
 	<property name="test.src" location="src-testing"/>
 	<property name="test.build" location="build-test"/>
 	<property name="test.lib" location="lib"/>
+	
+	<property name="source" value="1.5"/>
+	<property name="target" value="1.5"/>
+	
+	<property name="main-class" value="minimalsurface.frontend.MinimalSurfaces"/>
 
 	<path id="build.classpath">
-		<pathelement location="${build}"/>
 		<fileset dir="${lib}">
 			<include name="**/*.jar"/>
 		</fileset>
 	</path>
+	<target name="create manifest classpath">
+		<manifestclasspath property="manifest.classpath" jarfile="${jarfile}">
+			<classpath refid="build.classpath"/>
+		</manifestclasspath>
+		<property name="manifest.classpath" value="${manifest.classpath}"/>
+	</target>
 
 	<path id="test.classpath">
 		<path refid="build.classpath" />
-		<pathelement location="${test.build}" />
+		<pathelement location="${build}"/>
+		<pathelement location="${test.build}"/>
 	</path>
-
+	
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="etc/ant/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+	<typedef resource="org/unintelligible/antjnlpwar/antjnlpwar.xml" format="xml">
+		<classpath>
+			<pathelement location="etc/ant/ant-jnlp-war.jar"/>
+			<pathelement location="etc/ant/Pack200Task.jar"/>
+			<pathelement location="etc/ant/velocity-1.4.jar"/>
+			<pathelement location="etc/ant/commons-collections.jar"/>
+			<pathelement location="etc/ant/logkit-1.0.1.jar"/>
+		</classpath>
+	</typedef>
 
 	<target name="init">
-		<!-- Create the time stamp -->
-		<tstamp/>
-		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>
+	</target>
+	
+	<target name="init-test">
+		<mkdir dir="${test.build}"/>
+	</target>
+	
+	<target name="init-release">
+		<mkdir dir="${release}"/>
 	</target>
 
 	<target name="build" depends="init" description="compile the source">
 		<mkdir dir="${build}"/>
-		<javac srcdir="${src-image}" destdir="${build}" source="1.6">
-			<classpath refid="build.classpath" />
+		<javac srcdir="${src-image}" destdir="${build}" source="${source}" target="${target}" includeantruntime="false">
+			<classpath refid="build.classpath"/>
 		</javac>
-		<javac srcdir="${src}" destdir="${build}" source="1.6">
+		<javac srcdir="${src}" destdir="${build}" source="${source}" target="${target}" includeantruntime="false">
 			<classpath refid="build.classpath" />
 			<exclude name="**/joglviewer/**/*"/>
 		</javac>
@@ -51,10 +94,9 @@
 		</copy>
 	</target>
 
-	<target name="test-build" depends="init, build" 
-    description="compile the tests" >
+	<target name="test-build" depends="build, init-test" description="compile the tests">
 		<mkdir dir="${test.build}"/>
-		<javac srcdir="${test.src}" destdir="${test.build}" source="1.5">
+		<javac srcdir="${test.src}" destdir="${test.build}" source="${source}" target="${target}" includeantruntime="false">
 			<classpath refid="test.classpath" />
 		</javac>
 		<copy todir="${test.build}">
@@ -62,7 +104,7 @@
 		</copy>
 	</target>
 
-	<target name="test" depends="init, test-build" >
+	<target name="test" depends="test-build" >
 		<junit fork="yes" haltonfailure="yes">
 			<classpath refid="test.classpath" />
 			<assertions>
@@ -77,16 +119,89 @@
 			</batchtest>
 		</junit>
 	</target>
-
-	<target name="javadoc" depends="init" description="generate javadocs">
-		<javadoc sourcepath="${src}" destdir="${api}" packagenames="*" 
-      source="1.5" access="protected"/>
+	
+	
+	<target name="release" depends="build, test, init-release">
+		<property name="jarfile" value="MatheonF1.jar"/>
+		<property name="jarpath" value="${release}/${jarfile}"/>
+		<antcallback target="create manifest classpath" return="manifest.classpath"/>
+		<jar destfile="${jarpath}">
+			<fileset dir="${build}" includes="**"/>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="Matheon F1 Software"/>
+				<attribute name="Implementation-Version" value="${version}"/>
+				<attribute name="Main-Class" value="${main-class}"/>
+				<attribute name="Class-Path" value="${manifest.classpath}"/>
+			</manifest>
+		</jar>
+		<copy todir="${release}">
+			<fileset dir="." includes="${lib}/**/*.jar"/>
+		</copy>
 	</target>
-
-	<target name="clean"
-    description="clean up" >
+	
+	<target name="release webstart generic" depends="release">
+		<property name="war-release-name" value="MatheonF1-${name}-${date}"/>
+		<property name="warfile" value="${war-release-name}.war"/>
+		<property name="warpath" value="${release}/${warfile}"/>
+		<jnlpwar
+            tofile="${warpath}"
+            title="${title}"
+            vendor="${vendor}"
+            pack200="false"
+            signStorepass="${signStorepass}"
+            signAlias="${signAlias}"
+			keystore="${keystore}"
+			attemptjavadetection="true"
+			offlineallowed="true"
+		>
+            <description>${title}</description>
+            <description kind="short">${title}</description>
+            <j2se minVersion="1.5" args="-Xmx512M"/>
+            <lib dir="${release}" includes="${manifest.classpath}"/>
+			<lib dir="${release}/${lib}/jogamp">
+				<include name="*.jar"/>
+				<exclude name="**/jogl-all.jar"/>
+				<exclude name="**/gluegen-rt.jar"/>
+			</lib>
+            <application 
+            	mainclass="${main}" 
+            	jar="${jarpath}"
+            />
+        </jnlpwar>
+	</target>	
+	
+	<target name="release webstart [All]">
+		<antcall target="release webstart [Alexandrov]"/>
+		<antcall target="release webstart [Koebe]"/>
+		<antcall target="release webstart [Minimal Surfaces]"/>
+	</target>
+	
+	<target name="release webstart [Minimal Surfaces]">
+		<property name="name" value="MinimalSurfaces"/>
+		<property name="title" value="Matheon F1 Minimal Surfaces"/>
+		<property name="main" value="minimalsurface.frontend.MinimalSurfaces"/>
+		<antcall target="release webstart generic"/>
+	</target>
+	
+	<target name="release webstart [Koebe]">
+		<property name="name" value="KoebePolyhedra"/>
+		<property name="title" value="Matheon F1 Koebe Polyhedra"/>
+		<property name="main" value="koebe.frontend.KoebesPolyhedron"/>
+		<antcall target="release webstart generic"/>
+	</target>
+	
+	<target name="release webstart [Alexandrov]">
+		<property name="name" value="AlexandrovPolyhedra"/>
+		<property name="title" value="Matheon F1 Alexandrov Polyhedra"/>
+		<property name="main" value="alexandrov.frontend.AlexandrovsPolyhedron"/>
+		<antcall target="release webstart generic"/>
+	</target>	
+	
+	<target name="clean" description="clean up">
 		<delete dir="${build}"/>
 		<delete dir="${test.build}" />
-		<delete dir="${api}"/>
 	</target>
+	
 </project>
