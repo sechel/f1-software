@@ -143,7 +143,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 	
 
 	public MainWindow() {
-		setSize(800, 400);
+		setSize(820, 460);
 		setResizable(false);
 		setTitle(appName);
 		setLocationRelativeTo(controller.getMainFrame());

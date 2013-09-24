@@ -4,6 +4,8 @@ import halfedge.decorations.IsFlippable;
 import halfedge.surfaceutilities.SurfaceException;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +17,42 @@ public class HalfEdgeUtility {
 		return v.getEdgeStar().size();
 	}
 	
+	public static <
+		V extends Vertex<V, E, F>,
+		E extends Edge<V, E, F>,
+		F extends Face<V, E, F>
+	> List<V> boundaryVertices(F face) {
+		Collection<E> b = boundaryEdges(face);
+		LinkedList<V> vList = new LinkedList<V>();
+		for (E e : b) {
+			vList.add(e.getTargetVertex());
+		}
+		return vList;
+	}
 	
+	public static <
+		E extends Edge<?,E,F>, 
+		F extends Face<?,E,F>
+	> List<E> boundaryEdges(F face) {
+		final E e0 = face.getBoundaryEdge();
+		if (e0 == null) {
+			return Collections.emptyList();
+		}
+		LinkedList<E> result = new LinkedList<E>();
+		E e = e0;
+		do {
+			if (face != e.getLeftFace()) {
+				throw new RuntimeException("Edge " + e + " does not have face " + face + " as left face, " +
+						"although it is the next edge of an edge which does.");
+			}
+			result.add(e);
+			e = e.getNextEdge();
+			if (e == null) {
+				throw new RuntimeException("Some edge has null as next edge.");
+			}
+		} while (e != e0);
+		return result;
+	}
 	
 	public static 
 	<
