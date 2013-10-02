@@ -13,9 +13,14 @@ import halfedge.generator.FaceByFaceGenerator;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import javax.vecmath.Point2d;
 import javax.vecmath.Point4d;
+
+import circlepatterns.graph.CPEdge;
+import circlepatterns.graph.CPFace;
+import circlepatterns.graph.CPVertex;
 
 import math.util.VecmathTools;
 import util.DualHashMap;
@@ -518,5 +523,52 @@ public class Subdivision {
 		}
 		return result;
 	}
+	
+	
+	
+	public static 
+	<
+		V extends Vertex<V, E, F> & HasXYZW,
+		E extends Edge<V, E, F>,
+		F extends Face<V, E, F> & HasXYZW
+	> HalfEdgeDataStructure<V, E, F> createDualGraph (HalfEdgeDataStructure<V, E, F> graph) throws SurfaceException{
+		HalfEdgeDataStructure<V, E, F> r = HalfEdgeDataStructure.createHEDS(graph.getVertexClass(), graph.getEdgeClass(), graph.getFaceClass());
+		Map<F, V> faceVertexMap = new HashMap<F, V>();
+		Map<E, E> edgeEdgeMap = new HashMap<E, E>();
+		Map<V, F> vertexFaceMap = new HashMap<V, F>();
+		for (F f : graph.getFaces()) {
+			V v = r.addNewVertex();
+			v.setXYZW(f.getXYZW());
+			faceVertexMap.put(f, v);
+		}
+		for (E e : graph.getEdges()) {
+			if (e.isBoundaryEdge()) continue;
+			E ee = r.addNewEdge();
+			edgeEdgeMap.put(e, ee);
+		}
+		for (V v : graph.getVertices()) {
+			if (v.isOnBoundary()) continue;
+			F f = r.addNewFace();
+			f.setXYZW(v.getXYZW());
+			vertexFaceMap.put(v, f);
+		}
+		
+		// linkage
+		for (E e : graph.getEdges()) {
+			if (e.isBoundaryEdge()) continue;
+			E ee = edgeEdgeMap.get(e);
+			ee.setTargetVertex(faceVertexMap.get(e.getLeftFace()));
+			ee.setLeftFace(vertexFaceMap.get(e.getStartVertex()));
+			E ePrev = e.getPreviousEdge();
+			while (ePrev.isBoundaryEdge()) {
+				// find next on boundary
+				ePrev = ePrev.getPreviousEdge();
+			}
+			ee.linkNextEdge(edgeEdgeMap.get(ePrev.getOppositeEdge()));
+		}
+		return r;
+	}
+
+	
 
 }

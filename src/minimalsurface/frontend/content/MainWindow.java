@@ -59,6 +59,7 @@ import minimalsurface.frontend.macro.AutoCut;
 import minimalsurface.frontend.macro.BoundaryConditions;
 import minimalsurface.frontend.macro.ConsistentStripSubdivide;
 import minimalsurface.frontend.macro.CutEars;
+import minimalsurface.frontend.macro.DualGraphSubdivision;
 import minimalsurface.frontend.macro.DualizeConformal;
 import minimalsurface.frontend.macro.DualizeKoenigs;
 import minimalsurface.frontend.macro.EdgeQuadSubdivide;
@@ -105,6 +106,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			new VertexQuadSubdivide(),
 			new ConsistentStripSubdivide(),
 			new EdgeQuadSubdivide(),
+			new DualGraphSubdivision(),
 			new CutEars(),
 			new AutoCut(), 
 			new DualizeKoenigs(),
