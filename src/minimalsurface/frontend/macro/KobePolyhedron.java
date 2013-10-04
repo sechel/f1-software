@@ -27,7 +27,7 @@ public class KobePolyhedron extends MacroAction {
 	@Override
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> process(
 			HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
-		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = KoebePolyhedron.contructKoebePolyhedron(graph);
+		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = KoebePolyhedron.contructKoebePolyhedron(graph, 1E-4, 20);
 		PolyederNormalizer.normalize(context);
 		return context.getPolyeder();
 	}

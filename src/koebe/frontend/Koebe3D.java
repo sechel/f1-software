@@ -98,7 +98,7 @@ public class Koebe3D implements GraphChangedListener, ChangeListener{
 			return;
 		}
 		try {
-			context = KoebePolyhedron.contructKoebePolyhedron(controller.getEditedGraph());
+			context = KoebePolyhedron.contructKoebePolyhedron(controller.getEditedGraph(), 1E-4, 20);
 			if (controller.isNormalize()) PolyederNormalizer.normalize(context);
 			controller.setStatus("polyhedron successfully constructed");
 		} catch (Exception e) {

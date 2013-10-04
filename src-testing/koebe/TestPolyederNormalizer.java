@@ -55,7 +55,7 @@ public class TestPolyederNormalizer extends TestCase {
 		HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> g = getTestInstance();
 		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = null;
 		try {
-			context = KoebePolyhedron.contructKoebePolyhedron(g);
+			context = KoebePolyhedron.contructKoebePolyhedron(g, 1E-4, 20);
 		} catch (SurfaceException e) {
 			e.printStackTrace();
 		}

@@ -42,7 +42,7 @@ public class MedialSubdivide extends GenerateMedialGraph  {
 		}
 		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = null;
 		try {
-			context = KoebePolyhedron.contructKoebePolyhedron(medial);
+			context = KoebePolyhedron.contructKoebePolyhedron(medial, 1E-4, 20);
 			PolyederNormalizer.normalize(context);
 			controller.setStatus("polyhedron successfully constructed");
 		} catch (Exception e) {

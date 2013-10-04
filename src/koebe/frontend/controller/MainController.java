@@ -49,7 +49,7 @@ public class MainController extends halfedge.frontend.controller.MainController<
 			return;
 		}
 		try {
-			context = KoebePolyhedron.contructKoebePolyhedron(getEditedGraph());
+			context = KoebePolyhedron.contructKoebePolyhedron(getEditedGraph(), 1E-4, 20);
 			if (normalize) 
 				PolyederNormalizer.normalize(context);
 			setStatus("polyhedron successfully constructed");

@@ -154,7 +154,7 @@ public class KoebePolyhedron{
 		V extends Vertex<V, E, F> & HasXYZW & HasXY & HasQuadGraphLabeling,
 		E extends Edge<V, E, F> & HasTheta,
 		F extends Face<V, E, F> & HasLabel & HasRho & HasXYZW & HasXY & HasRadius & HasGradientValue & HasCapitalPhi
-	> KoebePolyhedronContext<V, E, F> contructKoebePolyhedron(HalfEdgeDataStructure<V, E, F> graph) throws SurfaceException{
+	> KoebePolyhedronContext<V, E, F> contructKoebePolyhedron(HalfEdgeDataStructure<V, E, F> graph, double tol, int maxIter) throws SurfaceException{
 		KoebePolyhedronContext<V, E, F> context = new KoebePolyhedronContext<V, E, F>();
 		try {
 			if (!ConsistencyCheck.isValidSurface(graph))
@@ -194,7 +194,7 @@ public class KoebePolyhedron{
 			// optimization
 			StepController stepc = new ArmijoStepController();
 			try {
-				CirclePattern.computeEuclidean(medialCirclePattern, stepc, 1E-4, 20, null);
+				CirclePattern.computeEuclidean(medialCirclePattern, stepc, tol, maxIter, null);
 			} catch (NotConvergentException e){
 				throw new SurfaceException("minimization did not succeed in constructKoebePolyhedron(): " + e.getMessage());
 			}

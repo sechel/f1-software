@@ -41,7 +41,7 @@ public class VertexQuadSubdivide implements GraphTool<CPVertex, CPEdge, CPFace> 
 			}
 			KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = null;
 			try {
-				context = KoebePolyhedron.contructKoebePolyhedron(quad);
+				context = KoebePolyhedron.contructKoebePolyhedron(quad, 1E-4, 20);
 				PolyederNormalizer.normalize(context);
 				controller.setStatus("successfully subdivided");
 			} catch (Exception e) {

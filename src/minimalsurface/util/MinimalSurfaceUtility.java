@@ -25,6 +25,7 @@ import java.util.Stack;
 import java.util.Vector;
 
 import javax.vecmath.Point4d;
+import javax.vecmath.Vector4d;
 
 import math.util.VecmathTools;
 import util.debug.DBGTracer;
@@ -227,44 +228,76 @@ public class MinimalSurfaceUtility {
 	<
 		V extends Vertex<V, E, F> & HasXYZW,
 		E extends Edge<V, E, F> & HasLabel,
-		F extends Face<V, E, F>
-	> void dualizeSurfaceKoenigs(HalfEdgeDataStructure<V, E, F> graph, boolean signature) throws SurfaceException{
-		HashMap<V, Point4d> newCoordsMap = new HashMap<V, Point4d>();
-		HashSet<V> readyVertices = new HashSet<V>();
-		LinkedList<V> vertexQueue = new LinkedList<V>();
-		V v0 = graph.getVertex(0);
-		vertexQueue.offer(v0);
-		newCoordsMap.put(v0, new Point4d(0,0,0,1));
-		while (!vertexQueue.isEmpty()){
-			V v = vertexQueue.poll();
-			Point4d startCoord = newCoordsMap.get(v);
-			List<E> star = v.getEdgeStar();
-			for (E e : star){
-				V v2 = e.getStartVertex();
-				if (readyVertices.contains(v2))
-					continue;
-				else {
-					vertexQueue.offer(v2);
-					readyVertices.add(v2);
-				}
-				VecmathTools.dehomogenize(v.getXYZW());
-				VecmathTools.dehomogenize(v2.getXYZW());
-				VecmathTools.dehomogenize(startCoord);
-				
-				Point4d vec = new Point4d(v2.getXYZW());
-				vec.sub(v.getXYZW()); // w = 0
-//				vec.x *= scale;
-//				vec.y *= scale;
-//				vec.z *= scale;
-//				vec.w = 0;
-				vec.add(startCoord); // w = 1;
-				newCoordsMap.put(v2, vec);
+		F extends Face<V, E, F> & HasXYZW
+	> void dualizeSurfaceKoenigs(HalfEdgeDataStructure<V, E, F> S, boolean signature) throws SurfaceException{
+		Map<V, Point4d> dualMap = new HashMap<V, Point4d>();
+		Set<E> doneEdges = new HashSet<E>();
+		
+		Queue<E> edgeQueue = new LinkedList<E>();
+		Map<E, Double> factorMap = new HashMap<E, Double>();
+
+		E e0 = S.getEdge(0);
+		E e0Opp = e0.getOppositeEdge();
+		V v0 = e0.getStartVertex();
+		V v1 = e0.getTargetVertex();
+		dualMap.put(v0, v0.getXYZW());
+		dualMap.put(v1, v1.getXYZW());
+		factorMap.put(e0, 1.0);
+		factorMap.put(e0.getOppositeEdge(), 1.0);
+		if (e0.getLeftFace() != null) edgeQueue.offer(e0);
+		if (e0Opp.getLeftFace() != null) edgeQueue.offer(e0Opp);
+		
+		while (!edgeQueue.isEmpty()){
+			E e = edgeQueue.poll();
+			E ee = e.getPreviousEdge();
+			if (doneEdges.contains(e)) {
+				continue;
+			} else {
+				doneEdges.add(e);
+			}
+			double lambda = factorMap.get(e);
+			
+			Point4d A = e.getStartVertex().getXYZW();
+			Point4d B = e.getTargetVertex().getXYZW();
+			Point4d D = ee.getStartVertex().getXYZW();
+			Point4d M = e.getLeftFace().getXYZW();
+			VecmathTools.dehomogenize(A);
+			VecmathTools.dehomogenize(B);
+			VecmathTools.dehomogenize(D);
+			VecmathTools.dehomogenize(M);
+			
+			Vector4d AD = new Vector4d();
+			AD.sub(D, A);
+			Vector4d MD = new Vector4d();
+			MD.sub(D, M);
+			Vector4d e2 = new Vector4d();
+			e2.sub(B, M);
+
+			double beta = e2.length();
+			e2.normalize();
+			
+			double alpha = lambda / beta;
+			
+			double delta = MD.dot(e2);
+			double scale = delta * alpha;
+
+			AD.scale(1 / scale);
+			
+			Point4d As = dualMap.get(e.getStartVertex());
+			Point4d Ds = new Point4d(As);
+			Ds.add(AD);
+			dualMap.put(ee.getStartVertex(), Ds);
+			
+			edgeQueue.offer(ee);
+			factorMap.put(ee, scale);
+			if (ee.getOppositeEdge().getLeftFace() != null) {
+				edgeQueue.offer(ee.getOppositeEdge());
+				factorMap.put(ee.getOppositeEdge(), scale);
 			}
 		}
-		for (V v : graph.getVertices()){
-			Point4d p = newCoordsMap.get(v);
-			if (p != null)
-				v.setXYZW(p);
+		for (V v : S.getVertices()){
+			Point4d p = dualMap.get(v);
+			if (p != null) v.setXYZW(p);
 		}
 	}
 	
