@@ -6,6 +6,7 @@ import static java.util.logging.Level.CONFIG;
 import halfedge.HalfEdgeDataStructure;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
@@ -121,11 +122,17 @@ public class MinimalSurfaceViewer extends JFrame {
 	}
 	
 	
-	public void view(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> surface){
-		minimalSurfacePanel.resetGeometry();
-		minimalSurfacePanel.addSurface(surface);
-		minimalSurfacePanel.encompass();
-		minimalSurfacePanel.repaint();
+	public void view(final HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> surface){
+		Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				minimalSurfacePanel.resetGeometry();
+				minimalSurfacePanel.addSurface(surface);
+				minimalSurfacePanel.encompass();
+				minimalSurfacePanel.repaint();				
+			}
+		};
+		EventQueue.invokeLater(r);
 	}
 	
 	
