@@ -20,7 +20,7 @@ import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 
-public class DualizeConformal extends MacroAction {
+public class DualizeKiteQuads extends MacroAction {
 
 	protected Icon 
 		icon = new ImageIcon(ImageHook.getImage("schwarz.png"));
@@ -29,7 +29,7 @@ public class DualizeConformal extends MacroAction {
 	
 	@Override
 	public String getName() {
-		return "Dualize Conformal";
+		return "Dualize Kite Quads";
 	}
 
 	@Override

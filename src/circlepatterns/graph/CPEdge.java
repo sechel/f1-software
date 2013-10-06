@@ -1,9 +1,13 @@
 package circlepatterns.graph;
 
 import static java.lang.Math.PI;
+
+import javax.vecmath.Point4d;
+
 import halfedge.Edge;
 import halfedge.decorations.HasLabel;
 import halfedge.decorations.HasTheta;
+import halfedge.decorations.HasXYZW;
 
 
 /**
@@ -13,7 +17,7 @@ import halfedge.decorations.HasTheta;
  * <a href="http://www.math.tu-berlin.de/geometrie">TU-Berlin</a> 
  * @author Stefan Sechelmann
  */
-public class CPEdge extends Edge<CPVertex, CPEdge, CPFace> implements HasTheta, HasLabel{
+public class CPEdge extends Edge<CPVertex, CPEdge, CPFace> implements HasXYZW, HasTheta, HasLabel{
 
 	private static final long 
 		serialVersionUID = 1L;
@@ -21,6 +25,8 @@ public class CPEdge extends Edge<CPVertex, CPEdge, CPFace> implements HasTheta, 
 		theta = PI / 2;
 	private Boolean
 		label = false;
+	private Point4d
+		coord4d = new Point4d(0,0,0,1);
 	
 	
 //	@Override
@@ -64,6 +70,13 @@ public class CPEdge extends Edge<CPVertex, CPEdge, CPFace> implements HasTheta, 
 	@Override
 	public void setLabel(Boolean label) {
 		this.label = label;
+	}
+	
+	public Point4d getXYZW() {
+		return coord4d;
+	}
+	public void setXYZW(Point4d coord4d) {
+		this.coord4d.set(coord4d);
 	}
 	
 	

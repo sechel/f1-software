@@ -61,8 +61,8 @@ import minimalsurface.frontend.macro.CentralExtensionSubdivide;
 import minimalsurface.frontend.macro.ConsistentStripSubdivide;
 import minimalsurface.frontend.macro.CutEars;
 import minimalsurface.frontend.macro.DualGraphSubdivision;
-import minimalsurface.frontend.macro.DualizeConformal;
-import minimalsurface.frontend.macro.DualizeKoenigs;
+import minimalsurface.frontend.macro.DualizeKiteQuads;
+import minimalsurface.frontend.macro.DualizeConicalQuads;
 import minimalsurface.frontend.macro.EdgeQuadSubdivide;
 import minimalsurface.frontend.macro.EnneperCirclesGenerator;
 import minimalsurface.frontend.macro.KobePolyhedron;
@@ -111,8 +111,8 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			new CentralExtensionSubdivide(),
 			new CutEars(),
 			new AutoCut(), 
-			new DualizeKoenigs(),
-			new DualizeConformal(),
+			new DualizeConicalQuads(),
+			new DualizeKiteQuads(),
 			new LoadToGraphEditor(),
 			new SurfaceEditor()
 		};
@@ -547,7 +547,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			creationPlan.add(new MedialPolyhedron());
 			creationPlan.add(new VertexQuadSubdivide());
 			creationPlan.add(new AutoCut());
-			creationPlan.add(new DualizeConformal());
+			creationPlan.add(new DualizeKiteQuads());
 			for (MacroAction m : creationPlan) {
 				m.setController(controller);
 			}
@@ -561,7 +561,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			creationPlan.add(new BoundaryConditions());
 			creationPlan.add(new SphericalCirclePattern());
 			creationPlan.add(new VertexQuadSubdivide());
-			creationPlan.add(new DualizeConformal());
+			creationPlan.add(new DualizeKiteQuads());
 			for (MacroAction m : creationPlan) {
 				m.setController(controller);
 			}

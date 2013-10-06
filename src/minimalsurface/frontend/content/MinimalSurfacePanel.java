@@ -62,6 +62,7 @@ import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.geometry.IndexedLineSetFactory;
+import de.jreality.geometry.Primitives;
 import de.jreality.math.FactoredMatrix;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
@@ -110,6 +111,7 @@ public class MinimalSurfacePanel extends JPanel{
 		polyhedronRoot = new SceneGraphComponent(),
 		geometryRoot = new SceneGraphComponent(),
 		linesRoot = new SceneGraphComponent(),
+		unitSphereRoot = new SceneGraphComponent(),
 		activeDisksRoot = new SceneGraphComponent(),
 		activeSpheresRoot = new SceneGraphComponent();
 	private Transformation
@@ -152,6 +154,7 @@ public class MinimalSurfacePanel extends JPanel{
 	
 	private Appearance 
 		surfaceAppearance = new Appearance(),
+		unitSphereApp = new Appearance(),
 		diskApp = new Appearance(),
 		spheresApp = new Appearance(),
 		rootApp = new Appearance(),
@@ -246,6 +249,19 @@ public class MinimalSurfacePanel extends JPanel{
         //geometry node
         geometryRoot.setName("Geometry");
 		sceneRoot.addChild(geometryRoot);
+		
+		//unit sphere
+		unitSphereRoot.setName("Unit Sphere");
+		unitSphereRoot.setAppearance(unitSphereApp);
+		unitSphereRoot.setGeometry(Primitives.sphere(100));
+		unitSphereRoot.setVisible(false);
+		unitSphereApp.setAttribute(VERTEX_DRAW, false);
+		unitSphereApp.setAttribute(EDGE_DRAW, false);
+		unitSphereApp.setAttribute(FACE_DRAW, true);
+		unitSphereApp.setAttribute(TRANSPARENCY_ENABLED, true);
+		unitSphereApp.setAttribute(BACK_FACE_CULLING_ENABLED, true);
+		unitSphereApp.setAttribute(POLYGON_SHADER + "." + TRANSPARENCY, 0.5);
+		sceneRoot.addChild(unitSphereRoot);
         
         //polyhedron
 		surfaceAppearance.setAttribute(FACE_DRAW, true);
@@ -338,10 +354,10 @@ public class MinimalSurfacePanel extends JPanel{
         geometryRoot.addChild(linesRoot);
         
         // tools
-        geometryRoot.addTool(encompassTool);
-        geometryRoot.addTool(rotateTool);
-        geometryRoot.addTool(draggingTool);
-        geometryRoot.addTool(zoomTool);
+        sceneRoot.addTool(encompassTool);
+        sceneRoot.addTool(rotateTool);
+        sceneRoot.addTool(draggingTool);
+        sceneRoot.addTool(zoomTool);
 	}
 	
 
@@ -865,6 +881,9 @@ public class MinimalSurfacePanel extends JPanel{
 		return (Double)linesApp.getAttribute(LINE_SHADER + "." + TUBE_RADIUS);
 	}
 
+	public void setShowUnitSphere(boolean show) {
+		unitSphereRoot.setVisible(show);
+	}
 
 	public double getDiskThickness() {
 		return diskThickness;

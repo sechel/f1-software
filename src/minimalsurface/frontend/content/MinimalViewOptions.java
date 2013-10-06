@@ -45,6 +45,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 	private JCheckBox
 		antialiasChecker = null,
 		showPolyeder = null,
+		showUnitSphereChecker = null,
 		light1Checker = null,
 		light2Checker = null,
 		circlesChecker = null,
@@ -87,6 +88,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		super("View Options");
 		antialiasChecker = new JCheckBox("Antialiasing", view.isAntialias());
 		showPolyeder = new JCheckBox("Faces", view.isShowSurface());
+		showUnitSphereChecker = new JCheckBox("Unit Sphere", false);
 		light1Checker = new JCheckBox("Light 1", view.isLight1On());
 		light2Checker = new JCheckBox("Light 2", view.isLight2On());
 		circlesChecker = new JCheckBox("Circles", view.isShowCircles());
@@ -224,6 +226,8 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		c2.weightx = 0;
 		geomOptPanel.add(helperLinesColorBtn, c2);
 		
+		geomOptPanel.add(showUnitSphereChecker, c2);
+		
 		//main layout
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -237,6 +241,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		
 		antialiasChecker.addActionListener(this);
 		showPolyeder.addActionListener(this);
+		showUnitSphereChecker.addActionListener(this);
 		showMeshChecker.addActionListener(this);
 		circlesChecker.addActionListener(this);
 		spheresChecker.addActionListener(this);
@@ -274,6 +279,8 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 			view.setAntialias(antialiasChecker.isSelected());
 		if (showPolyeder == s)
 			view.setShowSurface(showPolyeder.isSelected());
+		if (showUnitSphereChecker == s) 
+			view.setShowUnitSphere(showUnitSphereChecker.isSelected());
 		if (showMeshChecker == s)
 			view.setShowMesh(showMeshChecker.isSelected());
 		if (light1Checker == s)

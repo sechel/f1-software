@@ -17,7 +17,10 @@ public class KobePolyhedron extends MacroAction {
 
 	protected Icon 
 		icon = new ImageIcon(ImageHook.getImage("koebe.png"));
-	
+	private double
+		tolerance = 1E-9;
+	private int 
+		maxIterations = 100; 
 	
 	@Override
 	public String getName() {
@@ -27,7 +30,7 @@ public class KobePolyhedron extends MacroAction {
 	@Override
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> process(
 			HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
-		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = KoebePolyhedron.contructKoebePolyhedron(graph, 1E-4, 20);
+		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = KoebePolyhedron.contructKoebePolyhedron(graph, tolerance, maxIterations);
 		PolyederNormalizer.normalize(context);
 		return context.getPolyeder();
 	}

@@ -1,7 +1,6 @@
 package minimalsurface.frontend.macro;
 
 import halfedge.HalfEdgeDataStructure;
-import halfedge.surfaceutilities.SurfaceUtility;
 import image.ImageHook;
 
 import javax.swing.Icon;
@@ -29,12 +28,10 @@ public class MedialPolyhedron extends MacroAction {
 	}
 
 	@Override
-	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> process(
-			HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
-
+	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> process(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
 		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = KoebePolyhedron.contructKoebePolyhedron(graph, tolerance, maxIterations);
 		PolyederNormalizer.normalize(context);
-		SurfaceUtility.rescaleGraph(context.getMedial(), 300.0);
+//		SurfaceUtility.rescaleGraph(context.getMedial(), 300.0);
 		return context.getMedial();
 	}
 	

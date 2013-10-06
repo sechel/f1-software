@@ -38,7 +38,7 @@ public abstract class PolyederNormalizer {
 	
 	public static <
 		V extends Vertex<V, E, F> & HasXYZW,
-		E extends Edge<V, E, F>,
+		E extends Edge<V, E, F> & HasXYZW,
 		F extends Face<V, E, F> & HasXYZW
 	> void normalize(KoebePolyhedronContext<V, E, F> context) throws NotConvergentException, Exception{
 		PolyederOptimizable<V, E, F> opt = new PolyederOptimizable<V, E, F>(context);
@@ -68,7 +68,7 @@ public abstract class PolyederNormalizer {
 
 	private static <
 		V extends Vertex<V, E, F> & HasXYZW,
-		E extends Edge<V, E, F>,
+		E extends Edge<V, E, F> & HasXYZW,
 		F extends Face<V, E, F> & HasXYZW
 	> void int_normalize(Vector center, HalfEdgeDataStructure<V, E, F> polyhedron, HalfEdgeDataStructure<V, E, F> medial){
 		Vector e1 = new DenseVector(new double[]{1,0,0,0});
@@ -113,6 +113,16 @@ public abstract class PolyederNormalizer {
 			p.z = newV.get(2) / newV.get(3);
 			p.w = 1;
 			f.setXYZW(p);
+		}
+		for (E e : polyhedron.getEdges()) {
+			Point4d p = e.getXYZW();
+			Vector v1 = new DenseVector(new double[]{p.x, p.y, p.z, p.w});
+			Vector newV = A_inv.mult(v1, new DenseVector(4));
+			p.x = newV.get(0) / newV.get(3);
+			p.y = newV.get(1) / newV.get(3);
+			p.z = newV.get(2) / newV.get(3);
+			p.w = 1;
+			e.setXYZW(p);
 		}
 		
 		// transform medial

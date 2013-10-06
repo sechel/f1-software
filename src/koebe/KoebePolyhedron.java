@@ -152,7 +152,7 @@ public class KoebePolyhedron{
 	
 	public static <
 		V extends Vertex<V, E, F> & HasXYZW & HasXY & HasQuadGraphLabeling,
-		E extends Edge<V, E, F> & HasTheta,
+		E extends Edge<V, E, F> & HasXYZW & HasTheta,
 		F extends Face<V, E, F> & HasLabel & HasRho & HasXYZW & HasXY & HasRadius & HasGradientValue & HasCapitalPhi
 	> KoebePolyhedronContext<V, E, F> contructKoebePolyhedron(HalfEdgeDataStructure<V, E, F> graph, double tol, int maxIter) throws SurfaceException{
 		KoebePolyhedronContext<V, E, F> context = new KoebePolyhedronContext<V, E, F>();
@@ -241,6 +241,10 @@ public class KoebePolyhedron{
 			for (V vertex : graph.getVertices()){
 				F f = vertexFaceMap.get(vertex);
 				vertex.setXYZW(f.getXYZW());
+			}
+			for (E edge : graph.getEdges()) {
+				V v = edgeVertexMap.get(edge);
+				edge.setXYZW(v.getXYZW());
 			}
 			
 			// context

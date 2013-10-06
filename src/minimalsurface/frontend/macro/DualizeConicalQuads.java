@@ -11,14 +11,14 @@ import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 
-public class DualizeKoenigs extends MacroAction {
+public class DualizeConicalQuads extends MacroAction {
 
 	protected Icon 
 		icon = new ImageIcon(ImageHook.getImage("schwarz.png"));
 	
 	@Override
 	public String getName() {
-		return "Dualize Koenigs";
+		return "Dualize Conical Quads";
 	}
 
 	@Override

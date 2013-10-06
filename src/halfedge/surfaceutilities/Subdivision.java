@@ -10,7 +10,6 @@ import halfedge.decorations.HasXY;
 import halfedge.decorations.HasXYZW;
 import halfedge.generator.FaceByFaceGenerator;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -194,7 +193,7 @@ public class Subdivision {
 		Map<V, V> vertexVertexMap, 
 		Map<E, V> edgeVertexMap, 
 		Map<F, V> faceVertexMap
-	) throws SurfaceException{
+	) throws SurfaceException {
 		HalfEdgeDataStructure<V, E, F> quad = HalfEdgeDataStructure.createHEDS(graph.getVertexClass(), graph.getEdgeClass(), graph.getFaceClass());
 		
 		// vertices
@@ -227,67 +226,69 @@ public class Subdivision {
 			V v = edgeVertexMap.get(e);
 			V v1 = vertexVertexMap.get(e.getTargetVertex());
 			V v3 = vertexVertexMap.get(e.getStartVertex());
-			V v4 = faceVertexMap.get(e.getLeftFace());
-			V v2 = faceVertexMap.get(e.getRightFace());
-			
-			F f1 = edgeFaceMap.get(e);
-			F f2 = edgeFaceMap.get(e.getOppositeEdge().getPreviousEdge());
-			F f3 = edgeFaceMap.get(e.getOppositeEdge());
-			F f4 = edgeFaceMap.get(e.getPreviousEdge());
 			
 			E e1 = quad.addNewEdge();
 			E e2 = quad.addNewEdge();
-			E e3 = quad.addNewEdge();
-			E e4 = quad.addNewEdge();
 			E e5 = quad.addNewEdge();
 			E e6 = quad.addNewEdge();
-			E e7 = quad.addNewEdge();
-			E e8 = quad.addNewEdge();
-			
-			e1.setLeftFace(f1);
-			e2.setLeftFace(f2);
-			e3.setLeftFace(f2);
-			e4.setLeftFace(f3);
-			e5.setLeftFace(f3);
-			e6.setLeftFace(f4);
-			e7.setLeftFace(f4);
-			e8.setLeftFace(f1);
-			
+			e1.linkOppositeEdge(e2);
+			e5.linkOppositeEdge(e6);
 			e1.setTargetVertex(v1);
 			e2.setTargetVertex(v);
-			e3.setTargetVertex(v2);
-			e4.setTargetVertex(v);
 			e5.setTargetVertex(v3);
 			e6.setTargetVertex(v);
-			e7.setTargetVertex(v4);
-			e8.setTargetVertex(v);
-			
-			e2.linkNextEdge(e3);
-			e4.linkNextEdge(e5);
-			e6.linkNextEdge(e7);
-			e8.linkNextEdge(e1);
-		
-			e1.linkOppositeEdge(e2);
-			e3.linkOppositeEdge(e4);
-			e5.linkOppositeEdge(e6);
-			e7.linkOppositeEdge(e8);
 			
 			quadEdgeMap.put(v, v1, e1);
 			quadEdgeMap.put(v1, v, e2);
-			quadEdgeMap.put(v, v2, e3);
-			quadEdgeMap.put(v2, v, e4);
 			quadEdgeMap.put(v, v3, e5);
 			quadEdgeMap.put(v3, v, e6);
-			quadEdgeMap.put(v, v4, e7);
-			quadEdgeMap.put(v4, v, e8);
+			
+			if (e.getLeftFace() != null) {
+				V v4 = faceVertexMap.get(e.getLeftFace());
+				F f1 = edgeFaceMap.get(e);
+				F f4 = edgeFaceMap.get(e.getPreviousEdge());
+				E e7 = quad.addNewEdge();
+				E e8 = quad.addNewEdge();
+				e1.setLeftFace(f1);
+				e6.setLeftFace(f4);
+				e7.setLeftFace(f4);
+				e8.setLeftFace(f1);
+				e7.setTargetVertex(v4);
+				e8.setTargetVertex(v);
+				e6.linkNextEdge(e7);
+				e8.linkNextEdge(e1);
+				e7.linkOppositeEdge(e8);
+				quadEdgeMap.put(v, v4, e7);
+				quadEdgeMap.put(v4, v, e8);
+			}
+			
+			if (e.getRightFace() != null) {
+				V v2 = faceVertexMap.get(e.getRightFace());
+				F f2 = edgeFaceMap.get(e.getOppositeEdge().getPreviousEdge());
+				F f3 = edgeFaceMap.get(e.getOppositeEdge());
+				E e3 = quad.addNewEdge();
+				E e4 = quad.addNewEdge();
+				e2.setLeftFace(f2);
+				e3.setLeftFace(f2);
+				e4.setLeftFace(f3);
+				e5.setLeftFace(f3);
+				e3.setTargetVertex(v2);
+				e4.setTargetVertex(v);
+				e2.linkNextEdge(e3);
+				e4.linkNextEdge(e5);
+				e3.linkOppositeEdge(e4);
+				quadEdgeMap.put(v, v2, e3);
+				quadEdgeMap.put(v2, v, e4);
+			}
 		}
 		
 		// face vertex connections
 		HashSet<F> readyFaces = new HashSet<F>();
 		for (E bEdge : graph.getEdges()){
 			F f = bEdge.getLeftFace();
-			if (readyFaces.contains(f))
+			if (f == null || readyFaces.contains(f)) {
 				continue;
+			}
 			V v = faceVertexMap.get(f);
 			V bVertex = edgeVertexMap.get(bEdge);
 			E lastEdge = quadEdgeMap.get(bVertex, v);
@@ -304,10 +305,13 @@ public class Subdivision {
 		// vertex vertex connections
 		for (V v : graph.getVertices()){
 			V vertex = vertexVertexMap.get(v);
-			Collection<E> vStar = quadEdgeMap.get(vertex);
-			for (E edge : vStar){
-				E linkEdge = edge.getNextEdge().getNextEdge().getNextEdge(); 
-				linkEdge.linkNextEdge(edge);
+			for (E e : v.getEdgeStar()) {
+				E ne = e.getNextEdge();
+				V ev = edgeVertexMap.get(e);
+				V nev = edgeVertexMap.get(ne);
+				E e1 = quadEdgeMap.get(ev, vertex);
+				E e2 = quadEdgeMap.get(vertex, nev);
+				e1.linkNextEdge(e2);
 			}
 		}
 		return quad;
