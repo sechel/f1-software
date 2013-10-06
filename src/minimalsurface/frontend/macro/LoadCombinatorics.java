@@ -246,6 +246,7 @@ public class LoadCombinatorics extends MacroAction {
 		}
 		
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object s = e.getSource();
 			if (s == modePredefinedRadio)
@@ -274,6 +275,7 @@ public class LoadCombinatorics extends MacroAction {
 			updateStates();
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			if (e.getSource() == quadULinesSpinner)
 				quadULines = quadULinesModel.getNumber().intValue();

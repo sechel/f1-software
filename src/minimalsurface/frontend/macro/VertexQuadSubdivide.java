@@ -103,6 +103,7 @@ public class VertexQuadSubdivide extends MacroAction {
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			onFaces = onFacesButton.isSelected();
 		}

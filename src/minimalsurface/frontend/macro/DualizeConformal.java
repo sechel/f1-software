@@ -95,6 +95,7 @@ public class DualizeConformal extends MacroAction {
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			mergeDegenerateFaces = mergeChecker.isSelected();
 		}

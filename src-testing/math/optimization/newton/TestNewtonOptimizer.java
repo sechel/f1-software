@@ -29,16 +29,19 @@ public class TestNewtonOptimizer extends TestCase {
 				return Math.sqrt(xnorm * xnorm + eps);
 			}
 			
+			@Override
 			public Double evaluate(Vector x, Vector gradient, Matrix hessian) {
 				evaluate(x, hessian);
 				return evaluate(x, gradient);
 			}
 
+			@Override
 			public Double evaluate(Vector x, Vector gradient) {
 				gradient.set(1 / theSqareRoot(x), x).add(c);
 				return evaluate(x);
 			}
 
+			@Override
 			public Double evaluate(Vector x, Matrix hessian) {
 				double tsq = theSqareRoot(x);
 				double tsqcube = tsq * tsq * tsq;
@@ -53,10 +56,12 @@ public class TestNewtonOptimizer extends TestCase {
 				return evaluate(x);
 			}
 
+			@Override
 			public Double evaluate(Vector x) {
 				return theSqareRoot(x) + c.dot(x);
 			}
 
+			@Override
 			public Integer getDomainDimension() {
 				return dim;
 			}			

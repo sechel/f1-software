@@ -125,6 +125,7 @@ public class FullFeaturedEditor
 	}
 	
 	
+	@Override
 	public void statusChanged(String msg) {
 		
 	}
@@ -139,6 +140,7 @@ public class FullFeaturedEditor
 			this.tool = tool;
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			controller.getToolController().setActiveTool(tool);
 			controller.getToolController().showToolOptions(tool);

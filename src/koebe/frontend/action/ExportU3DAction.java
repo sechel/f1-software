@@ -61,6 +61,7 @@ public class ExportU3DAction extends AbstractAction {
 		saveChooser.addChoosableFileFilter(objFilter);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (viewer.getPolyhedron() == null){
 			JOptionPane.showMessageDialog(parent, "No active polytop!");

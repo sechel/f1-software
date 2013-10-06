@@ -67,18 +67,22 @@ public class AddEdgeAction
 	}
 	
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 		
 	}
 	
+	@Override
 	public void setController(MainController<V, E, F> controller) {
 		this.controller = controller;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
@@ -125,6 +129,7 @@ public class AddEdgeAction
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<V, E, F> graph) {
 		boolean stopEdgeStrip = true;
 		if (startVertex == null){
@@ -168,6 +173,7 @@ public class AddEdgeAction
 	}
 
 	
+	@Override
 	public void resetTool() {
 		startVertex = null;
 		targetVertex = null;
@@ -177,22 +183,27 @@ public class AddEdgeAction
 	
 	
 	
+	@Override
 	public String getName() {
 		return "Add Edge";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Adds an edge to the current graph";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Add an edge";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		if (startPos != null){
 			g.getGraphics().setColor(controller.getColorController().getEdgeActionColor());
@@ -206,12 +217,14 @@ public class AddEdgeAction
 	}
 	
 
+	@Override
 	public boolean needsRepaint() {
 		boolean result = needsRepaint;
 		needsRepaint = false;
 		return result;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return new OptionPanel();
 	}
@@ -247,6 +260,7 @@ public class AddEdgeAction
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (editTypeCombo == e.getSource()){
 				editType = (EditType)editTypeCombo.getSelectedItem();

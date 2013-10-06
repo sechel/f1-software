@@ -39,6 +39,7 @@ public class ShowAboutAction extends AbstractAction {
 	}
 	
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		getAboutFrame().setVisible(true);
 	}

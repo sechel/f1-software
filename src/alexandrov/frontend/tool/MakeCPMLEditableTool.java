@@ -45,6 +45,7 @@ public class MakeCPMLEditableTool implements GraphTool<CPMVertex, CPMEdge, CPMFa
 	 * The calculation happens here (non-Javadoc)
 	 * @see frontend.halfedgeedit.graphtool.GraphTool#initTool()
 	 */
+	@Override
 	public Boolean initTool() {
 		HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph = controller.getEditedGraph();
 		double scale = 100.0;
@@ -62,50 +63,62 @@ public class MakeCPMLEditableTool implements GraphTool<CPMVertex, CPMEdge, CPMFa
 		return false;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPMVertex, CPMEdge, CPMFace> controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Create An Editable Graph";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Create An Editable Graph";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Create An Editable Graph";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

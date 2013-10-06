@@ -34,6 +34,7 @@ public class CloseProgram extends AbstractAction {
 		putValue(Action.MNEMONIC_KEY, KeyEvent.VK_X);
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.exit(0);
 	}

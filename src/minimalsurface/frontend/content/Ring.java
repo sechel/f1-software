@@ -25,17 +25,20 @@ public class Ring extends IndexedFaceSet {
 	    ParametricSurfaceFactory.Immersion immersion =
 	        new ParametricSurfaceFactory.Immersion() {
 
-                public int getDimensionOfAmbientSpace() {
+                @Override
+				public int getDimensionOfAmbientSpace() {
                     return 3;
                 }
 
-                public void evaluate(double x, double y, double[] targetArray, int arrayLocation) {
+                @Override
+				public void evaluate(double x, double y, double[] targetArray, int arrayLocation) {
                     double sRMulSinY=radius*Math.sin(y);
                     targetArray[arrayLocation  ] = Math.cos(-x)*(1.0 + sRMulSinY);
                     targetArray[arrayLocation+1] = Math.sin(-x)*(1.0 + sRMulSinY);   
                     targetArray[arrayLocation+2] = radius*Math.cos(y);
                 }
 
+				@Override
 				public boolean isImmutable() {
 					return true;
 				}

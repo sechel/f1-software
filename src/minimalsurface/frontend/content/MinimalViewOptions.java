@@ -267,6 +267,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		circleTypeCombo.addActionListener(this);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (antialiasChecker == s)
@@ -298,6 +299,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 	}
 
 	
+	@Override
 	public void colorChanged(ColorChangedEvent cce) {
 		Object s = cce.getSource();
 		if (polyederColorBtn == s)
@@ -319,6 +321,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		view.updateProperties();
 	}
 
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == polyederTransSlider)
 			view.setTransparencySpheresValue(polyederTransSlider.getValue() / 99.0);

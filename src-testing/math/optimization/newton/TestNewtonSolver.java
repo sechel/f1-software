@@ -40,24 +40,29 @@ public class TestNewtonSolver extends TestCase {
 		}
 		
 		
+		@Override
 		public void evaluate(Vector x, Vector fx, Vector offset) {
 			double xVal = x.get(0);
 			fx.set(0, fun(xVal) - offset.get(0));
 		}
 
+		@Override
 		public void evaluate(Vector x, Vector fx, Vector offset, Matrix jacobian) {
 			evaluate(x, fx, offset);
 			jacobian.set(0, 0, funDeriv(x.get(0)));
 		}
 
+		@Override
 		public void evaluate(Vector x, Matrix jacobian) {
 			jacobian.set(0, 0, funDeriv(x.get(0)));
 		}
 
+		@Override
 		public Integer getDomainDimension() {
 			return 1;
 		}
 
+		@Override
 		public Integer getCoDomainDimension() {
 			return 1;
 		}

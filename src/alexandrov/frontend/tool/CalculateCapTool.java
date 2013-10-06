@@ -53,6 +53,7 @@ public class CalculateCapTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> 
 	 * The calculation happens here (non-Javadoc)
 	 * @see frontend.halfedgeedit.graphtool.GraphTool#initTool()
 	 */
+	@Override
 	public Boolean initTool() {
 		HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph = controller.getEditedGraph();
 		if (graph == null)
@@ -87,46 +88,56 @@ public class CalculateCapTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> 
 		return false;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
 	
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPMVertex, CPMEdge, CPMFace> controller) {
 		this.controller = (MainController)controller;
 		edgeLengthTool.setController(controller);
 		edgeLengthTool.setLabelColor(Color.DARK_GRAY);
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Calculate Cap";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Calculates a cap";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Calculation Cap";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		edgeLengthTool.paint(g);
 		g.getGraphics().setColor(Color.MAGENTA);
@@ -139,10 +150,12 @@ public class CalculateCapTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> 
 		}
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

@@ -87,6 +87,7 @@ public class GenerateMedialGraph implements GraphTool<CPVertex, CPEdge, CPFace> 
 	}
 	
 	
+	@Override
 	public Boolean initTool() {
 		ColorController cc = medianController.getColorController();
 		medianController.setUseFaces(false);
@@ -97,14 +98,17 @@ public class GenerateMedialGraph implements GraphTool<CPVertex, CPEdge, CPFace> 
 		return false;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPVertex, CPEdge, CPFace> controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		switch (operation){
@@ -117,35 +121,43 @@ public class GenerateMedialGraph implements GraphTool<CPVertex, CPEdge, CPFace> 
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Medial";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Construct Medial Graph";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Medial Graph";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		if (medial != null)
 			g.drawGraph(medial, medianController);
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		boolean result = needsRepaint;
 		needsRepaint = false;
@@ -153,6 +165,7 @@ public class GenerateMedialGraph implements GraphTool<CPVertex, CPEdge, CPFace> 
 	}
 
 
+	@Override
 	public JPanel getOptionPanel() {
 		return new OptionPanel();
 	}
@@ -183,6 +196,7 @@ public class GenerateMedialGraph implements GraphTool<CPVertex, CPEdge, CPFace> 
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (fillFaces == e.getSource()){
 				makeSurface = fillFaces.isSelected();

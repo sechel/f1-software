@@ -87,6 +87,7 @@ public class TeamgeistLengthMap implements EdgeLengthMap{
 	}
 	
 	
+	@Override
 	public void randomize(){
 		setA(rnd.nextDouble());
 		setB(rnd.nextDouble());
@@ -108,6 +109,7 @@ public class TeamgeistLengthMap implements EdgeLengthMap{
 	}
 	
 	
+	@Override
 	public Double getLength(int index){
 		Double length = lengthMap.get(index).getValue();
 		if (length != null)

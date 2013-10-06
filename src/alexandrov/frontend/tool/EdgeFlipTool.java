@@ -33,18 +33,22 @@ public class EdgeFlipTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 	private MainController
 		controller = null;
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPMVertex, CPMEdge, CPMFace> controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		switch (operation){
 		case SELECT_EDGE:
@@ -60,39 +64,48 @@ public class EdgeFlipTool implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Edge Flip Tool";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Flip An Edge";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Flip";
 	}
 
 	
+	@Override
 	public void paint(GraphGraphics g) {
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

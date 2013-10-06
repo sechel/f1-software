@@ -66,6 +66,7 @@ public class LengthEditDialog extends JDialog implements ActionListener{
 		cancelButton.addActionListener(this);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == okButton)
 			result = JOptionPane.OK_OPTION;

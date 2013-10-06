@@ -154,6 +154,7 @@ public class EuclideanComputationShrinker extends ShrinkPanel implements ActionL
 		updateStates();
 	}
 
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == errorSpinner)
 			computeAction.setErrorExponent(errorSpinnerModel.getNumber().intValue());
@@ -172,10 +173,12 @@ public class EuclideanComputationShrinker extends ShrinkPanel implements ActionL
 		
 	}
 
+	@Override
 	public void setIteration(Integer iteration, Double error) {
 		iterationStatus.setText(iteration.toString());
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == randomInitChecker)
 			computeAction.setInitMode(INIT_RANDOM);
@@ -206,10 +209,12 @@ public class EuclideanComputationShrinker extends ShrinkPanel implements ActionL
 	}
 
 
+	@Override
 	public void done(Double error) {
 		
 	}
 	
+	@Override
 	public void start(Double error){
 		
 	}

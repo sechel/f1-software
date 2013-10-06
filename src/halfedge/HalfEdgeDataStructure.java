@@ -365,16 +365,19 @@ public class HalfEdgeDataStructure
 			return null;
 		}
 		
+		@Override
 		public boolean hasNext() {
 			return nextEdge != null;
 		}
 
+		@Override
 		public E next() {
 			E result = nextEdge;
 			nextEdge = getNextEdge();
 			return result;
 		}
 
+		@Override
 		public void remove() {
 		}
 		
@@ -382,6 +385,7 @@ public class HalfEdgeDataStructure
 		
 	public Iterable<E> getPositiveEdges(){
 		return new Iterable<E>(){
+			@Override
 			public Iterator<E> iterator() {
 				return new SignatureEdgeIterator(true);
 			}
@@ -390,6 +394,7 @@ public class HalfEdgeDataStructure
 	
 	public Iterable<E> getNegativeEdges(){
 		return new Iterable<E>(){
+			@Override
 			public Iterator<E> iterator() {
 				return new SignatureEdgeIterator(false);
 			}

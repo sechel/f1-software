@@ -67,6 +67,7 @@ F extends Face<V, E, F>
 
 	private double[] grad;
 
+	@Override
 	public double eval(double[] f) {
 		if (grad == null)
 			grad = new double[getNumberOfVariables()];
@@ -94,6 +95,7 @@ F extends Face<V, E, F>
 		 * @see de.jtem.numericalMethods.calculus.function.RealFunctionOfSeveralVariablesWithGradient#eval(double[],
 		 *      double[])
 		 */
+		@Override
 		public double eval(double[] f, double[] grad) {
 			if ((f.length != getNumberOfVariables())
 					|| (grad.length != getNumberOfVariables()))
@@ -122,6 +124,7 @@ F extends Face<V, E, F>
 			return value;
 		}
 
+		@Override
 		public int getNumberOfVariables() {
 			return G.getNumVertices();
 		}	
@@ -149,6 +152,7 @@ F extends Face<V, E, F>
 		 * @see de.jtem.numericalMethods.calculus.function.RealFunctionOfSeveralVariablesWithGradient#eval(double[],
 		 *      double[])
 		 */
+		@Override
 		public double eval(double[] f, double[] grad) {
 			if ((f.length != getNumberOfVariables())
 					|| (grad.length != getNumberOfVariables()))
@@ -177,12 +181,14 @@ F extends Face<V, E, F>
 
 		private double[] grad;
 
+		@Override
 		public double eval(double[] f) {
 			if (grad == null)
 				grad = new double[getNumberOfVariables()];
 			return eval(f, grad);
 		}
 
+		@Override
 		public int getNumberOfVariables() {
 			return G.getNumFaces();
 		}

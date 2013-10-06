@@ -135,6 +135,7 @@ public class EuclideanViewOptions extends ShrinkPanel implements ChangeListener,
 		add(exportPDFButton, c);
 	}
 
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == scaleSlider){
 			view.scale = Double.valueOf(scaleSlider.getValue());
@@ -142,6 +143,7 @@ public class EuclideanViewOptions extends ShrinkPanel implements ChangeListener,
 		view.update();
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == antialiasChecker)
 			view.antialiasing = antialiasChecker.isSelected();
@@ -161,6 +163,7 @@ public class EuclideanViewOptions extends ShrinkPanel implements ChangeListener,
 		view.update();
 	}
 
+	@Override
 	public void colorChanged(ColorChangedEvent cce) {
 		Object s = cce.getSource();
 		if (circles1ColorBtn == s) {

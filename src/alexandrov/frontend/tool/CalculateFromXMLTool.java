@@ -61,6 +61,7 @@ public class CalculateFromXMLTool implements GraphTool<CPMVertex, CPMEdge, CPMFa
 	 * The calculation happens here (non-Javadoc)
 	 * @see frontend.halfedgeedit.graphtool.GraphTool#initTool()
 	 */
+	@Override
 	public Boolean initTool() {
 		HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph = controller.getEditedGraph();
 		if (graph == null)
@@ -86,10 +87,12 @@ public class CalculateFromXMLTool implements GraphTool<CPMVertex, CPMEdge, CPMFa
 		return false;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPMVertex, CPMEdge, CPMFace> controller) {
 		this.controller = (MainController)controller;
 		edgeLengthTool.setController(controller);
@@ -107,43 +110,53 @@ public class CalculateFromXMLTool implements GraphTool<CPMVertex, CPMEdge, CPMFa
 	}
 	
 	
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Calculate Alexandrov AlexandrovPolyhedron";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Calculates the new polyeder triangulation";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Begin Calculation";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		edgeLengthTool.paint(g);
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

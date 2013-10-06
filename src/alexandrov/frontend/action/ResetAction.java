@@ -40,6 +40,7 @@ public class ResetAction extends AbstractAction{
 		putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(controller.getMainPanel(), "Would you really like to reset?")){
 			switch (controller.getEditorMode()){

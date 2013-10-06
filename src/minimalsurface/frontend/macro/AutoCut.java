@@ -60,6 +60,7 @@ public class AutoCut extends MacroAction {
 			toBoundaryChecker.addActionListener(this);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == toBoundaryChecker)
 				cutToBorderOnly = toBoundaryChecker.isSelected();

@@ -95,6 +95,7 @@ public class AlexandrovUtility {
 					x[i][j] = x[i][j] / x[i][3];
 		}
 		
+		@Override
 		public void eval(double[] p, double[] fx, int offset) {
 			for (int i = 0; i < 3; i++){
 				fx[i + offset] = (p[0]-x[i][0])*(p[0]-x[i][0]) + 
@@ -104,6 +105,7 @@ public class AlexandrovUtility {
 			}
 		}
 		
+		@Override
 		public void eval(double[] p, double[] fx, int offset, double[][] jac) {
 			eval(p, fx, offset);
 			for (int i = 0; i < jac.length; i++) {
@@ -113,10 +115,12 @@ public class AlexandrovUtility {
 			}
 		}
 	
+		@Override
 		public int getDimensionOfTargetSpace() {
 			return 3;
 		}
 	
+		@Override
 		public int getNumberOfVariables() {
 			return 3;
 		}

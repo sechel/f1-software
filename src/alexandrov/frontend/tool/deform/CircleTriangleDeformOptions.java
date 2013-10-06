@@ -45,6 +45,7 @@ public class CircleTriangleDeformOptions extends JDialog implements ActionListen
 	private Double
 		scale = 1.0;
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (s == okBtn){

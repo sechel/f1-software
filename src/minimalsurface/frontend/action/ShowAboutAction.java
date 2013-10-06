@@ -39,6 +39,7 @@ public class ShowAboutAction extends AbstractAction {
 		return aboutBox;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		getAboutPanel().setVisible(true);
 	}

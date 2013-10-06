@@ -55,6 +55,7 @@ public class OpenTopology extends AbstractAction {
 	}
 	
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (fileChooser.showOpenDialog(CPTestSuite.getMainFrame()) == JFileChooser.CANCEL_OPTION)
 			return;

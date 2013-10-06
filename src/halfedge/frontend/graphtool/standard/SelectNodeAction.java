@@ -41,19 +41,23 @@ public class SelectNodeAction
 		needsRepaint = false;
 	
 	
+	@Override
 	public void setController(MainController<V, E, F> controller) {
 		this.controller = controller;
 	}
 
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 	
+	@Override
 	public void leaveTool() {
 		
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		switch (operation){
@@ -91,36 +95,44 @@ public class SelectNodeAction
 	}
 
 	
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<V, E, F> graph) {
 		
 	}
 	
+	@Override
 	public void resetTool() {
 		
 	}
 	
 	
+	@Override
 	public String getName() {
 		return "Select Node";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Select Node";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Select Node";
 	}
 
 
+	@Override
 	public void paint(GraphGraphics g) {
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		boolean result = needsRepaint;
 		needsRepaint = false;
@@ -128,6 +140,7 @@ public class SelectNodeAction
 	}
 	
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

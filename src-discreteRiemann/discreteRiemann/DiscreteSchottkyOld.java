@@ -295,7 +295,8 @@ F extends Face<V, E, F>
 		    
 		 SchottkyDomain domain = new SchottkyDomain() {
 
-		   public double [][] getBoundary() {
+		   @Override
+		public double [][] getBoundary() {
 		     double [][] b = super.getBoundary();
 
 		     double [][] newB = new double[b.length-1][];
@@ -402,7 +403,8 @@ F extends Face<V, E, F>
 // grid.setKeepingAspectRatio(false);
 		self.addViewportChangeListener(
 		  new de.jtem.java2d.ViewportChangeListener() {
-		    public void viewportChange(ViewportChangeEvent event) {
+		    @Override
+			public void viewportChange(ViewportChangeEvent event) {
 		      grid.setRectangle(event.getViewport());
 		      grid.fireAppearanceChange();
 		    }

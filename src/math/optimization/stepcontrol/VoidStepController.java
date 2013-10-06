@@ -14,6 +14,7 @@ import no.uib.cipr.matrix.Vector;
  */
 public class VoidStepController implements StepController {
 
+	@Override
 	public Double step(Vector x, Double value, Vector dx, Optimizable func, Vector grad, Matrix hess) {
 		x.add(dx);
 		return func.evaluate(x, grad, hess);

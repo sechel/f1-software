@@ -151,6 +151,7 @@ public class CPMLEditor extends JPanel{
 			this.tool = tool;
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			controller.getToolController().setActiveTool(tool);
 			controller.getToolController().showToolOptions(tool);
@@ -169,22 +170,26 @@ public class CPMLEditor extends JPanel{
 	
 
 	private class CtrlCListener implements ActionListener{
-        public void actionPerformed(ActionEvent e) {
+        @Override
+		public void actionPerformed(ActionEvent e) {
 			editor.copy();
         }    
 	}
 	private class CtrlXListener implements ActionListener{
-        public void actionPerformed(ActionEvent e) {
+        @Override
+		public void actionPerformed(ActionEvent e) {
 			editor.cut();
         }    
 	}	
 	private class CtrlVListener implements ActionListener{
-        public void actionPerformed(ActionEvent e) {
+        @Override
+		public void actionPerformed(ActionEvent e) {
 			editor.paste();
         }
 	}	
 	private class CtrlAListener implements ActionListener{
-        public void actionPerformed(ActionEvent e) {
+        @Override
+		public void actionPerformed(ActionEvent e) {
             editor.setSelectionStart(0);
             editor.setSelectionEnd(editor.getText().length());
         }

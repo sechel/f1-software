@@ -103,10 +103,12 @@ F extends Face<V, E, F>
 
 		double length = 1;
 		
+		@Override
 		public Double getLength() {
 			return length;
 		}
 
+		@Override
 		public void setLength(Double length) {
 			this.length = length;
 		}
@@ -171,6 +173,7 @@ F extends Face<V, E, F>
 		return new Real3( s.p.x, s.p.y, 0 );
 	}
 	
+	@Override
 	double rho( Edge edge_ ) {
 		SchottkyEdge edge = (SchottkyEdge)edge_;
 		
@@ -360,7 +363,8 @@ F extends Face<V, E, F>
 	void createSchottkyDomain() {
 		
 		domain = new SchottkyDomain() {
-			 public double [][] getBoundary() {
+			 @Override
+			public double [][] getBoundary() {
 			     
 				 double [][] b = super.getBoundary();
 		     

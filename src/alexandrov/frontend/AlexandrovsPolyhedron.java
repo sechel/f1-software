@@ -254,6 +254,7 @@ public class AlexandrovsPolyhedron extends JFrame implements StatusChangedListen
 	}
 	
 	
+	@Override
 	public void switchToXMLMode(){
 		if (cpmlEditPanel != null){
 			cpmlEditPanel.setSize(splitter.getLeftComponent().getSize());
@@ -261,6 +262,7 @@ public class AlexandrovsPolyhedron extends JFrame implements StatusChangedListen
 		}
 	}
 	
+	@Override
 	public void switchToGraphMode(){
 		if (defaultEditPanel != null){
 			defaultEditPanel.setSize(splitter.getLeftComponent().getSize());
@@ -269,6 +271,7 @@ public class AlexandrovsPolyhedron extends JFrame implements StatusChangedListen
 	}
 	
 	
+	@Override
 	public void statusChanged(String msg) {
 		if (msg == null)
 			return;
@@ -322,6 +325,7 @@ public class AlexandrovsPolyhedron extends JFrame implements StatusChangedListen
 	}
 
 
+	@Override
 	public CPMLEditor getCpmlEditPanel() {
 		return cpmlEditPanel;
 	}

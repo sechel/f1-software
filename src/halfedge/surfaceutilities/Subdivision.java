@@ -189,7 +189,12 @@ public class Subdivision {
 		V extends Vertex<V, E, F> & HasXY & HasXYZW,
 		E extends Edge<V, E, F>,
 		F extends Face<V, E, F>
-	> HalfEdgeDataStructure<V, E, F> createEdgeQuadGraph(HalfEdgeDataStructure<V, E, F> graph, HashMap<V, V> vertexVertexMap, HashMap<E, V> edgeVertexMap, HashMap<F, V> faceVertexMap) throws SurfaceException{
+	> HalfEdgeDataStructure<V, E, F> createEdgeQuadGraph(
+		HalfEdgeDataStructure<V, E, F> graph, 
+		Map<V, V> vertexVertexMap, 
+		Map<E, V> edgeVertexMap, 
+		Map<F, V> faceVertexMap
+	) throws SurfaceException{
 		HalfEdgeDataStructure<V, E, F> quad = HalfEdgeDataStructure.createHEDS(graph.getVertexClass(), graph.getEdgeClass(), graph.getFaceClass());
 		
 		// vertices
@@ -209,6 +214,12 @@ public class Subdivision {
 			setMeanFacePosition(newVertex, f.getBoundaryEdge());
 			faceVertexMap.put(f, newVertex);
 		}
+		Map<E, F> edgeFaceMap = new HashMap<E, F>();
+		for (E e : graph.getEdges()) {
+			if (e.getLeftFace() == null) continue;
+			F newFace = quad.addNewFace();
+			edgeFaceMap.put(e, newFace);
+		}
 		
 		// edges vertex connections
 		DualHashMap<V, V, E> quadEdgeMap = new DualHashMap<V, V, E>();
@@ -219,6 +230,11 @@ public class Subdivision {
 			V v4 = faceVertexMap.get(e.getLeftFace());
 			V v2 = faceVertexMap.get(e.getRightFace());
 			
+			F f1 = edgeFaceMap.get(e);
+			F f2 = edgeFaceMap.get(e.getOppositeEdge().getPreviousEdge());
+			F f3 = edgeFaceMap.get(e.getOppositeEdge());
+			F f4 = edgeFaceMap.get(e.getPreviousEdge());
+			
 			E e1 = quad.addNewEdge();
 			E e2 = quad.addNewEdge();
 			E e3 = quad.addNewEdge();
@@ -227,6 +243,15 @@ public class Subdivision {
 			E e6 = quad.addNewEdge();
 			E e7 = quad.addNewEdge();
 			E e8 = quad.addNewEdge();
+			
+			e1.setLeftFace(f1);
+			e2.setLeftFace(f2);
+			e3.setLeftFace(f2);
+			e4.setLeftFace(f3);
+			e5.setLeftFace(f3);
+			e6.setLeftFace(f4);
+			e7.setLeftFace(f4);
+			e8.setLeftFace(f1);
 			
 			e1.setTargetVertex(v1);
 			e2.setTargetVertex(v);

@@ -45,6 +45,7 @@ public class CalculatePolyhedronThread implements IterationMonitor, Runnable, Re
 	}
 	
 
+	@Override
 	public void setIteration(Integer iteration, Double error) {
 		this.iteration = iteration;
 		this.progress = (int)(100 * (startError - error) / (startError - endError));
@@ -52,19 +53,23 @@ public class CalculatePolyhedronThread implements IterationMonitor, Runnable, Re
 		Thread.yield();
 	}
 
+	@Override
 	public void done(Double error){
 		
 	}
 	
+	@Override
 	public void start(Double error){
 		startError = error;
 	}
 	
 	
+	@Override
 	public void setStopAsFastAsPossible(boolean stop) {
 		this.stop = stop;
 	}
 	
+	@Override
 	public boolean isStopAsFastAsPossible() {
 		return stop;
 	}
@@ -90,6 +95,7 @@ public class CalculatePolyhedronThread implements IterationMonitor, Runnable, Re
 	}
 
 	
+	@Override
 	public void run() {
 		stop = false;
 		try {

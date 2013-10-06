@@ -22,11 +22,13 @@ public class HyperbolicRotaion
 	F extends Face<V, E, F> & HasRho & HasXY & HasRadius & HasCapitalPhi
 > implements Rotation<V, E, F> {
 
+	@Override
 	public Point2d rotate(Point2d p, Point2d center, Double phi, Double scale) {
 		return null;
 	}
 
 	
+	@Override
 	public double getPhi(E edge) {
 		double theta = edge.getTheta();
 		double leftRho = edge.getLeftFace().getRho();
@@ -38,6 +40,7 @@ public class HyperbolicRotaion
 	}
 
 
+	@Override
 	public Double getRadius(Double rho) {
 		Double er = Math.exp(rho);
 		return Math.log((1 + er) / (1 - er));

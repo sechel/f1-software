@@ -213,6 +213,7 @@ public class BoundaryConditions extends MacroAction {
 			updateStates();
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			Object[] faces = interestList.getSelectedValues();
 			for (Object of : faces){
@@ -223,6 +224,7 @@ public class BoundaryConditions extends MacroAction {
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object s = e.getSource();
 			if (s == okButton)
@@ -285,6 +287,7 @@ public class BoundaryConditions extends MacroAction {
 				angleModel.setValue(f.getCapitalPhi());
 		}
 
+		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			updateStates();
 		}

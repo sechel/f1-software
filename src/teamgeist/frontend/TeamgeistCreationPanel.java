@@ -107,6 +107,7 @@ public class TeamgeistCreationPanel extends ShrinkPanel implements ActionListene
 	}
 
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (makeRandomTeamgeist == s){
@@ -133,11 +134,13 @@ public class TeamgeistCreationPanel extends ShrinkPanel implements ActionListene
 		minimizeRunning = false;
 	}
 	
+	@Override
 	public void error(String message) {
 //		actErrorField.setText(message);
 	}
 
 
+	@Override
 	public void success(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> result) {
 		Double distance = Double.MAX_VALUE;
 		try {

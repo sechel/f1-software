@@ -39,14 +39,17 @@ F extends Face<V, E, F> > extends HalfEdgeDataStructure<V, E, F> {
 		private static final long
 		serialVersionUID = 1L;
 		
+		@Override
 		protected ConfVertex getThis() {
 			return this;
 		}
 
+		@Override
 		public Point2d getXY() {
 			return p;
 		}
 
+		@Override
 		public void setXY(Point2d p) {
 			this.p.set(p.x, p.y);
 		}
@@ -65,14 +68,17 @@ F extends Face<V, E, F> > extends HalfEdgeDataStructure<V, E, F> {
 		
 		private double rho;
 		
+		@Override
 		protected ConfEdge getThis() {
 			return this;
 		}
 
+		@Override
 		public double getRho() {
 			return rho;
 		}
 
+		@Override
 		public void setRho(double rho) {
 			ConfEdge e = getOppositeEdge();
 			if(e != null)
@@ -87,6 +93,7 @@ F extends Face<V, E, F> > extends HalfEdgeDataStructure<V, E, F> {
 		private static final long
 		serialVersionUID = 1L;
 		
+		@Override
 		protected ConfFace getThis() {
 			return this;
 		}

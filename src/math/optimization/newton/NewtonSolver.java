@@ -32,6 +32,7 @@ public class NewtonSolver implements Solver{
 		iterMon = null;
 
 	
+	@Override
 	public void solve(Linearizable fun, Vector x, Vector b) throws FunctionNotDefinedException, NotConvergentException{
 		Integer iteration = 0;
 		Double actError = Double.MAX_VALUE;
@@ -87,22 +88,27 @@ public class NewtonSolver implements Solver{
 	}
 	
 	
+	@Override
 	public void setIterationMonitor(IterationMonitor monitor) {
 		this.iterMon = monitor;
 	}
 
+	@Override
 	public void setMaxIterations(Integer maxIterations) {
 		this.maxIterations = maxIterations;
 	}
 
+	@Override
 	public Integer getMaxIterations() {
 		return maxIterations;
 	}
 
+	@Override
 	public void setError(Double error) {
 		this.error = error;
 	}
 
+	@Override
 	public Double getError() {
 		return error;
 	}

@@ -41,6 +41,7 @@ public class ResetAction extends AbstractAction {
 	}
 	
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(controller.getMainPanel(), "Would you really like to reset?")){
 			controller.getEditedGraph().clear();

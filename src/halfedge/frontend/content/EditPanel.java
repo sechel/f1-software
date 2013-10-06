@@ -140,6 +140,7 @@ public class EditPanel
 	}
 	
 
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		EditOperation opInternal = null;
 		EditOperation opAction = null;
@@ -168,6 +169,7 @@ public class EditPanel
 
 
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		EditOperation op = DRAG_BEGIN;
 		op.mouseEvent = e;
@@ -185,6 +187,7 @@ public class EditPanel
 
 
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		EditOperation op = DRAG_END;
 		op.mouseEvent = e;
@@ -202,18 +205,21 @@ public class EditPanel
 
 
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
 
 	}
 
 
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 		
 	}
 
 
 
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		EditOperation op = DRAG_TO;
 		op.mouseEvent = e;
@@ -231,6 +237,7 @@ public class EditPanel
 
 
 
+	@Override
 	public void mouseMoved(MouseEvent e) {
 		EditOperation op = MOUSE_POS;
 		op.mouseEvent = e;
@@ -248,6 +255,7 @@ public class EditPanel
 	
 	
 
+	@Override
 	public void keyTyped(KeyEvent e) {
 		EditOperation op = KEY_TYPED;
 		op.keyEvent = e;
@@ -263,6 +271,7 @@ public class EditPanel
 
 
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		EditOperation op = KEY_TYPED;
 		op.keyEvent = e;
@@ -278,6 +287,7 @@ public class EditPanel
 
 
 
+	@Override
 	public void keyReleased(KeyEvent e) {
 		EditOperation op = KEY_TYPED;
 		op.keyEvent = e;
@@ -292,6 +302,7 @@ public class EditPanel
 	}
 
 
+	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if (e.getWheelRotation() > 0)
 			scale *= 1 + e.getWheelRotation() / 10.0;
@@ -335,6 +346,7 @@ public class EditPanel
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object s = e.getSource();
 			if (antialiasingChecker == s)

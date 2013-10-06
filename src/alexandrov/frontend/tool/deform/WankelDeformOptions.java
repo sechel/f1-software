@@ -48,6 +48,7 @@ public class WankelDeformOptions extends JDialog implements ActionListener {
 	private Double
 		scale = 1.0;
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (s == okBtn){

@@ -101,6 +101,7 @@ public class CPSphericalOptimizable <
     }
     
     
+	@Override
 	public Double evaluate(Vector x, Vector gradient, Matrix hessian) {
 		// set the domain value
 		updateRhos(x);
@@ -113,6 +114,7 @@ public class CPSphericalOptimizable <
 		return result;
 	}
 	
+	@Override
 	public Double evaluate(Vector x, Vector gradient){
 		// set the domain value
 		updateRhos(x);
@@ -123,6 +125,7 @@ public class CPSphericalOptimizable <
 		return result;
 	}
 	
+	@Override
 	public Double evaluate(Vector x, Matrix hessian){
 		// set the domain value
 		updateRhos(x);
@@ -133,6 +136,7 @@ public class CPSphericalOptimizable <
 		return result;
 	}
 	
+	@Override
 	public Double evaluate(Vector x){
 		// set the domain value
 		updateRhos(x);
@@ -141,6 +145,7 @@ public class CPSphericalOptimizable <
 	}
 
 	
+	@Override
 	public Integer getDomainDimension() {
 		return graph.getNumFaces();
 	}

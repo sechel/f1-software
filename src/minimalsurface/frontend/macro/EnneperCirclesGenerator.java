@@ -132,12 +132,14 @@ public class EnneperCirclesGenerator extends MacroAction {
 			useMedialChecker.addActionListener(this);
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			uLines = uSpinnerModel.getNumber().intValue();
 			vLines = vSpinnerModel.getNumber().intValue();
 			scale = scaleSpinnerModel.getNumber().doubleValue();
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			useMedial = useMedialChecker.isSelected();			
 		}

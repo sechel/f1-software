@@ -81,6 +81,7 @@ public class DiplomStarter extends JFrame implements ActionListener{
 		AlexandrovsPolyhedron.isStandAlone = false;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (s == viewPDFButton)

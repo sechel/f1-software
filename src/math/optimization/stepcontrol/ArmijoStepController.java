@@ -22,6 +22,7 @@ public class ArmijoStepController implements StepController {
 		beta = 0.5;
 	
 	
+	@Override
 	public Double step(Vector x, Double value, Vector dx, Optimizable func, Vector grad, Matrix hess) {
 		Vector oldX = new DenseVector(x);
 		Vector oldGrad = new DenseVector(grad);

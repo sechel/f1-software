@@ -88,6 +88,7 @@ public class CPHyperbolicOptimizable <
     }
     
     
+	@Override
 	public Double evaluate(Vector x, Vector gradient, Matrix hessian) {
 		// set the domain value
 		updateRhos(x);
@@ -100,6 +101,7 @@ public class CPHyperbolicOptimizable <
 		return result;
 	}
 	
+	@Override
 	public Double evaluate(Vector x, Vector gradient){
 		// set the domain value
 		updateRhos(x);
@@ -110,6 +112,7 @@ public class CPHyperbolicOptimizable <
 		return result;
 	}
 	
+	@Override
 	public Double evaluate(Vector x, Matrix hessian){
 		// set the domain value
 		updateRhos(x);
@@ -120,6 +123,7 @@ public class CPHyperbolicOptimizable <
 		return result;
 	}
 	
+	@Override
 	public Double evaluate(Vector x){
 		// set the domain value
 		updateRhos(x);
@@ -128,6 +132,7 @@ public class CPHyperbolicOptimizable <
 	}
 
 	
+	@Override
 	public Integer getDomainDimension() {
 		return graph.getNumFaces();
 	}

@@ -144,6 +144,7 @@ public class EdgeLengthEditor3D extends ShrinkPanel implements ChangeListener, A
 		updateStates();
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (s == dragEditChecker)
@@ -153,6 +154,7 @@ public class EdgeLengthEditor3D extends ShrinkPanel implements ChangeListener, A
 	}
 	
 
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (editedEdge == null)
 			return;

@@ -60,6 +60,7 @@ public class ExportCPMLAction extends AbstractAction {
 		saveChooser.addChoosableFileFilter(cpmlFilter);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (viewer.getActiveGraph() == null){
 			JOptionPane.showMessageDialog(parent, "No active polytop!");

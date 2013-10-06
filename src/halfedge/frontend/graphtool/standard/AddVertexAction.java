@@ -42,14 +42,17 @@ public class AddVertexAction
 		selectedPos = new Point2d();
 
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 	
+	@Override
 	public void leaveTool() {
 		
 	}
 	
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		
@@ -66,47 +69,57 @@ public class AddVertexAction
 	}
 
 	
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<V, E, F> graph) {
 		V v = graph.addNewVertex();
 		v.getXY().set(selectedPos);
 	}
 	
+	@Override
 	public void resetTool() {
 		
 	}
 	
 	
 	
+	@Override
 	public String getName() {
 		return "Add Vertex";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Adds a Vertex to the graph";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Add Vertex";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		g.getGraphics().setColor(controller.getColorController().getVertexActionColor());
 		g.drawVertex(lastMousePos);
 	}
 
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 	
+	@Override
 	public void setController(MainController<V, E, F> controller) {
 		this.controller = controller;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

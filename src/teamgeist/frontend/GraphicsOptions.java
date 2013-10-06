@@ -61,6 +61,7 @@ public class GraphicsOptions extends ShrinkPanel implements ActionListener{
 	}
 
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (shadingChecker == s){

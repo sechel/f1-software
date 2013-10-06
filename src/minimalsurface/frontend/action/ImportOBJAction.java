@@ -70,10 +70,12 @@ public class ImportOBJAction extends AbstractAction {
 	
 	private class PosConverter implements PositionConverter<CPVertex>{
 
+		@Override
 		public double[] getPosition(CPVertex v) {
 			return new double[]{v.getXYZW().x, v.getXYZW().y, v.getXYZW().z, v.getXYZW().w};
 		}
 
+		@Override
 		public void setPosition(CPVertex v, double[] pos) {
 			v.getXYZW().x = pos[0];
 			v.getXYZW().y = pos[1];
@@ -84,6 +86,7 @@ public class ImportOBJAction extends AbstractAction {
 	}
 	
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		int result = openChooser.showOpenDialog(parent);
 		if (result == JFileChooser.APPROVE_OPTION) {

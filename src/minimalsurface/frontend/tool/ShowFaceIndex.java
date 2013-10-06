@@ -35,46 +35,56 @@ public class ShowFaceIndex implements GraphTool<CPVertex, CPEdge, CPFace> {
 	private Color
 		labelColor = Color.RED;
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPVertex, CPEdge, CPFace> controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		controller.refreshEditor();
 		return false;
 	}
 
 	
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Show Face Index";
 	}
 
 
+	@Override
 	public String getDescription() {
 		return "Show Face Index";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Edge Index";
 	}
 
 	
+	@Override
 	public void paint(GraphGraphics g) {
 		HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph = controller.getEditedGraph();
 		for (CPFace f : graph.getFaces()){
@@ -90,10 +100,12 @@ public class ShowFaceIndex implements GraphTool<CPVertex, CPEdge, CPFace> {
 		}
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}
@@ -106,6 +118,7 @@ public class ShowFaceIndex implements GraphTool<CPVertex, CPEdge, CPFace> {
 		this.labelColor = labelColor;
 	}
 
+	@Override
 	public Icon getIcon() {
 		return null;
 	}

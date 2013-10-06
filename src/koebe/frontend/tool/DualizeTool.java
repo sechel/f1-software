@@ -42,6 +42,7 @@ public class DualizeTool implements GraphTool<CPVertex, CPEdge, CPFace> {
 	}
 	
 	
+	@Override
 	public Boolean initTool() {
 		if (jRViewer.getPolyhedron() == null) {
 			controller.setStatus("No active polyhedron!");
@@ -73,6 +74,7 @@ public class DualizeTool implements GraphTool<CPVertex, CPEdge, CPFace> {
 		
 		PositionConverter<CPVertex> pConv = new Converter.PositionConverter<CPVertex>() {
 
+			@Override
 			public double[] getPosition(CPVertex v) {
 				Point4d p = v.getXYZW();
 				VecmathTools.dehomogenize(p);
@@ -80,6 +82,7 @@ public class DualizeTool implements GraphTool<CPVertex, CPEdge, CPFace> {
 				return ret;
 			}
 
+			@Override
 			public void setPosition(CPVertex v, double[] pos) {
 				v.getXYZW().x = pos[0];
 				v.getXYZW().y = pos[1];
@@ -106,52 +109,64 @@ public class DualizeTool implements GraphTool<CPVertex, CPEdge, CPFace> {
 		return true;
 	}
 	
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) {
 		
 	}
 
+	@Override
 	public String getDescription() {
 		return getShortDescription();
 	}
 
+	@Override
 	public Icon getIcon() {
 		return null;
 	}
 
+	@Override
 	public String getName() {
 		return "Dualize";
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}
 
+	@Override
 	public String getShortDescription() {
 		return getName();
 	}
 
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPVertex, CPEdge, CPFace> controller) {
 		this.controller = (MainController)controller;
 	}

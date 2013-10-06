@@ -59,6 +59,7 @@ public class ExportSurfaceOBJAction extends AbstractAction {
 		saveChooser.addChoosableFileFilter(objFilter);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		int result = saveChooser.showSaveDialog(parent);
 		if (result == JFileChooser.APPROVE_OPTION) {

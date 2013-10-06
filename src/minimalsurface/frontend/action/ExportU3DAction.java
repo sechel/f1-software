@@ -78,6 +78,7 @@ public class ExportU3DAction extends AbstractAction {
 		optionPanel.add(normalsChecker, c);
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		int result = saveChooser.showSaveDialog(parent);
 		if (result == JFileChooser.APPROVE_OPTION) {

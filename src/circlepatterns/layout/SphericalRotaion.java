@@ -26,6 +26,7 @@ public class SphericalRotaion
 	F extends Face<V, E, F> & HasRho & HasXY & HasRadius & HasCapitalPhi
 > implements Rotation<V, E, F> {
 
+	@Override
 	public Point2d rotate(Point2d p, Point2d center, Double phi, Double logScale) {
 		Moebius rot = new Moebius();
 		Complex c1 = new Complex(center.x, center.y);
@@ -39,6 +40,7 @@ public class SphericalRotaion
 	}
 
 	
+	@Override
 	public double getPhi(E edge) {
 		double theta = edge.getTheta();
 		double leftRho = edge.getLeftFace() == null ? 0.0 : edge.getLeftFace().getRho();
@@ -50,6 +52,7 @@ public class SphericalRotaion
 	}
 
 
+	@Override
 	public Double getRadius(Double rho) {
 		return 2*Math.atan(Math.exp(rho));
 	}

@@ -84,6 +84,7 @@ public class GeneratorShrinker extends ShrinkPanel implements ChangeListener{
 		eps2Spinner.addChangeListener(this);
 	}
 
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == widthSpinner)
 			squareGridAction.setWidth(widthModel.getNumber().intValue());

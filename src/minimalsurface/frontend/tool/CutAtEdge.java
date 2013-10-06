@@ -30,18 +30,22 @@ public class CutAtEdge implements GraphTool<CPVertex, CPEdge, CPFace>  {
 	private MainController
 		controller = null;
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPVertex, CPEdge, CPFace>  controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		CPEdge e = CPEdge.class.cast(operation.edge);
@@ -65,38 +69,47 @@ public class CutAtEdge implements GraphTool<CPVertex, CPEdge, CPFace>  {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Cut";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return null;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Cut At Edge";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Cut";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return false;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

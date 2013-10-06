@@ -57,18 +57,22 @@ public class CPFace extends Face<CPVertex, CPEdge, CPFace> implements HasGradien
 		return this;
 	}
 	
+	@Override
 	public Double getGradientValue() {
 		return gradientValue;
 	}
 
+	@Override
 	public void setGradientValue(Double gradientValue) {
 		this.gradientValue = gradientValue;
 	}
 
+	@Override
 	public Double getRho() {
 		return rho;
 	}
 
+	@Override
 	public void setRho(Double rho) {
 		this.rho = rho;
 	}
@@ -79,18 +83,22 @@ public class CPFace extends Face<CPVertex, CPEdge, CPFace> implements HasGradien
 		return super.toString();// + ": rho=" + rho;
 	}
 
+	@Override
 	public void setRadius(Double r) {
 		radius = r;
 	}
 
+	@Override
 	public Double getRadius() {
 		return radius;
 	}
 
+	@Override
 	public void setXY(Point2d p) {
 		getXY().set(p);
 	}
 
+	@Override
 	public Point2d getXY() {
 		if (coord == null)
 			coord = new Point2d();
@@ -98,31 +106,37 @@ public class CPFace extends Face<CPVertex, CPEdge, CPFace> implements HasGradien
 	}
 
 
+	@Override
 	public Point4d getXYZW() {
 		if (coord4d == null)
 			coord4d = new Point4d();
 		return coord4d;
 	}
 	
+	@Override
 	public void setXYZW(Point4d p) {
 		getXYZW().set(p);
 	}
 
+	@Override
 	public Boolean getLabel() {
 		if (label == null) label = false;
 		return label;
 	}
 
+	@Override
 	public void setLabel(Boolean label) {
 		this.label = label;
 	}
 
+	@Override
 	public Double getCapitalPhi() {
 		if (capitalPhi == null)
 			capitalPhi = 2 * Math.PI;
 		return capitalPhi;
 	}
 
+	@Override
 	public void setCapitalPhi(Double capitalPhi) {
 		this.capitalPhi = capitalPhi;
 	}

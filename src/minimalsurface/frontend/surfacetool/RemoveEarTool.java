@@ -74,6 +74,7 @@ public class RemoveEarTool extends AbstractTool implements GeometryTool {
 		
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			view.setGeometryTool(RemoveEarTool.this);
 		}
@@ -85,10 +86,12 @@ public class RemoveEarTool extends AbstractTool implements GeometryTool {
 	public void perform(ToolContext tc) {
 	}
 
+	@Override
 	public Action getAction() {
 		return action;
 	}
 
+	@Override
 	public Tool getTool() {
 		return this;
 	}

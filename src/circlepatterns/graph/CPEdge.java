@@ -32,10 +32,12 @@ public class CPEdge extends Edge<CPVertex, CPEdge, CPFace> implements HasTheta, 
 //	}
 	
 	
+	@Override
 	public Double getTheta() {
 		return theta;
 	}
 
+	@Override
 	public void setTheta(Double theta) {
 		this.theta = theta;
 		if (oppositeEdge != null)
@@ -52,12 +54,14 @@ public class CPEdge extends Edge<CPVertex, CPEdge, CPFace> implements HasTheta, 
 		return this;
 	}
 
+	@Override
 	public Boolean getLabel() {
 		if (label == null)
 			label = false;
 		return label;
 	}
 
+	@Override
 	public void setLabel(Boolean label) {
 		this.label = label;
 	}

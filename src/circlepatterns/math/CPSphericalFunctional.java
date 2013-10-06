@@ -35,6 +35,7 @@ public class CPSphericalFunctional {
 	
 	
 	public static class FlagFalse implements SpecialEdgeFlag{
+		@Override
 		public Boolean specialEdge(Edge<?, ?, ?> edge) {
 			return false;
 		}
@@ -42,6 +43,7 @@ public class CPSphericalFunctional {
 	}
 	
 	public static class FlagGuess implements SpecialEdgeFlag{
+		@Override
 		public Boolean specialEdge(Edge<?, ?, ?> edge) {
 			if (!edge.isInteriorEdge())
 				return false;

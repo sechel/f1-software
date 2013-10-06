@@ -340,21 +340,25 @@ public class ShrinkPanel extends JPanel implements ComponentListener{
 
 
 
+	@Override
 	public void componentResized(ComponentEvent arg0) {
 		updateShrinkPanel();	
 	}
 
 
+	@Override
 	public void componentMoved(ComponentEvent arg0) {
 
 	}
 
 
+	@Override
 	public void componentShown(ComponentEvent arg0) {
 	
 	}
 
 
+	@Override
 	public void componentHidden(ComponentEvent arg0) {
 
 	}

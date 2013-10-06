@@ -26,6 +26,7 @@ public class EuclideanRotation
 > implements Rotation<V, E, F> {
 
 	
+	@Override
 	public Point2d rotate(Point2d p, Point2d center, Double phi, Double logScale) {
 		Moebius rot = new Moebius();
 		Complex c1 = new Complex(center.x, center.y);
@@ -39,6 +40,7 @@ public class EuclideanRotation
 	}
 
 	
+	@Override
 	public double getPhi(E edge) {
 		double theta = edge.getTheta();
 		double thStar = PI - theta;
@@ -51,6 +53,7 @@ public class EuclideanRotation
 	}
 
 	
+	@Override
 	public Double getRadius(Double rho) {
 		return Math.exp(rho);
 	}

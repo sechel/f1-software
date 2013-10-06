@@ -36,55 +36,68 @@ public class NoGraphAction
 		icon = new ImageIcon(ImageHook.getImage("select.png"));
 	
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 		
 	}
 	
+	@Override
 	public void setController(MainController<V, E, F> controller) {
 
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<V, E, F> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 		
 	}
 	
+	@Override
 	public String getName() {
 		return "Select";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Select";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Select";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return false;
 	}
 	
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

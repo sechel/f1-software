@@ -158,6 +158,7 @@ public class StandardEditor
 	
 	
 	
+	@Override
 	public void statusChanged(String msg) {
 		
 	}
@@ -172,6 +173,7 @@ public class StandardEditor
 			this.tool = tool;
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			controller.getToolController().setActiveTool(tool);
 			controller.getToolController().showToolOptions(tool);

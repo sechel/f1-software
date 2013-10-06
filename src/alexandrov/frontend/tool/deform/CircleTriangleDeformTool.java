@@ -26,6 +26,7 @@ public class CircleTriangleDeformTool implements GraphTool<CPMVertex, CPMEdge, C
 	private CircleTriangleDeformOptions	
 		options = null;
 	
+	@Override
 	public Boolean initTool() {
 		getOptionsPanel().setVisible(true);
 		if (getOptionsPanel().getResult() == JOptionPane.OK_OPTION){
@@ -35,10 +36,12 @@ public class CircleTriangleDeformTool implements GraphTool<CPMVertex, CPMEdge, C
 		return false;
 	}
 
+	@Override
 	public void leaveTool() {
 		
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPMVertex, CPMEdge, CPMFace> controller) {
 		this.controller = (MainController)controller;
 	}
@@ -50,41 +53,51 @@ public class CircleTriangleDeformTool implements GraphTool<CPMVertex, CPMEdge, C
 		return options;
 	}
 	
+	@Override
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph) {
 		
 	}
 
+	@Override
 	public void resetTool() {
 		
 	}
 
+	@Override
 	public String getName() {
 		return "Circle Triangle Deform";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Deform generator";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Generates A Circle Triangle Deform";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

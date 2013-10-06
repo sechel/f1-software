@@ -57,6 +57,7 @@ import javax.swing.table.AbstractTableModel;
 import minimalsurface.controller.MainController;
 import minimalsurface.frontend.macro.AutoCut;
 import minimalsurface.frontend.macro.BoundaryConditions;
+import minimalsurface.frontend.macro.CentralExtensionSubdivide;
 import minimalsurface.frontend.macro.ConsistentStripSubdivide;
 import minimalsurface.frontend.macro.CutEars;
 import minimalsurface.frontend.macro.DualGraphSubdivision;
@@ -107,6 +108,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			new ConsistentStripSubdivide(),
 			new EdgeQuadSubdivide(),
 			new DualGraphSubdivision(),
+			new CentralExtensionSubdivide(),
 			new CutEars(),
 			new AutoCut(), 
 			new DualizeKoenigs(),
@@ -254,6 +256,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		}
 		
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (creationPlan.size() == 0) {
 				JOptionPane.showMessageDialog(MainWindow.this, "No Construction Plan!");
@@ -299,14 +302,17 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 	
 	private class ActionTranferable implements Transferable{
 
+		@Override
 		public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
 			return null;
 		}
 
+		@Override
 		public DataFlavor[] getTransferDataFlavors() {
 			return null;
 		}
 
+		@Override
 		public boolean isDataFlavorSupported(DataFlavor flavor) {
 			return false;
 		}
@@ -359,10 +365,14 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 	
 	private class DropActionListener implements DropTargetListener{
 
+		@Override
 		public void dragEnter(DropTargetDragEvent dtde) {}
+		@Override
 		public void dragExit(DropTargetEvent dte) {}
+		@Override
 		public void dragOver(DropTargetDragEvent dtde) {}
 
+		@Override
 		public void drop(DropTargetDropEvent dtde) {
 			dtde.acceptDrop(dtde.getDropAction());
 			Point p = dtde.getLocation();
@@ -383,6 +393,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			planTable.updateUI();
 		}
 
+		@Override
 		public void dropActionChanged(DropTargetDragEvent dtde) {}
 		
 	}
@@ -398,14 +409,17 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			return false;
 		}
 		
+		@Override
 		public int getColumnCount() {
 			return 3;
 		}
 
+		@Override
 		public int getRowCount() {
 			return creationPlan.size();
 		}
 
+		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			if (columnIndex == 0)
 				return rowIndex + 1;
@@ -443,14 +457,17 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		}
 		
 		
+		@Override
 		public int getColumnCount() {
 			return 2;
 		}
 
+		@Override
 		public int getRowCount() {
 			return actions.length;
 		}
 
+		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			if (columnIndex == 0)
 				return actions[rowIndex].getIcon();
@@ -488,6 +505,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 	}
 
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == viewSurfaceButton){
 			viewer.setVisible(true);
@@ -554,11 +572,13 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 	}
  
 
+	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		updateInfos();
 	}
 
 
+	@Override
 	public void mouseClicked(MouseEvent me) {
 		if (me.getClickCount() != 2)
 			return;
@@ -575,21 +595,25 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 	}
 
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
 		
 	}
 
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 		
 	}
 
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		
 	}
 
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		
 	}

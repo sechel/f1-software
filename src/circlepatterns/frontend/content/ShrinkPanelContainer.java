@@ -97,6 +97,7 @@ public class ShrinkPanelContainer extends JScrollPane implements MouseMotionList
 	}
 	
 	
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		JScrollBar vert = getVerticalScrollBar();
 		int schroll_pos = vert.getValue();
@@ -105,29 +106,35 @@ public class ShrinkPanelContainer extends JScrollPane implements MouseMotionList
 	}
 
 
+	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		
 	}
 
 
+	@Override
 	public void mouseClicked(MouseEvent arg0) {
 	
 	}
 
 
+	@Override
 	public void mousePressed(MouseEvent arg0) {
 		last_drag = arg0.getY();
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent arg0) {
 	}
 
 
+	@Override
 	public void mouseEntered(MouseEvent arg0) {
 	
 	}
 
 
+	@Override
 	public void mouseExited(MouseEvent arg0) {
 
 	}
@@ -155,7 +162,8 @@ public class ShrinkPanelContainer extends JScrollPane implements MouseMotionList
     }
 
 
-    public void mouseWheelMoved(MouseWheelEvent m) {
+    @Override
+	public void mouseWheelMoved(MouseWheelEvent m) {
         int dx = -m.getUnitsToScroll() * 5;
 		JScrollBar vert = getVerticalScrollBar();
 		int schroll_pos = vert.getValue();
@@ -177,7 +185,8 @@ public class ShrinkPanelContainer extends JScrollPane implements MouseMotionList
     }
 
 
-    public void componentResized(ComponentEvent arg0) {
+    @Override
+	public void componentResized(ComponentEvent arg0) {
         if (fill){
 			Component[] components = content.getComponents();
 			for (int i = 0; i < components.length; i++) {
@@ -192,15 +201,18 @@ public class ShrinkPanelContainer extends JScrollPane implements MouseMotionList
     }
 
 
-    public void componentMoved(ComponentEvent arg0) {
+    @Override
+	public void componentMoved(ComponentEvent arg0) {
     }
 
 
-    public void componentShown(ComponentEvent arg0) {
+    @Override
+	public void componentShown(ComponentEvent arg0) {
     }
 
 
-    public void componentHidden(ComponentEvent arg0) {
+    @Override
+	public void componentHidden(ComponentEvent arg0) {
     }
 
 

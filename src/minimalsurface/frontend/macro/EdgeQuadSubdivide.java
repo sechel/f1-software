@@ -22,21 +22,7 @@ public class EdgeQuadSubdivide extends MacroAction {
 	}
 
 	@Override
-	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> 
-		process(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
-
-//		HashMap<CPVertex, CPVertex> vertexVertexMap = new HashMap<CPVertex, CPVertex>();
-//		HashMap<CPEdge, CPVertex> edgeVertexMap = new HashMap<CPEdge, CPVertex>();
-//		HashMap<CPFace, CPVertex> faceVertexMap = new HashMap<CPFace, CPVertex>();
-//		HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> quad = Subdivision.createEdgeQuadGraph(graph, vertexVertexMap, edgeVertexMap, faceVertexMap);
-//		
-//		
-//		for (CPFace f : faceVertexMap.keySet()){
-//			CPVertex v = faceVertexMap.get(f);
-//			v.setXYZW(f.getXYZW());
-//			VecmathTools.sphereMirror(v.getXYZW());
-//		}
-		// :TODO Fix the bugs in Subdivision.createEdgeQuadGraph - this is a workaround
+	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> process(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
 		HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> quad = Subdivision.createMedialGraph(graph);
 		quad = Subdivision.createVertexQuadGraph(quad);
 		return quad;

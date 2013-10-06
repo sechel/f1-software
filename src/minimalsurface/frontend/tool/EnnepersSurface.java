@@ -32,6 +32,7 @@ public class EnnepersSurface implements GraphTool<CPVertex, CPEdge, CPFace> {
 	private MainController
 		controller = null;
 	
+	@Override
 	public Boolean initTool() {
 		try {
 			HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph = SquareGridGenerator.generate(30, 30, CPVertex.class, CPEdge.class, CPFace.class);
@@ -64,39 +65,48 @@ public class EnnepersSurface implements GraphTool<CPVertex, CPEdge, CPFace> {
 	}
 	
 	
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) {
 		
 	}
 
+	@Override
 	public String getDescription() {
 		return getShortDescription();
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getName() {
 		return "Enneper's Surface Advanced";
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Create Enneper's surface";
 	}
 
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		for (CPEdge e : controller.getEditedGraph().getPositiveEdges()){
 			g.getGraphics().setFont(controller.getFontController().getIndexFont());
@@ -108,15 +118,18 @@ public class EnnepersSurface implements GraphTool<CPVertex, CPEdge, CPFace> {
 		}
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPVertex, CPEdge, CPFace> controller) {
 		this.controller = (MainController)controller;
 	}

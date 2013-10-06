@@ -27,6 +27,7 @@ public class SetDebugModeAction extends AbstractAction {
 		putValue(Action.LONG_DESCRIPTION, "Shows debug output on the console.");
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		DBGTracer.setActive(((JCheckBoxMenuItem)e.getSource()).isSelected());
 	}

@@ -159,6 +159,7 @@ public class GraphEditor extends JDialog implements StatusChangedListener{
 	}
 
 	
+	@Override
 	public void statusChanged(String msg) {
 		if (msg == null){
 			statusLabel.setText("Error: No message");

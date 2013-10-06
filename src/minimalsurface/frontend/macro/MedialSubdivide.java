@@ -101,6 +101,7 @@ public class MedialSubdivide extends MacroAction {
 			removeDualsChecker.addActionListener(this);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == removeDualsChecker)
 				removeDualsOnBoundary = removeDualsChecker.isSelected();

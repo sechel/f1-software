@@ -44,6 +44,7 @@ public abstract class DirichletFunctionalNew <
 		
 		private double[] grad;
 		
+		@Override
 		public double eval(double[] f) {
 			if (grad == null)
 				grad = new double[getNumberOfVariables()];
@@ -73,6 +74,7 @@ public abstract class DirichletFunctionalNew <
 				super( g, eps, f );
 			}
 			
+			@Override
 			public void setQuadCycle(List quadCycle) {
 				CycleUtility.computeEpsOnGraph( quadCycle, eps );	
 				
@@ -85,6 +87,7 @@ public abstract class DirichletFunctionalNew <
 			 * @see de.jtem.numericalMethods.calculus.function.RealFunctionOfSeveralVariablesWithGradient#eval(double[],
 			 *      double[])
 			 */
+			@Override
 			public double eval(double[] f, double[] grad) {
 				if ((f.length != getNumberOfVariables())
 						|| (grad.length != getNumberOfVariables()))
@@ -113,6 +116,7 @@ public abstract class DirichletFunctionalNew <
 				return value;
 			}
 			
+			@Override
 			public int getNumberOfVariables() {
 				return G.getNumVertices();
 			}
@@ -135,6 +139,7 @@ public abstract class DirichletFunctionalNew <
 			}
 			
 
+			@Override
 			public void setQuadCycle( List quadCycle ) {
 				CycleUtility.computeEpsOnDual( quadCycle, eps );		
 			}
@@ -146,6 +151,7 @@ public abstract class DirichletFunctionalNew <
 			 * @see de.jtem.numericalMethods.calculus.function.RealFunctionOfSeveralVariablesWithGradient#eval(double[],
 			 *      double[])
 			 */
+			@Override
 			public double eval(double[] f, double[] grad) {
 				if ((f.length != getNumberOfVariables())
 						|| (grad.length != getNumberOfVariables()))
@@ -174,12 +180,14 @@ public abstract class DirichletFunctionalNew <
 			
 			private double[] grad;
 			
+			@Override
 			public double eval(double[] f) {
 				if (grad == null)
 					grad = new double[getNumberOfVariables()];
 				return eval(f, grad);
 			}
 			
+			@Override
 			public int getNumberOfVariables() {
 				return G.getNumFaces();
 			}

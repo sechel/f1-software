@@ -57,6 +57,7 @@ public class NewtonOptimizer implements Optimizer{
 	}
 	
 	
+	@Override
 	public void minimize(Vector guess, Optimizable func) throws NotConvergentException{
 		Integer iteration = 0;
 		/*
@@ -134,54 +135,63 @@ public class NewtonOptimizer implements Optimizer{
 	
 	
 
+	@Override
 	public void setIterationMonitor(IterationMonitor monitor) {
 		this.monitor = monitor;
 	}
 
 
 	
+	@Override
 	public void setMaxIterations(Integer maxIterations) {
 		this.maxIterations = maxIterations;
 	}
 
 
 
+	@Override
 	public Integer getMaxIterations() {
 		return maxIterations;
 	}
 
 
 
+	@Override
 	public void setError(Double error) {
 		this.error = error;
 	}
 
 
 
+	@Override
 	public Double getError() {
 		return error;
 	}
 
 
 
+	@Override
 	public StepController getStepController() {
 		return stepController;
 	}
 
 
 
+	@Override
 	public void setStepController(StepController stepController) {
 		this.stepController = stepController;
 	}
 
 
 
+	@Override
 	public Norm getNorm() {
 		return norm;
 	}
 
 
 
+	@Override
 	public void setNorm(Norm norm) {
 		this.norm = norm;
 	}

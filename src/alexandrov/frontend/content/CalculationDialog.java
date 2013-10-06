@@ -60,6 +60,7 @@ public class CalculationDialog extends JDialog implements ActionListener {
 	private Double
 		error = 1E-2;
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (s == okBtn){

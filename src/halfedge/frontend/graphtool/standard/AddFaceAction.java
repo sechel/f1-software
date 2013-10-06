@@ -51,18 +51,22 @@ implements GraphTool<V, E, F> {
 		lastMousePos = new Point2d();
 	
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 		
 	}
 	
+	@Override
 	public void setController(MainController<V, E, F> controller) {
 		this.controller = controller;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
@@ -96,6 +100,7 @@ implements GraphTool<V, E, F> {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<V, E, F> graph) {
 		// TODO: buggy!
 		F face = graph.addNewFace();
@@ -148,6 +153,7 @@ implements GraphTool<V, E, F> {
 	}
 
 	
+	@Override
 	public void resetTool() {
 		vertexList.clear();
 	}
@@ -165,22 +171,27 @@ implements GraphTool<V, E, F> {
 	
 	
 	
+	@Override
 	public String getName() {
 		return "Add Face";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Add Face";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Add Face";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		if (!vertexList.isEmpty()){
 			LinkedList<Point2d> pList = new LinkedList<Point2d>();
@@ -195,6 +206,7 @@ implements GraphTool<V, E, F> {
 	}
 
 
+	@Override
 	public boolean needsRepaint() {
 		boolean result = needsRepaint;
 		needsRepaint = false;
@@ -202,6 +214,7 @@ implements GraphTool<V, E, F> {
 	}
 	
 	
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

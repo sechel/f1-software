@@ -73,9 +73,11 @@ public class Koebe3D implements GraphChangedListener, ChangeListener{
 	}
 	
 
-	  public void stateChanged(ChangeEvent e) {
+	  @Override
+	public void stateChanged(ChangeEvent e) {
 	  }
 	
+	@Override
 	public void graphChanged() {
 		if (koebeViewer == null)
 			return;

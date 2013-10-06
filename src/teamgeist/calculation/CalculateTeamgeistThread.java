@@ -78,6 +78,7 @@ public class CalculateTeamgeistThread implements IterationMonitor, Runnable {
 	}
 	
 
+	@Override
 	public void setIteration(Integer iteration, Double error) {
 		this.iteration = iteration;
 		this.progress = (int)(100 * (startError - error) / (startError - endError));
@@ -85,10 +86,12 @@ public class CalculateTeamgeistThread implements IterationMonitor, Runnable {
 		Thread.yield();
 	}
 
+	@Override
 	public void done(Double error){
 		
 	}
 	
+	@Override
 	public void start(Double error){
 		startError = error;
 	}
@@ -108,6 +111,7 @@ public class CalculateTeamgeistThread implements IterationMonitor, Runnable {
 	}
 	
 	
+	@Override
 	public void run() {
 		stop = false;
 		// randomize lengths

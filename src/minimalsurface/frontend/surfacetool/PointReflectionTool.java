@@ -98,6 +98,7 @@ public class PointReflectionTool extends AbstractTool implements GeometryTool {
 		
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			view.setGeometryTool(PointReflectionTool.this);
 		}
@@ -110,10 +111,12 @@ public class PointReflectionTool extends AbstractTool implements GeometryTool {
 		System.out.println("DomainMirrorTool.perform()");
 	}
 
+	@Override
 	public Action getAction() {
 		return action;
 	}
 
+	@Override
 	public Tool getTool() {
 		return this;
 	}

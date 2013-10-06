@@ -84,6 +84,7 @@ public class RandomCheckTool implements GraphTool<CPMVertex, CPMEdge, CPMFace>, 
 	
 	
 	
+	@Override
 	public Boolean initTool() {
 		Thread runner = new Thread(this, "Random Check");
 		runner.start();
@@ -91,6 +92,7 @@ public class RandomCheckTool implements GraphTool<CPMVertex, CPMEdge, CPMFace>, 
 	}
 
 	
+	@Override
 	public void run() {
 		ReportDialog reportDialog = new ReportDialog(mainFrame);
 		StringBuffer report = new StringBuffer();
@@ -172,51 +174,63 @@ public class RandomCheckTool implements GraphTool<CPMVertex, CPMEdge, CPMFace>, 
 		}
 	}
 	
+	@Override
 	public void leaveTool() {
 		checksRunning = false;
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPMVertex, CPMEdge, CPMFace> controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Random Check Tool";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "This tool generates random edge lengths and runs the algorithm.";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Random Checks";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return false;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

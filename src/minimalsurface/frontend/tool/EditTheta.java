@@ -62,6 +62,7 @@ public class EditTheta implements GraphTool<CPVertex, CPEdge, CPFace> {
 	private Options
 		optionsPanel = null;
 	
+	@Override
 	public Boolean initTool() {
 		// TODO here debuging only!
 		for (CPEdge e : controller.getEditedGraph().getEdges())
@@ -69,14 +70,17 @@ public class EditTheta implements GraphTool<CPVertex, CPEdge, CPFace> {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPVertex, CPEdge, CPFace> controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		CPEdge e = CPEdge.class.cast(operation.edge);
 		switch (operation){
@@ -146,6 +150,7 @@ public class EditTheta implements GraphTool<CPVertex, CPEdge, CPFace> {
 			cancelButton.addActionListener(this);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == okButton)
 				result = JOptionPane.OK_OPTION;
@@ -165,31 +170,38 @@ public class EditTheta implements GraphTool<CPVertex, CPEdge, CPFace> {
 	}
 	
 	
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Theta Edit";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Edit Edge Theta";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Theta";
 	}
 
 	
+	@Override
 	public void paint(GraphGraphics g) {
 		HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph = controller.getEditedGraph();
 		for (CPEdge edge : graph.getPositiveEdges()){
@@ -205,10 +217,12 @@ public class EditTheta implements GraphTool<CPVertex, CPEdge, CPFace> {
 		}
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		if (optionsPanel == null) {
 			optionsPanel = new Options();
@@ -255,6 +269,7 @@ public class EditTheta implements GraphTool<CPVertex, CPEdge, CPFace> {
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent ae) {
 			for (CPEdge e : controller.getEditedGraph().getEdges()) {
 				if (ae.getSource() == setPi2Button) {

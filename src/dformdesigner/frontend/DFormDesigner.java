@@ -66,6 +66,7 @@ public class DFormDesigner extends JFrame implements StatusChangedListener, Chan
 	}
 	
 	// doesnt work
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		System.out.println("DFormDesigner.stateChanged()");
 		for (int i = 0; i < root.getChildCount(); i++)
@@ -95,6 +96,7 @@ public class DFormDesigner extends JFrame implements StatusChangedListener, Chan
 
 	
 	
+	@Override
 	public void statusChanged(String msg) {
 		if (msg == null)
 			return;

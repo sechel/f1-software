@@ -221,6 +221,7 @@ public class AlexandrovOptionPanel extends ShrinkPanel implements ActionListener
 		meshWidthSlider.addChangeListener(this);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (antialiasChecker == e.getSource())
 			view.setAntialias(antialiasChecker.isSelected());
@@ -251,6 +252,7 @@ public class AlexandrovOptionPanel extends ShrinkPanel implements ActionListener
 	}
 
 	
+	@Override
 	public void colorChanged(ColorChangedEvent cce) {
 		if (polyederColorBtn == cce.getSource())
 			view.setFaceColor(cce.getColor());
@@ -264,6 +266,7 @@ public class AlexandrovOptionPanel extends ShrinkPanel implements ActionListener
 			view.setBackgroundColor(cce.getColor());
 	}
 
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == polyederTransSlider)
 			view.setTransparencyPolyederValue(polyederTransSlider.getValue() / 99.0);

@@ -72,19 +72,23 @@ public class InternalTool
 	}
 	
 	
+	@Override
 	public void setController(MainController<V, E, F> controller) {
 		this.controller = controller;
 	}
 
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 		
 	}
 	
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		switch (operation){
@@ -162,27 +166,33 @@ public class InternalTool
 	}
 
 	
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<V, E, F> graph) {
 		
 	}
 	
+	@Override
 	public void resetTool() {
 		
 	}
 	
 	
+	@Override
 	public String getName() {
 		return null;
 	}
 
+	@Override
 	public Icon getIcon() {
 		return null;
 	}
 
+	@Override
 	public String getDescription() {
 		return null;
 	}
 
+	@Override
 	public String getShortDescription() {
 		return null;
 	}
@@ -368,6 +378,7 @@ public class InternalTool
 	}
 	
 	
+	@Override
 	public void paint(GraphGraphics g) {
 		g.getGraphics().setColor(controller.getColorController().getHoverColor());
 		if (vertexUnderMouse != null && vertexUnderMouse.isValid()){
@@ -389,6 +400,7 @@ public class InternalTool
 	}
 
 
+	@Override
 	public boolean needsRepaint() {
 		boolean result = needsRepaint;
 		needsRepaint = false;
@@ -396,6 +408,7 @@ public class InternalTool
 	}
 	
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

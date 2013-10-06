@@ -45,18 +45,22 @@ public class DeleteNode
 	private MainController<V, E, F> 
 		controller = null;
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(MainController<V, E, F>  controller) {
 		this.controller = controller;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
@@ -77,38 +81,47 @@ public class DeleteNode
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<V, E, F> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Delete";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Delete a node";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Delete node";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return false;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return new OptionPanel();
 	}
@@ -135,6 +148,7 @@ public class DeleteNode
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			controller.getEditedGraph().clear();
 			controller.refreshEditor();

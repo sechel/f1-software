@@ -49,61 +49,74 @@ public class FillHoles
 		controller = null;
 	
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 		
 
 	}
 
+	@Override
 	public void setController(MainController<V, E, F> controller) {
 		this.controller = controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<V, E, F> graph) {
 		
 
 	}
 
+	@Override
 	public void resetTool() {
 		
 
 	}
 
+	@Override
 	public String getName() {
 		return "Fill Holes";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Fills the holes in this surface";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Fills holes";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		
 		return false;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return new OptionPanel();
 	}
@@ -130,6 +143,7 @@ public class FillHoles
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			HalfEdgeDataStructure<V, E, F> graph = controller.getEditedGraph();
 			try {

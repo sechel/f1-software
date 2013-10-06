@@ -272,6 +272,7 @@ public class SphericalCirclePattern extends MacroAction {
 			updateStates();
 		}
 	
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			if (e.getSource() == errorSpinner)
 				errorExp = errorSpinnerModel.getNumber().intValue();
@@ -286,6 +287,7 @@ public class SphericalCirclePattern extends MacroAction {
 		}
 	
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == randomInitChecker)
 				initMode = InitMode.INIT_RANDOM;

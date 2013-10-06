@@ -31,6 +31,7 @@ public class SetDefaultMode extends AbstractAction {
 		putValue(Action.SHORT_DESCRIPTION, "Graph Editor");
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.setEditorMode(EditorMode.GraphEditMode);
 	}

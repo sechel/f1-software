@@ -42,30 +42,36 @@ public class CPVertex extends Vertex<CPVertex, CPEdge, CPFace> implements HasQua
 		return this;
 	}
 	
+	@Override
 	public void setXY(Point2d p) {
 		getXY().set(p);		
 	}
+	@Override
 	public Point2d getXY() {
 		if (coord == null)
 			coord = new Point2d();
 		return coord;
 	}
 
+	@Override
 	public void setXYZW(Point4d p) {
 		getXYZW().set(p);		
 	}
+	@Override
 	public Point4d getXYZW() {
 		if (homCoord == null)
 			homCoord = new Point4d(0, 0, 0, 1);
 		return homCoord;
 	}
 
+	@Override
 	public QuadGraphLabel getVertexLabel() {
 		if (quadGraphLabel == null)
 			quadGraphLabel = QuadGraphLabel.INTERSECTION;
 		return quadGraphLabel;
 	}
 
+	@Override
 	public void setVertexLabel(QuadGraphLabel l) {
 		this.quadGraphLabel = l;
 	}

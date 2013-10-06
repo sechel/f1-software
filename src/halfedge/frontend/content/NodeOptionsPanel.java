@@ -217,6 +217,7 @@ public class NodeOptionsPanel extends JPanel {
 			this.method = method;
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
 				method.invoke(node, field.getText());
@@ -241,6 +242,7 @@ public class NodeOptionsPanel extends JPanel {
 			this.method = method;
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
 				method.invoke(node, box.isSelected());
@@ -269,6 +271,7 @@ public class NodeOptionsPanel extends JPanel {
 			this.type = type;
 		}
 		
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			try {
 				switch (type){

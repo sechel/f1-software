@@ -73,6 +73,7 @@ public class TetrahedronWankelDeformOptions extends JDialog implements ActionLis
 	private Double
 		scale = 1.0;
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (s == okBtn){

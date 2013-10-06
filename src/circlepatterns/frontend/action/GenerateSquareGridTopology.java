@@ -38,6 +38,7 @@ public class GenerateSquareGridTopology extends AbstractAction {
 	}
 	
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> ds = SquareGridGenerator.generate(width, height, CPVertex.class, CPEdge.class, CPFace.class);
 

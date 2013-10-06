@@ -161,22 +161,26 @@ public abstract class PolyederNormalizer {
 			this.context = context;
 		}
 		
+		@Override
 		public Double evaluate(Vector x, Vector gradient, Matrix hessian) {
 			makeGradient(x, gradient);
 			makeHessian(x, hessian);
 			return evaluate(x);
 		}
 
+		@Override
 		public Double evaluate(Vector x, Vector gradient) {
 			makeGradient(x, gradient);
 			return evaluate(x);
 		}
 
+		@Override
 		public Double evaluate(Vector x, Matrix hessian) {
 			makeHessian(x, hessian);
 			return evaluate(x);
 		}
 
+		@Override
 		public Double evaluate(Vector x) {
 			double result = 0;
 			double l = myLength(x);
@@ -242,6 +246,7 @@ public abstract class PolyederNormalizer {
 		}
 		
 		
+		@Override
 		public Integer getDomainDimension() {
 			return 3;
 		}

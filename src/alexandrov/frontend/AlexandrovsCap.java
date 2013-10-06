@@ -220,6 +220,7 @@ public class AlexandrovsCap extends JFrame implements StatusChangedListener, Mai
 	}
 	
 	
+	@Override
 	public void switchToXMLMode(){
 		if (cpmlEditPanel != null){
 			cpmlEditPanel.setSize(splitter.getLeftComponent().getSize());
@@ -227,6 +228,7 @@ public class AlexandrovsCap extends JFrame implements StatusChangedListener, Mai
 		}
 	}
 	
+	@Override
 	public void switchToGraphMode(){
 		if (defaultEditPanel != null){
 			defaultEditPanel.setSize(splitter.getLeftComponent().getSize());
@@ -235,6 +237,7 @@ public class AlexandrovsCap extends JFrame implements StatusChangedListener, Mai
 	}
 	
 	
+	@Override
 	public void statusChanged(String msg) {
 		if (msg == null)
 			return;
@@ -269,6 +272,7 @@ public class AlexandrovsCap extends JFrame implements StatusChangedListener, Mai
 	}
 
 
+	@Override
 	public CPMLEditor getCpmlEditPanel() {
 		return cpmlEditPanel;
 	}

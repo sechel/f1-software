@@ -264,6 +264,7 @@ public class KoebeOptionPanel extends ShrinkPanel implements ActionListener, Col
 		circles2WidthSlider.addChangeListener(this);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (antialiasChecker == e.getSource())
 			view.setAntialias(antialiasChecker.isSelected());
@@ -295,6 +296,7 @@ public class KoebeOptionPanel extends ShrinkPanel implements ActionListener, Col
 	}
 
 	
+	@Override
 	public void colorChanged(ColorChangedEvent cce) {
 		if (polyederColorBtn == cce.getSource())
 			view.setFaceColor(cce.getColor());
@@ -315,6 +317,7 @@ public class KoebeOptionPanel extends ShrinkPanel implements ActionListener, Col
 		view.updateProperties();
 	}
 
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == polyederTransSlider)
 			view.setTransparencyPolyederValue(polyederTransSlider.getValue() / 99.0);

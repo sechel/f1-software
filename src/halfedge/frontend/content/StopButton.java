@@ -34,6 +34,7 @@ public class StopButton <
 		setToolTipText("Stop Calculation");
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.getCalculationRemote().setStopAsFastAsPossible(true);
 	}

@@ -25,10 +25,12 @@ public class CPMFace extends Face<CPMVertex, CPMEdge, CPMFace> implements HasXYZ
 		return this;
 	}
 	
+	@Override
 	public Point4d getXYZW() {
 		return pos;
 	}
 	
+	@Override
 	public void setXYZW(Point4d p) {
 		pos.set(p);
 	}

@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import junit.framework.TestCase;
 import de.jtem.blas.ComplexMatrix;
 import de.jtem.blas.IntegerMatrix;
 import de.jtem.blas.RealMatrix;

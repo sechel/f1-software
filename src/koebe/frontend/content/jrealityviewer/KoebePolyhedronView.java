@@ -331,6 +331,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
 	}
 	
 	
+	@Override
 	public void resetGeometry(){
 		polyhedronRoot.setGeometry(null);
 		meshRoot.setGeometry(null);
@@ -339,6 +340,7 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
 	}
 	
 	
+	@Override
 	public void updateGeometry(KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context){
 		updatePolyhedron(context);
 		updateCircles(context);
@@ -483,10 +485,12 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
 	}
 
 
+	@Override
 	public void update() {
 		getViewer().render();
 	}
 	
+	@Override
 	public JComponent getViewerComponent() {
 		return this;
 	}

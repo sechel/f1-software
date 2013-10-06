@@ -30,6 +30,7 @@ public class SetPlanarLengthsTool implements GraphTool<CPMVertex, CPMEdge, CPMFa
 		controller = null;
 	
 	
+	@Override
 	public Boolean initTool() {
 		List<CPMEdge> edges = controller.getEditedGraph().getEdges();
 		for (CPMEdge e : edges){
@@ -40,52 +41,64 @@ public class SetPlanarLengthsTool implements GraphTool<CPMVertex, CPMEdge, CPMFa
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 		
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPMVertex, CPMEdge, CPMFace> controller) {
 		this.controller = (MainController)controller;
 		edgeLengthTool.setController(controller);
 		edgeLengthTool.setLabelColor(Color.DARK_GRAY);
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph) {
 		
 	}
 
+	@Override
 	public void resetTool() {
 		
 	}
 
+	@Override
 	public String getName() {
 		return "Edge length generator";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Edge length generator";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Sets the edge lengths to their lengths in the plane";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		edgeLengthTool.paint(g);
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}

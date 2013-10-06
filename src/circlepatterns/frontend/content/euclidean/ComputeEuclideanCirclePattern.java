@@ -69,6 +69,7 @@ public class ComputeEuclideanCirclePattern extends AbstractAction {
 	}
 	
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (CPTestSuite.getTopology() == null){
 			JOptionPane.showMessageDialog(CPTestSuite.getMainFrame(), "No topology loaded!");

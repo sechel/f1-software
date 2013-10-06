@@ -111,6 +111,7 @@ public class TeamgeistApplet extends JApplet implements ActionListener{
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object s = e.getSource();
 		if (wireFrameChecker == s)

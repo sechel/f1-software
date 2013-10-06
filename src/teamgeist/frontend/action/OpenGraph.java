@@ -76,6 +76,7 @@ public class OpenGraph extends AbstractAction {
 	}
 	
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		int result = openChooser.showOpenDialog(parent);
 		if (result == JFileChooser.APPROVE_OPTION){

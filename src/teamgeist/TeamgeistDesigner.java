@@ -89,6 +89,7 @@ public class TeamgeistDesigner extends JFrame implements StatusChangedListener{
 	}
 	
 	
+	@Override
 	public void statusChanged(String msg) {
 		if (msg == null)
 			return;

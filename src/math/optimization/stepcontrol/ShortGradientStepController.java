@@ -12,6 +12,7 @@ public class ShortGradientStepController implements StepController {
 		alpha = 0.5;
 	
 	
+	@Override
 	public Double step(Vector x, Double value, Vector dx, Optimizable func, Vector grad, Matrix hess) {
 		Vector oldX = new DenseVector(x);
 		Vector oldGrad = new DenseVector(grad);

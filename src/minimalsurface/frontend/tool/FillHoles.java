@@ -44,62 +44,75 @@ public class FillHoles implements GraphTool<CPVertex, CPEdge, CPFace> {
 		controller = null;
 	
 	
+	@Override
 	public Boolean initTool() {
 		fillHoles();
 		return false;
 	}
 
+	@Override
 	public void leaveTool() {
 		
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPVertex, CPEdge, CPFace> controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation)
 			throws EditOperationException {
 		
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) {
 		
 
 	}
 
+	@Override
 	public void resetTool() {
 		
 
 	}
 
+	@Override
 	public String getName() {
 		return "Fill Holes";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Fills the holes in this surface";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Fills holes";
 	}
 
+	@Override
 	public void paint(GraphGraphics g) {
 		
 
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		
 		return false;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return new OptionPanel();
 	}
@@ -140,6 +153,7 @@ public class FillHoles implements GraphTool<CPVertex, CPEdge, CPFace> {
 		}
 
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			fillHoles();
 		}

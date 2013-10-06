@@ -47,6 +47,7 @@ public class CapLinearizable
 	}
 	
 	
+	@Override
 	public void evaluate(Vector x, Vector fx, Vector offset) throws FunctionNotDefinedException{
 		for (int i = 0; i < innerVertices.size(); i++)
 			innerVertices.get(i).setRadius(x.get(i));
@@ -57,6 +58,7 @@ public class CapLinearizable
 		}
 	}
 
+	@Override
 	public void evaluate(Vector x, Vector fx, Vector offset, Matrix jacobian) throws FunctionNotDefinedException{
 		evaluate(x, fx, offset);
 		try {
@@ -66,6 +68,7 @@ public class CapLinearizable
 		}
 	}
 
+	@Override
 	public void evaluate(Vector x, Matrix jacobian) throws FunctionNotDefinedException{
 		for (int i = 0; i < innerVertices.size(); i++)
 			innerVertices.get(i).setRadius(x.get(i));
@@ -76,10 +79,12 @@ public class CapLinearizable
 		}
 	}
 
+	@Override
 	public Integer getDomainDimension() {
 		return innerVertices.size();
 	}
 
+	@Override
 	public Integer getCoDomainDimension() {
 		return innerVertices.size();
 	}

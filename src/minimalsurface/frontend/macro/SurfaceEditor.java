@@ -167,10 +167,12 @@ public class SurfaceEditor extends MacroAction {
 		}
 		
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			updateStates();
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			updateStates();
 		}

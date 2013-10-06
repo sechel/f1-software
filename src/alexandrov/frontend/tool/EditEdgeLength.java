@@ -41,18 +41,22 @@ public class EditEdgeLength implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 	private Color
 		labelColor = Color.RED;
 	
+	@Override
 	public Boolean initTool() {
 		return true;
 	}
 
+	@Override
 	public void leaveTool() {
 
 	}
 
+	@Override
 	public void setController(halfedge.frontend.controller.MainController<CPMVertex, CPMEdge, CPMFace> controller) {
 		this.controller = (MainController)controller;
 	}
 
+	@Override
 	public boolean processEditOperation(EditOperation operation) throws EditOperationException {
 		CPMEdge e = CPMEdge.class.cast(operation.edge);
 		switch (operation){
@@ -71,31 +75,38 @@ public class EditEdgeLength implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 		return false;
 	}
 
+	@Override
 	public void commitEdit(HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph) {
 
 	}
 
+	@Override
 	public void resetTool() {
 
 	}
 
+	@Override
 	public String getName() {
 		return "Edge Length Editor";
 	}
 
+	@Override
 	public Icon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getDescription() {
 		return "Edit Edge Length";
 	}
 
+	@Override
 	public String getShortDescription() {
 		return "Edge Length";
 	}
 
 	
+	@Override
 	public void paint(GraphGraphics g) {
 		HalfEdgeDataStructure<CPMVertex, CPMEdge, CPMFace> graph = controller.getEditedGraph();
 		for (CPMEdge edge : graph.getEdges()){
@@ -111,10 +122,12 @@ public class EditEdgeLength implements GraphTool<CPMVertex, CPMEdge, CPMFace> {
 		}
 	}
 
+	@Override
 	public boolean needsRepaint() {
 		return true;
 	}
 
+	@Override
 	public JPanel getOptionPanel() {
 		return null;
 	}
