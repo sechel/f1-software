@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
 import de.jreality.scene.PointSet;
@@ -32,7 +32,7 @@ import de.jreality.util.SceneGraphUtility;
  */
 public class RotateAroundLineTool extends AbstractTool implements GeometryTool{
 
-	private MinimalSurfacePanel 
+	private MinimalSurfaceContent 
 		view = null;
 	private static InputSlot
 		leftButton = InputSlot.getDevice("PrimaryAction");
@@ -44,7 +44,7 @@ public class RotateAroundLineTool extends AbstractTool implements GeometryTool{
 		firstGenerator = null;
 	
 	
-	public RotateAroundLineTool(MinimalSurfacePanel view){
+	public RotateAroundLineTool(MinimalSurfaceContent view){
 		super(leftButton);
 		this.view = view;
 	}

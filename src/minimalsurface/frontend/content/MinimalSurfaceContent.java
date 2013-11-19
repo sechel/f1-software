@@ -40,15 +40,9 @@ import halfedge.Vertex;
 import halfedge.decorations.HasQuadGraphLabeling;
 import halfedge.decorations.HasXYZW;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.util.List;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import javax.vecmath.Point4d;
 import javax.vecmath.Vector3d;
 
@@ -66,10 +60,7 @@ import de.jreality.geometry.Primitives;
 import de.jreality.math.FactoredMatrix;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
-import de.jreality.plugin.JRViewer;
-import de.jreality.plugin.JRViewer.ContentType;
-import de.jreality.plugin.JRViewerUtility;
-import de.jreality.plugin.basic.Scene;
+import de.jreality.plugin.content.DirectContent;
 import de.jreality.scene.Appearance;
 import de.jreality.scene.Geometry;
 import de.jreality.scene.IndexedFaceSet;
@@ -79,12 +70,8 @@ import de.jreality.scene.SceneGraphComponent;
 import de.jreality.scene.SceneGraphVisitor;
 import de.jreality.scene.Sphere;
 import de.jreality.scene.Transformation;
-import de.jreality.scene.Viewer;
 import de.jreality.scene.tool.Tool;
-import de.jreality.tools.ClickWheelCameraZoomTool;
-import de.jreality.tools.DraggingTool;
-import de.jreality.tools.EncompassTool;
-import de.jreality.tools.RotateTool;
+import de.jtem.jrworkspace.plugin.Controller;
 
 
 /**
@@ -98,8 +85,7 @@ import de.jreality.tools.RotateTool;
  * @param <E> Edge class this view can display
  * @param <F> Face class this view can display
  */
-@SuppressWarnings("serial")
-public class MinimalSurfacePanel extends JPanel{
+public class MinimalSurfaceContent extends DirectContent {
 
 	@SuppressWarnings("unused")
 	private MainController
@@ -116,23 +102,20 @@ public class MinimalSurfacePanel extends JPanel{
 		activeSpheresRoot = new SceneGraphComponent();
 	private Transformation
 		diskThicknessTransform = new Transformation();
-	private JRViewer
-		viewer = new JRViewer(true);
 	private IndexedFaceSet
 		activeFaceSet = null;
-//		invertedFaceSet = null;
 	private Object
 		surfaceMaster = new Object();
 	
 	//tools
-	private RotateTool 
-		rotateTool = new RotateTool();
-	private DraggingTool
-		draggingTool = new DraggingTool();
-	private EncompassTool
-		encompassTool = new EncompassTool();
-	private ClickWheelCameraZoomTool
-		zoomTool = new ClickWheelCameraZoomTool();
+//	private RotateTool 
+//		rotateTool = new RotateTool();
+//	private DraggingTool
+//		draggingTool = new DraggingTool();
+//	private EncompassTool
+//		encompassTool = new EncompassTool();
+//	private ClickWheelCameraZoomTool
+//		zoomTool = new ClickWheelCameraZoomTool();
 	private Tool
 		activeGeometryTool = null;
 	
@@ -195,51 +178,19 @@ public class MinimalSurfacePanel extends JPanel{
 		activeSurface = null;
 	
 	
-	public MinimalSurfacePanel(MainController controller){
+	public MinimalSurfaceContent(MainController controller){
 		this.controller = controller;
-		
 		initScene();
-		viewer.addContentSupport(ContentType.Raw);
-		viewer.addContentUI();
-		viewer.addBasicUI();
-		viewer.setShowPanelSlots(false, false, false, false);
-		viewer.setShowMenuBar(false);
-		viewer.setShowToolBar(false);
-		viewer.setContent(sceneRoot);
-		viewer.getController().setPropertyEngineEnabled(false);
-		JRootPane viewerRoot = viewer.startupLocal();
-		
-		MinimalViewOptions viewOptPanel = new MinimalViewOptions(controller, this);
-		
-		setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
-		c.gridwidth = GridBagConstraints.REMAINDER;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 1;
-		c.weighty = 0;
-		JPanel wrap = new JPanel();
-		wrap.setLayout(new BorderLayout());
-		add(wrap, c);
-		
-		c.fill = GridBagConstraints.BOTH;
-		c.weighty = 1;
-		add(viewerRoot, c);
-		
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weighty = 0;
-		wrap = new JPanel();
-		wrap.setLayout(new BorderLayout());
-		wrap.add(viewOptPanel, BorderLayout.CENTER);
-		add(wrap, c);
-		viewOptPanel.setShrinked(true);
-
-		updateProperties();
+	}
+	
+	@Override
+	public void install(Controller c) throws Exception {
+		super.install(c);
+		setContent(sceneRoot);
 	}
 
 	
 	private void initScene(){
-	
 		//root appearance
 		rootApp.setAttribute(BACKGROUND_COLOR, backgroundColor);
 //		rootApp.setAttribute(POLYGON_SHADER + "." + ANTIALIASING_ENABLED, antialias);
@@ -353,17 +304,18 @@ public class MinimalSurfacePanel extends JPanel{
         linesApp.setAttribute(LINE_SHADER + "." + TUBE_RADIUS, meshWidth * 3);
         geometryRoot.addChild(linesRoot);
         
-        // tools
-        sceneRoot.addTool(encompassTool);
-        sceneRoot.addTool(rotateTool);
-        sceneRoot.addTool(draggingTool);
-        sceneRoot.addTool(zoomTool);
+//        // tools
+//        sceneRoot.addTool(encompassTool);
+//        sceneRoot.addTool(rotateTool);
+//        sceneRoot.addTool(draggingTool);
+//        sceneRoot.addTool(zoomTool);
 	}
 	
 
 	public void setGeometryTool(Tool geometryTool){
-		if (activeGeometryTool != null)
+		if (activeGeometryTool != null) {
 			geometryRoot.removeTool(activeGeometryTool);
+		}
 		geometryRoot.addTool(geometryTool);
 		activeGeometryTool = geometryTool;
 	}
@@ -379,11 +331,6 @@ public class MinimalSurfacePanel extends JPanel{
 		SceneGraphComponent c = new SceneGraphComponent();
 		c.setGeometry(ilsf.getGeometry());
 		linesRoot.addChild(c);
-	}
-	
-	
-	public void updateProperties(){
-		viewer.getViewer().render();
 	}
 	
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> getActiveSurface(){
@@ -436,7 +383,6 @@ public class MinimalSurfacePanel extends JPanel{
         
         polyhedronRoot.addChild(surfaceRoot);
         surfaceRoot.addChild(makeDiskSurface(surface));
-		update();
 		activeSurface = surface;
 	}
 	
@@ -550,28 +496,9 @@ public class MinimalSurfacePanel extends JPanel{
 			polyhedronRoot.removeChild(polyhedronRoot.getChildComponent(0));
 		while (linesRoot.getChildComponentCount() > 0)
 			linesRoot.removeChild(linesRoot.getChildComponent(0));
-		update();
 	}
 	
 	
-	public void encompass(){
-		Scene scene = viewer.getPlugin(Scene.class);
-		JRViewerUtility.encompassEuclidean(scene);
-	}
-	
-
-	public void update() {
-		viewer.getViewer().render();
-	}
-	
-	public JComponent getViewerComponent() {
-		return this;
-	}
-
-	public Viewer getViewer() {
-		return viewer.getViewer();
-	}
-
 	public boolean isAntialias() {
 		return antialias;
 	}
@@ -985,5 +912,13 @@ public class MinimalSurfacePanel extends JPanel{
 		circleGeometry.setName(newGeom.getName());
 	}
 	
+	
+	public void update() {
+		
+	}
+	
+	public void encompass() {
+		
+	}
 	
 }

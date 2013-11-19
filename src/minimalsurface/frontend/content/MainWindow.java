@@ -138,7 +138,8 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		upButton = new JButton(new ImageIcon(getImage("up.png"))),
 		downButton = new JButton(new ImageIcon(getImage("down.png"))),
 		templateEuclideanBtn = new JButton(new ImageIcon(getImage("templateEuc.png"))),
-		templateSphericalBtn = new JButton(new ImageIcon(getImage("templateSph.png")));
+		templateSphericalBtn = new JButton(new ImageIcon(getImage("templateSph.png"))),
+		templateConicalBtn = new JButton(new ImageIcon(getImage("templateEuc.png")));
 	private JProgressBar
 		progressBar = new JProgressBar(0, 100);
 	private JLabel
@@ -192,6 +193,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		planToolBar.add(upButton);
 		planToolBar.add(downButton);
 		planToolBar.add(templateEuclideanBtn);
+		planToolBar.add(templateConicalBtn);
 		planToolBar.add(templateSphericalBtn);
 		planToolBar.add(new FeedbackAction(this, "minimal", appName));
 		
@@ -241,6 +243,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		upButton.addActionListener(this);
 		downButton.addActionListener(this);
 		templateEuclideanBtn.addActionListener(this);
+		templateConicalBtn.addActionListener(this);
 		templateSphericalBtn.addActionListener(this);
 	}
 	
@@ -548,6 +551,23 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			creationPlan.add(new VertexQuadSubdivide());
 			creationPlan.add(new AutoCut());
 			creationPlan.add(new DualizeKiteQuads());
+			for (MacroAction m : creationPlan) {
+				m.setController(controller);
+			}
+			planTable.getSelectionModel().setSelectionInterval(0, 0);
+			planTable.updateUI();
+			actionOptionsPanel.updateUI();
+		}
+		if (e.getSource() == templateConicalBtn) {
+			creationPlan.clear();
+			creationPlan.add(new LoadCombinatorics());
+			creationPlan.add(new MedialSubdivide());
+			creationPlan.add(new EdgeQuadSubdivide());
+			creationPlan.add(new EdgeQuadSubdivide());
+			creationPlan.add(new MedialPolyhedron());
+			creationPlan.add(new DualGraphSubdivision());
+			creationPlan.add(new AutoCut());
+			creationPlan.add(new DualizeConicalQuads());
 			for (MacroAction m : creationPlan) {
 				m.setController(controller);
 			}

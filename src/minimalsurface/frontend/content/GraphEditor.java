@@ -23,8 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 import minimalsurface.controller.MainController;
-import minimalsurface.frontend.action.ExportOBJAction;
-import minimalsurface.frontend.action.ExportSTLAction;
 import minimalsurface.frontend.action.ResetAction;
 import minimalsurface.frontend.tool.ClearEditor;
 import minimalsurface.frontend.tool.EditCapitalPhi;
@@ -62,8 +60,8 @@ public class GraphEditor extends JDialog implements StatusChangedListener{
 		combinatorics = null;
 	private StandardEditor<CPVertex, CPEdge, CPFace>
 		editPanel = null;
-	private MinimalSurfacePanel
-		viewer = null;
+//	private MinimalSurfaceContent
+//		viewer = null;
 	private JLabel
 		statusLabel = new JLabel("Ready");
 	private JCheckBoxMenuItem
@@ -92,8 +90,8 @@ public class GraphEditor extends JDialog implements StatusChangedListener{
 		controller.setMainPanel((JPanel)getContentPane());
 		combinatorics = HalfEdgeDataStructure.createHEDS(CPVertex.class, CPEdge.class, CPFace.class);
 		editPanel = new StandardEditor<CPVertex, CPEdge, CPFace>(combinatorics, controller);
-		viewer = new MinimalSurfacePanel(controller);
-		controller.setViewer(viewer);
+//		viewer = new MinimalSurfaceContent(controller);
+//		controller.setViewer(viewer);
 		
 		createMenuBar();
 		createContent();
@@ -115,8 +113,8 @@ public class GraphEditor extends JDialog implements StatusChangedListener{
 		openFile = new OpenGraph<CPVertex, CPEdge, CPFace>(editPanel.getEditPanel(), this, controller, filter);
 		saveFile = new SaveGraph(this, editPanel.getController(), filter);
 		resetAction = new ResetAction(controller);
-		exportOBJAction = new ExportOBJAction(this, viewer);
-		exportSTLAction = new ExportSTLAction(this, viewer);
+//		exportOBJAction = new ExportOBJAction(this, viewer);
+//		exportSTLAction = new ExportSTLAction(this, viewer);
 		
 		fileMenu.add(openFile);
 		fileMenu.add(saveFile);
@@ -142,11 +140,11 @@ public class GraphEditor extends JDialog implements StatusChangedListener{
 		setLayout(new BorderLayout());
 		
 		editPanel.setBorder(BorderFactory.createTitledBorder("Combinatorics"));
-		viewer.getViewerComponent().setBorder(BorderFactory.createTitledBorder("Minimal Surface"));
+//		viewer.getViewerComponent().setBorder(BorderFactory.createTitledBorder("Minimal Surface"));
 		
 		Dimension minimumSize = new Dimension(150, 50);
 		editPanel.setMinimumSize(minimumSize);
-		viewer.getViewerComponent().setMinimumSize(minimumSize);
+//		viewer.getViewerComponent().setMinimumSize(minimumSize);
 		
 //		JSplitPane splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, editPanel, viewer.getViewerComponent());
 //		splitter.setOneTouchExpandable(true);

@@ -17,7 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import de.jreality.writer.WriterSTL;
 
 
@@ -36,11 +36,11 @@ public class ExportSTLAction extends AbstractAction {
 		saveChooser = new JFileChooser();
 	private Component 
 		parent = null;
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		viewer = null;
 
 
-	public ExportSTLAction(Component parent, MinimalSurfacePanel view) {
+	public ExportSTLAction(Component parent, MinimalSurfaceContent view) {
 		this.viewer = view;
 		this.parent = parent;
 		putValue(Action.NAME, "STL...");

@@ -17,7 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 
 /**
  * Opens a file chooser and saves active polyhedron.
@@ -34,11 +34,11 @@ public class ExportOBJAction extends AbstractAction {
 		saveChooser = new JFileChooser();
 	private Component 
 		parent = null;
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		viewer = null;
 
 
-	public ExportOBJAction(Component parent, MinimalSurfacePanel view) {
+	public ExportOBJAction(Component parent, MinimalSurfaceContent view) {
 		this.viewer = view;
 		this.parent = parent;
 		putValue(Action.NAME, "OBJ...");

@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
@@ -32,14 +32,14 @@ import de.jreality.scene.tool.ToolContext;
  */
 public class RemoveSurfaceNodeTool extends AbstractTool implements GeometryTool {
 
-	private MinimalSurfacePanel 
+	private MinimalSurfaceContent 
 		view = null;
 	private static InputSlot
 		leftButton = InputSlot.getDevice("PrimaryAction");
 	private ToolAction
 		action = new ToolAction();
 	
-	public RemoveSurfaceNodeTool(MinimalSurfacePanel view){
+	public RemoveSurfaceNodeTool(MinimalSurfaceContent view){
 		super(leftButton);
 		this.view = view;
 	}

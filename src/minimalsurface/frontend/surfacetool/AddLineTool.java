@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
 import de.jreality.scene.PointSet;
@@ -22,7 +22,7 @@ import de.jreality.scene.tool.ToolContext;
 
 public class AddLineTool extends AbstractTool implements GeometryTool {
 
-	private MinimalSurfacePanel 
+	private MinimalSurfaceContent 
 		view = null;
 	private static InputSlot
 		leftButton = InputSlot.getDevice("PrimaryAction");
@@ -32,7 +32,7 @@ public class AddLineTool extends AbstractTool implements GeometryTool {
 		action = new ToolAction();
 	
 	
-	public AddLineTool(MinimalSurfacePanel view){
+	public AddLineTool(MinimalSurfaceContent view){
 		super(leftButton);
 		this.view = view;
 	}

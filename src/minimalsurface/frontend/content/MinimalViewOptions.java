@@ -23,7 +23,9 @@ import koebe.frontend.content.ColorChooseJButton;
 import koebe.frontend.content.ColorChooseJButton.ColorChangedEvent;
 import koebe.frontend.content.ColorChooseJButton.ColorChangedListener;
 import minimalsurface.controller.MainController;
-import circlepatterns.frontend.content.ShrinkPanel;
+import de.jreality.plugin.basic.View;
+import de.jtem.jrworkspace.plugin.sidecontainer.SideContainerPerspective;
+import de.jtem.jrworkspace.plugin.sidecontainer.template.ShrinkPanelPlugin;
 
 
 
@@ -34,10 +36,9 @@ import circlepatterns.frontend.content.ShrinkPanel;
  * <a href="http://www.math.tu-berlin.de/geometrie">TU-Berlin</a> 
  * @author Stefan Sechelmann
  */
-@SuppressWarnings("serial")
-public class MinimalViewOptions extends ShrinkPanel implements ActionListener, ColorChangedListener, ChangeListener{
+public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListener, ColorChangedListener, ChangeListener{
 
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		view = null;
 	private JPanel
 		viewOptPanel = new JPanel(),
@@ -84,8 +85,10 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 	}
 	
 	
-	public MinimalViewOptions(MainController controller,  MinimalSurfacePanel view){
-		super("View Options");
+	public MinimalViewOptions(MainController controller,  MinimalSurfaceContent view){
+		shrinkPanel.setTitle("View Options");
+		shrinkPanel.setShrinked(true);
+		setInitialPosition(SHRINKER_BOTTOM);
 		antialiasChecker = new JCheckBox("Antialiasing", view.isAntialias());
 		showPolyeder = new JCheckBox("Faces", view.isShowSurface());
 		showUnitSphereChecker = new JCheckBox("Unit Sphere", false);
@@ -229,15 +232,15 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 		geomOptPanel.add(showUnitSphereChecker, c2);
 		
 		//main layout
-		setLayout(new GridBagLayout());
+		shrinkPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = GridBagConstraints.RELATIVE;
-		add(viewOptPanel, c);
+		shrinkPanel.add(viewOptPanel, c);
 		c.gridwidth = GridBagConstraints.REMAINDER;
-		add(geomOptPanel, c);
+		shrinkPanel.add(geomOptPanel, c);
 		
 		antialiasChecker.addActionListener(this);
 		showPolyeder.addActionListener(this);
@@ -302,7 +305,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 			view.setCircleType(type);
 			updateRingsBtn.setEnabled(type == EqualRadiusRing);
 		}
-		view.updateProperties();
+//		view.updateProperties();
 	}
 
 	
@@ -325,7 +328,7 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 			view.setSpheresColor(cce.getColor());
 		if (helperLinesColorBtn == s)
 			view.setHelperLineColor(cce.getColor());
-		view.updateProperties();
+//		view.updateProperties();
 	}
 
 	@Override
@@ -344,9 +347,12 @@ public class MinimalViewOptions extends ShrinkPanel implements ActionListener, C
 			view.setHelperLineWidth(helperLinesWidthSlider.getValue() * 0.1 / 100.0);
 		if (e.getSource() == diskThicknessSlider)
 			view.setDiskThickness(diskThicknessSlider.getValue() * 0.3 / 100.0);
-		view.updateProperties();
+//		view.updateProperties();
 	}
 	
-	
+	@Override
+	public Class<? extends SideContainerPerspective> getPerspectivePluginClass() {
+		return View.class;
+	}
 	
 }

@@ -23,7 +23,7 @@ import javax.swing.JSpinner;
 import javax.swing.KeyStroke;
 import javax.swing.SpinnerNumberModel;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import de.jreality.geometry.ThickenedSurfaceFactory;
 import de.jreality.io.JrScene;
 import de.jreality.scene.IndexedFaceSet;
@@ -45,7 +45,7 @@ public class ExportU3DPrintAction extends AbstractAction {
 		saveChooser = new JFileChooser();
 	private Component 
 		parent = null;
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		viewer = null;
 	private SpinnerNumberModel
 		thicknessModel = new SpinnerNumberModel(0.05, 0.0, 10000.0, 0.01);
@@ -55,7 +55,7 @@ public class ExportU3DPrintAction extends AbstractAction {
 		optionPanel = new JPanel();
 
 
-	public ExportU3DPrintAction(Component parent, MinimalSurfacePanel view) {
+	public ExportU3DPrintAction(Component parent, MinimalSurfaceContent view) {
 		this.viewer = view;
 		this.parent = parent;
 		putValue(Action.NAME, "U3D Print...");

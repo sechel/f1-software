@@ -17,7 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import de.jreality.writer.WriterJRS;
 
 
@@ -36,11 +36,11 @@ public class ExportJRSAction extends AbstractAction {
 		saveChooser = new JFileChooser();
 	private Component 
 		parent = null;
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		viewer = null;
 
 
-	public ExportJRSAction(Component parent, MinimalSurfacePanel view) {
+	public ExportJRSAction(Component parent, MinimalSurfaceContent view) {
 		this.viewer = view;
 		this.parent = parent;
 		putValue(Action.NAME, "JRS...");

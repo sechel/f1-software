@@ -19,7 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
@@ -42,11 +42,11 @@ public class ImportOBJAction extends AbstractAction {
 		openChooser = new JFileChooser();
 	private Component 
 		parent = null;
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		viewer = null;
 
 
-	public ImportOBJAction(Component parent, MinimalSurfacePanel view) {
+	public ImportOBJAction(Component parent, MinimalSurfaceContent view) {
 		this.viewer = view;
 		this.parent = parent;
 		putValue(Action.NAME, "OBJ...");

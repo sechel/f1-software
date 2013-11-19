@@ -17,7 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 
 
 /**
@@ -35,11 +35,11 @@ public class ExportVRMLAction extends AbstractAction {
 		saveChooser = new JFileChooser();
 	private Component 
 		parent = null;
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		viewer = null;
 
 
-	public ExportVRMLAction(Component parent, MinimalSurfacePanel view) {
+	public ExportVRMLAction(Component parent, MinimalSurfaceContent view) {
 		this.viewer = view;
 		this.parent = parent;
 		putValue(Action.NAME, "VRML...");

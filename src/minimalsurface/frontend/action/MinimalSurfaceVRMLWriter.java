@@ -18,7 +18,7 @@ import javax.vecmath.Vector3d;
 
 import math.util.Circles;
 import math.util.VecmathTools;
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import util.debug.DBGTracer;
 import de.jreality.math.FactoredMatrix;
 import de.jreality.math.Matrix;
@@ -48,7 +48,7 @@ public class MinimalSurfaceVRMLWriter {
 		V extends Vertex<V, E, F> & HasXYZW & HasQuadGraphLabeling,
 		E extends Edge<V, E, F>,
 		F extends Face<V, E, F> & HasXYZW
-	> void writeSurface(HalfEdgeDataStructure<V, E, F> surface, MinimalSurfacePanel panel, OutputStream out){
+	> void writeSurface(HalfEdgeDataStructure<V, E, F> surface, MinimalSurfaceContent panel, OutputStream out){
 		PrintWriter o = new PrintWriter(out);
 		o.println("#VRML V2.0 utf8");
 		o.println("DEF MinimalSurface Transform {");
@@ -76,7 +76,7 @@ public class MinimalSurfaceVRMLWriter {
 		V extends Vertex<V, E, F> & HasXYZW & HasQuadGraphLabeling,
 		E extends Edge<V, E, F>,
 		F extends Face<V, E, F>
-	> void makeSurface(HalfEdgeDataStructure<V, E, F> surface, MinimalSurfacePanel panel, PrintWriter o){
+	> void makeSurface(HalfEdgeDataStructure<V, E, F> surface, MinimalSurfaceContent panel, PrintWriter o){
 		double[][] vertexData = new double[surface.getNumVertices()][];
 		for (V v : surface.getVertices()){
 			VecmathTools.dehomogenize(v.getXYZW());
@@ -142,7 +142,7 @@ public class MinimalSurfaceVRMLWriter {
 		V extends Vertex<V, E, F> & HasXYZW & HasQuadGraphLabeling,
 		E extends Edge<V, E, F>,
 		F extends Face<V, E, F>
-	> void makeDiskSurface(HalfEdgeDataStructure<V, E, F> surface, MinimalSurfacePanel panel, PrintWriter o, QuadGraphLabel label){
+	> void makeDiskSurface(HalfEdgeDataStructure<V, E, F> surface, MinimalSurfaceContent panel, PrintWriter o, QuadGraphLabel label){
 		for (V v : surface.getVertices()){
 			if (v.getVertexLabel() != label)
 				continue;

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import de.jreality.scene.SceneGraphComponent;
 import de.jreality.scene.SceneGraphNode;
 import de.jreality.scene.pick.PickResult;
@@ -27,12 +27,12 @@ public class RemoveTool extends AbstractTool implements GeometryTool {
 
 	private static InputSlot
 		leftButton = InputSlot.getDevice("PrimaryAction");
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		panel = null;
 	private ToolAction
 		action = new ToolAction();
 	
-	public RemoveTool(MinimalSurfacePanel panel){
+	public RemoveTool(MinimalSurfaceContent panel){
 		super(leftButton);
 		this.panel = panel;
 	}

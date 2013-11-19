@@ -1,14 +1,14 @@
 package minimalsurface.controller;
 
 import minimalsurface.frontend.content.GraphEditor;
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 
 public class MainController extends halfedge.frontend.controller.MainController<CPVertex, CPEdge, CPFace>{
 	
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		viewer = null;
 	private boolean 
 		normalize = true;
@@ -23,12 +23,12 @@ public class MainController extends halfedge.frontend.controller.MainController<
 	
 	
 	
-	public void setViewer(MinimalSurfacePanel viewer) {
+	public void setViewer(MinimalSurfaceContent viewer) {
 		this.viewer = viewer;
 	}
 
 	
-	public MinimalSurfacePanel getViewer() {
+	public MinimalSurfaceContent getViewer() {
 		return viewer;
 	}
 

@@ -1,21 +1,15 @@
 package minimalsurface.frontend.content;
 
-import static java.awt.BorderLayout.CENTER;
-import static java.awt.BorderLayout.NORTH;
 import static java.util.logging.Level.CONFIG;
 import halfedge.HalfEdgeDataStructure;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.Action;
-import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JToggleButton;
-import javax.swing.JToolBar;
 
+import koebe.frontend.action.ExportSVGAction;
 import minimalsurface.controller.MainController;
 import minimalsurface.frontend.action.ExportJRSAction;
 import minimalsurface.frontend.action.ExportOBJAction;
@@ -25,100 +19,88 @@ import minimalsurface.frontend.action.ExportU3DAction;
 import minimalsurface.frontend.action.ExportU3DPrintAction;
 import minimalsurface.frontend.action.ExportVRMLAction;
 import minimalsurface.frontend.action.ImportOBJAction;
-import minimalsurface.frontend.surfacetool.AddLineTool;
-import minimalsurface.frontend.surfacetool.PointReflectionTool;
-import minimalsurface.frontend.surfacetool.ReflectAtPlaneTool;
-import minimalsurface.frontend.surfacetool.RemoveEarTool;
-import minimalsurface.frontend.surfacetool.RemoveSurfaceNodeTool;
-import minimalsurface.frontend.surfacetool.RemoveTool;
-import minimalsurface.frontend.surfacetool.RotateAroundLineTool;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
+import de.jreality.plugin.JRViewer;
+import de.jreality.plugin.basic.ViewMenuBar;
+import de.jreality.plugin.basic.ViewToolBar;
+import de.jreality.plugin.content.ContentTools;
+import de.jreality.plugin.menu.CameraMenu;
 import de.jreality.ui.viewerapp.SunflowMenu;
 import de.jreality.util.LoggingSystem;
+import de.jreality.util.Secure;
 
 public class MinimalSurfaceViewer extends JFrame {
 
 	private static final long 
 		serialVersionUID = 1L;
 	
-	private MinimalSurfacePanel
-		minimalSurfacePanel = null;
-	private JMenuBar	
-		menuBar = new JMenuBar();
+	private JRViewer
+		viewer = new JRViewer(true);
+	private MinimalSurfaceContent
+		minimalSurfaceContent = null;
+	private MinimalViewOptions
+		optionsPanel = null;
+	private MinimalSurfaceToolBar
+		toolBar = null;
 	private JMenu
 		exportMenu = new JMenu("Export", false),
 		importMenu = new JMenu("Import", false);
-	private JToolBar
-		toolBar = new JToolBar();
-
 	
 	public MinimalSurfaceViewer(JFrame parent, MainController controller) {
-		setSize(600, 600);
+		setSize(900, 700);
 		setTitle("Minimal Surface Viewer");
 		setLocationRelativeTo(parent);
 		
-		minimalSurfacePanel = new MinimalSurfacePanel(controller);
-//		Action exportSVG = new ExportSVGAction(this, minimalSurfacePanel.getViewerApp().getViewer());
-		Action exportU3D = new ExportU3DAction(this, minimalSurfacePanel);
-		Action exportU3DPrint = new ExportU3DPrintAction(this, minimalSurfacePanel);
-		Action exportSTL = new ExportSTLAction(this, minimalSurfacePanel);
-		Action exportOBJ = new ExportOBJAction(this, minimalSurfacePanel);
-		Action exportSurfaceOBJ = new ExportSurfaceOBJAction(this, minimalSurfacePanel);
-		Action exportJRS = new ExportJRSAction(this, minimalSurfacePanel);
-		Action exportVRML = new ExportVRMLAction(this, minimalSurfacePanel);
+		minimalSurfaceContent = new MinimalSurfaceContent(controller);
+		toolBar = new MinimalSurfaceToolBar(minimalSurfaceContent);
+		optionsPanel = new MinimalViewOptions(controller, minimalSurfaceContent);
+		viewer.registerPlugin(toolBar);
+		viewer.registerPlugin(minimalSurfaceContent);
+		viewer.registerPlugin(optionsPanel);
+		viewer.registerPlugin(CameraMenu.class);
+		viewer.registerPlugin(ContentTools.class);
+		viewer.registerPlugin(ViewToolBar.class);
+		viewer.registerPlugin(ViewMenuBar.class); 
+		viewer.setShowPanelSlots(false, false, false, true);
+		viewer.setShowMenuBar(true);
+		viewer.setShowToolBar(true);
+		viewer.getController().setPropertyEngineEnabled(false);
+		Secure.setProperty("apple.laf.useScreenMenuBar", "false");
+		setRootPane(viewer.startupLocal());
+		viewer.getPlugin(CameraMenu.class).setZoomEnabled(true);
+		viewer.getPlugin(ViewToolBar.class).getToolBarComponent().setVisible(false);
 		
-		Action importOBJ = new ImportOBJAction(this, minimalSurfacePanel);
-		
-		setLayout(new BorderLayout());
-		add(minimalSurfacePanel, CENTER);
+		Action exportSVG = new ExportSVGAction(this, viewer.getViewer());
+		Action exportU3D = new ExportU3DAction(this, minimalSurfaceContent);
+		Action exportU3DPrint = new ExportU3DPrintAction(this, minimalSurfaceContent);
+		Action exportSTL = new ExportSTLAction(this, minimalSurfaceContent);
+		Action exportOBJ = new ExportOBJAction(this, minimalSurfaceContent);
+		Action exportSurfaceOBJ = new ExportSurfaceOBJAction(this, minimalSurfaceContent);
+		Action exportJRS = new ExportJRSAction(this, minimalSurfaceContent);
+		Action exportVRML = new ExportVRMLAction(this, minimalSurfaceContent);
+		Action importOBJ = new ImportOBJAction(this, minimalSurfaceContent);
 		
 		exportMenu.add(exportU3D);
 		exportMenu.add(exportU3DPrint);
 		exportMenu.add(exportOBJ);
 		exportMenu.add(exportSurfaceOBJ);
-//		exportMenu.add(exportSVG);
+		exportMenu.add(exportSVG);
 		exportMenu.add(exportSTL);
 		exportMenu.add(exportVRML);
 		exportMenu.add(exportJRS);
-		
 		importMenu.add(importOBJ);
 		
 	    try {
-	    	exportMenu.add(new SunflowMenu(minimalSurfacePanel.getViewer()));
+	    	exportMenu.add(new SunflowMenu(viewer.getViewer()));
 	    } catch (Exception e) {
 	    	LoggingSystem.getLogger(this).log(CONFIG, "no sunflow", e);
 	    }
 	    
-	    menuBar.add(exportMenu);
-	    menuBar.add(importMenu);
-	    setJMenuBar(menuBar);
-	    
-	    JToggleButton actionToggle1 = new JToggleButton(new PointReflectionTool(minimalSurfacePanel).getAction());
-	    JToggleButton actionToggle2 = new JToggleButton(new ReflectAtPlaneTool(minimalSurfacePanel).getAction());
-	    JToggleButton actionToggle3 = new JToggleButton(new RotateAroundLineTool(minimalSurfacePanel).getAction());
-	    JToggleButton actionToggle4 = new JToggleButton(new RemoveTool(minimalSurfacePanel).getAction());
-	    JToggleButton actionToggle5 = new JToggleButton(new AddLineTool(minimalSurfacePanel).getAction());
-	    JToggleButton actionToggle6 = new JToggleButton(new RemoveSurfaceNodeTool(minimalSurfacePanel).getAction());
-	    JToggleButton actionToggle7 = new JToggleButton(new RemoveEarTool(minimalSurfacePanel).getAction());
-	    ButtonGroup actionGroup = new ButtonGroup();
-	    actionGroup.add(actionToggle1);
-	    actionGroup.add(actionToggle2);
-	    actionGroup.add(actionToggle3);
-	    actionGroup.add(actionToggle4);
-	    actionGroup.add(actionToggle5);
-	    actionGroup.add(actionToggle6);
-	    actionGroup.add(actionToggle7);
-	    
-	    toolBar.add(actionToggle1);
-	    toolBar.add(actionToggle2);
-	    toolBar.add(actionToggle3);
-	    toolBar.add(actionToggle4);
-	    toolBar.add(actionToggle5);
-	    toolBar.add(actionToggle6);
-	    toolBar.add(actionToggle7);
-	    add(toolBar, NORTH);
+	    ViewMenuBar menuBar = viewer.getPlugin(ViewMenuBar.class);
+	    menuBar.addMenu(getClass(), 1, exportMenu);
+	    menuBar.addMenu(getClass(), 1, importMenu);
 	}
 	
 	
@@ -126,10 +108,10 @@ public class MinimalSurfaceViewer extends JFrame {
 		Runnable r = new Runnable() {
 			@Override
 			public void run() {
-				minimalSurfacePanel.resetGeometry();
-				minimalSurfacePanel.addSurface(surface);
-				minimalSurfacePanel.encompass();
-				minimalSurfacePanel.repaint();				
+				minimalSurfaceContent.resetGeometry();
+				minimalSurfaceContent.addSurface(surface);
+//				minimalSurfacePanel.encompass();
+//				minimalSurfacePanel.repaint();				
 			}
 		};
 		EventQueue.invokeLater(r);

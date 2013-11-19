@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import minimalsurface.frontend.content.MinimalSurfacePanel;
+import minimalsurface.frontend.content.MinimalSurfaceContent;
 import de.jreality.io.JrScene;
 import de.jreality.writer.u3d.WriterU3D;
 
@@ -40,14 +40,14 @@ public class ExportU3DAction extends AbstractAction {
 		saveChooser = new JFileChooser();
 	private Component 
 		parent = null;
-	private MinimalSurfacePanel
+	private MinimalSurfaceContent
 		viewer = null;
 	private JPanel
 		optionPanel = new JPanel();
 	private JCheckBox
 		normalsChecker = new JCheckBox("Normals", false);
 
-	public ExportU3DAction(Component parent, MinimalSurfacePanel view) {
+	public ExportU3DAction(Component parent, MinimalSurfaceContent view) {
 		this.viewer = view;
 		this.parent = parent;
 		putValue(Action.NAME, "U3D...");
