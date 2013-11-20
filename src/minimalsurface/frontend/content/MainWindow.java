@@ -57,6 +57,7 @@ import javax.swing.table.AbstractTableModel;
 import minimalsurface.controller.MainController;
 import minimalsurface.frontend.macro.AutoCut;
 import minimalsurface.frontend.macro.BoundaryConditions;
+import minimalsurface.frontend.macro.CalculateDiagonalIntersections;
 import minimalsurface.frontend.macro.CentralExtensionSubdivide;
 import minimalsurface.frontend.macro.ConsistentStripSubdivide;
 import minimalsurface.frontend.macro.CutEars;
@@ -115,6 +116,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			new AutoCut(), 
 			new DualizeConicalQuads(),
 			new DualizeKiteQuads(),
+			new CalculateDiagonalIntersections(),
 			new LoadToGraphEditor(),
 			new SurfaceEditor()
 		};

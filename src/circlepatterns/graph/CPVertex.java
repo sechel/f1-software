@@ -21,9 +21,9 @@ public class CPVertex extends Vertex<CPVertex, CPEdge, CPFace> implements HasQua
 	private static final long 
 		serialVersionUID = 1L;
 	private Point2d
-		coord = new Point2d();	
+		pos2d = new Point2d();	
 	private Point4d
-		homCoord = new Point4d(0, 0, 0, 1);
+		pos4d = new Point4d(0, 0, 0, 1);
 	private QuadGraphLabel
 		quadGraphLabel = null;
 	
@@ -48,9 +48,9 @@ public class CPVertex extends Vertex<CPVertex, CPEdge, CPFace> implements HasQua
 	}
 	@Override
 	public Point2d getXY() {
-		if (coord == null)
-			coord = new Point2d();
-		return coord;
+		if (pos2d == null)
+			pos2d = new Point2d();
+		return pos2d;
 	}
 
 	@Override
@@ -59,9 +59,9 @@ public class CPVertex extends Vertex<CPVertex, CPEdge, CPFace> implements HasQua
 	}
 	@Override
 	public Point4d getXYZW() {
-		if (homCoord == null)
-			homCoord = new Point4d(0, 0, 0, 1);
-		return homCoord;
+		if (pos4d == null)
+			pos4d = new Point4d(0, 0, 0, 1);
+		return pos4d;
 	}
 
 	@Override
