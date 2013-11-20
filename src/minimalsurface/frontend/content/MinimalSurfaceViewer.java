@@ -110,8 +110,7 @@ public class MinimalSurfaceViewer extends JFrame {
 			public void run() {
 				minimalSurfaceContent.resetGeometry();
 				minimalSurfaceContent.addSurface(surface);
-//				minimalSurfacePanel.encompass();
-//				minimalSurfacePanel.repaint();				
+				minimalSurfaceContent.encompass();
 			}
 		};
 		EventQueue.invokeLater(r);

@@ -60,6 +60,8 @@ import de.jreality.geometry.Primitives;
 import de.jreality.math.FactoredMatrix;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
+import de.jreality.plugin.JRViewerUtility;
+import de.jreality.plugin.basic.Scene;
 import de.jreality.plugin.content.DirectContent;
 import de.jreality.scene.Appearance;
 import de.jreality.scene.Geometry;
@@ -90,6 +92,8 @@ public class MinimalSurfaceContent extends DirectContent {
 	@SuppressWarnings("unused")
 	private MainController
 		controller = null;
+	private Scene
+		scene = null;
 	
 	//geometry
 	private SceneGraphComponent 
@@ -186,6 +190,7 @@ public class MinimalSurfaceContent extends DirectContent {
 	@Override
 	public void install(Controller c) throws Exception {
 		super.install(c);
+		this.scene = c.getPlugin(Scene.class);
 		setContent(sceneRoot);
 	}
 
@@ -918,7 +923,7 @@ public class MinimalSurfaceContent extends DirectContent {
 	}
 	
 	public void encompass() {
-		
+		JRViewerUtility.encompassEuclidean(scene);
 	}
 	
 }

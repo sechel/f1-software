@@ -85,7 +85,7 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 	}
 	
 	
-	public MinimalViewOptions(MainController controller,  MinimalSurfaceContent view){
+	public MinimalViewOptions(MainController controller, MinimalSurfaceContent view){
 		shrinkPanel.setTitle("View Options");
 		shrinkPanel.setShrinked(true);
 		setInitialPosition(SHRINKER_BOTTOM);
@@ -101,14 +101,14 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		showVerticesChecker = new JCheckBox("Vertices", view.isShowVertices());
 		helperLinesChecker = new JCheckBox("Helpers", view.isShowHelperLines());
 		
-		polyederColorBtn = new ColorChooseJButton(controller.getMainPanel(), view.getFaceColor());
-		light1ColorBtn = new ColorChooseJButton(controller.getMainPanel(), view.getLight1Color());
-		light2ColorBtn = new ColorChooseJButton(controller.getMainPanel(), view.getLight2Color());
-		circlesColorBtn = new ColorChooseJButton(controller.getMainPanel(), view.getCirclesColor());
-		spheresColorBtn = new ColorChooseJButton(controller.getMainPanel(), view.getSpheresColor());
-		meshColorBtn = new ColorChooseJButton(controller.getMainPanel(), view.getMeshColor());
-		backgroundColorBtn = new ColorChooseJButton(controller.getMainPanel(), view.getBackgroundColor());
-		helperLinesColorBtn = new ColorChooseJButton(controller.getMainPanel(), view.getHelperLinesColor());
+		polyederColorBtn = new ColorChooseJButton(shrinkPanel, view.getFaceColor());
+		light1ColorBtn = new ColorChooseJButton(shrinkPanel, view.getLight1Color());
+		light2ColorBtn = new ColorChooseJButton(shrinkPanel, view.getLight2Color());
+		circlesColorBtn = new ColorChooseJButton(shrinkPanel, view.getCirclesColor());
+		spheresColorBtn = new ColorChooseJButton(shrinkPanel, view.getSpheresColor());
+		meshColorBtn = new ColorChooseJButton(shrinkPanel, view.getMeshColor());
+		backgroundColorBtn = new ColorChooseJButton(shrinkPanel, view.getBackgroundColor());
+		helperLinesColorBtn = new ColorChooseJButton(shrinkPanel, view.getHelperLinesColor());
 		
 		polyederTransSlider = new JSlider(0, 99, (int)(99 * view.getTransparencySurfaceValue()));
 		light1IntesSlider = new JSlider(0, 100, (int)(100.0 * view.getLight1intensity() / 8.0));
@@ -166,7 +166,7 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		viewOptPanel.add(shadingChecker, c1);
 		
 		// geometry options
-		geomOptPanel.setBorder(BorderFactory.createTitledBorder("Geometry Options"));
+//		geomOptPanel.setBorder(BorderFactory.createTitledBorder("Geometry Options"));
 		geomOptPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c2 = new GridBagConstraints();
 		c2.fill = GridBagConstraints.HORIZONTAL;
@@ -228,7 +228,6 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		c2.gridwidth = GridBagConstraints.REMAINDER;
 		c2.weightx = 0;
 		geomOptPanel.add(helperLinesColorBtn, c2);
-		
 		geomOptPanel.add(showUnitSphereChecker, c2);
 		
 		//main layout
@@ -237,8 +236,8 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 1;
 		c.weighty = 1;
-		c.gridwidth = GridBagConstraints.RELATIVE;
-		shrinkPanel.add(viewOptPanel, c);
+//		c.gridwidth = GridBagConstraints.RELATIVE;
+//		shrinkPanel.add(viewOptPanel, c);
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		shrinkPanel.add(geomOptPanel, c);
 		

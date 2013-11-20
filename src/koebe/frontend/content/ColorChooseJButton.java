@@ -20,9 +20,10 @@ import javax.swing.JFrame;
  * <a href="http://www.math.tu-berlin.de/geometrie">TU-Berlin</a> 
  * @author Stefan Sechelmann
  */
-@SuppressWarnings("serial")
 public class ColorChooseJButton extends JButton implements ActionListener{
 
+	private static final long 
+		serialVersionUID = 1L;
 	private JComponent 
 		parent = null;
 	private Color
@@ -35,8 +36,13 @@ public class ColorChooseJButton extends JButton implements ActionListener{
 		public void colorChanged(ColorChangedEvent cce);
 	}
 	
-	public static class ColorChangedEvent extends ActionEvent{
-		private Color color = null;
+	public static class ColorChangedEvent extends ActionEvent {
+		
+		private static final long 
+			serialVersionUID = 1L;
+		private Color 
+			color = null;
+		
 		public ColorChangedEvent(Object source, Color color){
 			super(source, 0, "color changed");
 			this.color = color;
@@ -69,7 +75,6 @@ public class ColorChooseJButton extends JButton implements ActionListener{
 		this.parent = parent;
 		this.color = color;
 		super.addActionListener(this);
-//		setPreferredSize(new Dimension(30, 30));
 	}
 	
 

@@ -67,6 +67,8 @@ import minimalsurface.frontend.macro.EdgeQuadSubdivide;
 import minimalsurface.frontend.macro.EnneperCirclesGenerator;
 import minimalsurface.frontend.macro.KobePolyhedron;
 import minimalsurface.frontend.macro.LoadCombinatorics;
+import minimalsurface.frontend.macro.LoadCombinatorics.CreateMode;
+import minimalsurface.frontend.macro.LoadCombinatorics.Predefined;
 import minimalsurface.frontend.macro.LoadToGraphEditor;
 import minimalsurface.frontend.macro.MacroAction;
 import minimalsurface.frontend.macro.MedialPolyhedron;
@@ -547,6 +549,8 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 		if (e.getSource() == templateEuclideanBtn) {
 			creationPlan.clear();
 			creationPlan.add(new LoadCombinatorics());
+			creationPlan.add(new EdgeQuadSubdivide());
+			creationPlan.add(new EdgeQuadSubdivide());			
 			creationPlan.add(new MedialPolyhedron());
 			creationPlan.add(new VertexQuadSubdivide());
 			creationPlan.add(new AutoCut());
@@ -555,6 +559,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 				m.setController(controller);
 			}
 			planTable.getSelectionModel().setSelectionInterval(0, 0);
+			updateInfos();
 			planTable.updateUI();
 			actionOptionsPanel.updateUI();
 		}
@@ -572,12 +577,13 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 				m.setController(controller);
 			}
 			planTable.getSelectionModel().setSelectionInterval(0, 0);
+			updateInfos();
 			planTable.updateUI();
 			actionOptionsPanel.updateUI();
 		}
 		if (e.getSource() == templateSphericalBtn) {
 			creationPlan.clear();
-			creationPlan.add(new LoadCombinatorics());
+			creationPlan.add(new LoadCombinatorics(CreateMode.Predefined, Predefined.QuadMesh));
 			creationPlan.add(new BoundaryConditions());
 			creationPlan.add(new SphericalCirclePattern());
 			creationPlan.add(new VertexQuadSubdivide());
@@ -586,6 +592,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 				m.setController(controller);
 			}
 			planTable.getSelectionModel().setSelectionInterval(0, 0);
+			updateInfos();
 			planTable.updateUI();
 			actionOptionsPanel.updateUI();
 		}

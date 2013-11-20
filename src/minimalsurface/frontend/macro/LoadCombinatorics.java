@@ -40,13 +40,13 @@ import circlepatterns.graph.CPVertex;
 
 public class LoadCombinatorics extends MacroAction {
 
-	private enum CreateMode {
+	public static enum CreateMode {
 		Predefined,
 		FromFile,
 		FromEditor
 	}
 	
-	private enum Predefined{
+	public static enum Predefined{
 		CubeLattice,
 		QuadMesh
 	}
@@ -66,6 +66,13 @@ public class LoadCombinatorics extends MacroAction {
 	private GraphEditor
 		graphEditor = null;
 	
+	public LoadCombinatorics() {
+	}
+
+	public LoadCombinatorics(CreateMode createMode, Predefined predefined) {
+		this.createMode = createMode;
+		this.predefined = predefined;
+	}
 	
 	@Override
 	public String getName() {
@@ -213,6 +220,26 @@ public class LoadCombinatorics extends MacroAction {
 			predefineGroup.add(predefinedCubeButton);
 			predefineGroup.add(predefinedQuadMeshButton);
 			
+			switch (predefined) {
+			case CubeLattice:
+				predefinedCubeButton.setSelected(true);
+				break;
+			case QuadMesh:
+				predefinedQuadMeshButton.setSelected(true);
+				break;
+			}
+			
+			switch (createMode) {
+			case Predefined:
+				modePredefinedRadio.setSelected(true);
+				break;
+			case FromEditor:
+				modeFromEdtor.setSelected(true);
+				break;
+			case FromFile:
+				modeFromFileRadio.setSelected(true);
+			}
+			
 			modeFromEdtor.addActionListener(this);
 			modeFromFileRadio.addActionListener(this);
 			modePredefinedRadio.addActionListener(this);
@@ -285,6 +312,14 @@ public class LoadCombinatorics extends MacroAction {
 		}
 		
 		
+	}
+	
+	public void setPredefined(Predefined predefined) {
+		this.predefined = predefined;
+	}
+	
+	public void setCreateMode(CreateMode createMode) {
+		this.createMode = createMode;
 	}
 	
 	

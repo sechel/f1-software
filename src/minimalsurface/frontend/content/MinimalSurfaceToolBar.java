@@ -22,6 +22,7 @@ public class MinimalSurfaceToolBar extends ToolBarAggregator {
 	
 	public MinimalSurfaceToolBar(MinimalSurfaceContent content) {
 		this.minimalSurfaceContent = content;
+		setFloatable(false);
 	}
 	
 	@Override
