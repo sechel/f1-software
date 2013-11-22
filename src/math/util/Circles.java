@@ -205,7 +205,7 @@ public class Circles {
 	
 	
 	
-	public static de.jreality.math.Matrix getTransform(Point4d c, Vector3d N, Double r, boolean uniformScale){
+	public static de.jreality.math.Matrix getTransform(Point4d c, Vector3d N, Double r){
 		//find ONB
 		VecmathTools.dehomogenize(c);
 
@@ -225,11 +225,7 @@ public class Circles {
 		
 		de.jreality.math.Matrix Offset = MatrixBuilder.euclidean().translate(c.x, c.y, c.z).getMatrix();
 		de.jreality.math.Matrix S = null;
-		if (uniformScale) {
-			S = MatrixBuilder.euclidean().scale(r, r, r).getMatrix();
-		} else {
-			S = MatrixBuilder.euclidean().scale(r, r, 1.0).getMatrix();
-		}
+		S = MatrixBuilder.euclidean().scale(r, r, r).getMatrix();
 		de.jreality.math.Matrix R = new de.jreality.math.Matrix();
 		R.setColumn(0, new double[]{T.x, T.y, T.z, 0.0});
 		R.setColumn(1, new double[]{B.x, B.y, B.z, 0.0});

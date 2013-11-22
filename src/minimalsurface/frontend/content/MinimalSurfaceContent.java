@@ -32,7 +32,6 @@ import static de.jreality.writer.u3d.U3DAttribute.U3D_NONORMALS;
 import static halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel.INTERSECTION;
 import static halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel.SPHERE;
 import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Disk;
-import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Ring;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -58,7 +57,6 @@ import circlepatterns.graph.CPVertex;
 import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.geometry.IndexedLineSetFactory;
 import de.jreality.geometry.Primitives;
-import de.jreality.math.FactoredMatrix;
 import de.jreality.math.Matrix;
 import de.jreality.math.MatrixBuilder;
 import de.jreality.plugin.JRViewerUtility;
@@ -70,7 +68,6 @@ import de.jreality.scene.IndexedFaceSet;
 import de.jreality.scene.Light;
 import de.jreality.scene.PointLight;
 import de.jreality.scene.SceneGraphComponent;
-import de.jreality.scene.SceneGraphVisitor;
 import de.jreality.scene.Sphere;
 import de.jreality.scene.Transformation;
 import de.jreality.scene.tool.Tool;
@@ -98,13 +95,16 @@ public class MinimalSurfaceContent extends DirectContent {
 	
 	//geometry
 	private SceneGraphComponent 
-		sceneRoot = new SceneGraphComponent(),
-		polyhedronRoot = new SceneGraphComponent(),
-		geometryRoot = new SceneGraphComponent(),
-		linesRoot = new SceneGraphComponent(),
-		unitSphereRoot = new SceneGraphComponent(),
-		activeDisksRoot = new SceneGraphComponent(),
-		activeSpheresRoot = new SceneGraphComponent();
+		sceneRoot = new SceneGraphComponent("Scene Root"),
+		polyhedronRoot = new SceneGraphComponent("Polyhedron Root"),
+		geometryRoot = new SceneGraphComponent("Geometry Root"),
+		linesRoot = new SceneGraphComponent("Helper Lines"),
+		unitSphereRoot = new SceneGraphComponent("Unit Sphere"),
+		activeDisksRoot = new SceneGraphComponent("Disks Root"),
+		activeSpheresRoot = new SceneGraphComponent("Spheres Root"),
+		circleContainer = new SceneGraphComponent("Circle Container"),
+		diskGeometryRoot = new SceneGraphComponent("Disk Geometry Root"),
+		circleGeometryRoot = new SceneGraphComponent("Circle Geometry Root");
 	private Transformation
 		diskThicknessTransform = new Transformation();
 	private IndexedFaceSet
@@ -112,15 +112,6 @@ public class MinimalSurfaceContent extends DirectContent {
 	private Object
 		surfaceMaster = new Object();
 	
-	//tools
-//	private RotateTool 
-//		rotateTool = new RotateTool();
-//	private DraggingTool
-//		draggingTool = new DraggingTool();
-//	private EncompassTool
-//		encompassTool = new EncompassTool();
-//	private ClickWheelCameraZoomTool
-//		zoomTool = new ClickWheelCameraZoomTool();
 	private Tool
 		activeGeometryTool = null;
 	
@@ -165,7 +156,7 @@ public class MinimalSurfaceContent extends DirectContent {
 		light2intensity = 8,
 		defaultLightIntensity = 1,
 		meshWidth = 0.015,
-		diskThickness = 0.01;
+		circleThickness = 0.01;
 	
 	private CircleType
 		circleType = CircleType.Disk;
@@ -174,8 +165,6 @@ public class MinimalSurfaceContent extends DirectContent {
 		diskGeometry = new Disk(40, 1.0);
 	private Ring
 		ringGeometry = new Ring();
-	private IndexedFaceSet
-		circleGeometry = new IndexedFaceSet();
 	private Geometry
 		sphereGeometry = new Sphere();
 
@@ -275,7 +264,6 @@ public class MinimalSurfaceContent extends DirectContent {
         diskApp.setAttribute(LIGHTING_ENABLED, true);
         diskApp.setAttribute(TRANSPARENCY_ENABLED, false);
         diskApp.setAttribute(PICKABLE, false);
-        setCircleType(Disk);
         
         // spheres
         spheresApp.setAttribute(POLYGON_SHADER, "smooth");
@@ -296,7 +284,7 @@ public class MinimalSurfaceContent extends DirectContent {
 		spheresApp.setAttribute(PICKABLE, false);
         
         // disk thickness
-		Matrix S = MatrixBuilder.euclidean().scale(1, 1, diskThickness).getMatrix();
+		Matrix S = MatrixBuilder.euclidean().scale(1, 1, circleThickness).getMatrix();
 		S.assignTo(diskThicknessTransform);
 		
         // helper lines
@@ -310,11 +298,9 @@ public class MinimalSurfaceContent extends DirectContent {
         linesApp.setAttribute(LINE_SHADER + "." + TUBE_RADIUS, meshWidth * 3);
         geometryRoot.addChild(linesRoot);
         
-//        // tools
-//        sceneRoot.addTool(encompassTool);
-//        sceneRoot.addTool(rotateTool);
-//        sceneRoot.addTool(draggingTool);
-//        sceneRoot.addTool(zoomTool);
+        diskGeometryRoot.setGeometry(diskGeometry);
+        circleGeometryRoot.setGeometry(ringGeometry);
+        setCircleType(Disk);
 	}
 	
 
@@ -451,7 +437,7 @@ public class MinimalSurfaceContent extends DirectContent {
 						VecmathTools.dehomogenize(n);
 						Vector3d N = new Vector3d(n.x, n.y, n.z);
 						Double r = C.distance(P1);
-						addDisk(activeDisksRoot, C, N, r);
+						addCircle(activeDisksRoot, C, N, r);
 						break;
 					case SPHERE:
 						Point4d c = v.getXYZW();
@@ -475,9 +461,15 @@ public class MinimalSurfaceContent extends DirectContent {
 		for (F f : surface.getFaces()) {
 			double r = f.getRadius();
 			if (r == 0.0) continue;
-			Point4d C = f.getXYZW();
+			Point4d C = new Point4d(f.getXYZW());
+			VecmathTools.sphereMirror(C);
 			VecmathTools.dehomogenize(C);
 			E be = f.getBoundary().get(0);
+			for (E e : f.getBoundary()) {
+				if (!e.isBoundaryEdge()) {
+					be = e;
+				}
+			}
 			Point4d v0 = be.getStartVertex().getXYZW();
 			Point4d v1 = be.getTargetVertex().getXYZW();
 			VecmathTools.dehomogenize(v0);
@@ -487,23 +479,18 @@ public class MinimalSurfaceContent extends DirectContent {
 			Vector3d N = new Vector3d();
 			N.cross(vec1, vec2);
 			N.normalize();
-			addDisk(activeDisksRoot, C, N, r);
+			addCircle(activeDisksRoot, C, N, r);
 		}
 		return disksSpheresRoot;
 	}
 	
 	
-	private void addDisk(SceneGraphComponent root, Point4d C, Vector3d N, double r) {
-		Matrix T = Circles.getTransform(C, N, r, circleType == Ring);
-		SceneGraphComponent transformC = new SceneGraphComponent();
-		transformC.setName("Circle Transform");
-		T.assignTo(transformC);
-		SceneGraphComponent disk = new SceneGraphComponent();
-		disk.setName("Circle");
-		disk.setTransformation(diskThicknessTransform);
-		disk.setGeometry(circleGeometry);
-		transformC.addChild(disk);
-		root.addChild(transformC);
+	private void addCircle(SceneGraphComponent root, Point4d C, Vector3d N, double r) {
+		Matrix T = Circles.getTransform(C, N, r);
+		SceneGraphComponent disk = new SceneGraphComponent("Circle");
+		T.assignTo(disk);
+		disk.addChild(circleContainer);
+		root.addChild(disk);
 	}
 	
 	
@@ -839,29 +826,21 @@ public class MinimalSurfaceContent extends DirectContent {
 		unitSphereRoot.setVisible(show);
 	}
 
-	public double getDiskThickness() {
-		return diskThickness;
+	public double getCircleThickness() {
+		return circleThickness;
 	}
 
 
-	public void setDiskThickness(double diskThickness) {
-		this.diskThickness = diskThickness;
+	public void setCircleThickness(double circleThickness) {
+		this.circleThickness = circleThickness;
 		switch (circleType) {
 		case Disk:
 			MatrixBuilder S = MatrixBuilder.euclidean();
-			S.scale(1, 1, diskThickness);
-			S.assignTo(diskThicknessTransform);
+			S.scale(1, 1, circleThickness);
+			S.assignTo(diskGeometryRoot);
 			break;
-		case Ring:
-			ringGeometry = new Ring(diskThickness, 40, 20);
-			S = MatrixBuilder.euclidean();
-			S.assignTo(diskThicknessTransform);
-			setCircleType(Ring);
-			break;
-		case EqualRadiusRing:
-//			S = MatrixBuilder.euclidean();
-//			S.assignTo(diskThicknessTransform);
-//			setCircleType(circleType);
+		case Circle:
+			circleGeometryRoot.setGeometry(new Ring(circleThickness, 40, 20));
 			break;
 		}
 	}
@@ -878,65 +857,17 @@ public class MinimalSurfaceContent extends DirectContent {
 
 
 	public void setCircleType(CircleType circleType) {
-		CircleType oldType = this.circleType;
+		this.circleType = circleType;
+		circleContainer.removeAllChildren();
 		switch (circleType) {
 		default:
 		case Disk:
-		case Ring:
-			if (oldType != CircleType.EqualRadiusRing) 
-				break;
-			activeDisksRoot.childrenWriteAccept(new SceneGraphVisitor() {
-				@Override
-				public void visit(SceneGraphComponent c) {
-					if (c.getName().equals("Circle Transform")) {
-						SceneGraphComponent circle = c.getChildComponent(0);
-						circle.setGeometry(circleGeometry);
-					} else {
-						c.childrenWriteAccept(this, false, false, false, false, false, true);
-					}
-				}
-			}, false, false, false, false, false, true);
+			circleContainer.addChild(diskGeometryRoot);
+			break;
+		case Circle:
+			circleContainer.addChild(circleGeometryRoot);
 			break;
 		}
-		this.circleType = circleType;
-		IndexedFaceSet newGeom = null;
-		switch (circleType) {
-		case Disk:
-			newGeom = diskGeometry;
-			MatrixBuilder S = MatrixBuilder.euclidean();
-			S.scale(1, 1, diskThickness);
-			S.assignTo(diskThicknessTransform);
-			break;
-		case Ring:
-			ringGeometry = new Ring(diskThickness, 40, 20);
-			newGeom = ringGeometry;
-			S = MatrixBuilder.euclidean();
-			S.assignTo(diskThicknessTransform);
-			break;
-		case EqualRadiusRing:
-			newGeom = circleGeometry;
-			S = MatrixBuilder.euclidean();
-			S.assignTo(diskThicknessTransform);
-			activeDisksRoot.childrenWriteAccept(new SceneGraphVisitor() {
-				@Override
-				public void visit(SceneGraphComponent c) {
-					if (c.getName().equals("Circle Transform")) {
-						Transformation T = c.getTransformation();
-						SceneGraphComponent circle = c.getChildComponent(0);
-						FactoredMatrix fm = new FactoredMatrix(T);
-						double scale = fm.getStretch()[0];
-						circle.setGeometry(new Ring(diskThickness / scale, 40 , 20));
-					} else {
-						c.childrenWriteAccept(this, false, false, false, false, false, true);
-					}
-				}
-			}, false, false, false, false, false, true);
-			break;
-		}
-		circleGeometry.setVertexCountAndAttributes(newGeom.getVertexAttributes());
-		circleGeometry.setEdgeCountAndAttributes(newGeom.getEdgeAttributes());
-		circleGeometry.setFaceCountAndAttributes(newGeom.getFaceAttributes());
-		circleGeometry.setName(newGeom.getName());
 	}
 	
 	

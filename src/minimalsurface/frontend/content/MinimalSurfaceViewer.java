@@ -24,6 +24,7 @@ import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 import de.jreality.plugin.JRViewer;
+import de.jreality.plugin.basic.Inspector;
 import de.jreality.plugin.basic.ViewMenuBar;
 import de.jreality.plugin.basic.ViewToolBar;
 import de.jreality.plugin.content.ContentTools;
@@ -65,6 +66,7 @@ public class MinimalSurfaceViewer extends JDialog {
 		viewer.registerPlugin(ContentTools.class);
 		viewer.registerPlugin(ViewToolBar.class);
 		viewer.registerPlugin(ViewMenuBar.class); 
+		viewer.registerPlugin(Inspector.class);
 		viewer.setShowPanelSlots(false, false, false, true);
 		viewer.setShowMenuBar(true);
 		viewer.setShowToolBar(true);

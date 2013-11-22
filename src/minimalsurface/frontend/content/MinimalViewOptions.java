@@ -1,7 +1,6 @@
 package minimalsurface.frontend.content;
 
 import static java.awt.GridBagConstraints.REMAINDER;
-import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.EqualRadiusRing;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -74,14 +72,11 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		diskThicknessSlider = null;
 	private JComboBox
 		circleTypeCombo = null;
-	private JButton
-		updateRingsBtn = new JButton("Update Rings");
 	
 	
 	public static enum CircleType {
 		Disk,
-		Ring,
-		EqualRadiusRing
+		Circle
 	}
 	
 	
@@ -116,10 +111,9 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		meshWidthSlider = new JSlider(0, 100, (int)(100.0 * view.getMeshWidth() / 0.1));
 		vertexWidthSlider = new JSlider(0, 100, (int)(100.0*view.getVertexSize() / 0.1));
 		helperLinesWidthSlider = new JSlider(0, 100, (int)(100.0*view.getHelperLineWidth() / 0.1));
-		diskThicknessSlider = new JSlider(0, 100, (int)(100.0*view.getDiskThickness() / 0.3));
+		diskThicknessSlider = new JSlider(0, 100, (int)(100.0*view.getCircleThickness() / 0.3));
 		circleTypeCombo = new JComboBox(CircleType.values());
 		circleTypeCombo.setSelectedItem(view.getCircleType());
-		updateRingsBtn.setEnabled(view.getCircleType() == EqualRadiusRing);
 		
 		this.view = view;
 		
@@ -216,7 +210,6 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		circleTypePanel.setLayout(new GridLayout(1,3));
 		circleTypePanel.add(new JLabel("Circle Style:"));
 		circleTypePanel.add(circleTypeCombo);
-		circleTypePanel.add(updateRingsBtn);
 		c2.weightx = 1.0;
 		geomOptPanel.add(circleTypePanel, c2);
 		
@@ -252,7 +245,6 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		shadingChecker.addActionListener(this);
 		showVerticesChecker.addActionListener(this);
 		helperLinesChecker.addActionListener(this);
-		updateRingsBtn.addActionListener(this);
 		
 		polyederColorBtn.addColorChangedListener(this);
 		light1ColorBtn.addColorChangedListener(this);
@@ -299,12 +291,10 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 			view.setShowVertices(showVerticesChecker.isSelected());
 		if (helperLinesChecker == s)
 			view.setShowHelperLines(helperLinesChecker.isSelected());
-		if (circleTypeCombo == s || updateRingsBtn == s) {
+		if (circleTypeCombo == s) {
 			CircleType type = CircleType.values()[circleTypeCombo.getSelectedIndex()];
 			view.setCircleType(type);
-			updateRingsBtn.setEnabled(type == EqualRadiusRing);
 		}
-//		view.updateProperties();
 	}
 
 	
@@ -327,7 +317,6 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 			view.setSpheresColor(cce.getColor());
 		if (helperLinesColorBtn == s)
 			view.setHelperLineColor(cce.getColor());
-//		view.updateProperties();
 	}
 
 	@Override
@@ -345,7 +334,7 @@ public class MinimalViewOptions extends ShrinkPanelPlugin implements ActionListe
 		if (e.getSource() == helperLinesWidthSlider)
 			view.setHelperLineWidth(helperLinesWidthSlider.getValue() * 0.1 / 100.0);
 		if (e.getSource() == diskThicknessSlider)
-			view.setDiskThickness(diskThicknessSlider.getValue() * 0.3 / 100.0);
+			view.setCircleThickness(diskThicknessSlider.getValue() * 0.3 / 100.0);
 //		view.updateProperties();
 	}
 	

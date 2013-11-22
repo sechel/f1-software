@@ -1,6 +1,5 @@
 package minimalsurface.frontend.action;
 
-import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Ring;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -174,7 +173,7 @@ public class MinimalSurfaceVRMLWriter {
 						Double r = C.distance(P1);
 						
 						Matrix S = MatrixBuilder.euclidean().rotate(Math.PI / 2, 1, 0, 0).scale(1, 0.01, 1).getMatrix();
-						T = Circles.getTransform(C, N, r, panel.getCircleType() == Ring);
+						T = Circles.getTransform(C, N, r);
 						T.multiplyOnRight(S);
 						break;
 					case SPHERE:

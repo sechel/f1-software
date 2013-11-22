@@ -147,6 +147,10 @@ public class SphericalCirclePattern extends MacroAction {
 		
 		MinimalSurfaceUtility.createFaceLabels(graph, false);
 		
+//		HESerializableWriter writer = new HESerializableWriter(new FileOutputStream("data/tmp.heds"));
+//		writer.writeHalfEdgeDataStructure(graph);
+//		writer.close();
+		
 		return graph;
 	}
 	
