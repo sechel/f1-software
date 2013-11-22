@@ -38,6 +38,7 @@ import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
 import halfedge.decorations.HasQuadGraphLabeling;
+import halfedge.decorations.HasRadius;
 import halfedge.decorations.HasXYZW;
 
 import java.awt.Color;
@@ -393,7 +394,7 @@ public class MinimalSurfaceContent extends DirectContent {
 	
 	
 	/**
-	 * Constructs a surface made fron disks. The centers of
+	 * Constructs a surface made from disks. The centers of
 	 * the disks are the vertices labeled <code>false</code>
 	 * @param <V> The vertices with a labeling
 	 * @param <E>
@@ -403,7 +404,7 @@ public class MinimalSurfaceContent extends DirectContent {
 	public <
 		V extends Vertex<V, E, F> & HasXYZW & HasQuadGraphLabeling,
 		E extends Edge<V, E, F>,
-		F extends Face<V, E, F>
+		F extends Face<V, E, F> & HasXYZW & HasRadius
 	> SceneGraphComponent makeDiskSurface(HalfEdgeDataStructure<V, E, F> surface){
 		SceneGraphComponent disksSpheresRoot = new SceneGraphComponent();
 		disksSpheresRoot.setName("Disks and Spheres");
@@ -450,17 +451,7 @@ public class MinimalSurfaceContent extends DirectContent {
 						VecmathTools.dehomogenize(n);
 						Vector3d N = new Vector3d(n.x, n.y, n.z);
 						Double r = C.distance(P1);
-						
-						Matrix T = Circles.getTransform(C, N, r, circleType == Ring);
-						SceneGraphComponent transformC = new SceneGraphComponent();
-						transformC.setName("Circle Transform");
-						T.assignTo(transformC);
-						SceneGraphComponent disk = new SceneGraphComponent();
-						disk.setName("Circle");
-						disk.setTransformation(diskThicknessTransform);
-						disk.setGeometry(circleGeometry);
-						transformC.addChild(disk);
-						activeDisksRoot.addChild(transformC);
+						addDisk(activeDisksRoot, C, N, r);
 						break;
 					case SPHERE:
 						Point4d c = v.getXYZW();
@@ -481,7 +472,38 @@ public class MinimalSurfaceContent extends DirectContent {
 				System.err.println("Error");
 			}
 		}
+		for (F f : surface.getFaces()) {
+			double r = f.getRadius();
+			if (r == 0.0) continue;
+			Point4d C = f.getXYZW();
+			VecmathTools.dehomogenize(C);
+			E be = f.getBoundary().get(0);
+			Point4d v0 = be.getStartVertex().getXYZW();
+			Point4d v1 = be.getTargetVertex().getXYZW();
+			VecmathTools.dehomogenize(v0);
+			VecmathTools.dehomogenize(v1);
+			Vector3d vec1 = new Vector3d(v0.x - C.x, v0.y - C.y, v0.z - C.z);
+			Vector3d vec2 = new Vector3d(v1.x - C.x, v1.y - C.y, v1.z - C.z);
+			Vector3d N = new Vector3d();
+			N.cross(vec1, vec2);
+			N.normalize();
+			addDisk(activeDisksRoot, C, N, r);
+		}
 		return disksSpheresRoot;
+	}
+	
+	
+	private void addDisk(SceneGraphComponent root, Point4d C, Vector3d N, double r) {
+		Matrix T = Circles.getTransform(C, N, r, circleType == Ring);
+		SceneGraphComponent transformC = new SceneGraphComponent();
+		transformC.setName("Circle Transform");
+		T.assignTo(transformC);
+		SceneGraphComponent disk = new SceneGraphComponent();
+		disk.setName("Circle");
+		disk.setTransformation(diskThicknessTransform);
+		disk.setGeometry(circleGeometry);
+		transformC.addChild(disk);
+		root.addChild(transformC);
 	}
 	
 	

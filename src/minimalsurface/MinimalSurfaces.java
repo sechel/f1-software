@@ -1,4 +1,4 @@
-package minimalsurface.frontend;
+package minimalsurface;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;

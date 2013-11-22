@@ -30,7 +30,7 @@
 	<property name="source" value="1.5"/>
 	<property name="target" value="1.5"/>
 	
-	<property name="main-class" value="minimalsurface.frontend.MinimalSurfaces"/>
+	<property name="main-class" value="minimalsurface.MinimalSurfaces"/>
 
 	<path id="build.classpath">
 		<fileset dir="${lib}">
@@ -181,7 +181,7 @@
 	<target name="release webstart [Minimal Surfaces]">
 		<property name="name" value="MinimalSurfaces"/>
 		<property name="title" value="Matheon F1 Minimal Surfaces"/>
-		<property name="main" value="minimalsurface.frontend.MinimalSurfaces"/>
+		<property name="main" value="minimalsurface.MinimalSurfaces"/>
 		<antcall target="release webstart generic"/>
 	</target>
 	

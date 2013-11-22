@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import koebe.frontend.KoebesPolyhedron;
-import minimalsurface.frontend.MinimalSurfaces;
+import minimalsurface.MinimalSurfaces;
 import alexandrov.frontend.AlexandrovsPolyhedron;
 
 public class DiplomStarter extends JFrame implements ActionListener{

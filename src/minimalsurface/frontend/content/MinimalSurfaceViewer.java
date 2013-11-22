@@ -6,6 +6,7 @@ import halfedge.HalfEdgeDataStructure;
 import java.awt.EventQueue;
 
 import javax.swing.Action;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 
@@ -31,7 +32,7 @@ import de.jreality.ui.viewerapp.SunflowMenu;
 import de.jreality.util.LoggingSystem;
 import de.jreality.util.Secure;
 
-public class MinimalSurfaceViewer extends JFrame {
+public class MinimalSurfaceViewer extends JDialog {
 
 	private static final long 
 		serialVersionUID = 1L;
@@ -49,6 +50,7 @@ public class MinimalSurfaceViewer extends JFrame {
 		importMenu = new JMenu("Import", false);
 	
 	public MinimalSurfaceViewer(JFrame parent, MainController controller) {
+		super(parent);
 		setSize(900, 700);
 		setTitle("Minimal Surface Viewer");
 		setLocationRelativeTo(parent);
