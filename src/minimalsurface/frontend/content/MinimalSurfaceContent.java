@@ -163,8 +163,8 @@ public class MinimalSurfaceContent extends DirectContent {
 
 	private Disk
 		diskGeometry = new Disk(40, 1.0);
-	private Ring
-		ringGeometry = new Ring();
+	private IndexedFaceSet
+		ringGeometry = Primitives.torus(1.0, 0.01, 40, 20);
 	private Geometry
 		sphereGeometry = new Sphere();
 
@@ -299,6 +299,7 @@ public class MinimalSurfaceContent extends DirectContent {
         geometryRoot.addChild(linesRoot);
         
         diskGeometryRoot.setGeometry(diskGeometry);
+        MatrixBuilder.euclidean().rotate(Math.PI/2, 1, 0, 0).assignTo(circleGeometryRoot);
         circleGeometryRoot.setGeometry(ringGeometry);
         setCircleType(Disk);
 	}
@@ -840,7 +841,8 @@ public class MinimalSurfaceContent extends DirectContent {
 			S.assignTo(diskGeometryRoot);
 			break;
 		case Circle:
-			circleGeometryRoot.setGeometry(new Ring(circleThickness, 40, 20));
+			ringGeometry = Primitives.torus(1.0, circleThickness, 40, 20);
+			circleGeometryRoot.setGeometry(ringGeometry);
 			break;
 		}
 	}

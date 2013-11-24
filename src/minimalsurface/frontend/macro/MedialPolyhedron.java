@@ -31,7 +31,6 @@ public class MedialPolyhedron extends MacroAction {
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> process(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
 		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = KoebePolyhedron.contructKoebePolyhedron(graph, tolerance, maxIterations);
 		PolyederNormalizer.normalize(context);
-//		SurfaceUtility.rescaleGraph(context.getMedial(), 300.0);
 		return context.getMedial();
 	}
 	
