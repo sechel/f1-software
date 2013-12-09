@@ -29,6 +29,7 @@ import de.jreality.plugin.basic.ViewMenuBar;
 import de.jreality.plugin.basic.ViewToolBar;
 import de.jreality.plugin.content.ContentTools;
 import de.jreality.plugin.menu.CameraMenu;
+import de.jreality.plugin.menu.ExportMenu;
 import de.jreality.ui.viewerapp.SunflowMenu;
 import de.jreality.util.LoggingSystem;
 import de.jreality.util.Secure;
@@ -67,6 +68,7 @@ public class MinimalSurfaceViewer extends JDialog {
 		viewer.registerPlugin(ViewToolBar.class);
 		viewer.registerPlugin(ViewMenuBar.class); 
 		viewer.registerPlugin(Inspector.class);
+		viewer.registerPlugin(ExportMenu.class);
 		viewer.setShowPanelSlots(false, false, false, true);
 		viewer.setShowMenuBar(true);
 		viewer.setShowToolBar(true);

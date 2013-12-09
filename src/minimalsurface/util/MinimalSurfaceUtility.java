@@ -237,6 +237,12 @@ public class MinimalSurfaceUtility {
 		Map<E, Double> factorMap = new HashMap<E, Double>();
 
 		E e0 = S.getEdge(0);
+		for (E e : S.getPositiveEdges()) {
+			if (e.getLeftFace() != null && e.getRightFace() != null) {
+				e0 = e;
+				break;
+			}
+		}
 		E e0Opp = e0.getOppositeEdge();
 		V v0 = e0.getStartVertex();
 		V v1 = e0.getTargetVertex();
