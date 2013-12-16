@@ -1,5 +1,9 @@
 package minimalsurface.util;
 
+import static java.lang.Math.atan2;
+import static java.lang.Math.cos;
+import static java.lang.Math.tan;
+import static math.util.VecmathTools.toVector4d;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -24,6 +28,8 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.Vector;
 
+import javax.vecmath.AxisAngle4d;
+import javax.vecmath.Matrix4d;
 import javax.vecmath.Point4d;
 import javax.vecmath.Vector4d;
 
@@ -224,12 +230,11 @@ public class MinimalSurfaceUtility {
 	
 	
 	
-	public static	
-	<
+	public static <
 		V extends Vertex<V, E, F> & HasXYZW,
 		E extends Edge<V, E, F> & HasLabel,
 		F extends Face<V, E, F> & HasXYZW
-	> void dualizeSurfaceKoenigs(HalfEdgeDataStructure<V, E, F> S, boolean signature) throws SurfaceException{
+	> void dualizeSurfaceKoenigs(HalfEdgeDataStructure<V, E, F> S, Map<CPEdge, Vector4d> edgeNormals, double associatedPsi) throws SurfaceException{
 		Map<V, Point4d> dualMap = new HashMap<V, Point4d>();
 		Set<E> doneEdges = new HashSet<E>();
 		
@@ -246,8 +251,16 @@ public class MinimalSurfaceUtility {
 		E e0Opp = e0.getOppositeEdge();
 		V v0 = e0.getStartVertex();
 		V v1 = e0.getTargetVertex();
+		Vector4d g = edgeNormals.get(e0);
+		Vector4d n = toVector4d(e0.getLeftFace().getXYZW());
+		Vector4d eVec = new Vector4d();
+		eVec.sub(v1.getXYZW(), v0.getXYZW());
+		eVec = associatedEdgeRotation(eVec, g, n, associatedPsi);
+		Point4d v1s = new Point4d(v0.getXYZW());
+		v1s.add(eVec);
+		
 		dualMap.put(v0, v0.getXYZW());
-		dualMap.put(v1, v1.getXYZW());
+		dualMap.put(v1, v1s);
 		factorMap.put(e0, 1.0);
 		factorMap.put(e0.getOppositeEdge(), 1.0);
 		if (e0.getLeftFace() != null) edgeQueue.offer(e0);
@@ -289,6 +302,10 @@ public class MinimalSurfaceUtility {
 
 			AD.scale(1 / scale);
 			
+			g = edgeNormals.get(ee);
+			n = toVector4d(ee.getLeftFace().getXYZW());
+			AD = associatedEdgeRotation(AD, g, n, associatedPsi);
+			
 			Point4d As = dualMap.get(e.getStartVertex());
 			Point4d Ds = new Point4d(As);
 			Ds.add(AD);
@@ -308,7 +325,51 @@ public class MinimalSurfaceUtility {
 	}
 	
 	
+	static Vector4d associatedEdgeRotation(Vector4d dualEdgeVec, Vector4d g, Vector4d n, double psi) {
+		double alpha = g.angle(n);
+		double phi = atan2(tan(psi), cos(alpha));
+		double scale = cos(psi) / cos(phi);
+		Matrix4d R = new Matrix4d();
+		R.set(new AxisAngle4d(g.x, g.y, g.z, -phi));
+		Vector4d r = new Vector4d(dualEdgeVec);
+		R.transform(r);
+		r.scale(scale);
+		
+		// check
+		Vector4d p = new Vector4d(r);
+		double lambda = p.dot(n);
+		Vector4d ln = new Vector4d(n);
+		ln.scale(lambda);
+		p.sub(ln);
+		double psiCheck = dualEdgeVec.angle(p);
+		double check = Math.abs(psi - psiCheck);
+		assert check < 1E-7 : "projected angle assertion: " + check;
+		
+		return r;
+	}
 
+	public static <
+		V extends Vertex<V, E, F> & HasXYZW,
+		E extends Edge<V, E, F>,
+		F extends Face<V, E, F>
+	> Vector4d getEdgeNormal(E e) {
+		Point4d s = e.getStartVertex().getXYZW();
+		Point4d t = e.getTargetVertex().getXYZW();
+		Vector4d eVec = new Vector4d();
+		eVec.sub(t, s);
+		eVec.normalize();
+		Vector4d sVec = new Vector4d(s);
+		VecmathTools.dehomogenize(sVec);
+		sVec.w = 0.0;
+		double lambda = sVec.dot(eVec);
+		eVec.scale(lambda);
+		sVec.sub(eVec);
+		sVec.normalize();
+		double check = Math.abs(sVec.dot(eVec));
+		assert check < 1E-7 : "edge normal assertion: " + check;
+		return sVec;
+	}
+	
 	
 	private static	
 	<

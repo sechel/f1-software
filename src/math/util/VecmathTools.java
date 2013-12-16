@@ -5,7 +5,9 @@ import static java.lang.Double.isNaN;
 import javax.vecmath.Point2d;
 import javax.vecmath.Point3d;
 import javax.vecmath.Point4d;
+import javax.vecmath.Tuple4d;
 import javax.vecmath.Vector3d;
+import javax.vecmath.Vector4d;
 
 import no.uib.cipr.matrix.DenseVector;
 import no.uib.cipr.matrix.Vector;
@@ -15,7 +17,15 @@ public class VecmathTools {
 	public static final Point4d
 		zero4d = new Point4d(0,0,0,1);
 	
-	public static void dehomogenize(Point4d p){
+	public static Vector4d toVector4d(Point4d p) {
+		Vector4d r = new Vector4d(p);
+		dehomogenize(r);
+		r.w = 0.0;
+		return r;
+	}
+	
+	
+	public static void dehomogenize(Tuple4d p){
 		p.x /= p.w;
 		p.y /= p.w;
 		p.z /= p.w;
