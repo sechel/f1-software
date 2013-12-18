@@ -7,6 +7,7 @@ import halfedge.HalfEdgeDataStructure;
 import halfedge.frontend.action.ExtensionFileFilter;
 import halfedge.generator.SquareGridGenerator;
 import halfedge.io.HESerializableReader;
+import halfedge.jreality.ConverterJR2Heds;
 import image.ImageHook;
 
 import java.awt.GridBagConstraints;
@@ -37,6 +38,10 @@ import minimalsurface.frontend.content.GraphEditor;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
+import de.jreality.reader.ReaderOBJ;
+import de.jreality.scene.IndexedFaceSet;
+import de.jreality.scene.SceneGraphComponent;
+import de.jreality.util.SceneGraphUtility;
 
 public class LoadCombinatorics extends MacroAction {
 
@@ -81,7 +86,8 @@ public class LoadCombinatorics extends MacroAction {
 
 	@Override
 	public HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> process(
-			HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph) throws Exception {
+		HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> graph
+	) throws Exception {
 		switch (createMode){
 			case Predefined:
 				HESerializableReader<CPVertex, CPEdge, CPFace> reader = null;
@@ -93,17 +99,24 @@ public class LoadCombinatorics extends MacroAction {
 						graph = reader.readHalfEdgeDataStructure();
 						break;
 					case QuadMesh:
-//						in = getClass().getResourceAsStream("predefined/quadMesh.heds");
 						graph = SquareGridGenerator.generate(quadULines, quadVLines, CPVertex.class, CPEdge.class, CPFace.class);
 						break;
 				}
 				break;
 			case FromFile:
-				if (graphFile == null)
-					return null;
+				if (graphFile == null) return null;
 				in = new FileInputStream(graphFile);
-				reader = new HESerializableReader<CPVertex, CPEdge, CPFace>(in);
-				graph = reader.readHalfEdgeDataStructure();
+				if (graphFile.getName().toLowerCase().endsWith(".obj")) {
+					ReaderOBJ r = new ReaderOBJ();
+					SceneGraphComponent sgc = r.read(graphFile);
+					IndexedFaceSet ifs = (IndexedFaceSet)SceneGraphUtility.getFirstGeometry(sgc);
+					ConverterJR2Heds con = new ConverterJR2Heds();
+					graph = HalfEdgeDataStructure.createHEDS(CPVertex.class, CPEdge.class, CPFace.class);
+					con.ifs2heds(ifs, graph);
+				} else {
+					reader = new HESerializableReader<CPVertex, CPEdge, CPFace>(in);
+					graph = reader.readHalfEdgeDataStructure();
+				}
 				break;
 			case FromEditor:	
 				graph = new HalfEdgeDataStructure<CPVertex, CPEdge, CPFace>(getController().getEditedGraph());
@@ -250,6 +263,7 @@ public class LoadCombinatorics extends MacroAction {
 			quadULinesSpinner.addChangeListener(this);
 			quadVLinesSpinner.addChangeListener(this);
 			fileChooser.addChoosableFileFilter(new ExtensionFileFilter("heds", "HalfEdgeDataStructure File"));
+			fileChooser.addChoosableFileFilter(new ExtensionFileFilter("obj", "OBJ File"));
 			
 			updateStates();
 		}
@@ -293,7 +307,6 @@ public class LoadCombinatorics extends MacroAction {
 					if (selFile != null){
 						graphFile = selFile;
 						activeFileField.setText(graphFile.getName());
-	
 					}
 				}
 			}

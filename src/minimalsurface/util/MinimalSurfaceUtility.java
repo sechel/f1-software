@@ -343,7 +343,9 @@ public class MinimalSurfaceUtility {
 		p.sub(ln);
 		double psiCheck = dualEdgeVec.angle(p);
 		double check = Math.abs(psi - psiCheck);
-		assert check < 1E-7 : "projected angle assertion: " + check;
+		if (check > 1E-7) {
+			System.out.println("projected angle assertion: " + check);
+		}
 		
 		return r;
 	}

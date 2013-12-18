@@ -59,6 +59,7 @@ import minimalsurface.frontend.macro.AutoCut;
 import minimalsurface.frontend.macro.BoundaryConditions;
 import minimalsurface.frontend.macro.CalculateDiagonalIntersections;
 import minimalsurface.frontend.macro.CentralExtensionSubdivide;
+import minimalsurface.frontend.macro.CircularPolyhedron;
 import minimalsurface.frontend.macro.ConsistentStripSubdivide;
 import minimalsurface.frontend.macro.CutEars;
 import minimalsurface.frontend.macro.DualGraphSubdivision;
@@ -104,6 +105,7 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			new EnneperCirclesGenerator(),
 			new KobePolyhedron(),
 			new MedialPolyhedron(),
+			new CircularPolyhedron(),
 			new SphericalCirclePattern(),
 			new BoundaryConditions(),
 			new MedialSubdivide(),

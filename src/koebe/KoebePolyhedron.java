@@ -40,12 +40,8 @@ import circlepatterns.CirclePattern;
  */
 public class KoebePolyhedron{
 
-	private static final long 
-		serialVersionUID = 1L;
-
 	private static double
 		rhoBounds = 10;
-	
 	
 	public static class KoebePolyhedronContext<
 		V extends Vertex<V, E, F> & HasXYZW,
@@ -87,10 +83,6 @@ public class KoebePolyhedron{
 			this.northPole = northPole;
 		}
 	}
-	
-	
-	
-	
 	
 	
 	/**
@@ -148,8 +140,6 @@ public class KoebePolyhedron{
 	}
 	
 	
-	
-	
 	public static <
 		V extends Vertex<V, E, F> & HasXYZW & HasXY & HasQuadGraphLabeling,
 		E extends Edge<V, E, F> & HasXYZW & HasTheta,
@@ -157,81 +147,16 @@ public class KoebePolyhedron{
 	> KoebePolyhedronContext<V, E, F> contructKoebePolyhedron(HalfEdgeDataStructure<V, E, F> graph, double tol, int maxIter) throws SurfaceException{
 		KoebePolyhedronContext<V, E, F> context = new KoebePolyhedronContext<V, E, F>();
 		try {
-			if (!ConsistencyCheck.isValidSurface(graph))
+			if (!ConsistencyCheck.isValidSurface(graph)) {
 				throw new SurfaceException("No valid surface in constructKoebePolyhedron()");
+			}
 			// medial graph
 			HashMap<V, F> vertexFaceMap = new HashMap<V, F>();
 			HashMap<F, F> faceFaceMap = new HashMap<F, F>();
 			HashMap<E, E> edgeEdgeMap = new HashMap<E, E>();
 			HashMap<E, V> edgeVertexMap = new HashMap<E, V>();
 			HalfEdgeDataStructure<V, E, F> medial = Subdivision.createMedialGraph(graph, vertexFaceMap, edgeVertexMap, faceFaceMap, edgeEdgeMap);
-			SurfaceUtility.fillHoles(medial);
-			
-			if (!ConsistencyCheck.isValidSurface(medial))
-				throw new SurfaceException("No valid medial graph could be contructed in constructKoebePolyhedron()");
-			
-			// store old medial combinatorics
-			HashMap<V, V> medialVertexMap = new HashMap<V, V>();
-			HashMap<E, E> medialEdgeMap = new HashMap<E, E>();
-			HashMap<F, F> medialFaceMap = new HashMap<F, F>();
-			HalfEdgeDataStructure<V, E, F> medialCirclePattern = new HalfEdgeDataStructure<V, E, F>(medial, medialVertexMap, medialEdgeMap, medialFaceMap);
-			
-			// remove north pole to make a disk
-			HalfEdgeUtility.removeVertex(medialCirclePattern.getVertex(0));
-			
-			// we want an orthogonal circle pattern
-			for (E e : medialCirclePattern.getEdges())
-				e.setTheta(Math.PI / 2);
-			
-			//debug output
-//			HESerializableWriter writer = new HESerializableWriter(new FileOutputStream("data/koebeMedialOut.heds"));
-//			writer.writeHalfEdgeDataStructure(medialCirclePattern);
-//			writer.close();
-			
-			if (!ConsistencyCheck.isValidSurface(medialCirclePattern))
-				throw new SurfaceException("No surface after altering medial graph in constructKoebePolyhedron()");
-			
-			// optimization
-			StepController stepc = new ArmijoStepController();
-			try {
-				CirclePattern.computeEuclidean(medialCirclePattern, stepc, tol, maxIter, null);
-			} catch (NotConvergentException e){
-				throw new SurfaceException("minimization did not succeed in constructKoebePolyhedron(): " + e.getMessage());
-			}
-			for (F f : medialCirclePattern.getFaces()){
-				if (f.getRho() < -rhoBounds || f.getRho() > rhoBounds)
-					throw new SurfaceException("radii out of bounds");
-			}
-			
-			normalizeBeforeProjection(medialCirclePattern);
-		
-//			if (!ConsistencyCheck.isValidSurface(medialCirclePattern))
-//				throw new SurfaceException("No surface after circlepattern layout in constructKoebePolyhedron()");
-			
-			// projection vertices
-			inverseStereographicProjection(medialCirclePattern, 1.0);
-			// projection faces
-			HashSet<F> readyFaces = new HashSet<F>();
-			for (E e : medial.getEdges()){
-				E circlePatternEdge = medialEdgeMap.get(e);
-				if (!circlePatternEdge.isValid()) 
-					continue;
-				F f = e.getLeftFace();
-				if (readyFaces.contains(f)) 
-					continue;
-				calculateConePeek(f.getXYZW(), circlePatternEdge);
-				readyFaces.add(f);
-			}
-			
-			// fill medial information
-			V medialNorth = medial.getVertex(0);
-			for (V v : medial.getVertices()){
-				if (v == medialNorth) continue;
-				V vertex = medialVertexMap.get(v);
-				v.setXYZW(vertex.getXYZW());
-				v.setXY(vertex.getXY());
-			}
-			medialNorth.getXYZW().set(0, 1, 0, 1);
+			calculateCirclePattern(medial, tol,	maxIter);
 			
 			// fill into graph
 			for (F face : graph.getFaces()){
@@ -253,13 +178,111 @@ public class KoebePolyhedron{
 			context.faceFaceMap = faceFaceMap;
 			context.vertexFaceMap = vertexFaceMap;
 			context.medial = medial;
-			context.northPole = medialNorth;
+			context.northPole = medial.getVertex(0);
 			context.polyeder = graph;
 		} catch (Exception e){
 			e.printStackTrace();
 			throw new SurfaceException(e.getMessage());
 		}
 		return context;
+	}
+
+
+	public static <
+		V extends Vertex<V, E, F> & HasXYZW & HasXY & HasQuadGraphLabeling, 
+		E extends Edge<V, E, F> & HasXYZW & HasTheta, 
+		F extends Face<V, E, F> & HasLabel & HasRho & HasXYZW & HasXY & HasRadius & HasGradientValue & HasCapitalPhi
+	> void calculateCirclePattern(
+		HalfEdgeDataStructure<V, E, F> medial,
+		double tol, 
+		int maxIter
+	) throws SurfaceException {
+		SurfaceUtility.fillHoles(medial);
+		if (!ConsistencyCheck.isValidSurface(medial)) {
+			throw new SurfaceException("No valid medial graph could be contructed in constructKoebePolyhedron()");
+		}
+		
+		// store old medial combinatorics
+		HashMap<V, V> medialVertexMap = new HashMap<V, V>();
+		HashMap<E, E> medialEdgeMap = new HashMap<E, E>();
+		HashMap<F, F> medialFaceMap = new HashMap<F, F>();
+		HalfEdgeDataStructure<V, E, F> medialCirclePattern = new HalfEdgeDataStructure<V, E, F>(medial, medialVertexMap, medialEdgeMap, medialFaceMap);
+		
+		V infinityVertex = medialCirclePattern.getVertex(60);
+		
+		if (infinityVertex.getEdgeStar().size() != 4) {
+			for (V v : medialCirclePattern.getVertices()) {
+				if (v.getEdgeStar().size() == 4) {
+					infinityVertex = v;
+					break;
+				}
+			}
+		}
+		
+		if (infinityVertex.getEdgeStar().size() != 4) {
+			throw new SurfaceException("no vertex of degree 4 found");
+		}
+		System.out.println("North index: " + infinityVertex.getIndex());
+		V medialNorth = medial.getVertex(infinityVertex.getIndex());
+		
+		// remove north pole to make a disk
+		HalfEdgeUtility.removeVertex(infinityVertex);
+		
+		// we want an orthogonal circle pattern
+		for (E e : medialCirclePattern.getEdges()) {
+			e.setTheta(Math.PI / 2);
+		}
+		
+		//debug output
+//			HESerializableWriter writer = new HESerializableWriter(new FileOutputStream("data/koebeMedialOut.heds"));
+//			writer.writeHalfEdgeDataStructure(medialCirclePattern);
+//			writer.close();
+		
+		if (!ConsistencyCheck.isValidSurface(medialCirclePattern)) {
+			throw new SurfaceException("No surface after altering medial graph in constructKoebePolyhedron()");
+		}
+		
+		// optimization
+		StepController stepc = new ArmijoStepController();
+		try {
+			CirclePattern.computeEuclidean(medialCirclePattern, stepc, tol, maxIter, null);
+		} catch (NotConvergentException e){
+			throw new SurfaceException("minimization did not succeed in constructKoebePolyhedron(): " + e.getMessage());
+		}
+		for (F f : medialCirclePattern.getFaces()){
+			if (f.getRho() < -rhoBounds || f.getRho() > rhoBounds) {
+				throw new SurfaceException("radii out of bounds");
+			}
+		}
+		
+		normalizeBeforeProjection(medialCirclePattern);
+
+//			if (!ConsistencyCheck.isValidSurface(medialCirclePattern))
+//				throw new SurfaceException("No surface after circlepattern layout in constructKoebePolyhedron()");
+		
+		// projection vertices
+		inverseStereographicProjection(medialCirclePattern, 1.0);
+		// projection faces
+		HashSet<F> readyFaces = new HashSet<F>();
+		for (E e : medial.getEdges()){
+			E circlePatternEdge = medialEdgeMap.get(e);
+			if (!circlePatternEdge.isValid()) 
+				continue;
+			F f = e.getLeftFace();
+			if (readyFaces.contains(f)) 
+				continue;
+			calculateConePeek(f.getXYZW(), circlePatternEdge);
+			readyFaces.add(f);
+		}
+		
+		// fill medial information
+		for (V v : medial.getVertices()){
+			if (v == medialNorth) continue;
+			V vertex = medialVertexMap.get(v);
+			v.setXYZW(vertex.getXYZW());
+			v.setXY(vertex.getXY());
+		}
+		medialNorth.getXYZW().set(0, 1, 0, 1);
 	}
 	
 	
