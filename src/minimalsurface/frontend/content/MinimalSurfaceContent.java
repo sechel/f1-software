@@ -50,11 +50,10 @@ import math.util.Circles;
 import math.util.VecmathTools;
 import minimalsurface.controller.MainController;
 import minimalsurface.frontend.content.MinimalViewOptions.CircleType;
-import util.debug.DBGTracer;
+import minimalsurface.util.GraphUtility;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
-import de.jreality.geometry.IndexedFaceSetFactory;
 import de.jreality.geometry.IndexedLineSetFactory;
 import de.jreality.geometry.Primitives;
 import de.jreality.math.Matrix;
@@ -331,55 +330,20 @@ public class MinimalSurfaceContent extends DirectContent {
 	}
 	
 	public void addSurface(HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> surface){
-		double[][] vertexData = new double[surface.getNumVertices()][];
-		for (CPVertex v : surface.getVertices()){
-			VecmathTools.dehomogenize(v.getXYZW());
-			if (VecmathTools.isNAN(v.getXYZW())){
-				v.getXYZW().set(0, 0, 0, 1);
-				DBGTracer.msg("NaN in viewSurface() changed to 0.0!");
-			}
-			double[] p = new double[]{v.getXYZW().x, v.getXYZW().y, v.getXYZW().z};
-			vertexData[v.getIndex()] = p;
-		}
-		int[][] faceData = new int[surface.getNumFaces()][];
-		double[][] faceVertexData = new double[surface.getNumFaces()][];
-		for (CPFace f : surface.getFaces()){
-			List<CPEdge> b = f.getBoundary();
-			faceData[f.getIndex()] = new int[b.size()];
-			int counter = 0;
-			for (CPEdge e : b){
-				faceData[f.getIndex()][counter] = e.getTargetVertex().getIndex();
-				counter++;
-			}
-			//face vertex
-			VecmathTools.dehomogenize(f.getXYZW());
-			double[] p = new double[]{f.getXYZW().x, f.getXYZW().y, f.getXYZW().z};
-			faceVertexData[f.getIndex()] = p;
-		}
-		
-		IndexedFaceSetFactory surfaceFactory = new IndexedFaceSetFactory();
-		surfaceFactory.setVertexCount(vertexData.length);
-		surfaceFactory.setFaceCount(faceData.length);
-		surfaceFactory.setVertexCoordinates(vertexData);
-		surfaceFactory.setFaceIndices(faceData);
-		surfaceFactory.setGenerateVertexNormals(true);
-		surfaceFactory.setGenerateFaceNormals(true);
-		surfaceFactory.setGenerateEdgesFromFaces(true);
-		surfaceFactory.update();
+		IndexedFaceSet ifs = GraphUtility.toIndexedFaceSet(surface);
 	
 		SceneGraphComponent surfaceRoot = new SceneGraphComponent();
 		surfaceRoot.setName("Surface");
-        surfaceRoot.setGeometry(surfaceFactory.getIndexedFaceSet());
+        surfaceRoot.setGeometry(ifs);
         surfaceRoot.setOwner(surfaceMaster);
-        activeFaceSet = surfaceFactory.getIndexedFaceSet();
+        activeFaceSet = ifs;
         activeFaceSet.setVertexAttributes(U3D_NONORMALS, U3D_FLAG);
         
         polyhedronRoot.addChild(surfaceRoot);
         surfaceRoot.addChild(makeDiskSurface(surface));
 		activeSurface = surface;
 	}
-	
-	
+
 	/**
 	 * Constructs a surface made from disks. The centers of
 	 * the disks are the vertices labeled <code>false</code>

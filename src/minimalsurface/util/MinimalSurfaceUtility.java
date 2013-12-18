@@ -2,7 +2,7 @@ package minimalsurface.util;
 
 import static java.lang.Math.atan2;
 import static java.lang.Math.cos;
-import static java.lang.Math.tan;
+import static java.lang.Math.sin;
 import static math.util.VecmathTools.toVector4d;
 import halfedge.Edge;
 import halfedge.Face;
@@ -327,26 +327,15 @@ public class MinimalSurfaceUtility {
 	
 	static Vector4d associatedEdgeRotation(Vector4d dualEdgeVec, Vector4d g, Vector4d n, double psi) {
 		double alpha = g.angle(n);
-		double phi = atan2(tan(psi), cos(alpha));
-		double scale = cos(psi) / cos(phi);
+		double phi = atan2(sin(psi), cos(psi)*cos(alpha));
+		double sinPsi = sin(psi);
+		double tanAlpha = Math.tan(alpha);
+		double scale = Math.sqrt(1 + sinPsi*sinPsi*tanAlpha*tanAlpha);
 		Matrix4d R = new Matrix4d();
 		R.set(new AxisAngle4d(g.x, g.y, g.z, -phi));
 		Vector4d r = new Vector4d(dualEdgeVec);
 		R.transform(r);
 		r.scale(scale);
-		
-		// check
-		Vector4d p = new Vector4d(r);
-		double lambda = p.dot(n);
-		Vector4d ln = new Vector4d(n);
-		ln.scale(lambda);
-		p.sub(ln);
-		double psiCheck = dualEdgeVec.angle(p);
-		double check = Math.abs(psi - psiCheck);
-		if (check > 1E-7) {
-			System.out.println("projected angle assertion: " + check);
-		}
-		
 		return r;
 	}
 

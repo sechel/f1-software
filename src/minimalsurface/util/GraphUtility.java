@@ -13,6 +13,14 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import math.util.VecmathTools;
+import util.debug.DBGTracer;
+import circlepatterns.graph.CPEdge;
+import circlepatterns.graph.CPFace;
+import circlepatterns.graph.CPVertex;
+import de.jreality.geometry.IndexedFaceSetFactory;
+import de.jreality.scene.IndexedFaceSet;
+
 public class GraphUtility {
 
 	
@@ -136,6 +144,49 @@ public class GraphUtility {
 				e.setTargetVertex(newV);
 		}
 		
+	}
+
+
+	public static IndexedFaceSet toIndexedFaceSet(
+		HalfEdgeDataStructure<CPVertex, CPEdge, CPFace> surface
+	) {
+		double[][] vertexData = new double[surface.getNumVertices()][];
+		for (CPVertex v : surface.getVertices()){
+			VecmathTools.dehomogenize(v.getXYZW());
+			if (VecmathTools.isNAN(v.getXYZW())){
+				v.getXYZW().set(0, 0, 0, 1);
+				DBGTracer.msg("NaN in viewSurface() changed to 0.0!");
+			}
+			double[] p = new double[]{v.getXYZW().x, v.getXYZW().y, v.getXYZW().z};
+			vertexData[v.getIndex()] = p;
+		}
+		int[][] faceData = new int[surface.getNumFaces()][];
+		double[][] faceVertexData = new double[surface.getNumFaces()][];
+		for (CPFace f : surface.getFaces()){
+			List<CPEdge> b = f.getBoundary();
+			faceData[f.getIndex()] = new int[b.size()];
+			int counter = 0;
+			for (CPEdge e : b){
+				faceData[f.getIndex()][counter] = e.getTargetVertex().getIndex();
+				counter++;
+			}
+			//face vertex
+			VecmathTools.dehomogenize(f.getXYZW());
+			double[] p = new double[]{f.getXYZW().x, f.getXYZW().y, f.getXYZW().z};
+			faceVertexData[f.getIndex()] = p;
+		}
+		
+		IndexedFaceSetFactory surfaceFactory = new IndexedFaceSetFactory();
+		surfaceFactory.setVertexCount(vertexData.length);
+		surfaceFactory.setFaceCount(faceData.length);
+		surfaceFactory.setVertexCoordinates(vertexData);
+		surfaceFactory.setFaceIndices(faceData);
+		surfaceFactory.setGenerateVertexNormals(true);
+		surfaceFactory.setGenerateFaceNormals(true);
+		surfaceFactory.setGenerateEdgesFromFaces(true);
+		surfaceFactory.update();
+		IndexedFaceSet ifs = surfaceFactory.getIndexedFaceSet();
+		return ifs;
 	}
 	
 	

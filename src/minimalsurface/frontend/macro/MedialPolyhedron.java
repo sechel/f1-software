@@ -20,7 +20,7 @@ public class MedialPolyhedron extends MacroAction {
 	private double
 		tolerance = 1E-9;
 	private int 
-		maxIterations = 100; 
+		maxIterations = 200; 
 	
 	@Override
 	public String getName() {

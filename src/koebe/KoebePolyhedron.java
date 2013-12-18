@@ -208,7 +208,7 @@ public class KoebePolyhedron{
 		HashMap<F, F> medialFaceMap = new HashMap<F, F>();
 		HalfEdgeDataStructure<V, E, F> medialCirclePattern = new HalfEdgeDataStructure<V, E, F>(medial, medialVertexMap, medialEdgeMap, medialFaceMap);
 		
-		V infinityVertex = medialCirclePattern.getVertex(60);
+		V infinityVertex = medialCirclePattern.getVertex(0);
 		
 		if (infinityVertex.getEdgeStar().size() != 4) {
 			for (V v : medialCirclePattern.getVertices()) {
