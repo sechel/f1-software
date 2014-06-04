@@ -159,6 +159,11 @@
             <description>${title}</description>
             <description kind="short">${title}</description>
             <j2se minVersion="1.5" args="-Xmx512M"/>
+			<manifest>
+        		<attribute name="Permissions" value="all-permissions"/>
+        		<attribute name="Codebase" value="*.discretization.de"/>
+        		<attribute name="Application-Name" value="${title}"/>
+        	</manifest>
             <lib dir="${release}" includes="${manifest.classpath}"/>
 			<lib dir="${release}/${lib}/jogamp">
 				<include name="*.jar"/>

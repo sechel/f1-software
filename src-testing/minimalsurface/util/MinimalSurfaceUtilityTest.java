@@ -50,8 +50,8 @@ public class MinimalSurfaceUtilityTest {
 		e.linkOppositeEdge(eOpp);
 		e.setTargetVertex(v1);
 		eOpp.setTargetVertex(v0);
-		v0.setXYZW(new Point4d(0.5, 1, 1, 0));
-		v1.setXYZW(new Point4d(1, 1, 1, 0));
+		v0.setXYZW(new Point4d(0.5, 1, 1, 1));
+		v1.setXYZW(new Point4d(1, 1, 1, 1));
 		
 		Vector4d n = getEdgeNormal(e);
 		Assert.assertEquals(0.0, n.x, 1E-15);
