@@ -8,4 +8,17 @@ public class SurfaceException extends Exception {
 	public SurfaceException(String msg){
 		super(msg);
 	}
+
+	public SurfaceException() {
+		super();
+	}
+
+	public SurfaceException(String arg0, Throwable arg1) {
+		super(arg0, arg1);
+	}
+
+	public SurfaceException(Throwable arg0) {
+		super(arg0);
+	}
+	
 }

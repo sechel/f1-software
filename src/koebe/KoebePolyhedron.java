@@ -181,8 +181,7 @@ public class KoebePolyhedron{
 			context.northPole = medial.getVertex(0);
 			context.polyeder = graph;
 		} catch (Exception e){
-			e.printStackTrace();
-			throw new SurfaceException(e.getMessage());
+			throw new SurfaceException(e);
 		}
 		return context;
 	}
@@ -249,11 +248,11 @@ public class KoebePolyhedron{
 		} catch (NotConvergentException e){
 			throw new SurfaceException("minimization did not succeed in constructKoebePolyhedron(): " + e.getMessage());
 		}
-		for (F f : medialCirclePattern.getFaces()){
-			if (f.getRho() < -rhoBounds || f.getRho() > rhoBounds) {
-				throw new SurfaceException("radii out of bounds");
-			}
-		}
+//		for (F f : medialCirclePattern.getFaces()){
+//			if (f.getRho() < -rhoBounds || f.getRho() > rhoBounds) {
+//				throw new SurfaceException("radii out of bounds");
+//			}
+//		}
 		
 		normalizeBeforeProjection(medialCirclePattern);
 
