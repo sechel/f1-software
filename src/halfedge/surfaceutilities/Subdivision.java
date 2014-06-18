@@ -5,6 +5,7 @@ import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Node;
 import halfedge.Vertex;
+import halfedge.decorations.HasCapitalPhi;
 import halfedge.decorations.HasLabel;
 import halfedge.decorations.HasXY;
 import halfedge.decorations.HasXYZW;
@@ -442,7 +443,7 @@ public class Subdivision {
 	<
 		V extends Vertex<V, E, F> & HasXY & HasXYZW,
 		E extends Edge<V, E, F>,
-		F extends Face<V, E, F>
+		F extends Face<V, E, F> & HasCapitalPhi
 	> HalfEdgeDataStructure<V, E, F> createMedialGraph (HalfEdgeDataStructure<V, E, F> graph) throws SurfaceException{
 		return createMedialGraph(graph, new HashMap<V, F>(), new HashMap<E, V>(), new HashMap<F, F>(), new HashMap<E, E>());
 	}
@@ -463,7 +464,7 @@ public class Subdivision {
 	<
 		V extends Vertex<V, E, F> & HasXY & HasXYZW,
 		E extends Edge<V, E, F>,
-		F extends Face<V, E, F>
+		F extends Face<V, E, F> & HasCapitalPhi
 	>  HalfEdgeDataStructure<V, E, F> createMedialGraph
 			(
 				HalfEdgeDataStructure<V, E, F> graph, 
@@ -486,6 +487,7 @@ public class Subdivision {
 			F newFace = result.addNewFace();
 			if (HasLabel.class.isAssignableFrom(newFace.getClass()))
 				((HasLabel)newFace).setLabel(true);
+			newFace.setCapitalPhi(f.getCapitalPhi());
 			faceFaceMap.put(f, newFace);
 		}
 		for (V v : graph.getVertices()){

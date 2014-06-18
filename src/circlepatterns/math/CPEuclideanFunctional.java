@@ -4,6 +4,7 @@ import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
+import halfedge.decorations.HasCapitalPhi;
 import halfedge.decorations.HasGradientValue;
 import halfedge.decorations.HasRho;
 import halfedge.decorations.HasTheta;
@@ -30,12 +31,12 @@ public class CPEuclideanFunctional {
 	public static <
 		V extends Vertex<V, E, F>,
 		E extends Edge<V, E, F> & HasTheta,
-		F extends Face<V, E, F> & HasRho & HasGradientValue
+		F extends Face<V, E, F> & HasRho & HasGradientValue & HasCapitalPhi
 	> Double evaluate(HalfEdgeDataStructure<V, E, F> graph) {
 		Double result = 0.0;
 		for (F face : graph.getFaces()) {
-			face.setGradientValue(2 * Math.PI);
-			result += 2 * Math.PI * face.getRho();
+			face.setGradientValue(face.getCapitalPhi());
+			result += face.getCapitalPhi() * face.getRho();
 		}
 
 		for (E edge : graph.getEdges()) {

@@ -4,6 +4,7 @@ import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
+import halfedge.decorations.HasCapitalPhi;
 import halfedge.decorations.HasGradientValue;
 import halfedge.decorations.HasRadius;
 import halfedge.decorations.HasRho;
@@ -26,7 +27,7 @@ import no.uib.cipr.matrix.Vector;
 public class CPEuclideanOptimizable <
 	V extends Vertex<V, E, F> & HasXY,
 	E extends Edge<V, E, F> & HasTheta,
-	F extends Face<V, E, F> & HasRho & HasXY & HasRadius & HasGradientValue
+	F extends Face<V, E, F> & HasRho & HasXY & HasRadius & HasGradientValue & HasCapitalPhi
 > implements Optimizable {
 
 	

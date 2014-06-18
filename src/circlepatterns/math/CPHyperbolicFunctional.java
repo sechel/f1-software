@@ -4,6 +4,7 @@ import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
 import halfedge.Vertex;
+import halfedge.decorations.HasCapitalPhi;
 import halfedge.decorations.HasGradientValue;
 import halfedge.decorations.HasRho;
 import halfedge.decorations.HasTheta;
@@ -15,14 +16,14 @@ public class CPHyperbolicFunctional {
     public static <
 		V extends Vertex<V, E, F>,
 		E extends Edge<V, E, F> & HasTheta,
-		F extends Face<V, E, F> & HasRho & HasGradientValue
+		F extends Face<V, E, F> & HasRho & HasGradientValue & HasCapitalPhi
 	>  double evaluate(HalfEdgeDataStructure<V, E, F> graph) {
 		double value = 0.0;
 		
 		/* initialize gradient */
 		for (F face : graph.getFaces()) {
-			face.setGradientValue(2 * Math.PI);
-			value += 2 * Math.PI * face.getRho();
+			face.setGradientValue(face.getCapitalPhi());
+			value += face.getCapitalPhi() * face.getRho();
 		}
 		
 		/* loop over edges */
