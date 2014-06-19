@@ -61,6 +61,7 @@ import minimalsurface.frontend.macro.CalculateDiagonalIntersections;
 import minimalsurface.frontend.macro.CentralExtensionSubdivide;
 import minimalsurface.frontend.macro.CircularPolyhedron;
 import minimalsurface.frontend.macro.ConsistentStripSubdivide;
+import minimalsurface.frontend.macro.CreateFaceLables;
 import minimalsurface.frontend.macro.CutEars;
 import minimalsurface.frontend.macro.DualGraphSubdivision;
 import minimalsurface.frontend.macro.DualizeKiteQuads;
@@ -120,7 +121,8 @@ public class MainWindow extends JFrame implements ListSelectionListener, ActionL
 			new DualizeKiteQuads(),
 			new CalculateDiagonalIntersections(),
 			new LoadToGraphEditor(),
-			new SurfaceEditor()
+			new SurfaceEditor(),
+			new CreateFaceLables()
 		};
 	
 	private JPanel
