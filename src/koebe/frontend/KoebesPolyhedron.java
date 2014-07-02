@@ -45,6 +45,8 @@ import alexandrov.frontend.action.SetDebugModeAction;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
+import de.jreality.ui.viewerapp.actions.file.ExportBlender;
+import de.jreality.ui.viewerapp.actions.file.ExportBlenderImage;
 import de.varylab.feedback.swing.FeedbackAction;
 
 
@@ -146,6 +148,8 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 			exportPS = new ExportPSAction(this, jRViewer.getViewer());
 			exportSVG = new ExportSVGAction(this, jRViewer.getViewer());
 			exportOBJ = new ExportOBJAction(this, jRViewer);
+			exportMenu.add(new ExportBlender("Blender", koebesPolyederView.getJRealityViewer(), getContentPane()));
+			exportMenu.add(new ExportBlenderImage("Blender Image", koebesPolyederView.getJRealityViewer(), getContentPane()));
 			exportMenu.add(exportVRML);
 			exportMenu.add(exportU3D);
 			exportMenu.add(exportRIB);

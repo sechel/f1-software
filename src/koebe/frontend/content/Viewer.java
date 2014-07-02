@@ -25,4 +25,6 @@ public interface Viewer {
 	
 	public JComponent getViewerComponent();
 	
+	public de.jreality.scene.Viewer getJRealityViewer();
+	
 }

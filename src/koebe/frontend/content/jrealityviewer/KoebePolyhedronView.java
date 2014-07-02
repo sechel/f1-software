@@ -849,6 +849,9 @@ public class KoebePolyhedronView extends JPanel implements Viewer{
 		rootApp.setAttribute(BACKGROUND_COLOR, backgoundColor);
 	}
 
-
+	@Override
+	public de.jreality.scene.Viewer getJRealityViewer() {
+		return va.getCurrentViewer();
+	}
 	
 }
