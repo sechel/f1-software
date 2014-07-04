@@ -17,6 +17,7 @@ import static de.jreality.shader.CommonAttributes.POINT_RADIUS;
 import static de.jreality.shader.CommonAttributes.POINT_SHADER;
 import static de.jreality.shader.CommonAttributes.POINT_SIZE;
 import static de.jreality.shader.CommonAttributes.POLYGON_SHADER;
+import static de.jreality.shader.CommonAttributes.RADII_WORLD_COORDINATES;
 import static de.jreality.shader.CommonAttributes.SMOOTH_SHADING;
 import static de.jreality.shader.CommonAttributes.SPECULAR_COEFFICIENT;
 import static de.jreality.shader.CommonAttributes.SPECULAR_COLOR;
@@ -69,7 +70,10 @@ import de.jreality.scene.PointLight;
 import de.jreality.scene.SceneGraphComponent;
 import de.jreality.scene.Sphere;
 import de.jreality.scene.Transformation;
+import de.jreality.scene.data.Attribute;
+import de.jreality.scene.data.IntArray;
 import de.jreality.scene.tool.Tool;
+import de.jreality.shader.CommonAttributes;
 import de.jtem.jrworkspace.plugin.Controller;
 
 
@@ -104,8 +108,6 @@ public class MinimalSurfaceContent extends DirectContent {
 		circleContainer = new SceneGraphComponent("Circle Container"),
 		diskGeometryRoot = new SceneGraphComponent("Disk Geometry Root"),
 		circleGeometryRoot = new SceneGraphComponent("Circle Geometry Root");
-	private Transformation
-		diskThicknessTransform = new Transformation();
 	private IndexedFaceSet
 		activeFaceSet = null;
 	private Object
@@ -134,6 +136,7 @@ public class MinimalSurfaceContent extends DirectContent {
 		surfaceAppearance = new Appearance(),
 		unitSphereApp = new Appearance(),
 		diskApp = new Appearance(),
+		circleApp = new Appearance("Circle Material"),
 		spheresApp = new Appearance(),
 		rootApp = new Appearance(),
 		linesApp = new Appearance();
@@ -158,12 +161,12 @@ public class MinimalSurfaceContent extends DirectContent {
 		circleThickness = 0.01;
 	
 	private CircleType
-		circleType = CircleType.Disk;
+		circleType = CircleType.Circle;
 
 	private Disk
 		diskGeometry = new Disk(40, 1.0);
 	private IndexedFaceSet
-		ringGeometry = Primitives.torus(1.0, 0.01, 40, 20);
+		ringGeometry = Primitives.regularPolygon(100);//torus(1.0, 0.01, 40, 20);
 	private Geometry
 		sphereGeometry = new Sphere();
 
@@ -283,8 +286,7 @@ public class MinimalSurfaceContent extends DirectContent {
 		spheresApp.setAttribute(PICKABLE, false);
         
         // disk thickness
-		Matrix S = MatrixBuilder.euclidean().scale(1, 1, circleThickness).getMatrix();
-		S.assignTo(diskThicknessTransform);
+		MatrixBuilder.euclidean().scale(1, 1, circleThickness).assignTo(diskGeometryRoot);
 		
         // helper lines
         linesRoot.setName("Helper Lines");
@@ -298,9 +300,24 @@ public class MinimalSurfaceContent extends DirectContent {
         geometryRoot.addChild(linesRoot);
         
         diskGeometryRoot.setGeometry(diskGeometry);
-        MatrixBuilder.euclidean().rotate(Math.PI/2, 1, 0, 0).assignTo(circleGeometryRoot);
+        
+        circleApp.setAttribute(VERTEX_DRAW, false);
+        circleApp.setAttribute(EDGE_DRAW, true);
+        circleApp.setAttribute(FACE_DRAW, false);
+        circleApp.setAttribute(LINE_SHADER + '.' + TUBES_DRAW, true);
+        circleApp.setAttribute(LINE_SHADER + '.' + TUBE_RADIUS, circleThickness);
+        circleApp.setAttribute(LINE_SHADER + '.' + RADII_WORLD_COORDINATES, true);
+        circleApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, rootColor);
+        circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
+        circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);
+        circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_COEFFICIENT, 0.7);
+        circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COLOR, circlesColor);
+        circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);        
+        circleGeometryRoot.setAppearance(circleApp);
         circleGeometryRoot.setGeometry(ringGeometry);
-        setCircleType(Disk);
+        ringGeometry.setFaceCountAndAttributes(Attribute.INDICES, new IntArray(new int[]{}));
+        
+        setCircleType(circleType);
 	}
 	
 
@@ -727,7 +744,7 @@ public class MinimalSurfaceContent extends DirectContent {
 
 	public void setCirclesColor(Color circlesColor) {
 //		diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, circlesColor);
-		diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, circlesColor);		
+		circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COLOR, circlesColor);		
 		this.circlesColor = circlesColor;
 	}
 
@@ -805,8 +822,7 @@ public class MinimalSurfaceContent extends DirectContent {
 			S.assignTo(diskGeometryRoot);
 			break;
 		case Circle:
-			ringGeometry = Primitives.torus(1.0, circleThickness, 40, 20);
-			circleGeometryRoot.setGeometry(ringGeometry);
+			circleApp.setAttribute(LINE_SHADER + '.' + TUBE_RADIUS, circleThickness);
 			break;
 		}
 	}
@@ -834,6 +850,7 @@ public class MinimalSurfaceContent extends DirectContent {
 			circleContainer.addChild(circleGeometryRoot);
 			break;
 		}
+		setCircleThickness(circleThickness);
 	}
 	
 	

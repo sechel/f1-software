@@ -14,9 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.vecmath.Point4d;
 
 import koebe.KoebePolyhedron.KoebePolyhedronContext;
 import koebe.PolyederNormalizer;
+import math.util.VecmathTools;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
@@ -63,6 +65,13 @@ public class MedialPolyhedron extends MacroAction {
 		int maxIterations = maxIterationsModel.getNumber().intValue();
 		KoebePolyhedronContext<CPVertex, CPEdge, CPFace> context = contructKoebePolyhedron(graph, tolerance, maxIterations);
 		PolyederNormalizer.normalize(context);
+		// calculate circle radii
+		for (CPFace f : context.getMedial().getFaces()) {
+			Point4d in = new Point4d(f.getXYZW());
+			VecmathTools.sphereMirror(in);
+			Point4d p = f.getBoundaryEdge().getTargetVertex().getXYZW();
+			f.setRadius(in.distance(p));
+		}
 		return context.getMedial();
 	}
 	
