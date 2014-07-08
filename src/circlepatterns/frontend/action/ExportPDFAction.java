@@ -20,10 +20,10 @@ import javax.swing.KeyStroke;
 
 import circlepatterns.frontend.content.euclidean.EuclideanCirclePatternView;
 
-import com.lowagie.text.Document;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.pdf.PdfContentByte;
-import com.lowagie.text.pdf.PdfWriter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * Opens a file chooser and saves active polyhedron.
@@ -84,7 +84,7 @@ public class ExportPDFAction extends AbstractAction {
 				PdfWriter writer = PdfWriter.getInstance(doc, out);
 				doc.open();
 				PdfContentByte cb = writer.getDirectContent();
-				Graphics2D g2 = cb.createGraphics(PageSize.A4.width(), PageSize.A4.height());
+				Graphics2D g2 = cb.createGraphics(PageSize.A4.getWidth(), PageSize.A4.getHeight());
 				viewer.paint(g2);
 				g2.dispose();
 				doc.close();

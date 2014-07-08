@@ -10,7 +10,6 @@
 	<classpathentry kind="lib" path="lib/riemann.jar"/>
 	<classpathentry kind="lib" path="lib/function.jar"/>
 	<classpathentry kind="lib" path="lib/collections-generic-4.01.jar"/>
-	<classpathentry kind="lib" path="lib/itext-1.4.6.jar"/>
 	<classpathentry kind="lib" path="lib/bsh.jar"/>
 	<classpathentry kind="lib" path="lib/blas.jar"/>
 	<classpathentry kind="lib" path="lib/vecmath.jar" sourcepath="/vecmath">
@@ -36,6 +35,7 @@
 	<classpathentry kind="lib" path="lib/xstream/xstream-1.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/jtem/jrworkspace.jar"/>
 	<classpathentry kind="lib" path="lib/jreality/hidapi-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/itextpdf-5.3.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="lib/junit/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/junit/junit-4.11.jar" sourcepath="/Users/sechel/.m2/repository/junit/junit/4.11/junit-4.11-sources.jar"/>

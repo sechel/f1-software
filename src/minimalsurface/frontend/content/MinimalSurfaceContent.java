@@ -6,6 +6,7 @@ import static de.jreality.shader.CommonAttributes.ANTIALIASING_ENABLED;
 import static de.jreality.shader.CommonAttributes.BACKGROUND_COLOR;
 import static de.jreality.shader.CommonAttributes.BACK_FACE_CULLING_ENABLED;
 import static de.jreality.shader.CommonAttributes.DEPTH_FUDGE_FACTOR;
+import static de.jreality.shader.CommonAttributes.DIFFUSE_COEFFICIENT;
 import static de.jreality.shader.CommonAttributes.DIFFUSE_COLOR;
 import static de.jreality.shader.CommonAttributes.EDGE_DRAW;
 import static de.jreality.shader.CommonAttributes.FACE_DRAW;
@@ -32,7 +33,6 @@ import static de.jreality.writer.u3d.U3DAttribute.U3D_FLAG;
 import static de.jreality.writer.u3d.U3DAttribute.U3D_NONORMALS;
 import static halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel.INTERSECTION;
 import static halfedge.decorations.HasQuadGraphLabeling.QuadGraphLabel.SPHERE;
-import static minimalsurface.frontend.content.MinimalViewOptions.CircleType.Disk;
 import halfedge.Edge;
 import halfedge.Face;
 import halfedge.HalfEdgeDataStructure;
@@ -69,11 +69,10 @@ import de.jreality.scene.Light;
 import de.jreality.scene.PointLight;
 import de.jreality.scene.SceneGraphComponent;
 import de.jreality.scene.Sphere;
-import de.jreality.scene.Transformation;
 import de.jreality.scene.data.Attribute;
 import de.jreality.scene.data.IntArray;
 import de.jreality.scene.tool.Tool;
-import de.jreality.shader.CommonAttributes;
+import de.jreality.writer.blender.BlenderAttributes;
 import de.jtem.jrworkspace.plugin.Controller;
 
 
@@ -123,12 +122,11 @@ public class MinimalSurfaceContent extends DirectContent {
     	defaultLight = new PointLight();
 	
     private Color
+    	diskColor = new Color(123, 148, 175),
     	faceColor = new Color(102, 102, 102),
-		rootColor = new Color(66, 66, 33),
 		light1Color = Color.WHITE,
 		light2Color = Color.WHITE,
-		meshColor = Color.BLACK,
-		circlesColor = new Color(0, 51, 102),
+		meshColor = Color.GRAY,
 		spheresColor = new Color(102, 102, 0),
 		backgroundColor = new Color(0xffffff);
 	
@@ -190,7 +188,6 @@ public class MinimalSurfaceContent extends DirectContent {
 	private void initScene(){
 		//root appearance
 		rootApp.setAttribute(BACKGROUND_COLOR, backgroundColor);
-//		rootApp.setAttribute(POLYGON_SHADER + "." + ANTIALIASING_ENABLED, antialias);
 		sceneRoot.setAppearance(rootApp);
 		sceneRoot.setName("Scene Root");
 		
@@ -213,7 +210,6 @@ public class MinimalSurfaceContent extends DirectContent {
         
         //polyhedron
 		surfaceAppearance.setAttribute(FACE_DRAW, true);
-		surfaceAppearance.setAttribute(POLYGON_SHADER, "smooth");
         surfaceAppearance.setAttribute(POLYGON_SHADER + "." + SMOOTH_SHADING, smoothShading);
         surfaceAppearance.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, faceColor);
         surfaceAppearance.setAttribute(POLYGON_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
@@ -244,6 +240,7 @@ public class MinimalSurfaceContent extends DirectContent {
         surfaceAppearance.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
         surfaceAppearance.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);
         surfaceAppearance.setAttribute(LINE_SHADER + "." + TRANSPARENCY_ENABLED, false);
+        activeSpheresRoot.setVisible(showSpheres);
 
         polyhedronRoot.setAppearance(surfaceAppearance);
         polyhedronRoot.setVisible(showSurface);
@@ -251,13 +248,12 @@ public class MinimalSurfaceContent extends DirectContent {
         geometryRoot.addChild(polyhedronRoot);
         
         // disks
-        diskApp.setAttribute(POLYGON_SHADER, "flat");
-        diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, rootColor);
+        diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, diskColor);
+        diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);        
+        diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, diskColor);
+        diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COEFFICIENT, 0.3);
         diskApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
         diskApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30);
-        diskApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COEFFICIENT, 0.7);
-        diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, circlesColor);
-        diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);
         diskApp.setAttribute(POLYGON_SHADER + "." + SMOOTH_SHADING, true);
         diskApp.setAttribute(POLYGON_SHADER + "." + BACK_FACE_CULLING_ENABLED, true);
         diskApp.setAttribute(FACE_DRAW, showCircles);
@@ -268,18 +264,16 @@ public class MinimalSurfaceContent extends DirectContent {
         diskApp.setAttribute(PICKABLE, false);
         
         // spheres
-        spheresApp.setAttribute(POLYGON_SHADER, "smooth");
-        spheresApp.setAttribute(POLYGON_SHADER + "." + SMOOTH_SHADING, true);
-        spheresApp.setAttribute(POLYGON_SHADER + "." + BACK_FACE_CULLING_ENABLED, true);
-		spheresApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, rootColor);
+		spheresApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, spheresColor);
+		spheresApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);   
+		spheresApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, spheresColor);
+        spheresApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COEFFICIENT, 0.3);
 		spheresApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
 		spheresApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30);
-		spheresApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COEFFICIENT, 0.7);
-		spheresApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, spheresColor);
-		spheresApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);
-		spheresApp.setAttribute(TRANSPARENCY, 0.5);
+        spheresApp.setAttribute(POLYGON_SHADER + "." + SMOOTH_SHADING, true);
+        spheresApp.setAttribute(POLYGON_SHADER + "." + BACK_FACE_CULLING_ENABLED, true);
+		spheresApp.setAttribute(POLYGON_SHADER + "." + TRANSPARENCY, 0.7);
 		spheresApp.setAttribute(TRANSPARENCY_ENABLED, true);
-		spheresApp.setAttribute(FACE_DRAW, showSpheres);
 		spheresApp.setAttribute(VERTEX_DRAW, false);
 		spheresApp.setAttribute(EDGE_DRAW, false);
 		spheresApp.setAttribute(LIGHTING_ENABLED, true);
@@ -304,15 +298,17 @@ public class MinimalSurfaceContent extends DirectContent {
         circleApp.setAttribute(VERTEX_DRAW, false);
         circleApp.setAttribute(EDGE_DRAW, true);
         circleApp.setAttribute(FACE_DRAW, false);
+        circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COLOR, diskColor);
+        circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);
+        circleApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, diskColor); 
+        circleApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COEFFICIENT, 0.3);
+        circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
+        circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);        
         circleApp.setAttribute(LINE_SHADER + '.' + TUBES_DRAW, true);
         circleApp.setAttribute(LINE_SHADER + '.' + TUBE_RADIUS, circleThickness);
         circleApp.setAttribute(LINE_SHADER + '.' + RADII_WORLD_COORDINATES, true);
-        circleApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, rootColor);
-        circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
-        circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);
-        circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_COEFFICIENT, 0.7);
-        circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COLOR, circlesColor);
-        circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);        
+        circleApp.setAttribute(LINE_SHADER + '.' + BlenderAttributes.BLENDER_USESKINTUBES, true);
+        
         circleGeometryRoot.setAppearance(circleApp);
         circleGeometryRoot.setGeometry(ringGeometry);
         ringGeometry.setFaceCountAndAttributes(Attribute.INDICES, new IntArray(new int[]{}));
@@ -738,14 +734,14 @@ public class MinimalSurfaceContent extends DirectContent {
 	}
 
 	public Color getCirclesColor() {
-		return circlesColor;
+		return diskColor;
 	}
 
 
-	public void setCirclesColor(Color circlesColor) {
-//		diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, circlesColor);
-		circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COLOR, circlesColor);		
-		this.circlesColor = circlesColor;
+	public void setCirclesColor(Color diskColor) {
+		circleApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, diskColor);
+		circleApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, diskColor);		
+		this.diskColor = diskColor;
 	}
 
 
@@ -755,15 +751,15 @@ public class MinimalSurfaceContent extends DirectContent {
 
 
 	public void setSpheresColor(Color spheresColor) {
-//		spheresApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, spheresColor);
+		spheresApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, spheresColor);
 		spheresApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, spheresColor);		
 		this.spheresColor = spheresColor;
 	}
 
 	
 	public void setShowCircles(boolean show){
-		diskApp.setAttribute(FACE_DRAW, show);
 		showCircles = show;
+		activeDisksRoot.setVisible(showCircles);
 	}
 	
 	public boolean isShowCircles(){
@@ -771,8 +767,8 @@ public class MinimalSurfaceContent extends DirectContent {
 	}
 	
 	public void setShowSpheres(boolean show){
-		spheresApp.setAttribute(FACE_DRAW, show);
 		showSpheres = show;
+		activeSpheresRoot.setVisible(showSpheres);
 	}
 	
 	public boolean isShowSpheres(){
