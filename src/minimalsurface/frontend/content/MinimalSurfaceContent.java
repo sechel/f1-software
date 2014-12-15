@@ -122,28 +122,28 @@ public class MinimalSurfaceContent extends DirectContent {
     	defaultLight = new PointLight();
 	
     private Color
-    	diskColor = new Color(123, 148, 175),
+    	circlesAndDiskColor = new Color(0, 102, 153),
     	faceColor = new Color(102, 102, 102),
 		light1Color = Color.WHITE,
 		light2Color = Color.WHITE,
 		meshColor = Color.GRAY,
-		spheresColor = new Color(102, 102, 0),
+		spheresColor = new Color(153, 102, 0),
 		backgroundColor = new Color(0xffffff);
 	
 	private Appearance 
-		surfaceAppearance = new Appearance(),
-		unitSphereApp = new Appearance(),
-		diskApp = new Appearance(),
+		surfaceAppearance = new Appearance("Surface Material"),
+		unitSphereApp = new Appearance("Unit Sphere Material"),
+		diskApp = new Appearance("Disk Material"),
 		circleApp = new Appearance("Circle Material"),
-		spheresApp = new Appearance(),
-		rootApp = new Appearance(),
-		linesApp = new Appearance();
+		spheresApp = new Appearance("Spheres Material"),
+		rootApp = new Appearance("Root Material"),
+		linesApp = new Appearance("Lines Material");
 	
 	private boolean
 		antialias = true,
 		showSurface = true,
 		showMesh = true,
-		showCircles = true,
+		showCirclesOrDisks = false,
 		showSpheres = false,
 		transparencySurface = false,
 		light1On = true,
@@ -248,15 +248,15 @@ public class MinimalSurfaceContent extends DirectContent {
         geometryRoot.addChild(polyhedronRoot);
         
         // disks
-        diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, diskColor);
+        diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, circlesAndDiskColor);
         diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);        
-        diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, diskColor);
+        diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, circlesAndDiskColor);
         diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COEFFICIENT, 0.3);
         diskApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
         diskApp.setAttribute(POLYGON_SHADER + "." + SPECULAR_EXPONENT, 30);
         diskApp.setAttribute(POLYGON_SHADER + "." + SMOOTH_SHADING, true);
         diskApp.setAttribute(POLYGON_SHADER + "." + BACK_FACE_CULLING_ENABLED, true);
-        diskApp.setAttribute(FACE_DRAW, showCircles);
+        diskApp.setAttribute(FACE_DRAW, true);
         diskApp.setAttribute(VERTEX_DRAW, false);
         diskApp.setAttribute(EDGE_DRAW, false);
         diskApp.setAttribute(LIGHTING_ENABLED, true);
@@ -292,15 +292,14 @@ public class MinimalSurfaceContent extends DirectContent {
         linesApp.setAttribute(LINE_SHADER + "." + TUBES_DRAW, true);
         linesApp.setAttribute(LINE_SHADER + "." + TUBE_RADIUS, meshWidth * 3);
         geometryRoot.addChild(linesRoot);
-        
         diskGeometryRoot.setGeometry(diskGeometry);
         
         circleApp.setAttribute(VERTEX_DRAW, false);
         circleApp.setAttribute(EDGE_DRAW, true);
         circleApp.setAttribute(FACE_DRAW, false);
-        circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COLOR, diskColor);
+        circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COLOR, circlesAndDiskColor);
         circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COEFFICIENT, 0.4);
-        circleApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, diskColor); 
+        circleApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, circlesAndDiskColor); 
         circleApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COEFFICIENT, 0.3);
         circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_COLOR, Color.WHITE);
         circleApp.setAttribute(LINE_SHADER + "." + SPECULAR_EXPONENT, 30);        
@@ -372,11 +371,17 @@ public class MinimalSurfaceContent extends DirectContent {
 	> SceneGraphComponent makeDiskSurface(HalfEdgeDataStructure<V, E, F> surface){
 		SceneGraphComponent disksSpheresRoot = new SceneGraphComponent();
 		disksSpheresRoot.setName("Disks and Spheres");
-		activeDisksRoot = new SceneGraphComponent();
+		activeDisksRoot.removeAllChildren();
 		activeDisksRoot.setName("Disks");
-		activeSpheresRoot = new SceneGraphComponent();
+		activeDisksRoot.setVisible(showCirclesOrDisks);
+		if (circleType == CircleType.Disk) {
+			activeDisksRoot.setAppearance(diskApp);
+		} else {
+			activeDisksRoot.setAppearance(circleApp);
+		}
+		activeSpheresRoot.removeAllChildren();
 		activeSpheresRoot.setName("Spheres");
-		activeDisksRoot.setAppearance(diskApp);
+		activeSpheresRoot.setVisible(showSpheres);
 		activeSpheresRoot.setAppearance(spheresApp);
 		disksSpheresRoot.addChild(activeDisksRoot);
 		disksSpheresRoot.addChild(activeSpheresRoot);
@@ -734,14 +739,16 @@ public class MinimalSurfaceContent extends DirectContent {
 	}
 
 	public Color getCirclesColor() {
-		return diskColor;
+		return circlesAndDiskColor;
 	}
 
 
 	public void setCirclesColor(Color diskColor) {
-		circleApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, diskColor);
-		circleApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, diskColor);		
-		this.diskColor = diskColor;
+		circleApp.setAttribute(LINE_SHADER + "." + DIFFUSE_COLOR, diskColor);
+		circleApp.setAttribute(LINE_SHADER + "." + AMBIENT_COLOR, diskColor);
+		diskApp.setAttribute(POLYGON_SHADER + "." + DIFFUSE_COLOR, diskColor);
+		diskApp.setAttribute(POLYGON_SHADER + "." + AMBIENT_COLOR, diskColor);
+		this.circlesAndDiskColor = diskColor;
 	}
 
 
@@ -758,12 +765,12 @@ public class MinimalSurfaceContent extends DirectContent {
 
 	
 	public void setShowCircles(boolean show){
-		showCircles = show;
-		activeDisksRoot.setVisible(showCircles);
+		showCirclesOrDisks = show;
+		activeDisksRoot.setVisible(showCirclesOrDisks);
 	}
 	
 	public boolean isShowCircles(){
-		return showCircles;
+		return showCirclesOrDisks;
 	}
 	
 	public void setShowSpheres(boolean show){
@@ -841,9 +848,11 @@ public class MinimalSurfaceContent extends DirectContent {
 		default:
 		case Disk:
 			circleContainer.addChild(diskGeometryRoot);
+			activeDisksRoot.setAppearance(diskApp);
 			break;
 		case Circle:
 			circleContainer.addChild(circleGeometryRoot);
+			activeDisksRoot.setAppearance(circleApp);
 			break;
 		}
 		setCircleThickness(circleThickness);
