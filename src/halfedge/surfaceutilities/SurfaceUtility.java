@@ -16,7 +16,9 @@ import halfedge.triangulationutilities.TriangulationException;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.vecmath.Point2d;
 import javax.vecmath.Point4d;
@@ -250,11 +252,13 @@ public class SurfaceUtility {
 		V extends Vertex<V, E, F>,
 		E extends Edge<V, E, F>,
 		F extends Face<V, E, F>
-	> void fillHoles(HalfEdgeDataStructure<V, E, F> graph) throws SurfaceException{
+	> Set<F> fillHoles(HalfEdgeDataStructure<V, E, F> graph) throws SurfaceException{
+		Set<F> newFaces = new HashSet<F>();  
 		for (E e : graph.getEdges()){
 			if (e.getLeftFace() != null)
 				continue;
 			F face = graph.addNewFace();
+			newFaces.add(face);
 			E actEdge = e;
 			int counter = 0;
 			do {
@@ -267,6 +271,7 @@ public class SurfaceUtility {
 		}
 		if (!ConsistencyCheck.isValidSurface(graph))
 			throw new SurfaceException("No valid surface could be constructed!");
+		return newFaces;
 	}
 	
 	

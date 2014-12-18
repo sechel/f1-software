@@ -22,6 +22,7 @@ import halfedge.surfaceutilities.SurfaceUtility;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.vecmath.Point2d;
 import javax.vecmath.Point4d;
@@ -196,7 +197,7 @@ public class KoebePolyhedron{
 		double tol, 
 		int maxIter
 	) throws SurfaceException {
-		SurfaceUtility.fillHoles(medial);
+		Set<F> auxFaces = SurfaceUtility.fillHoles(medial);
 		if (!ConsistencyCheck.isValidSurface(medial)) {
 			throw new SurfaceException("No valid medial graph could be contructed in constructKoebePolyhedron()");
 		}
@@ -282,6 +283,11 @@ public class KoebePolyhedron{
 			v.setXY(vertex.getXY());
 		}
 		medialNorth.getXYZW().set(0, 1, 0, 1);
+		
+		// remove auxiliary
+		for (F f : auxFaces) {
+			medial.removeFace(f);
+		}
 	}
 	
 	
