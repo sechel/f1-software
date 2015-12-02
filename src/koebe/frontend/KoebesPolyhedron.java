@@ -139,19 +139,6 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		editPanel.getController().addStatusChangedListener(this);
 		editPanel.getController().setUseFaces(false);
 		editPanel.getEditPanel().setDrawGrid(false);
-		
-		
-		// mac os hack
-		tabPane.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				polyhedronPanel.remove(koebesPolyederView.getViewerComponent());
-				if (tabPane.getSelectedIndex() == 0) {
-					polyhedronPanel.add(koebesPolyederView.getViewerComponent());
-					polyhedronPanel.revalidate();
-				}
-			}
-		});
 	}
 	
 	
