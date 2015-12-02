@@ -212,6 +212,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		circlePatternPanel.setLayout(new BorderLayout());
 		circlePatternPanel.add(circlePatternView, BorderLayout.CENTER);
 		circlePatternPanel.add(euclideanViewOptions, BorderLayout.SOUTH);
+		euclideanViewOptions.setShrinked(true);
 		
 		polyhedronPanel.setLayout(new GridLayout());
 		polyhedronPanel.add(koebesPolyederView.getViewerComponent());
