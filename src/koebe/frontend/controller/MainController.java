@@ -8,6 +8,7 @@ import koebe.KoebePolyhedron;
 import koebe.KoebePolyhedron.KoebePolyhedronContext;
 import koebe.PolyederNormalizer;
 import koebe.frontend.content.Viewer;
+import circlepatterns.frontend.content.euclidean.EuclideanCirclePatternView;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
@@ -16,6 +17,8 @@ public class MainController extends halfedge.frontend.controller.MainController<
 	
 	private Viewer
 		koebeViewer = null;
+	private EuclideanCirclePatternView
+		circlePatternViewer = null;
 	private boolean 
 		normalize = true;
 
@@ -58,24 +61,27 @@ public class MainController extends halfedge.frontend.controller.MainController<
 			return;
 		}
 		getKoebeViewer().updateGeometry(context);
+		getCirclePatternViewer().setPattern(context.getCircles());
 	}
 
 	
 	public void setKoebeViewer(Viewer koebeViewer) {
 		this.koebeViewer = koebeViewer;
 	}
-
-	
 	public Viewer getKoebeViewer() {
 		return koebeViewer;
 	}
 
+	public void setCirclePatternViewer(EuclideanCirclePatternView circlePatternViewer) {
+		this.circlePatternViewer = circlePatternViewer;
+	}
+	public EuclideanCirclePatternView getCirclePatternViewer() {
+		return circlePatternViewer;
+	}
 
 	public boolean isNormalize() {
 		return normalize;
 	}
-
-
 	public void setNormalize(boolean normalize) {
 		this.normalize = normalize;
 	}

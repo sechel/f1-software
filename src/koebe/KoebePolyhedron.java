@@ -14,11 +14,14 @@ import halfedge.decorations.HasRho;
 import halfedge.decorations.HasTheta;
 import halfedge.decorations.HasXY;
 import halfedge.decorations.HasXYZW;
+import halfedge.io.HESerializableWriter;
 import halfedge.surfaceutilities.ConsistencyCheck;
 import halfedge.surfaceutilities.Subdivision;
 import halfedge.surfaceutilities.SurfaceException;
 import halfedge.surfaceutilities.SurfaceUtility;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,6 +56,8 @@ public class KoebePolyhedron{
 		public HalfEdgeDataStructure<V, E, F>
 			medial = null;
 		public HalfEdgeDataStructure<V, E, F>
+			circles = null;		
+		public HalfEdgeDataStructure<V, E, F>
 			polyeder = null;
 		public HashMap<E, E>
 			edgeEdgeMap = null;
@@ -70,6 +75,9 @@ public class KoebePolyhedron{
 		}
 		public HalfEdgeDataStructure<V, E, F> getMedial() {
 			return medial;
+		}
+		public HalfEdgeDataStructure<V, E, F> getCircles() {
+			return circles;
 		}
 		public HalfEdgeDataStructure<V, E, F> getPolyeder() {
 			return polyeder;
@@ -157,7 +165,7 @@ public class KoebePolyhedron{
 			HashMap<E, E> edgeEdgeMap = new HashMap<E, E>();
 			HashMap<E, V> edgeVertexMap = new HashMap<E, V>();
 			HalfEdgeDataStructure<V, E, F> medial = Subdivision.createMedialGraph(graph, vertexFaceMap, edgeVertexMap, faceFaceMap, edgeEdgeMap);
-			calculateCirclePattern(medial, tol,	maxIter);
+			HalfEdgeDataStructure<V, E, F> circles = calculateCirclePattern(medial, tol, maxIter);
 			
 			// fill into graph
 			for (F face : graph.getFaces()){
@@ -181,6 +189,7 @@ public class KoebePolyhedron{
 			context.medial = medial;
 			context.northPole = medial.getVertex(0);
 			context.polyeder = graph;
+			context.circles = circles;
 		} catch (Exception e){
 			throw new SurfaceException(e);
 		}
@@ -191,8 +200,9 @@ public class KoebePolyhedron{
 	public static <
 		V extends Vertex<V, E, F> & HasXYZW & HasXY & HasQuadGraphLabeling, 
 		E extends Edge<V, E, F> & HasXYZW & HasTheta, 
-		F extends Face<V, E, F> & HasLabel & HasRho & HasXYZW & HasXY & HasRadius & HasGradientValue & HasCapitalPhi
-	> void calculateCirclePattern(
+		F extends Face<V, E, F> & HasLabel & HasRho & HasXYZW & HasXY & HasRadius & HasGradientValue & HasCapitalPhi,
+		HDS extends HalfEdgeDataStructure<V, E, F>
+	> HDS calculateCirclePattern(
 		HalfEdgeDataStructure<V, E, F> medial,
 		double tol, 
 		int maxIter
@@ -234,10 +244,13 @@ public class KoebePolyhedron{
 		}
 		
 		//debug output
-//			HESerializableWriter writer = new HESerializableWriter(new FileOutputStream("data/koebeMedialOut.heds"));
-//			writer.writeHalfEdgeDataStructure(medialCirclePattern);
-//			writer.close();
-		
+		try {
+			HESerializableWriter writer = new HESerializableWriter(new FileOutputStream("data/koebeMedialOut.heds"));
+			writer.writeHalfEdgeDataStructure(medialCirclePattern);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println(e);
+		}
 		if (!ConsistencyCheck.isValidSurface(medialCirclePattern)) {
 			throw new SurfaceException("No surface after altering medial graph in constructKoebePolyhedron()");
 		}
@@ -288,6 +301,8 @@ public class KoebePolyhedron{
 		for (F f : auxFaces) {
 			medial.removeFace(f);
 		}
+		
+		return (HDS)medialCirclePattern;
 	}
 	
 	

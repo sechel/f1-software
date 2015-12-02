@@ -11,6 +11,7 @@ import halfedge.frontend.controller.MainController.StatusChangedListener;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.Action;
 import javax.swing.BorderFactory;
@@ -22,7 +23,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import koebe.frontend.action.ExportOBJAction;
 import koebe.frontend.action.ExportPSAction;
@@ -42,6 +47,8 @@ import koebe.frontend.tool.ProjectTool;
 import koebe.frontend.tool.VertexQuadSubdivide;
 import util.debug.DBGTracer;
 import alexandrov.frontend.action.SetDebugModeAction;
+import circlepatterns.frontend.content.euclidean.EuclideanCirclePatternView;
+import circlepatterns.frontend.content.euclidean.EuclideanViewOptions;
 import circlepatterns.graph.CPEdge;
 import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
@@ -83,6 +90,15 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		editPanel = null;
 	private Viewer
 		koebesPolyederView = null;
+	private EuclideanCirclePatternView
+		circlePatternView = new EuclideanCirclePatternView();
+	private EuclideanViewOptions
+		euclideanViewOptions = new EuclideanViewOptions(circlePatternView);
+	private JPanel
+		polyhedronPanel = new JPanel(), 
+		circlePatternPanel = new JPanel();
+	private JTabbedPane
+		tabPane = new JTabbedPane();
 	private JLabel
 		statusLabel = new JLabel("Ready");
 	
@@ -112,6 +128,7 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		editPanel = new StandardEditor<CPVertex, CPEdge, CPFace>(combinatorics, controller);
 		koebesPolyederView = new KoebePolyhedronView(controller);
 		controller.setKoebeViewer(koebesPolyederView);
+		controller.setCirclePatternViewer(circlePatternView);
 		
 		createMenuBar();
 		createContent();
@@ -122,6 +139,19 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 		editPanel.getController().addStatusChangedListener(this);
 		editPanel.getController().setUseFaces(false);
 		editPanel.getEditPanel().setDrawGrid(false);
+		
+		
+		// mac os hack
+		tabPane.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				polyhedronPanel.remove(koebesPolyederView.getViewerComponent());
+				if (tabPane.getSelectedIndex() == 0) {
+					polyhedronPanel.add(koebesPolyederView.getViewerComponent());
+					polyhedronPanel.revalidate();
+				}
+			}
+		});
 	}
 	
 	
@@ -173,15 +203,23 @@ public class KoebesPolyhedron extends JFrame implements StatusChangedListener{
 	
 	private void createContent() {
 		setLayout(new BorderLayout());
-		
 		editPanel.setBorder(BorderFactory.createTitledBorder("Graph Editor"));
-		koebesPolyederView.getViewerComponent().setBorder(BorderFactory.createTitledBorder("Koebe Polyhedron View"));
 		
 		Dimension minimumSize = new Dimension(150, 50);
 		editPanel.setMinimumSize(minimumSize);
 		koebesPolyederView.getViewerComponent().setMinimumSize(minimumSize);
 		
-		JSplitPane splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, editPanel, koebesPolyederView.getViewerComponent());
+		circlePatternPanel.setLayout(new BorderLayout());
+		circlePatternPanel.add(circlePatternView, BorderLayout.CENTER);
+		circlePatternPanel.add(euclideanViewOptions, BorderLayout.SOUTH);
+		
+		polyhedronPanel.setLayout(new GridLayout());
+		polyhedronPanel.add(koebesPolyederView.getViewerComponent());
+		
+		tabPane.addTab("Koebe Polyhedron", polyhedronPanel);
+		tabPane.addTab("Circle Pattern", circlePatternPanel);
+		
+		JSplitPane splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, editPanel, tabPane);
 		splitter.setOneTouchExpandable(true);
 		splitter.setResizeWeight(0.5);
 //		splitter.setDividerLocation(390);

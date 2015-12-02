@@ -39,7 +39,7 @@ public class EuclideanViewOptions extends ShrinkPanel implements ChangeListener,
 	private EuclideanCirclePatternView
 		view = null;
 	private JSlider
-		scaleSlider = new JSlider(1, 200);
+		scaleSlider = new JSlider(1, 1000);
 	private JCheckBox
 		antialiasChecker = new JCheckBox("Antialiasing"),
 		showVerticesChecker = new JCheckBox("Vertices"),
