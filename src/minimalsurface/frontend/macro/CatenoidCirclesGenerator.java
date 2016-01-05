@@ -31,7 +31,7 @@ import circlepatterns.graph.CPFace;
 import circlepatterns.graph.CPVertex;
 import circlepatterns.layout.CPLayout;
 
-public class EnneperCirclesGenerator extends MacroAction {
+public class CatenoidCirclesGenerator extends MacroAction {
 
 	protected Icon 
 		icon = new ImageIcon(ImageHook.getImage("enneper.png"));
@@ -47,7 +47,7 @@ public class EnneperCirclesGenerator extends MacroAction {
 	
 	@Override
 	public String getName() {
-		return "Enneper Circle Generator";
+		return "Catenoid Circle Generator";
 	}
 
 	@Override

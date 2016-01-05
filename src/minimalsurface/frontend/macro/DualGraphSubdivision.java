@@ -19,7 +19,7 @@ import circlepatterns.graph.CPVertex;
 public class DualGraphSubdivision extends MacroAction {
 
 	protected Icon 
-		icon = new ImageIcon(ImageHook.getImage("medialsubdivide.png"));
+		icon = new ImageIcon(ImageHook.getImage("edgesubdivide.png"));
 	
 	private OptionPanel
 		optionPanel = null;

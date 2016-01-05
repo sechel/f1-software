@@ -58,13 +58,13 @@ public class Delaunay {
 		V extends Vertex<V, E, F>,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getAngle(E edge) throws TriangulationException{
-		Double a = edge.getLength();
-		Double b = edge.getNextEdge().getLength();
-		Double c = edge.getPreviousEdge().getLength();
+	> double getAngle(E edge) throws TriangulationException{
+		double a = edge.getLength();
+		double b = edge.getNextEdge().getLength();
+		double c = edge.getPreviousEdge().getLength();
 		if ((a*a + b*b - c*c) / (2*a*b) > 1)
 			throw new TriangulationException("Triangle inequation doesn't hold for " + edge);
-		Double result = Math.abs(StrictMath.acos((a*a + b*b - c*c) / (2*a*b)));
+		double result = Math.abs(StrictMath.acos((a*a + b*b - c*c) / (2*a*b)));
 		return result;
 	}
 	
@@ -80,8 +80,8 @@ public class Delaunay {
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
 	> boolean isDelaunay(E edge) throws TriangulationException{
-		Double gamma = getAngle(edge.getNextEdge());
-		Double delta = getAngle(edge.getOppositeEdge().getNextEdge());
+		double gamma = getAngle(edge.getNextEdge());
+		double delta = getAngle(edge.getOppositeEdge().getNextEdge());
 		return gamma + delta <= Math.PI;
 	}
 	

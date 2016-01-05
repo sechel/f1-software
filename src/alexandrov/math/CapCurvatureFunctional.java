@@ -26,7 +26,7 @@ import no.uib.cipr.matrix.Vector;
 
 public class CapCurvatureFunctional {
 
-	private static Double
+	private static double
 		eps = 1E-2;
 	
 	public static  <
@@ -42,7 +42,7 @@ public class CapCurvatureFunctional {
 	}
 	
 	
-	private static Double cot(Double phi){
+	private static double cot(double phi){
 		return -tan(phi + PI/2);
 	}
 	
@@ -51,7 +51,7 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Boolean isDegenerated(E edge_ki){
+	> boolean isDegenerated(E edge_ki){
 		try {
 			if (edge_ki.getLeftFace() != null)
 				return getOmega(edge_ki.getNextEdge()) > Math.PI - eps;
@@ -67,7 +67,7 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Boolean isFaceDegenerated(E edge) {
+	> boolean isFaceDegenerated(E edge) {
 		if (isDegenerated(edge))
 			return true;
 		if (isDegenerated(edge.getNextEdge()))
@@ -82,9 +82,9 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Boolean isMetricConvex(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
+	> boolean isMetricConvex(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
 		for (V v : graph.getVertices()){
-			Double gamma = getGammaAt(v);
+			double gamma = getGammaAt(v);
 			if (isBorderVertex(v)){
 				if (gamma > PI + eps)
 					return false;
@@ -100,9 +100,9 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Double getGammaAt(V vertex) throws TriangulationException{
+	> double getGammaAt(V vertex) throws TriangulationException{
 		List<E> cocycle = vertex.getEdgeStar();
-		Double gamma = 0.0;
+		double gamma = 0.0;
 		for (E e : cocycle){
 			if (e.getLeftFace() != null)
 				gamma += Delaunay.getAngle(e);
@@ -180,10 +180,10 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Double getCurvaturePartialDerivative(HalfEdgeDataStructure<V, E, F> graph, int i, int j) throws TriangulationException{
+	> double getCurvaturePartialDerivative(HalfEdgeDataStructure<V, E, F> graph, int i, int j) throws TriangulationException{
 		V b = graph.getVertex(i);
 		List<E> cocycle = b.getEdgeStar();
-		Double result = 0.0;
+		double result = 0.0;
 		for (E e : cocycle){
 			V a = e.getStartVertex();
 			double alpha_e1 = getAlpha(e);
@@ -209,9 +209,9 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Double getKappa(V vertex, HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
+	> double getKappa(V vertex, HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
 		List<E> cocycle = vertex.getEdgeStar();
-		Double omega_i = 0.0; 
+		double omega_i = 0.0; 
 		for (E e : cocycle)
 			omega_i += getOmega(e);
 		return 2*PI - omega_i;
@@ -223,8 +223,8 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Double getFunctional(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
-		Double result = 0.0;
+	> double getFunctional(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
+		double result = 0.0;
 		// internal vertices
 		for (V v : graph.getVertices()){
 			if (isBorderVertex(v))
@@ -243,7 +243,7 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Double getTheta(E edge) throws TriangulationException{
+	> double getTheta(E edge) throws TriangulationException{
 		if (!edge.isBoundary())
 			return getAlpha(edge) + getAlpha(edge.getOppositeEdge());
 		else {
@@ -259,13 +259,13 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getAlpha(E edge) throws TriangulationException{
+	> double getAlpha(E edge) throws TriangulationException{
 		E edgeji = edge.getOppositeEdge();
 		E edgeki = edge.getPreviousEdge();
-		Double gammajik = Delaunay.getAngle(edgeki);
-		Double rhoik = getRho(edgeki);
-		Double rhoij = getRho(edgeji);
-		Double cosAlpha = (cos(rhoik) - cos(gammajik)*cos(rhoij)) / (sin(gammajik)*sin(rhoij));
+		double gammajik = Delaunay.getAngle(edgeki);
+		double rhoik = getRho(edgeki);
+		double rhoij = getRho(edgeji);
+		double cosAlpha = (cos(rhoik) - cos(gammajik)*cos(rhoij)) / (sin(gammajik)*sin(rhoij));
 		if (cosAlpha > 1 + eps)
 			throw new TriangulationException("Triangle inequation doesn't hold pyramide side at edge " + edge);
 		return acos(cosAlpha);
@@ -276,11 +276,11 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getRho(E edge) throws TriangulationException{
-		Double ri = edge.getTargetVertex().getRadius();
-		Double rj = edge.getStartVertex().getRadius();
-		Double lij = edge.getLength();
-		Double cosRho = (ri - rj) / lij;
+	> double getRho(E edge) throws TriangulationException{
+		double ri = edge.getTargetVertex().getRadius();
+		double rj = edge.getStartVertex().getRadius();
+		double lij = edge.getLength();
+		double cosRho = (ri - rj) / lij;
 		if (cosRho > 1 + eps){
 			throw new TriangulationException("Triangle inequation doesn't hold pyramide side at edge " + edge);
 		}
@@ -291,12 +291,12 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getOmega(E edge_ki) throws TriangulationException{
+	> double getOmega(E edge_ki) throws TriangulationException{
 		E edge_ji = edge_ki.getNextEdge().getOppositeEdge();
-		Double gamma_jik = Delaunay.getAngle(edge_ki);
-		Double rho_ij = getRho(edge_ji);
-		Double rho_ik = getRho(edge_ki);
-		Double cosOmega = (cos(gamma_jik) - cos(rho_ij)*cos(rho_ik)) / (sin(rho_ij)*sin(rho_ik));
+		double gamma_jik = Delaunay.getAngle(edge_ki);
+		double rho_ij = getRho(edge_ji);
+		double rho_ik = getRho(edge_ki);
+		double cosOmega = (cos(gamma_jik) - cos(rho_ij)*cos(rho_ik)) / (sin(rho_ij)*sin(rho_ik));
 		if (cosOmega > 1 + eps)
 			throw new TriangulationException("Triangle inequation doesn't hold pyramide side at edge " + edge_ki);
 		return acos(cosOmega);
@@ -307,7 +307,7 @@ public class CapCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable & IsBoundary,
 		F extends Face<V, E, F>
-	> Boolean isBorderVertex(V vertex){
+	> boolean isBorderVertex(V vertex){
 		List<E> cocycle = vertex.getEdgeStar();
 		for (E e : cocycle)
 			if (e.isBoundary())

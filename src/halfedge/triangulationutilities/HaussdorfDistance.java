@@ -16,11 +16,11 @@ public class HaussdorfDistance {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getHeight(F face, HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
+	> double getHeight(F face, HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
 		E edgeij = face.getBoundaryEdge();
-		Double rj = edgeij.getTargetVertex().getRadius();
-		Double hij = rj * Math.sin(CPMCurvatureFunctional.getRho(edgeij));
-		Double alphaij = CPMCurvatureFunctional.getAlpha(edgeij);
+		double rj = edgeij.getTargetVertex().getRadius();
+		double hij = rj * Math.sin(CPMCurvatureFunctional.getRho(edgeij));
+		double alphaij = CPMCurvatureFunctional.getAlpha(edgeij);
 		return hij * Math.sin(alphaij);
 	}
 	
@@ -29,8 +29,8 @@ public class HaussdorfDistance {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	>  Double getMaxRadius(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
-		Double max = 0.0;
+	>  double getMaxRadius(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
+		double max = 0.0;
 		for (V v : graph.getVertices())
 			max = max < v.getRadius() ? v.getRadius() : max;
 		return max;
@@ -41,10 +41,10 @@ public class HaussdorfDistance {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	>  Double getMinHeight(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
-		Double min = Double.MAX_VALUE;
+	>  double getMinHeight(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
+		double min = Double.MAX_VALUE;
 		for (F f : graph.getFaces()){
-			Double height = getHeight(f, graph);
+			double height = getHeight(f, graph);
 			min = min > height ? height : min;
 		}
 		return min;
@@ -55,7 +55,7 @@ public class HaussdorfDistance {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	>  Double getDistanceToSphere(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
+	>  double getDistanceToSphere(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
 		double outterRadius = getMaxRadius(graph);
 		double innerRadius = getMinHeight(graph);
 		double sphereRadius = (outterRadius + innerRadius) / 2;

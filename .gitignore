@@ -1,1 +1,5 @@
 /bin/
+/custom.properties
+/build/
+/build-test/
+/release/

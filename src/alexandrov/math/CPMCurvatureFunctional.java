@@ -38,7 +38,7 @@ public class CPMCurvatureFunctional {
 	private static final double
 		eps = 1E-5;
 	
-	private static Double cot(Double phi){
+	private static double cot(double phi){
 		return -tan(phi + PI/2);
 	}
 
@@ -49,7 +49,7 @@ public class CPMCurvatureFunctional {
 		F extends Face<V, E, F>
 	> boolean isMetricConvex(HalfEdgeDataStructure<V, E, F> graph) throws TriangulationException{
 		for (V v : graph.getVertices()){
-			Double gamma = getGammaAt(v);
+			double gamma = getGammaAt(v);
 			if (gamma >= 2*PI + eps){
 				return false;
 			}
@@ -62,9 +62,9 @@ public class CPMCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getGammaAt(V vertex) throws TriangulationException{
+	> double getGammaAt(V vertex) throws TriangulationException{
 		List<E> cocycle = vertex.getEdgeStar();
-		Double gamma = 0.0;
+		double gamma = 0.0;
 		for (E e : cocycle){
 			gamma += Delaunay.getAngle(e);
 		}
@@ -80,7 +80,7 @@ public class CPMCurvatureFunctional {
 		Vector result = new DenseVector(graph.getNumVertices());
 		for (V v : graph.getVertices()){
 			List<E> cocycle = v.getEdgeStar();
-			Double gamma = 0.0;
+			double gamma = 0.0;
 			for (E e : cocycle){
 				gamma += Delaunay.getAngle(e);
 			}
@@ -138,23 +138,23 @@ public class CPMCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getCurvaturePartialDerivative(HalfEdgeDataStructure<V, E, F> graph, int i, int j) throws TriangulationException{
+	> double getCurvaturePartialDerivative(HalfEdgeDataStructure<V, E, F> graph, int i, int j) throws TriangulationException{
 		if (i == j){
 			V v = graph.getVertex(i);
 			List<E> cocycle = v.getEdgeStar();
-			Double result = 0.0;
+			double result = 0.0;
 			for (E ki : cocycle){
 				int k = ki.getStartVertex().getIndex();
-				Double sum = 0.0;
+				double sum = 0.0;
 				if (k == i){ //loop
-					Double sin_rho_e = sin(getRho(ki));
-					Double l = ki.getLength();
-					Double alphaE = getAlpha(ki);
-					Double alphaEMin = getAlpha(ki.getOppositeEdge());
-					Double ri = v.getRadius();
+					double sin_rho_e = sin(getRho(ki));
+					double l = ki.getLength();
+					double alphaE = getAlpha(ki);
+					double alphaEMin = getAlpha(ki.getOppositeEdge());
+					double ri = v.getRadius();
 					sum =  l * (cot(alphaE) + cot(alphaEMin)) / (ri*ri * sin_rho_e*sin_rho_e) / 2;
 				} else {    //no loop
-					Double phi_ij = getPhi(ki);
+					double phi_ij = getPhi(ki);
 					sum = cos(phi_ij)*getCurvaturePartialDerivative(graph, i, k);
 				}
 				result += sum;
@@ -169,14 +169,14 @@ public class CPMCurvatureFunctional {
 			}
 			if (jiList.size() == 0)
 				return 0.0;
-			Double result = 0.0;
+			double result = 0.0;
 			for (E ji : jiList){
 				E ij = ji.getOppositeEdge(); 
-				Double alpha_ij = getAlpha(ji);
-				Double alpha_ji = getAlpha(ij);
-				Double rho_ij = getRho(ji);
-				Double rho_ji = getRho(ij);
-				Double lij = ij.getLength();
+				double alpha_ij = getAlpha(ji);
+				double alpha_ji = getAlpha(ij);
+				double rho_ij = getRho(ji);
+				double rho_ji = getRho(ij);
+				double lij = ij.getLength();
 				result += (cot(alpha_ij) + cot(alpha_ji)) / (lij * sin(rho_ij) * sin(rho_ji));
 			}
 			return result;
@@ -189,9 +189,9 @@ public class CPMCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getCurvature(V v) throws TriangulationException{
+	> double getCurvature(V v) throws TriangulationException{
 		List<E> cocycle = v.getEdgeStar();
-		Double omega_i = 0.0; 
+		double omega_i = 0.0; 
 		for (E e : cocycle)
 			omega_i += getOmega(e);
 		return 2*PI - omega_i;
@@ -220,11 +220,11 @@ public class CPMCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getRho(E edge) throws TriangulationException{
-		Double ri = edge.getTargetVertex().getRadius();
-		Double rj = edge.getStartVertex().getRadius();
-		Double lij = edge.getLength();
-		Double cosRho = (lij*lij + ri*ri - rj*rj) / (2*lij*ri);
+	> double getRho(E edge) throws TriangulationException{
+		double ri = edge.getTargetVertex().getRadius();
+		double rj = edge.getStartVertex().getRadius();
+		double lij = edge.getLength();
+		double cosRho = (lij*lij + ri*ri - rj*rj) / (2*lij*ri);
 		if (cosRho > 1)
 			throw new TriangulationException("Triangle inequation doesn't hold pyramide side at edge " + edge);
 		return acos(cosRho);
@@ -239,7 +239,7 @@ public class CPMCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getPhi(E edge) throws TriangulationException{
+	> double getPhi(E edge) throws TriangulationException{
 		return PI - getRho(edge) - getRho(edge.getOppositeEdge());
 	}
 	
@@ -254,13 +254,13 @@ public class CPMCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getAlpha(E edge) throws TriangulationException{
+	> double getAlpha(E edge) throws TriangulationException{
 		E edgeji = edge.getOppositeEdge();
 		E edgeki = edge.getPreviousEdge();
-		Double gammajik = Delaunay.getAngle(edgeki);
-		Double rhoik = getRho(edgeki);
-		Double rhoij = getRho(edgeji);
-		Double cosAlpha = (cos(rhoik) - cos(gammajik)*cos(rhoij)) / (sin(gammajik)*sin(rhoij));
+		double gammajik = Delaunay.getAngle(edgeki);
+		double rhoik = getRho(edgeki);
+		double rhoij = getRho(edgeji);
+		double cosAlpha = (cos(rhoik) - cos(gammajik)*cos(rhoij)) / (sin(gammajik)*sin(rhoij));
 		if (cosAlpha > 1)
 			throw new TriangulationException("Triangle inequation doesn't hold pyramide side at edge " + edge);
 		return acos(cosAlpha);
@@ -277,12 +277,12 @@ public class CPMCurvatureFunctional {
 		V extends Vertex<V, E, F> & HasXYZW & HasRadius,
 		E extends Edge<V, E, F> & IsFlippable,
 		F extends Face<V, E, F>
-	> Double getOmega(E edge_ki) throws TriangulationException{
+	> double getOmega(E edge_ki) throws TriangulationException{
 		E edge_ji = edge_ki.getNextEdge().getOppositeEdge();
-		Double gamma_jik = Delaunay.getAngle(edge_ki);
-		Double rho_ij = getRho(edge_ji);
-		Double rho_ik = getRho(edge_ki);
-		Double cosOmega = (cos(gamma_jik) - cos(rho_ij)*cos(rho_ik)) / (sin(rho_ij)*sin(rho_ik));
+		double gamma_jik = Delaunay.getAngle(edge_ki);
+		double rho_ij = getRho(edge_ji);
+		double rho_ik = getRho(edge_ki);
+		double cosOmega = (cos(gamma_jik) - cos(rho_ij)*cos(rho_ik)) / (sin(rho_ij)*sin(rho_ik));
 		if (cosOmega > 1)
 			throw new TriangulationException("Triangle inequation doesn't hold pyramide side at edge " + edge_ki);
 		return acos(cosOmega);
