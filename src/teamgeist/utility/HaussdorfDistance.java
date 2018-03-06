@@ -1,4 +1,4 @@
-package halfedge.triangulationutilities;
+package teamgeist.utility;
 
 import halfedge.Edge;
 import halfedge.Face;
@@ -7,6 +7,7 @@ import halfedge.Vertex;
 import halfedge.decorations.HasRadius;
 import halfedge.decorations.HasXYZW;
 import halfedge.decorations.IsFlippable;
+import halfedge.triangulationutilities.TriangulationException;
 import alexandrov.math.CPMCurvatureFunctional;
 
 public class HaussdorfDistance {

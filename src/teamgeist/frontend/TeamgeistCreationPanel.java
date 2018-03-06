@@ -7,7 +7,6 @@ import halfedge.HalfEdgeDataStructure;
 import halfedge.HalfEdgeUtility;
 import halfedge.surfaceutilities.SurfaceException;
 import halfedge.surfaceutilities.SurfaceUtility;
-import halfedge.triangulationutilities.HaussdorfDistance;
 import halfedge.triangulationutilities.TriangulationException;
 import image.ImageHook;
 
@@ -33,6 +32,7 @@ import teamgeist.combinatorics.EdgeLengthMap;
 import teamgeist.combinatorics.TeamgeistCombinatorics;
 import teamgeist.combinatorics.TeamgeistLengthMap2;
 import teamgeist.frontend.controller.MainController;
+import teamgeist.utility.HaussdorfDistance;
 import util.debug.DBGTracer;
 import alexandrov.graph.CPMEdge;
 import alexandrov.graph.CPMFace;

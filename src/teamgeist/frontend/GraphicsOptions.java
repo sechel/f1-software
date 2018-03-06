@@ -4,7 +4,6 @@ import static java.awt.GridBagConstraints.HORIZONTAL;
 import static java.awt.GridBagConstraints.REMAINDER;
 import static java.awt.GridBagConstraints.WEST;
 import halfedge.HalfEdgeDataStructure;
-import halfedge.triangulationutilities.HaussdorfDistance;
 import halfedge.triangulationutilities.TriangulationException;
 
 import java.awt.GridBagConstraints;
@@ -17,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import teamgeist.frontend.controller.MainController;
+import teamgeist.utility.HaussdorfDistance;
 import alexandrov.graph.CPMEdge;
 import alexandrov.graph.CPMFace;
 import alexandrov.graph.CPMVertex;

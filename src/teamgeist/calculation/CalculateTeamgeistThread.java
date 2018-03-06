@@ -2,7 +2,6 @@ package teamgeist.calculation;
 
 import halfedge.HalfEdgeDataStructure;
 import halfedge.triangulationutilities.ConsistencyCheck;
-import halfedge.triangulationutilities.HaussdorfDistance;
 import halfedge.triangulationutilities.TriangulationException;
 
 import java.util.LinkedList;
@@ -11,6 +10,7 @@ import java.util.Random;
 import math.optimization.IterationMonitor;
 import teamgeist.combinatorics.EdgeLengthMap;
 import teamgeist.frontend.controller.MainController;
+import teamgeist.utility.HaussdorfDistance;
 import util.debug.DBGTracer;
 import alexandrov.Alexandrov2;
 import alexandrov.graph.CPMEdge;
